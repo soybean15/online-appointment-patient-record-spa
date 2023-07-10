@@ -1,4 +1,8 @@
 <template>
+    <div class="flex theme-primary">
+        <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+    </div>
   
 </template>
 

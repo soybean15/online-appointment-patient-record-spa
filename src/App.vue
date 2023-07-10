@@ -1,12 +1,24 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+
+<NavView/>
+
+  
   <router-view/>
 </template>
+<script>
+import NavView from '@/views/components/NavView'
+
+export default {
+  components:{NavView},
+  setup() {
+    
+  },
+}
+</script>
+
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
