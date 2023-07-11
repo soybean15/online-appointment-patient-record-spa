@@ -1,42 +1,128 @@
 <template>
+  <q-layout view="hHh LpR fff">
+    <q-header reveal elevated class="bg-primary text-white" height-hint="98">
+      <q-toolbar>
+        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-<NavView/>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+          </q-avatar>
+          Title
+        </q-toolbar-title>
 
-  
-  <router-view/>
+        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
+      </q-toolbar>
+
+      <q-tabs align="left">
+        <q-route-tab to="/home" label="HOME" />
+        <q-route-tab to="/page2" label="Services" />
+        <q-route-tab to="/page3" label="About" />
+      </q-tabs>
+    </q-header>
+
+    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+      <q-list padding>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-icon class="" name="book" />
+          </q-item-section>
+
+          <q-item-section> Appointment </q-item-section>
+        </q-item>
+
+        <q-item :active="true" clickable v-ripple>
+          <q-item-section avatar>
+            <q-icon name="event" />
+          </q-item-section>
+
+          <q-item-section> Calendar </q-item-section>
+        </q-item>
+
+        <q-item :active="true"  clickable v-ripple>
+          <q-item-section avatar>
+            <q-icon name="list" />
+          </q-item-section>
+
+          <q-item-section> Logs </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-icon name="dark_mode" />
+          </q-item-section>
+
+          <q-item-section> Dark Mode </q-item-section>
+          <q-item-section>
+            <q-toggle v-model="value" color="primary" @click=" $q.dark.toggle();"/>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-icon name="logout" />
+          </q-item-section>
+
+          <q-item-section> 
+            <AuthDialog/> 
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-drawer>
+
+    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+      <!-- drawer content -->
+    </q-drawer>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+
+    <q-footer elevated class="bg-grey-8 text-white">
+      <q-toolbar>
+        <q-toolbar-title>
+          <q-avatar>
+            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+          </q-avatar>
+          <div>Title</div>
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
+  </q-layout>
 </template>
+
 <script>
-import NavView from '@/views/components/NavView'
-
+import AuthDialog from '@/views/components/dialog/AuthDialog'
+import { onMounted, ref } from "vue";
+import { useQuasar } from "quasar";
+import { useAuthStore } from './store/auth';
 export default {
-  components:{NavView},
+  components:{AuthDialog},
   setup() {
-    
+    const authStore = useAuthStore()
+    onMounted(()=>{
+      authStore.getUser()
+    })
+    const leftDrawerOpen = ref(false);
+    const rightDrawerOpen = ref(false);
+
+    const $q = useQuasar();
+
+    // toggle
+   
+
+    return {
+      leftDrawerOpen,
+      toggleLeftDrawer() {
+        leftDrawerOpen.value = !leftDrawerOpen.value;
+      },
+
+      rightDrawerOpen,
+      toggleRightDrawer() {
+        rightDrawerOpen.value = !rightDrawerOpen.value;
+      },
+      $q 
+    };
   },
-}
+};
 </script>
-
-
-<style>
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50; 
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>

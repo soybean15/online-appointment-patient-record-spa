@@ -5,7 +5,7 @@ import Register from '../views/home/auth/RegisterView.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView
   },
