@@ -5,7 +5,7 @@ import router from '../router/index'
 export const useAuthStore = defineStore('auth', {
     state: () => ({ 
         authUser:null,
-        authLoading:null,
+ 
         authForm:{
             email:null,
             password:null
@@ -15,7 +15,7 @@ export const useAuthStore = defineStore('auth', {
      }),
     getters: {
         user :(state)=>state.authUser,
-        loading:(state)=>state.authLoading,
+      
         loginForm:(state)=>state.authForm
        
     },
@@ -30,10 +30,10 @@ export const useAuthStore = defineStore('auth', {
             try {
                 const data = await axios.get('/api/user')
                 if (data) {
-                    this.stateUser.user = data.data
-                    this.getProfile()
+                    this.authUser = data.data
+                    
                 }
-                console.log(this.stateUser.user)
+              
 
 
 
@@ -53,8 +53,9 @@ export const useAuthStore = defineStore('auth', {
 
         },
         async handleLogin() {
+            
 
-         this.authLoading = true
+      
             try {
                 const data = await axios.post('/login', {
                     email: this.authForm.email,
@@ -66,7 +67,8 @@ export const useAuthStore = defineStore('auth', {
                 
 
                 router.push('/home')
-                this.authLoading = false
+            
+              
                
             } catch (error) {
 
@@ -76,7 +78,7 @@ export const useAuthStore = defineStore('auth', {
                     
                    
                 }
-                this.authLoading = false
+               
             }
 
         },

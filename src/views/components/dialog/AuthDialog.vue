@@ -5,7 +5,7 @@
       <q-dialog v-model="persistent" persistent transition-show="scale" transition-hide="scale">
         <q-card class="bg-teal text-white" style="width: 100%">
           <q-card-section>
-            <LoginViewVue/>
+            <LoginViewVue @onClose = 'closeDialog' />
           </q-card-section>
   
           <q-card-actions align="right" class="bg-white text-teal">
@@ -25,8 +25,15 @@ import LoginViewVue from '@/views/home/auth/LoginView.vue'
   export default {
     components:{LoginViewVue},
     setup () {
+        const persistent =ref(false)
+
+        const closeDialog=()=>{
+            persistent.value = false
+          
+        }
       return {
-        persistent: ref(false)
+        persistent,
+        closeDialog
       }
     }
   }

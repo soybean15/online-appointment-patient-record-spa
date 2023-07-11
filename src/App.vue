@@ -93,11 +93,16 @@
 
 <script>
 import AuthDialog from '@/views/components/dialog/AuthDialog'
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
+import { useAuthStore } from './store/auth';
 export default {
   components:{AuthDialog},
   setup() {
+    const authStore = useAuthStore()
+    onMounted(()=>{
+      authStore.getUser()
+    })
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
 
