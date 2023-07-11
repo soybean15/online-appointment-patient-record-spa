@@ -4,12 +4,19 @@ import router from '../router/index'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({ 
-        authUser:null
+        authUser:null,
+        authLoading:null,
+        authForm:{
+            email:null,
+            password:null
+        }
 
 
      }),
     getters: {
-        user :(state)=>state.authUser
+        user :(state)=>state.authUser,
+        loading:(state)=>state.authLoading,
+        loginForm:(state)=>state.authForm
        
     },
     actions: {
@@ -43,6 +50,34 @@ export const useAuthStore = defineStore('auth', {
 
             }
 
+
+        },
+        async handleLogin() {
+
+         this.authLoading = true
+            try {
+                const data = await axios.post('/login', {
+                    email: this.authForm.email,
+                    password: this.authForm.password
+
+                })
+
+
+                
+
+                router.push('/home')
+                this.authLoading = false
+               
+            } catch (error) {
+
+                if (error.response.status === 422) {
+                    this.authErrors =error.response.data.errors
+                    console.log(this.authErrors)
+                    
+                   
+                }
+                this.authLoading = false
+            }
 
         },
       
