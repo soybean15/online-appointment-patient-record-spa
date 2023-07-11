@@ -64,7 +64,18 @@
           </q-item-section>
 
           <q-item-section> 
-            <AuthDialog/> 
+            <AuthDialog>Sign in</AuthDialog>
+           
+          </q-item-section>
+        </q-item>
+        <q-item clickable v-ripple>
+          <q-item-section avatar>
+            <q-icon name="logout" />
+          </q-item-section>
+
+          <q-item-section> 
+            <AuthDialog>Register</AuthDialog>
+           
           </q-item-section>
         </q-item>
       </q-list>

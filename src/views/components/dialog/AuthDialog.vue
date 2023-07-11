@@ -1,6 +1,6 @@
 <template>
     <div class="q-pa-md q-gutter-sm">
-      <q-btn label="Click me" color="primary" @click="persistent = true" />
+      <div  label="Click me" color="primary" @click="persistent = true" ><slot></slot></div>
   
       <q-dialog v-model="persistent" persistent transition-show="scale" transition-hide="scale">
         <q-card class="bg-teal text-white" style="width: 100%">
