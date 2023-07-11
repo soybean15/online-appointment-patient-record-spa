@@ -59,22 +59,31 @@
         </q-item>
 
         <q-item clickable v-ripple>
+   
+
+          <q-item-section> 
+            <AuthDialog>Account</AuthDialog>
+           
+          </q-item-section>
+        </q-item>
+        <hr>
+        <q-item clickable v-ripple>
           <q-item-section avatar>
-            <q-icon name="logout" />
+            <q-icon name="login" />
           </q-item-section>
 
           <q-item-section> 
-            <AuthDialog>Sign in</AuthDialog>
+            <LoginView>Sign in</LoginView>
            
           </q-item-section>
         </q-item>
         <q-item clickable v-ripple>
           <q-item-section avatar>
-            <q-icon name="logout" />
+            <q-icon name="person_add_alt" />
           </q-item-section>
 
           <q-item-section> 
-            <AuthDialog>Register</AuthDialog>
+            <RegisterView > Register</RegisterView>
            
           </q-item-section>
         </q-item>
@@ -103,12 +112,14 @@
 </template>
 
 <script>
-import AuthDialog from '@/views/components/dialog/AuthDialog'
+
+import LoginView from './views/home/auth/LoginView.vue';
+import RegisterView from './views/home/auth/RegisterView.vue';
 import { onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
 import { useAuthStore } from './store/auth';
 export default {
-  components:{AuthDialog},
+  components:{LoginView,RegisterView},
   setup() {
     const authStore = useAuthStore()
     onMounted(()=>{
