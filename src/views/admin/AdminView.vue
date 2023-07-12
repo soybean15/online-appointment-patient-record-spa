@@ -14,22 +14,72 @@
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <q-item
-      
-        clickable
-        v-ripple
-      >
+      <q-item clickable v-ripple>
         <q-item-section avatar>
-          <q-icon name="book_online" />
+          <q-icon name="dashboard" />
         </q-item-section>
 
-        <q-item-section> Records </q-item-section>
+        <q-item-section> Dashboard </q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple>
+        <q-item-section avatar>
+          <q-icon name="pending_actions" />
+        </q-item-section>
+
+        <q-item-section> Appointments </q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple>
+        <q-item-section avatar>
+          <q-icon name="calendar_today" />
+        </q-item-section>
+
+        <q-item-section> Calendar </q-item-section>
+      </q-item>
+
+      <q-item clickable v-ripple>
+        <q-item-section avatar>
+          <q-icon name="medical_services" />
+        </q-item-section>
+
+        <q-item-section> Services </q-item-section>
+      </q-item>
+
+      <q-expansion-item icon="perm_identity" label="Account settings">
+        <q-card>
+          <q-card-section
+            ><q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="masks" />
+              </q-item-section>
+
+              <q-item-section> Patients </q-item-section>
+
+             
+            </q-item>
+           <q-item clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon name="vaccines" />
+              </q-item-section>
+
+              <q-item-section> Doctors </q-item-section>
+
+             
+            </q-item>
+          </q-card-section>
+        </q-card>
+      </q-expansion-item>
+
+      <hr />
+      <q-item clickable v-ripple>
+        <q-item-section avatar>
+          <q-icon name="exit_to_app" />
+        </q-item-section>
+
+        <q-item-section> Exit </q-item-section>
       </q-item>
     </q-drawer>
-
-
-
-
 
     <q-page-container>
       <router-view />
