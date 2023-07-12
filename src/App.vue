@@ -20,75 +20,9 @@
         <q-route-tab to="/page3" label="About" />
       </q-tabs>
     </q-header>
-
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <q-list padding>
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon class="" name="book" />
-          </q-item-section>
-
-          <q-item-section> Appointment </q-item-section>
-        </q-item>
-
-        <q-item :active="true" clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="event" />
-          </q-item-section>
-
-          <q-item-section> Calendar </q-item-section>
-        </q-item>
-
-        <q-item :active="true"  clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="list" />
-          </q-item-section>
-
-          <q-item-section> Logs </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="dark_mode" />
-          </q-item-section>
-
-          <q-item-section> Dark Mode </q-item-section>
-          <q-item-section>
-            <q-toggle v-model="value" color="primary" @click=" $q.dark.toggle();"/>
-          </q-item-section>
-        </q-item>
-
-        <q-item clickable v-ripple>
-   
-
-          <q-item-section> 
-            <AuthDialog>Account</AuthDialog>
-           
-          </q-item-section>
-        </q-item>
-        <hr>
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="login" />
-          </q-item-section>
-
-          <q-item-section> 
-            <LoginView>Sign in</LoginView>
-           
-          </q-item-section>
-        </q-item>
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-icon name="person_add_alt" />
-          </q-item-section>
-
-          <q-item-section> 
-            <RegisterView > Register</RegisterView>
-           
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-drawer>
+      <LeftSideBar
+    /></q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
@@ -112,26 +46,23 @@
 </template>
 
 <script>
-
-import LoginView from './views/home/auth/LoginView.vue';
-import RegisterView from './views/home/auth/RegisterView.vue';
 import { onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
-import { useAuthStore } from './store/auth';
+import { useAuthStore } from "./store/auth";
+import LeftSideBar from "./views/components/LeftSideBar.vue";
 export default {
-  components:{LoginView,RegisterView},
+  components: { LeftSideBar },
   setup() {
-    const authStore = useAuthStore()
-    onMounted(()=>{
-      authStore.getUser()
-    })
+    const authStore = useAuthStore();
+    onMounted(() => {
+      authStore.getUser();
+    });
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
 
     const $q = useQuasar();
 
     // toggle
-   
 
     return {
       leftDrawerOpen,
@@ -143,7 +74,7 @@ export default {
       toggleRightDrawer() {
         rightDrawerOpen.value = !rightDrawerOpen.value;
       },
-      $q 
+      $q,
     };
   },
 };
