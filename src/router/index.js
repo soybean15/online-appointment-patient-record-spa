@@ -1,21 +1,17 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
-
+import { useAuthStore } from '@/store/auth'
 
 const routes = [
 
-  {
-    path: '/admin',
-    name: 'admin',
-    component: HomeView
 
-
-  },
   {
     path: '/',
     name: 'main',
     redirect: '/home',
     component: () => import(/* webpackChunkName: "about" */ '@/views/MainView'),
+    
+
     children: [
 
       {
@@ -41,7 +37,21 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component:()=> import('@/views/admin/AdminView')
+    component:()=> import('@/views/admin/AdminView'),
+    beforeEnter: (to, from, next) => {
+      const authStore = useAuthStore()
+      const isAdmin = authStore.isAdmin;
+
+      if (isAdmin) {
+        // User is authenticated and authorized as an admin, proceed with entering the component
+        next();
+      } else {
+        // User is not an admin, redirect to an access denied page or show an error message
+        next('/');
+      }
+
+
+    },
   },
 
 
@@ -56,8 +66,11 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 })
+
+
+
 
 export default router

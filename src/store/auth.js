@@ -16,14 +16,16 @@ export const useAuthStore = defineStore('auth', {
             register:false,
             login:true
         },
-        authErrors:[]
+        authErrors:[],
+        authIsAdmin:false
 
     }),
     getters: {
         user: (state) => state.authUser,
         success:(state)=>state.authSuccess,
         errors:(state)=>state.authErrors,
-        form: (state) => state.authForm
+        form: (state) => state.authForm,
+        isAdmin :(state)=>state.authIsAdmin
 
     },
     actions: {
@@ -38,6 +40,8 @@ export const useAuthStore = defineStore('auth', {
                 const data = await axios.get('/api/user')
                 if (data) {
                     this.authUser = data.data
+                    this.authIsAdmin = this.authUser.roles.some(role => role.name === 'Admin');
+                 
 
                 }
 
@@ -113,6 +117,7 @@ export const useAuthStore = defineStore('auth', {
             this.authSuccess.login = false
             this.authErrors =[]
             this.authUser = null
+            this.authIsAdmin = false
         }
 
     },
