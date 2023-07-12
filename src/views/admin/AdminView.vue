@@ -6,9 +6,9 @@
 
         <q-toolbar-title>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+            <img src="../../assets/logo.png" />
           </q-avatar>
-          Title
+           Maxilife
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
