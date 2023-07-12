@@ -105,6 +105,14 @@ export const useAuthStore = defineStore('auth', {
 
 
             }
+        },
+        async handleLogout(){
+            const data = await axios.post('/logout')
+
+            this.authSuccess.register = false
+            this.authSuccess.login = false
+            this.authErrors =[]
+            this.authUser = null
         }
 
     },
