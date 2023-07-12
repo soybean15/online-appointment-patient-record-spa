@@ -14,17 +14,17 @@
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <q-item
-      
-        clickable
-        v-ripple
-      >
+
+
+      <q-item clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="book_online" />
         </q-item-section>
 
         <q-item-section> Records </q-item-section>
       </q-item>
+
+      
     </q-drawer>
 
     <q-page-container>
