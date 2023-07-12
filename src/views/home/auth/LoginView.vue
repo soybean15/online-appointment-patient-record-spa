@@ -9,7 +9,7 @@
       transition-show="scale"
       transition-hide="scale"
     >
-      <q-card class="bg-teal text-white" style="width: 100%">
+      <q-card style="width: 100%">
         <q-card-section>
           <div class="q-pa-md">
             <q-list bordered>
@@ -29,21 +29,42 @@
               </q-item>
 
               <q-item v-ripple>
-                <q-item-section
-                  ><q-input
+                <q-item-section>
+                  <div
+                    class="w-full flex justify-center text-red-400"
+                    v-if="authStore.errors.email"
+                  >
+                    {{ authStore.errors.email[0] }}
+                  </div>
+                  <q-input
                     standout="bg-teal text-white"
-                    v-model="authStore.loginForm.email"
+                    v-model="authStore.form.email"
                     label="Email"
                 /></q-item-section>
               </q-item>
 
               <q-item v-ripple>
                 <q-item-section>
+                  <div
+                    class="w-full flex justify-center text-red-400"
+                    v-if="authStore.errors.password"
+                  >
+                    {{ authStore.errors.password[0] }}
+                  </div>
                   <q-input
+                  :type="isPwd ? 'password' : 'text'"
                     standout="bg-teal text-white"
-                    v-model="authStore.loginForm.password"
+                    v-model="authStore.form.password"
                     label="Password"
-                  />
+                  >
+                    <template v-slot:append>
+                      <q-icon
+                        :name="isPwd ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"
+                        @click="isPwd = !isPwd"
+                      />
+                    </template>
+                  </q-input>
                 </q-item-section>
               </q-item>
               <q-item v-ripple>
@@ -61,7 +82,7 @@
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="OK" v-close-popup />
+          <q-btn flat label="Close" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -72,20 +93,18 @@
 import { ref } from "vue";
 import { useAuthStore } from "@/store/auth";
 export default {
- 
   setup() {
     const authStore = useAuthStore();
     const loading = ref(false);
-    const persistent =ref(false)
+    const persistent = ref(false);
     const onLogin = async () => {
       loading.value = true;
       await authStore.handleLogin();
-      console.log(authStore.user);
 
       await authStore.getUser();
 
       if (authStore.user) {
-        persistent.value =false
+        persistent.value = false;
       }
 
       loading.value = false;
@@ -95,7 +114,8 @@ export default {
       authStore,
       onLogin,
       loading,
-      persistent
+      persistent,
+      isPwd:ref(false)
     };
   },
 };

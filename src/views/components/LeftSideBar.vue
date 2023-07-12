@@ -25,7 +25,7 @@
           <q-item-section> Logs </q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple>
+        <q-item clickable class="" v-ripple>
           <q-item-section avatar>
             <q-icon name="dark_mode" />
           </q-item-section>
@@ -74,7 +74,7 @@ import LoginView from '@/views/home/auth/LoginView';
 import RegisterView from '@/views/home/auth/RegisterView.vue';
 export default {
     components:{LoginView, RegisterView},
-    props:['leftDrawerOpen'],
+   
     setup(){
     
     }

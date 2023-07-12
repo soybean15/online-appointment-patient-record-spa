@@ -8,14 +8,22 @@ export const useAuthStore = defineStore('auth', {
 
         authForm: {
             email: null,
-            password: null
-        }
+            password: null,
+            name:null,
+            password_confirmation:null
+        },
+        authSuccess:{
+            register:false,
+            login:true
+        },
+        authErrors:[]
 
     }),
     getters: {
         user: (state) => state.authUser,
-
-        loginForm: (state) => state.authForm
+        success:(state)=>state.authSuccess,
+        errors:(state)=>state.authErrors,
+        form: (state) => state.authForm
 
     },
     actions: {
@@ -47,7 +55,7 @@ export const useAuthStore = defineStore('auth', {
 
         },
         async handleLogin() {
-
+            this.authErrors = []
 
 
             try {
@@ -60,15 +68,16 @@ export const useAuthStore = defineStore('auth', {
 
 
 
-                router.push('/home')
+                router.push('/')
 
+                this.authErrors = []
 
 
             } catch (error) {
 
                 if (error.response.status === 422) {
-                    this.authErrors = error.response.data.errors
-                    console.log(this.authErrors)
+                     this.authErrors = error.response.data.errors
+                    // console.log(this.authErrors)
 
 
                 }
@@ -76,6 +85,27 @@ export const useAuthStore = defineStore('auth', {
             }
 
         },
+
+        async handleRegister(){
+            this.authErrors = []
+            try{
+                const data = await axios.post('/register',this.authForm)
+
+                this.authSuccess.register = true
+                
+                
+            }catch(error){
+                this.authSuccess.register = false
+                if (error.response.status === 422) {
+                    this.authErrors = error.response.data.errors
+                
+
+
+                }
+
+
+            }
+        }
 
     },
 })
