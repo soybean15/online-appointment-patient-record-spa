@@ -50,7 +50,8 @@
       </q-item-section>
     </q-item>
 
-    <q-item
+    <div v-if="authStore.isAdmin">
+      <q-item
       to="admin"
       clickable
       v-ripple
@@ -59,8 +60,11 @@
         <q-icon name="admin_panel_settings" />
       </q-item-section>
 
-      <q-item-section> Administratoe </q-item-section>
+      <q-item-section> Administrator </q-item-section>
     </q-item>
+
+    </div>
+   
 
 
     <q-item>
