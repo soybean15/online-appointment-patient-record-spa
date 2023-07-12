@@ -9,10 +9,56 @@
         transition-show="scale"
         transition-hide="scale"
       >
-        <q-card class="bg-teal text-white" style="width: 100%">
+        <q-card class="bg-cyan text-black" style="width: 100%">
           <q-card-section>
            
-            //add Register form here
+            <div class="q-pa-md w-full" style="max-width: 500px">
+
+                <q-list bordered class="flex justify-center w-full">
+                    <q-item class="flex justify-center w-96"  >
+                       <q-input standout v-model="ph" label="Name " class="bg-cyan-8 rounded mt-3 "     />
+
+                    </q-item>
+              
+                    
+                    <q-item>
+                        <q-input standout v-model="ph" label="Email " class="bg-cyan-8 rounded  mt-3"  :dense="dense" />
+                    </q-item>
+
+                    <q-item>
+                        <q-input standout v-model="ph" label="Password " class="bg-cyan-8 rounded mt-3" :dense="dense" />
+                    </q-item>
+
+                    <q-item>
+                        <q-input standout v-model="ph" label=" Confirm Password" class="bg-cyan-8 rounded mt-3"  :dense="dense" />
+                    </q-item>
+
+
+                    <q-item >
+                
+                     <q-btn
+                    :loading="loading"
+                    color="secondary"
+                    @click="onLogin"
+                    label="Login"
+                     />
+        
+                     </q-item>
+             </q-list>
+                <div class="q-gutter-y-md column w-full" >
+            
+            
+                
+
+               
+              
+            
+               
+    
+            
+                </div>
+            </div>
+
 
 
           </q-card-section>
