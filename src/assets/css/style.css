@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Nonito';
+    font-family: 'Nunito';
     src: url('./fonts/Nunito-Regular.ttf');
 }
 @font-face {
@@ -12,7 +12,7 @@
 }
 
 .font-nonito{
-    font-family: 'Nonito';
+    font-family: 'Nunito';
 }
 
 .font-satoshi{
@@ -20,7 +20,7 @@
 }
 
 .body--light{
-    --surface:#f7f3f2;
+    --surface:#f8f8f8;
     --text: #1d1c1c;
     --text2: #ada5a5;
 }

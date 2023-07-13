@@ -8,7 +8,7 @@ import '@quasar/extras/material-icons-round/material-icons-round.css'
 export default {
   config: {
     dark: true ,
-    brandFont: 'Satoshi', 
+    brandFont: 'Nunito'
   },
   plugins: {
   }

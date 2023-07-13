@@ -10,7 +10,7 @@
       <div class="col-7">
         <div class="row items-center justify-between">
           <div class="row items-center">
-            <div class="m-2 mr-1 font-bold text-base text-blue-400" color="">
+            <div class="m-2 mr-1 font-bold text-base text-blue-400 font-nonito" color="">
               Profile
             </div>
             <div class="mr-1 text-2xl">></div>
@@ -41,7 +41,7 @@
           </div>
           <div class="row mt-5">
             <div class="col-12 row justify-center">
-              <div class="text-lg font-semibold">Appointments</div>
+              <div class="text-md font-semibold">Appointments</div>
             </div>
             <div class="col-5 column items-center">
               <div class="row text-4xl font-bold">1</div>

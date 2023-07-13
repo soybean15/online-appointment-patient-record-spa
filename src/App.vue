@@ -1,5 +1,7 @@
 <template>
+  <div class="font-nonito">
   <router-view></router-view>
+</div>
 </template>
 
 <script>
