@@ -21,17 +21,22 @@
 
 .body--light{
     --surface:#f8f8f8;
+    --onSurface:#ffffff;
     --text: #1d1c1c;
     --text2: #ada5a5;
 }
 .body--dark{
     --surface:#202020;
+    --onSurface:#2e2d2d;
     --text:#f7f3f2;
     --text2: #8a8787;
 }
 .bg-surface{
     background-color: var(--surface);
     color: var(--text);
+}
+.bg-onSurface {
+    background-color: var(--onSurface);
 }
 .font-secondary{
     color:var(--text2)

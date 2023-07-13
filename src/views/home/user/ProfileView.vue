@@ -13,21 +13,20 @@
             <div class="m-2 mr-1 font-bold text-base text-blue-400 font-nonito" color="">
               Profile
             </div>
-            <div class="mr-1 text-2xl">></div>
-            <div class="text-base">{{ fullName }}</div>
+   
           </div>
 
           <div>
-            <q-btn color="primary" icon="edit" label="Edit" />
+            <EditProfileModal/>
           </div>
         </div>
       </div>
 
       <div class="col-7  row bg-surface rounded-md p-3 m-3 shadow-md">
         <div class="col-6 border-r  border-gray-400 column">
-          <div class="row justify-center">
+          <div class="row justify-center" v-if="authStore.user">
             <q-avatar class="self-center" size="70px" color="orange"
-              >J</q-avatar
+              ><img :src="authStore.user.profile[0].image"></q-avatar
             >
           </div>
           <div class="row justify-center">
@@ -58,42 +57,64 @@
           </div>
         </div>
 
-        <div class="col-6 pl-2">
+        <div class="col-6 pl-2" v-if="authStore.user">
             <div class="row h-20">
                 <div class="col-6  ">
                     <div class="row font-secondary">Gender</div>
-                    <div class="row">Male</div>
+                    <div class="row">{{authStore.user.profile[0].gender}}</div>
                 </div>
                 <div class="col-6  ">
                     <div class="row font-secondary">Birthday</div>
-                    <div class="row">March 15, 2000</div>
+                    <div class="row">{{authStore.user.profile[0].birthdate}}</div>
                 </div>
             </div>
             <div class="row  h-20">
                 <div class="col-6  ">
                     <div class="row font-secondary">Phone Number</div>
-                    <div class="row">0923423465</div>
+                    <div class="row">{{authStore.user.profile[0].contact_number}}</div>
                 </div>
                 <div class="col-6  ">
                     <div class="row font-secondary">Address</div>
-                    <div class="row">Sinasajan Penarada Nueva Ecija</div>
+                    <div class="row">{{authStore.user.profile[0].address}}</div>
                 </div>
             </div>
         </div>
       </div>
-      <div class="col-4">
-        .col-5<br />Subsequent columns continue along the new line.
+      <div class="col-4 column row bg-surface rounded-md p-3 m-3 shadow-md ">
+        <div class="column col-3 ">
+            <div class="row font-bold text-lg"> Notes</div>
+            <div class="row justify-between">
+                <div>Last updated</div>
+                <div class="font-secondary">2020-08-02</div>
+            </div>
+        </div>
+        <div class="row  col-9 bg-onSurface rounded-md p-2 pl-4">
+            <ul style="list-style-type: disc;">
+                <li>Patient is in good Condition</li>
+            </ul>
+        </div>
+       
       </div>
     </div>
+
+
+
+
   </div>
+  
 </template>
 
+
+
 <script>
+
 import { useAuthStore } from "@/store/auth";
 import { computed, onMounted } from "vue";
 import { format } from "date-fns";
+import EditProfileModal from './modals/EditProfileModal.vue';
 
 export default {
+    components:{EditProfileModal},
   setup() {
     const authStore = useAuthStore();
     onMounted(() => {
