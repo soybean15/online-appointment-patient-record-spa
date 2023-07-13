@@ -7,7 +7,8 @@ import '@quasar/extras/material-icons-round/material-icons-round.css'
 // To be used on app.use(Quasar, { ... })
 export default {
   config: {
-    dark: true
+    dark: true ,
+    brandFont: 'Satoshi', 
   },
   plugins: {
   }

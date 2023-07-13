@@ -1,12 +1,13 @@
 <template>
-  <q-list padding>
+  <q-list padding class="font-nonito font-bold">
     <q-item
       :active="activeSideBar === 'profile'"
       @click="activeSideBar = 'profile'"
       clickable
       v-ripple
+      to="profile"
     >
-      <q-item-section avatar>
+      <q-item-section  avatar>
         <q-icon class="" name="person" />
       </q-item-section>
 
