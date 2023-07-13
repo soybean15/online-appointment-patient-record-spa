@@ -46,7 +46,7 @@
         <q-item-section> Services </q-item-section>
       </q-item>
 
-      <q-expansion-item icon="perm_identity" label="Account settings">
+      <q-expansion-item icon="perm_identity" label="Users">
         <q-card>
           <q-card-section
             ><q-item clickable v-ripple>
@@ -72,7 +72,7 @@
       </q-expansion-item>
 
       <hr />
-      <q-item clickable v-ripple>
+      <q-item to="/" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="exit_to_app" />
         </q-item-section>

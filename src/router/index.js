@@ -21,6 +21,12 @@ const routes = [
 
       },
       {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('@/views/home/user/ProfileView')
+
+      },
+      {
         path: '/about',
         name: 'about',
         // route level code-splitting
