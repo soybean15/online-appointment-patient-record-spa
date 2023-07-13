@@ -22,14 +22,19 @@
 .body--light{
     --surface:#f7f3f2;
     --text: #1d1c1c;
+    --text2: #ada5a5;
 }
 .body--dark{
     --surface:#202020;
     --text:#f7f3f2;
+    --text2: #8a8787;
 }
 .bg-surface{
     background-color: var(--surface);
     color: var(--text);
+}
+.font-secondary{
+    color:var(--text2)
 }
 
 
