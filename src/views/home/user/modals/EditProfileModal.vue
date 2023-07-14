@@ -48,9 +48,11 @@
                 ></q-icon>
               </div>
             </div>
-            <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+
+            <q-form @submit.prevent="onSubmit" class="q-gutter-md">
               <div class="column">
-                <q-item>
+                <q-item class="column">
+                  <div class="self-end text-red-400" v-if="authStore.errors.firstname">{{ `*${authStore.errors.firstname[0]}` }}</div>
                   <q-input
                     class="w-full"
                     label="Firstname"
@@ -60,7 +62,8 @@
                     dense
                   />
                 </q-item>
-                <q-item>
+                <q-item class="column">
+                  <div class="self-end text-red-400" v-if="authStore.errors.lastname">{{ `*${authStore.errors.lastname[0]}` }}</div>
                   <q-input
                     class="w-full"
                     label="Lastname"
@@ -80,13 +83,18 @@
                 </q-item>
 
                 <q-item class="items-center justify-between">
-                  <q-input
-                    class="w-full max-w-xs"
+                  <div class="w-full  column max-w-xs">
+                    <div class="self-end text-red-400" v-if="authStore.errors.contact_number">{{ `*${authStore.errors.contact_number[0]}` }}</div>
+                    <q-input
+                    
                     label="Contact Number"
                     filled
                     v-model="authStore.user.profile[0].contact_number"
                     dense
                   />
+
+                  </div>
+                  
 
                   <div>
                     <span class="font-secondary">Gender</span>
@@ -102,14 +110,17 @@
                     />
                   </div>
                 </q-item>
-                <q-item class="items-center">
-                  <q-input
+
+                <q-item class="items-center ">
+                  <div class="w-full max-w-xs column">
+                    <div class="self-end text-red-400" v-if="authStore.errors.contact_number">{{ `*${authStore.errors.contact_number[0]}` }}</div>
+                    <q-input
                     filled
                     v-model="authStore.user.profile[0].birthdate"
                     mask="date"
-                    :rules="[dateValidationRule]"
+                   
                     label="Birth Date"
-                    class="w-full max-w-xs"
+                   
                     dense
                   >
                     <template v-slot:append>
@@ -132,7 +143,8 @@
                         </q-popup-proxy>
                       </q-icon>
                     </template>
-                  </q-input>
+                  </q-input></div>
+                  
                 </q-item>
 
                 <q-item>
@@ -171,13 +183,14 @@ import { useAuthStore } from "@/store/auth";
 
 export default {
   setup() {
+    const persistent=ref(false)
     const fileInputRef = ref(null);
 
     const authStore = useAuthStore();
     const imageFile = ref(null);
 
     return {
-      persistent: ref(true),
+      persistent,
       authStore,
       fileInputRef,
       imageFile,
@@ -185,7 +198,7 @@ export default {
         fileInputRef.value.pickFiles();
       },
       print: () => {
-        //   authStore.user.profile[0].image = URL.createObjectURL(imageFile.value);
+      
         authStore.user.profile[0].blob_image = URL.createObjectURL(
           imageFile.value
         );
@@ -197,11 +210,19 @@ export default {
         if (!val) {
           return "Birth Date is required";
         }
-        // Add additional logic to accept old dates if needed
+   
         return (
           /^\d{4}-\d{2}-\d{2}$/.test(val) || "Invalid date format (YYYY-MM-DD)"
         );
       },
+      onSubmit:async ()=>{
+        await authStore.updateProfile(imageFile.value)
+        if(authStore.success.update){
+          persistent.value =false
+        }
+       
+      
+      }
     };
   },
 };

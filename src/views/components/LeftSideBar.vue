@@ -1,6 +1,7 @@
 <template>
   <q-list padding class="font-nonito font-bold">
-    <q-item
+    <div v-if="authStore.user">
+      <q-item
       :active="activeSideBar === 'profile'"
       @click="activeSideBar = 'profile'"
       clickable
@@ -13,6 +14,9 @@
 
       <q-item-section> Profile </q-item-section>
     </q-item>
+
+
+    
 
     <q-item
       :active="activeSideBar === 'appointment'"
@@ -50,7 +54,7 @@
         <q-toggle v-model="value" color="primary" @click="$q.dark.toggle()" />
       </q-item-section>
     </q-item>
-
+  </div>
     <div v-if="authStore.isAdmin">
       <q-item
       to="admin"
