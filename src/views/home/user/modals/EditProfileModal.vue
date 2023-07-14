@@ -20,41 +20,43 @@
 
         <q-card-section class="q-pt-none">
           <div class="column">
-            <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-              <div class="row self-center">
-                <div class="relative">
-                  <q-avatar size="100px">
-                    <img :src="authStore.user.profile[0].blob_image" />
-                  </q-avatar>
 
-                  <q-file
-                    ref="fileInputRef"
-                    clearable
-                    class="hidden"
-                    filled
-                    color="purple-12"
-                    v-model="imageFile"
-                    label="Label"
-                    @update:model-value="print"
-                  ></q-file>
-                  <q-icon
-                    class="absolute bottom-2 right-0 cursor-pointer"
-                    @click="testClick"
-                    color="blue-grey-1"
-                    label="Click"
-                    name="photo_camera"
-                    size="2.2em"
-                  ></q-icon>
-                </div>
+
+            <div class="row mb-5 self-center">
+              <div class="relative">
+                <q-avatar size="100px">
+                  <img :src="authStore.user.profile[0].blob_image" />
+                </q-avatar>
+
+                <q-file
+                  ref="fileInputRef"
+                  clearable
+                  class="hidden"
+                  filled
+                  color="purple-12"
+                  v-model="imageFile"
+                  label="Label"
+                  @update:model-value="print"
+                ></q-file>
+                <q-icon
+                  class="absolute bottom-2 right-0 cursor-pointer"
+                  @click="testClick"
+                  color="blue-grey-1"
+                  label="Click"
+                  name="photo_camera"
+                  size="2.2em"
+                ></q-icon>
               </div>
-
+            </div>
+            <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
               <div class="column">
                 <q-item>
                   <q-input
                     class="w-full"
                     label="Firstname"
+                    v-model="authStore.user.profile[0].firstname"
                     filled
-                    v-model="text"
+                   
                     dense
                   />
                 </q-item>
@@ -63,7 +65,7 @@
                     class="w-full"
                     label="Lastname"
                     filled
-                    v-model="text"
+                    v-model="authStore.user.profile[0].lastname"
                     dense
                   />
                 </q-item>
@@ -72,7 +74,7 @@
                     class="w-full"
                     label="Middlename"
                     filled
-                    v-model="text"
+                    v-model="authStore.user.profile[0].middlename"
                     dense
                   />
                 </q-item>
@@ -82,7 +84,7 @@
                     class="w-full max-w-xs"
                     label="Contact Number"
                     filled
-                    v-model="text"
+                    v-model="authStore.user.profile[0].contact_number"
                     dense
                   />
 
@@ -146,16 +148,10 @@
                 </q-item>
               </div>
 
-              <div>
+              <q-item class="justify-end">
                 <q-btn label="Submit" type="submit" color="primary" />
-                <q-btn
-                  label="Reset"
-                  type="reset"
-                  color="primary"
-                  flat
-                  class="q-ml-sm"
-                />
-              </div>
+               
+              </q-item>
             </q-form>
           </div>
         </q-card-section>
@@ -199,11 +195,13 @@ export default {
       },
       dateValidationRule: (val) => {
         if (!val) {
-          return 'Birth Date is required';
+          return "Birth Date is required";
         }
         // Add additional logic to accept old dates if needed
-        return /^\d{4}-\d{2}-\d{2}$/.test(val) || 'Invalid date format (YYYY-MM-DD)';
-      }
+        return (
+          /^\d{4}-\d{2}-\d{2}$/.test(val) || "Invalid date format (YYYY-MM-DD)"
+        );
+      },
     };
   },
 };
