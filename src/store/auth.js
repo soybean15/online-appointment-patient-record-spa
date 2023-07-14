@@ -40,6 +40,8 @@ export const useAuthStore = defineStore('auth', {
                 const data = await axios.get('/api/user')
                 if (data) {
                     this.authUser = data.data
+                    this.authUser.profile[0].blob_image =  structuredClone( this.authUser.profile[0].image);
+                    
                     this.authIsAdmin = this.authUser.roles.some(role => role.name === 'Admin');
                  
 
@@ -118,6 +120,10 @@ export const useAuthStore = defineStore('auth', {
             this.authErrors =[]
             this.authUser = null
             this.authIsAdmin = false
+        },
+
+        async updateProfile(image){
+            
         }
 
     },
