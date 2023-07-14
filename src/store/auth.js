@@ -14,7 +14,8 @@ export const useAuthStore = defineStore('auth', {
         },
         authSuccess:{
             register:false,
-            login:true
+            login:false,
+            update:false
         },
         authErrors:[],
         authIsAdmin:false
@@ -123,8 +124,49 @@ export const useAuthStore = defineStore('auth', {
         },
 
         async updateProfile(image){
+            this.authSuccess.update = false
+            this.authErrors = []
+            const profile =  this.authUser.profile[0]
+
+            try{
+                const data = await axios.post('api/user/update',{
+                    user_id:this.authUser.id,
+                    firstname: profile.firstname,
+                    lastname:profile.lastname,
+                    middlename: profile.middlename,
+                    gender: profile.gender,
+                    birthdate: profile.birthdate,
+                    image:image,
+                    contact_number: profile.contact_number,
+                    address:profile.address
+    
+                },{
+                    headers:{
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+    
+                this.authUser = data.data.user
+                this.authUser.profile[0].blob_image =  structuredClone( this.authUser.profile[0].image);
+                this.authSuccess.update = true
+            }catch(error)
+            {
+                if (error.response.status === 422) {
+                    this.authErrors = error.response.data.errors
+                
+
+
+                }
+                
+                this.authSuccess.update = false
+
+            }
+          
+
             
-        }
+        },
+
+        
 
     },
 })
