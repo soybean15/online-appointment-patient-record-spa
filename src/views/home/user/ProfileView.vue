@@ -25,16 +25,16 @@
       <div class="col-7  row bg-surface rounded-md p-3 m-3 shadow-md">
         <div class="col-6 border-r  border-gray-400 column">
           <div class="row justify-center" v-if="authStore.user">
-            <q-avatar class="self-center" size="70px" color="orange"
+            <q-avatar class="self-center mt-5" size="70px" color="orange"
               ><img :src="authStore.user.profile[0].image"></q-avatar
             >
           </div>
-          <div class="row justify-center">
+          <div class="row mt-4 justify-center">
             <div class="font-semibold text-lg">{{ fullName }}</div>
           </div>
           <div class="row justify-center items-center">
             <q-icon name="email" size="xs"> </q-icon>
-            <span class="ml-1 text-md font-secondary" v-if="authStore.user">{{
+            <span class="ml-1 text-dm font-secondary" v-if="authStore.user">{{
               authStore.user.email
             }}</span>
           </div>
@@ -58,25 +58,34 @@
         </div>
 
         <div class="col-6 pl-2" v-if="authStore.user">
-            <div class="row h-20">
-                <div class="col-6  ">
-                    <div class="row font-secondary">Gender</div>
-                    <div class="row">{{authStore.user.profile[0].gender}}</div>
+            <div class="row ">
+                <div class="col-5  border-b py-3 border-gray-500 mx-2  ">
+                    <div class="row font-secondary py-1">Gender</div>
+                    <div class="row text-xs ">{{authStore.user.profile[0].gender}}</div>
                 </div>
-                <div class="col-6  ">
-                    <div class="row font-secondary">Birthday</div>
-                    <div class="row">{{authStore.user.profile[0].birthdate}}</div>
+                <div class="col-5 border-b py-3 border-gray-500 mx-2">
+                    <div class="row font-secondary py-1">Phone Number</div>
+                    <div class="row text-xs">{{authStore.user.profile[0].contact_number}}</div>
+                </div>
+
+            </div>
+            <div class="row  ">
+             
+                <div class="col-5  border-b py-2 border-gray-500 mx-2 ">
+                    <div class="row font-secondary py-1">Birthday</div>
+                    <div class="row text-xs" >{{authStore.user.profile[0].birthdate}}</div>
+                </div>
+                <div class="col-5  border-b py-3 border-gray-500 mx-2">
+                    <div class="row font-secondary py-1">Age</div>
+                    <div class="row text-xs ">{{authStore.user.profile[0].age}}</div>
                 </div>
             </div>
-            <div class="row  h-20">
-                <div class="col-6  ">
-                    <div class="row font-secondary">Phone Number</div>
-                    <div class="row">{{authStore.user.profile[0].contact_number}}</div>
+            <div class="row mx-2">
+                <div class="col-12 py-3 border-b border-gray-500 ">
+                    <div class="row font-secondary py-1">Address</div>
+                    <div class="row text-xs">{{authStore.user.profile[0].address}}</div>
                 </div>
-                <div class="col-6  ">
-                    <div class="row font-secondary">Address</div>
-                    <div class="row">{{authStore.user.profile[0].address}}</div>
-                </div>
+                
             </div>
         </div>
       </div>

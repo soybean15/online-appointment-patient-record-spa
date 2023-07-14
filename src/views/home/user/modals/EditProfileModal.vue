@@ -9,7 +9,13 @@
           </q-card-section>
   
           <q-card-section class="q-pt-none">
-            Click/Tap on the backdrop.
+           
+            
+
+
+            Your Code here
+
+
           </q-card-section>
   
           <q-card-actions align="right" class="bg-white text-teal">
