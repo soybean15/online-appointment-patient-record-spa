@@ -16,7 +16,7 @@ const routes = [
 
       {
         path: '/home',
-        name: 'main',
+        name: 'home',
         component:HomeView
 
       },
@@ -58,16 +58,19 @@ const routes = [
 
 
     },
+    children:[
+      {
+        path: '/services',
+        name: 'services',
+        component: ()=> import ('@/views/admin/service/ServiceView'),
+    
+    
+      },
+    ]
   },
 
 
-  {
-    path: '/home',
-    name: 'home',
-    component: HomeView,
 
-
-  },
 
 ]
 

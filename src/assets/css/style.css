@@ -31,6 +31,7 @@
     --text:#f7f3f2;
     --text2: #8a8787;
 }
+
 .bg-surface{
     background-color: var(--surface);
     color: var(--text);
