@@ -16,6 +16,9 @@ export const useServiceStore = defineStore('service', {
         async getServices(){
             const data = await axios.get('api/services')
             this.stateServices =data.data.services
+        },
+        async addService(){
+            
         }
 
 
