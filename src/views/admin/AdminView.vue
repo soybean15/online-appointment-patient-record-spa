@@ -38,7 +38,7 @@
         <q-item-section> Calendar </q-item-section>
       </q-item>
 
-      <q-item to="/services" clickable v-ripple>
+      <q-item :to="{name:'services'}" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="medical_services" />
         </q-item-section>
@@ -82,7 +82,7 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view></router-view>
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">
@@ -94,10 +94,11 @@
           <div>Title</div>
         </q-toolbar-title>
       </q-toolbar>
+
+   
     </q-footer>
   </q-layout>
 
-  <router-view></router-view>
 </template>
   
   <script>

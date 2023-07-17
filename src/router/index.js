@@ -29,9 +29,7 @@ const routes = [
       {
         path: '/about',
         name: 'about',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
+   
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
       },
 
@@ -44,23 +42,29 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component:()=> import('@/views/admin/AdminView'),
-    beforeEnter: (to, from, next) => {
+    beforeEnter: async (to, from, next) => {
       const authStore = useAuthStore()
+
+      if(!authStore.user){
+        await authStore.getUser()
+      }
       const isAdmin = authStore.isAdmin;
 
       if (isAdmin) {
-        // User is authenticated and authorized as an admin, proceed with entering the component
+       
         next();
       } else {
-        // User is not an admin, redirect to an access denied page or show an error message
+        
         next('/');
       }
 
 
     },
+
+
     children:[
       {
-        path: '/services',
+        path: 'services',
         name: 'services',
         component: ()=> import ('@/views/admin/service/ServiceView'),
     
