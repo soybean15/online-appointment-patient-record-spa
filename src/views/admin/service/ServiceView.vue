@@ -13,17 +13,9 @@
         </template>
       </q-input>
 
-      <q-btn
-        color="primary"
-        icon="add_circle"
-        rounded
-        class="p-3 mx-3 text-sm"
-        dense
-        size="13px"
-        label="New Service"
-      />
+ <AddServiceDialogVue/>
     </div>
-
+>
     <div class="q-pa-md">
       <q-table title="Services" :rows="rows" :columns="columns" row-key="name">
         <template v-slot:body-cell-actions="props">
@@ -41,7 +33,10 @@
 import { useAdminStore } from "@/store/admin";
 import { onMounted, ref } from "vue";
 
+import AddServiceDialogVue from './dialog/AddServiceDialog.vue';
+
 export default {
+  components:{AddServiceDialogVue},
   setup() {
     const adminStore = useAdminStore();
     const serviceStore = adminStore.serviceStore;
