@@ -11,7 +11,6 @@
            Maxilife
         </q-toolbar-title>
 
-        <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
       </q-toolbar>
 
       <q-tabs align="left">
@@ -24,10 +23,7 @@
       <LeftSideBar
     /></q-drawer>
 
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-      <!-- drawer content -->
-    </q-drawer>
-
+   
     <q-page-container>
      
       <router-view />

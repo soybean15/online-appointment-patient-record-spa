@@ -6,27 +6,32 @@ import { useServiceStore } from './service'
 export const useAdminStore = defineStore('admin', {
     state: () => ({
 
-        stateServices:null
+        stateServices: null
 
 
-    
+
     }),
+
+
     getters: {
-        service:(state)=>state.stateServices
-   
-        },
+        service: (state) => state.stateServices,
+        serviceStore: () => useServiceStore()
+
+    },
+
+
     actions: {
 
-        getServices(){
+        // getServices() {
 
-            const serviceStore = useServiceStore()
-            serviceStore.getServices()
-            this.stateServices = serviceStore.services
+        //     const serviceStore = useServiceStore()
+        //     serviceStore.getServices()
+        //     this.stateServices = serviceStore.services
 
 
-        }
-        
-        
+        // }
+
+
 
     },
 })
