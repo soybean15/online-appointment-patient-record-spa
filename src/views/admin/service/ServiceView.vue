@@ -41,25 +41,28 @@
               <q-btn icon="mode_edit" @click="onClick(props.row)"></q-btn>
             </AddServiceDialogVue>
 
-            <ConfirmDialog  >
+            <ConfirmDialog >
 
               <template v-slot:button="{ open }">
                 <q-btn icon="delete" @click="open"></q-btn>
               </template>
 
               <template v-slot:title>
-               <div > Delete Service</div>
+               <div class="flex justify-center q-py-lg text-h6 text-bold" > Delete Service</div>
               </template>
               <template v-slot:prompt>
-               <div class="p-2">{{`Are you sure you want to delete ${props.row.name}?`}}</div>
+               <div class="pb-5 pl-5 text-h7">{{`Are you sure you want to delete ${props.row.name}?`}}</div>
               </template>  
               
               <template v-slot:actions="{close}">
-                <div class="row">
-
-                  <q-btn color="secondary" label="Delete" />
-                  <q-btn @click="close" color="red" label="Cancel" />
-
+                <div class="row justify-evenly q-mb-md ">
+                  <div>
+                     <q-btn color="secondary" label="Delete" />
+                  </div>
+                 <div>
+                    <q-btn @click="close" color="red" label="Cancel" />
+                 </div>
+                
                 </div>
               </template>
 
