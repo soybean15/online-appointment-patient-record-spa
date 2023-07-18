@@ -15,7 +15,7 @@
 
       <AddServiceDialogVue
         v-slot:default="{ onClick }"
-        :persistent="persistent"
+       
       >
         <q-btn
           color="primary"
@@ -36,11 +36,36 @@
           <q-td :props="props">
             <AddServiceDialogVue
               v-slot:default="{ onClick }"
-              :persistent="persistent"
+            
             >
               <q-btn icon="mode_edit" @click="onClick(props.row)"></q-btn>
             </AddServiceDialogVue>
-            <q-btn icon="delete" @click="onDelete(props.row)"></q-btn>
+
+            <ConfirmDialog  >
+
+              <template v-slot:button="{ open }">
+                <q-btn icon="delete" @click="open"></q-btn>
+              </template>
+
+              <template v-slot:title>
+               <div > Delete Service</div>
+              </template>
+              <template v-slot:prompt>
+               <div class="p-2">{{`Are you sure you want to delete ${props.row.name}?`}}</div>
+              </template>  
+              
+              <template v-slot:actions="{close}">
+                <div class="row">
+
+                  <q-btn color="secondary" label="Delete" />
+                  <q-btn @click="close" color="red" label="Cancel" />
+
+                </div>
+              </template>
+
+
+            </ConfirmDialog>
+           
           </q-td>
         </template>
       </q-table>
@@ -53,9 +78,10 @@ import { useAdminStore } from "@/store/admin";
 import { onMounted, ref } from "vue";
 
 import AddServiceDialogVue from "./dialog/AddServiceDialog.vue";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 export default {
-  components: { AddServiceDialogVue },
+  components: { AddServiceDialogVue,ConfirmDialog },
   setup() {
     const adminStore = useAdminStore();
     const serviceStore = adminStore.serviceStore;
@@ -68,6 +94,7 @@ export default {
         required: true,
         label: "Service Name",
         align: "left",
+        sortable: true,
         field: (row) => row.name,
         format: (val) => `${val}`,
       },
@@ -75,6 +102,7 @@ export default {
         name: "price",
         required: true,
         label: "Price",
+        sortable: true,
         align: "right",
         field: (row) => row.price,
         format: (val, row) => `${row.currency_symbol}${val}`,
