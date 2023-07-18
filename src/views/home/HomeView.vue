@@ -58,7 +58,7 @@
          <div class="col">
            <div class="q-pa-md ">
             <q-card class="my-card">
-                <!-- <img src="https://cdn.quasar.dev/img/mountains.jpg"> -->
+                <!-- 5 -->
 
                 <q-card-section>
                     <div class="text-h6">Best Doctors</div>
