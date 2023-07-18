@@ -44,7 +44,10 @@
       <q-item-section> Records </q-item-section>
     </q-item>
 
-    <q-item clickable class="" v-ripple>
+
+  </div>
+
+  <q-item clickable class="" v-ripple>
       <q-item-section avatar>
         <q-icon name="dark_mode" />
       </q-item-section>
@@ -54,7 +57,6 @@
         <q-toggle v-model="value" color="primary" @click="$q.dark.toggle()" />
       </q-item-section>
     </q-item>
-  </div>
     <div v-if="authStore.isAdmin">
       <q-item
       to="admin"

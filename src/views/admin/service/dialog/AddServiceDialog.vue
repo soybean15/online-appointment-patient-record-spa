@@ -1,15 +1,6 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn
-      color="primary"
-      icon="add_circle"
-      rounded
-      class="p-3 mx-3 text-sm"
-      dense
-      size="13px"
-      label="New Service"
-      @click="persistent = true"
-    />
+  <span >
+    <slot :onClick="onClick" ></slot>
 
     <q-dialog
       v-model="persistent"
@@ -23,11 +14,11 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+          <q-form @submit="onSubmit" class="q-gutter-md">
             <q-input
               filled
-              v-model="name"
-              label="Your name *"
+              v-model="serviceStore.serviceForm.name"
+              label="Service Name*"
               hint="Service Name"
               lazy-rules
               :rules="[
@@ -37,20 +28,15 @@
 
             <q-input
               filled
-              type="number"
-              v-model="age"
+              fill-mask="0"
+              v-model="serviceStore.serviceForm.price"
               label="Your age *"
-              lazy-rules
-              :rules="[
-                (val) => (val !== null && val !== '') || 'Please type your age',
-                (val) => (val > 0 && val < 100) || 'Please type a real age',
-              ]"
+              reverse-fill-mask
+              mask="#.##"
             />
 
-            <q-toggle v-model="accept" label="I accept the license and terms" />
-
             <div>
-              <q-btn label="Submit" type="submit" color="primary" />
+              <q-btn :loading="loading" label="Submit" type="submit" color="primary" />
               <q-btn
                 label="Reset"
                 type="reset"
@@ -62,22 +48,69 @@
           </q-form>
         </q-card-section>
 
-        <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="Exit" v-close-popup />
+        <q-card-actions align="right" class="bg-white text-teal" >
+          <q-btn  flat label="Exit"  v-close-popup  />
         </q-card-actions>
       </q-card>
     </q-dialog>
-  </div>
+  </span>
 </template>
   
   <script>
 import { ref } from "vue";
 import { useQuasar } from "quasar";
+import { useAdminStore } from "@/store/admin";
 
 export default {
-  setup() {
+
+  emit:['onClick'],
+  setup(props, {emit}) {
+    const serviceStore = useAdminStore().serviceStore;
+    const persistent = ref(false)
+    const onEdit = ref(false)
+    const loading = ref(false)
+
+    const delay = (ms)=> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+    
+
     return {
-      persistent: ref(false),
+      onSubmit: async () => {
+        //
+        loading.value = true
+        if(onEdit.value){
+          await delay(1000);
+          await serviceStore.updateService()
+        }else{
+          await delay(1000);
+          await serviceStore.addService();
+        }
+
+        loading.value = false
+        persistent.value = false
+      },
+      serviceStore,
+      handleClick: () => {
+        console.log("click");
+      },
+      persistent,
+      onClick:(row)=>{
+        if(row.name){      
+          onEdit.value = true
+       
+        }else{
+          onEdit.value = false
+        }  
+        serviceStore.serviceForm.id = row.id 
+        serviceStore.serviceForm.name = row.name
+        serviceStore.serviceForm.price = row.price
+
+
+        persistent.value =!persistent.value
+      },loading
+     
     };
   },
 };

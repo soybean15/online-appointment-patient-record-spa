@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <div
       class="row m-3 bg-surface rounded-md shadow-sm justify-between items-center"
     >
@@ -13,14 +13,33 @@
         </template>
       </q-input>
 
- <AddServiceDialogVue/>
+      <AddServiceDialogVue
+        v-slot:default="{ onClick }"
+        :persistent="persistent"
+      >
+        <q-btn
+          color="primary"
+          icon="add_circle"
+          rounded
+          class="p-3 mx-3 text-sm"
+          dense
+          size="13px"
+          label="New Service"
+          @click="onClick"
+        />
+      </AddServiceDialogVue>
     </div>
->
+
     <div class="q-pa-md">
       <q-table title="Services" :rows="rows" :columns="columns" row-key="name">
         <template v-slot:body-cell-actions="props">
           <q-td :props="props">
-            <q-btn icon="mode_edit" @click="onEdit(props.row)"></q-btn>
+            <AddServiceDialogVue
+              v-slot:default="{ onClick }"
+              :persistent="persistent"
+            >
+              <q-btn icon="mode_edit" @click="onClick(props.row)"></q-btn>
+            </AddServiceDialogVue>
             <q-btn icon="delete" @click="onDelete(props.row)"></q-btn>
           </q-td>
         </template>
@@ -33,13 +52,14 @@
 import { useAdminStore } from "@/store/admin";
 import { onMounted, ref } from "vue";
 
-import AddServiceDialogVue from './dialog/AddServiceDialog.vue';
+import AddServiceDialogVue from "./dialog/AddServiceDialog.vue";
 
 export default {
-  components:{AddServiceDialogVue},
+  components: { AddServiceDialogVue },
   setup() {
     const adminStore = useAdminStore();
     const serviceStore = adminStore.serviceStore;
+    const persistent = ref(false);
 
     const rows = ref([]);
     const columns = [
@@ -81,9 +101,10 @@ export default {
       columns,
       rows,
       onEdit: (row) => {
-        console.log(row)
+        console.log(row);
       },
       onDelete: (row) => {},
+      persistent,
     };
   },
 };
