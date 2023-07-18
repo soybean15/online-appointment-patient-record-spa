@@ -1,6 +1,7 @@
 <template>
 
     <q-page class="bg-deep-purple-1">
+        <!-- Header -->
         <div class="row bg-primary">
             <!-- Maxilife Multispecialty Clinic and Diagnostic Center -->
             <div class="col">
@@ -9,7 +10,7 @@
                         <hr/>Care with your Health</div>
                     <div class="text-h6 q-px-lg q-pb-sm"> Book your appointment from the comfort 
                         of your own home and receive quality care from our expert team</div>
-                    <div class=" bg-white text-grey mb-5 p-px-xl rounded-lg">Set an Apppointment
+                    <div class=" bg-white text-grey mb-5 q-px-xl q-my-md q-mb-md rounded-lg ">Set an Apppointment
                         <q-btn color="blue" 
                             icon-right="calendar_today" 
                             label="" 
@@ -26,74 +27,82 @@
 
         </div>
 
-        <div class="row text-h5 text-bold text-black q-px-md q-pt-md">Offered</div>
+        <!-- Second Row -->
+        <div class="row justify-center text-h5 text-bold text-black q-px-md q-pt-md q-my-lg ">Offered</div>
 
-        <div class="row">
+        <div class="row q-py-sm q-px-xl q-mx-xl">
 
-          <div class="col">
-           <div class="q-pa-md ">
-            <q-card class="my-card">
-             <q-item clickable v-ripple>
-                <q-item-section avatar>
-                    <q-icon name="pending_actions" style="height: 100px; width: 100px;" />
-                </q-item-section>
+            <div class="col-6 col-md "  >
+                <div class="flex-col q-pa-sm  " >
+                    <div class="flex justify-center ">
+                            <q-icon name="night_shelter" color="teal" size="70px" style="padding: 20px;"/>
+                    </div>                      
+                            <div class="text-h6 flex justify-center text-black q-py-md">Well cleaned and neat facility</div>                 
+                    </div>
+            </div>
 
-                
-            </q-item>
-               
+            <div class="col-6 col-md ">
+                <div class="flex-col q-pa-sm  ">
+                    <div class="flex justify-center">
+                            <q-icon name="medication" color="warning" size="70px" style="padding: 20px;"/>
+                    </div>                      
+                            <div class="text-h6 flex justify-center text-black q-py-md">Well cleaned and neat facility</div>                 
+                    </div>
+            </div>
 
-                <q-card-section>
-                    <div class="text-h6">Well cleaned and neat facility</div>
-                   
-                </q-card-section>
+            <div class="col-6 col-md ">
+                <div class="flex-col q-sm  ">
+                    <div class="flex justify-center">
+                            <q-icon name="night_shelter" color="deep-orange" size="70px" style="padding: 20px;"/>
+                    </div>                      
+                            <div class="text-h6 flex justify-center text-black q-py-md">Well cleaned and neat facility</div>                 
+                    </div>
+            </div>
 
-                <q-card-section class="q-pt-none">
-                    {{ lorem }}
-                </q-card-section>
-            </q-card>
-          </div>
-         </div>
-
-
-         <div class="col">
-           <div class="q-pa-md ">
-            <q-card class="my-card">
-                <!-- 5 -->
-
-                <q-card-section>
-                    <div class="text-h6">Best Doctors</div>
-                    
-                </q-card-section>
-
-                <q-card-section class="q-pt-none">
-                    {{ lorem }}
-                </q-card-section>
-            </q-card>            
-          </div>
-         </div>
+            <div class="col-6 col-md ">
+                <div class="flex-col q-pa-sm ">
+                    <div class="flex justify-center">
+                            <q-icon name="night_shelter" color="deep-orange" size="70px" style="padding: 20px;"/>
+                    </div>                      
+                            <div class="text-h6 flex justify-center text-black q-py-md">Well cleaned and neat facility</div>                 
+                    </div>
+            </div>
 
 
-         <div class="col">
-           <div class="q-pa-md ">
-            <q-card class="my-card">
-                <!-- <img src="https://cdn.quasar.dev/img/mountains.jpg"> -->
+      
 
-                <q-card-section>
-                    <div class="text-h6">Good Services</div>
-               
-                </q-card-section>
 
-                <q-card-section class="q-pt-none">
-                    {{ lorem }}
-                </q-card-section>
-            </q-card>            
-          </div>
-         </div>
+       
 
 
 
 
         </div>
+
+
+        <!-- Third row -->
+        <div class="col bg-teal-4 q-mx-lg q-mx-xl">
+            <div>
+              <div class="flex justify-center text-h5 text-bold q-py-md">Book your Appointments Now</div>
+              <hr />
+             </div>
+            <div class="row">
+                <div class="col-12 col-md">
+                    <div class="q-pa-lg">
+                       
+                            <div class="row">
+                                <div class="col-12 col-md-4 q-pa-md">
+                                    <q-img src="../../assets/img/logo/maxilife-staff.jpg"
+                                    class=""></q-img>
+                                </div>
+                                <div class="col-12 col-md-8 text-h5 text-bold q-pl-lg q-pt-sm">Getting started</div>
+
+                            </div>
+                        
+                    
+                    </div>
+                </div>
+        </div> </div>
     </q-page>
  
 
