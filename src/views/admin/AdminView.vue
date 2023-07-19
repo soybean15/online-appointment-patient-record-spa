@@ -49,7 +49,7 @@
       <q-expansion-item icon="perm_identity" label="Users">
         <q-card>
           <q-card-section
-            ><q-item clickable v-ripple>
+            ><q-item :to="{name:'patients'}" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="masks" />
               </q-item-section>

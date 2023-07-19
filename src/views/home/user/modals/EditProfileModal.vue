@@ -20,8 +20,6 @@
 
         <q-card-section class="q-pt-none">
           <div class="column">
-
-
             <div class="row mb-5 self-center">
               <div class="relative">
                 <q-avatar size="100px">
@@ -52,18 +50,27 @@
             <q-form @submit.prevent="onSubmit" class="q-gutter-md">
               <div class="column">
                 <q-item class="column">
-                  <div class="self-end text-red-400" v-if="authStore.errors.firstname">{{ `*${authStore.errors.firstname[0]}` }}</div>
+                  <div
+                    class="self-end text-red-400"
+                    v-if="authStore.errors.firstname"
+                  >
+                    {{ `*${authStore.errors.firstname[0]}` }}
+                  </div>
                   <q-input
                     class="w-full"
                     label="Firstname"
                     v-model="authStore.user.profile[0].firstname"
                     filled
-                   
                     dense
                   />
                 </q-item>
                 <q-item class="column">
-                  <div class="self-end text-red-400" v-if="authStore.errors.lastname">{{ `*${authStore.errors.lastname[0]}` }}</div>
+                  <div
+                    class="self-end text-red-400"
+                    v-if="authStore.errors.lastname"
+                  >
+                    {{ `*${authStore.errors.lastname[0]}` }}
+                  </div>
                   <q-input
                     class="w-full"
                     label="Lastname"
@@ -83,18 +90,20 @@
                 </q-item>
 
                 <q-item class="items-center justify-between">
-                  <div class="w-full  column max-w-xs">
-                    <div class="self-end text-red-400" v-if="authStore.errors.contact_number">{{ `*${authStore.errors.contact_number[0]}` }}</div>
+                  <div class="w-full column max-w-xs">
+                    <div
+                      class="self-end text-red-400"
+                      v-if="authStore.errors.contact_number"
+                    >
+                      {{ `*${authStore.errors.contact_number[0]}` }}
+                    </div>
                     <q-input
-                    
-                    label="Contact Number"
-                    filled
-                    v-model="authStore.user.profile[0].contact_number"
-                    dense
-                  />
-
+                      label="Contact Number"
+                      filled
+                      v-model="authStore.user.profile[0].contact_number"
+                      dense
+                    />
                   </div>
-                  
 
                   <div>
                     <span class="font-secondary">Gender</span>
@@ -111,48 +120,82 @@
                   </div>
                 </q-item>
 
-                <q-item class="items-center ">
+                <q-item class="items-center  justify-between">
                   <div class="w-full max-w-xs column">
-                    <div class="self-end text-red-400" v-if="authStore.errors.contact_number">{{ `*${authStore.errors.contact_number[0]}` }}</div>
+                    <div
+                      class="self-end text-red-400"
+                      v-if="authStore.errors.birthdate"
+                    >
+                      {{ `*${authStore.errors.birthdate[0]}` }}
+                    </div>
                     <q-input
-                    filled
-                    v-model="authStore.user.profile[0].birthdate"
-                    mask="date"
-                   
-                    label="Birth Date"
-                   
-                    dense
-                  >
-                    <template v-slot:append>
-                      <q-icon name="event" class="cursor-pointer">
-                        <q-popup-proxy
-                          cover
-                          transition-show="scale"
-                          transition-hide="scale"
-                        >
-                          <q-date v-model="authStore.user.profile[0].birthdate">
-                            <div class="row items-center justify-end">
-                              <q-btn
-                                v-close-popup
-                                label="Close"
-                                color="primary"
-                                flat
-                              />
-                            </div>
-                          </q-date>
-                        </q-popup-proxy>
-                      </q-icon>
-                    </template>
-                  </q-input></div>
-                  
+                      filled
+                      v-model="authStore.user.profile[0].birthdate"
+                      mask="date"
+                      label="Birth Date"
+                      dense
+                    >
+                      <template v-slot:append>
+                        <q-icon name="event" class="cursor-pointer">
+                          <q-popup-proxy
+                            cover
+                            transition-show="scale"
+                            transition-hide="scale"
+                          >
+                            <q-date
+                              v-model="authStore.user.profile[0].birthdate"
+                            >
+                              <div class="row items-center justify-end">
+                                <q-btn
+                                  v-close-popup
+                                  label="Close"
+                                  color="primary"
+                                  flat
+                                />
+                              </div>
+                            </q-date>
+                          </q-popup-proxy>
+                        </q-icon>
+                      </template>
+                    </q-input>
+                  </div>
+
+                  <div class="column">
+                    <div
+                      class="self-end text-red-400"
+                      v-if="authStore.errors.status"
+                    >
+                      {{ `*${authStore.errors.status[0]}` }}
+                    </div>
+                    <q-select
+                      filled
+                      dense
+                      v-model="authStore.user.profile[0].status"
+                      label="Status"
+                      :options="status"
+                      style="width: 250px"
+                      behavior="menu"
+                    />
+                  </div>
                 </q-item>
 
                 <q-item>
                   <q-input
                     class="w-full"
-                    label="Address"
+                    label="Address(home)"
                     filled
-                    v-model="authStore.user.profile[0].address"
+                    v-model="authStore.user.profile[0].address_home"
+                    type="textarea"
+                    resize
+                    dense
+                  />
+                </q-item>
+                <q-item>
+                  <q-input
+                    class="w-full"
+                    label="Address(office)"
+                    filled
+                    v-model="authStore.user.profile[0].address_office"
                     type="textarea"
                     resize
                     dense
@@ -162,7 +205,6 @@
 
               <q-item class="justify-end">
                 <q-btn label="Submit" type="submit" color="primary" />
-               
               </q-item>
             </q-form>
           </div>
@@ -181,9 +223,18 @@ import { ref } from "vue";
 import { useQuasar } from "quasar";
 import { useAuthStore } from "@/store/auth";
 
+const status = [
+  'Single',
+  'Married',
+  'Widowed',
+  'Separated',
+  'Divorced'
+
+]
+
 export default {
   setup() {
-    const persistent=ref(false)
+    const persistent = ref(false);
     const fileInputRef = ref(null);
 
     const authStore = useAuthStore();
@@ -198,7 +249,6 @@ export default {
         fileInputRef.value.pickFiles();
       },
       print: () => {
-      
         authStore.user.profile[0].blob_image = URL.createObjectURL(
           imageFile.value
         );
@@ -210,19 +260,18 @@ export default {
         if (!val) {
           return "Birth Date is required";
         }
-   
+
         return (
           /^\d{4}-\d{2}-\d{2}$/.test(val) || "Invalid date format (YYYY-MM-DD)"
         );
       },
-      onSubmit:async ()=>{
-        await authStore.updateProfile(imageFile.value)
-        if(authStore.success.update){
-          persistent.value =false
+      onSubmit: async () => {
+        await authStore.updateProfile(imageFile.value);
+        if (authStore.success.update) {
+          persistent.value = false;
         }
-       
-      
-      }
+      },
+      status
     };
   },
 };

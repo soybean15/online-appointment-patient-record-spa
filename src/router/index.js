@@ -70,6 +70,12 @@ const routes = [
     
     
       },
+      {
+        path: 'patients',
+        name: 'patients',
+        component: ()=> import ('@/views/admin/user/PatientView'),
+    
+      },
     ]
   },
 

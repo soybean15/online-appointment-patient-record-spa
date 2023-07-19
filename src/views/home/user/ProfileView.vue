@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-      <div class="col-7">
+      <div class="col-6">
         <div class="row items-center justify-between">
           <div class="row items-center">
             <div class="m-2 mr-1 font-bold text-base text-blue-400 font-nonito" color="">
@@ -22,7 +22,7 @@
         </div>
       </div>
 
-      <div class="col-7  row bg-surface rounded-md p-3 m-3 shadow-md">
+      <div class="col-6 row bg-surface rounded-md p-3 m-3 shadow-md">
         <div class="col-6 border-r  border-gray-400 column">
           <div class="row justify-center" v-if="authStore.user">
             <q-avatar class="self-center mt-5" size="70px" color="orange"
@@ -80,10 +80,29 @@
                     <div class="row text-xs ">{{authStore.user.profile[0].age}}</div>
                 </div>
             </div>
+
+
+            <div class="row  ">
+             
+             <div class="col-5  border-b py-2 border-gray-500 mx-2 ">
+                 <div class="row font-secondary py-1">Status</div>
+                 <div class="row text-xs" >{{authStore.user.profile[0].status}}</div>
+             </div>
+            
+         </div>
+
+
             <div class="row mx-2">
                 <div class="col-12 py-3 border-b border-gray-500 ">
-                    <div class="row font-secondary py-1">Address</div>
-                    <div class="row text-xs">{{authStore.user.profile[0].address}}</div>
+                    <div class="row font-secondary py-1">Address(Home)</div>
+                    <div class="row text-xs">{{authStore.user.profile[0].address_home}}</div>
+                </div>
+                
+            </div>
+            <div class="row mx-2">
+                <div class="col-12 py-3 border-b border-gray-500 ">
+                    <div class="row font-secondary py-1">Address(Office)</div>
+                    <div class="row text-xs">{{authStore.user.profile[0].address_office}}</div>
                 </div>
                 
             </div>
