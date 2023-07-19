@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import router from '../router/index'
 import { useServiceStore } from './service'
+import { useUserStore } from './user'
 
 export const useAdminStore = defineStore('admin', {
     state: () => ({
@@ -15,7 +16,8 @@ export const useAdminStore = defineStore('admin', {
 
     getters: {
         service: (state) => state.stateServices,
-        serviceStore: () => useServiceStore()
+        serviceStore: () => useServiceStore(),
+        userStore:()=> useUserStore()
 
     },
 

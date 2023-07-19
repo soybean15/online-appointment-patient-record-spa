@@ -138,7 +138,9 @@ export const useAuthStore = defineStore('auth', {
                     birthdate: profile.birthdate,
                     image:image,
                     contact_number: profile.contact_number,
-                    address:profile.address
+                    address_home:profile.address_home,
+                    address_office:profile.address_office,
+                    status :profile.status
     
                 },{
                     headers:{
