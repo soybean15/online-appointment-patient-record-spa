@@ -1,36 +1,32 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-pa-md" v-if="userStore.patients">
     <q-table
       title="Patients"
-      hide-pagination
-      :rows="rows"
+      hide-pagination=""
+      :rows="userStore.patients.data"
       :columns="columns"
-      row-key="name"
-     
-      
+      row-key="lastname"
     >
-    <template v-slot:top-right>
+      <template v-slot:top-right>
         <q-pagination
-      v-model="current"
-      color="primary"
-      :max="max"
-      :max-pages="5"
-      boundary-numbers
-    />
+          v-model="current"
+          color="primary"
+          :max=" userStore.patients.last_page"
+          :max-pages="5"
+          boundary-numbers
+        />
       </template>
       <template v-slot:body-cell-image="props">
         <q-td :props="props">
           <img
             :src="props.row.profile.image"
             alt="Profile Image"
-            style="width: 50px; height: 50px"
+            style="width: 40px; height: 40px"
           />
         </q-td>
       </template>
     </q-table>
-    <div class="q-pa-lg flex flex-center">
-  
-  </div>
+    <div class="q-pa-lg flex flex-center"></div>
   </div>
 </template>
   
@@ -41,6 +37,7 @@ const columns = [
   {
     name: "image",
     required: true,
+    label: 'image',
     align: "center",
     field: (row) => row.profile.image,
     format: (val) => `${val}`,
@@ -116,46 +113,27 @@ const columns = [
 
 export default {
   setup() {
-    const rows = ref([]);
+    
 
     const userStore = useAdminStore().userStore;
     const current = ref()
-  
-
-    const max= ref()
-
+   
 
     onMounted(async () => {
-
-      await userStore.getPatients();
-      rows.value = userStore.patients.data;
-      current.value = userStore.patients.current_page
-      max.value = userStore.patients.last_page
-
-  
+      await userStore.getPatients(null,'');
+     
     });
 
-    watch(current,async()=>{
-     await userStore.getPatients(userStore.patients.links[current.value].url);
-
-      rows.value = userStore.patients.data;
-      console.log("current"+ current.value)
-    //  console.log(userStore.patients.links[current.value].url)
+    watch(current, async () => {
+      await userStore.getPatients(userStore.patients.links[current.value].url,'');
       
-
-    })
-
-
-
-  
+    
+    });
 
     return {
       columns,
-      rows,
       userStore,
-      current,
-      max
-      
+      current
     };
   },
 };
