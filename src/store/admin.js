@@ -7,7 +7,8 @@ import { useUserStore } from './user'
 export const useAdminStore = defineStore('admin', {
     state: () => ({
 
-        stateServices: null
+        stateServices: null,
+        stateCurrentTime:null
 
 
 
@@ -17,21 +18,19 @@ export const useAdminStore = defineStore('admin', {
     getters: {
         service: (state) => state.stateServices,
         serviceStore: () => useServiceStore(),
-        userStore:()=> useUserStore()
+        userStore:()=> useUserStore(),
+        currentTime :(state)=>state.stateCurrentTime
 
     },
 
 
     actions: {
 
-        // getServices() {
+        async index(){
+            const data = await axios.get('api/admin/')
+            this.stateCurrentTime = data.data.current_datetime
 
-        //     const serviceStore = useServiceStore()
-        //     serviceStore.getServices()
-        //     this.stateServices = serviceStore.services
-
-
-        // }
+        }
 
 
 

@@ -102,11 +102,17 @@
 </template>
   
   <script>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import { useAdminStore } from "@/store/admin";
 
 export default {
   setup() {
     const leftDrawerOpen = ref(false);
+    const adminStore = useAdminStore()
+
+    onMounted(()=>{
+      adminStore.index()
+    })
 
     return {
       leftDrawerOpen,
