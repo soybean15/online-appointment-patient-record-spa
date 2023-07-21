@@ -58,7 +58,7 @@
 
              
             </q-item>
-           <q-item clickable v-ripple>
+           <q-item :to="{name:'doctors'}" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="vaccines" />
               </q-item-section>
