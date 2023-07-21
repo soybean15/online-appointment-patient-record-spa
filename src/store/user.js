@@ -6,15 +6,33 @@ export const useUserStore = defineStore('user', {
   state: () => ({
     statePatients:null,
     stateCurrent:null,
+    stateUsers:null,
+    stateDoctors:null
    
      
 
   }),
   getters: {
     patients: (state) => state.statePatients,
-    current:(state)=>state.stateCurrent
+    current:(state)=>state.stateCurrent,
+    users:(state)=>state.stateUsers,
+    doctors:(state)=>state.stateDoctors
   },
   actions: {
+
+    async getUsers(){
+      const data = await axios.get('api/admin/doctor/users')
+      this.stateUsers=data.data.users
+    },
+
+    async addDoctor(user){
+      const data = await axios.post('api/admin/doctor/add',{user})
+
+    },
+    async getDoctors(){
+      const data = await axios.get('api/admin/doctor')
+      this.stateDoctors = data.data.doctors
+    },
 
     async getPatients(path,keyword){
         if(!path){
