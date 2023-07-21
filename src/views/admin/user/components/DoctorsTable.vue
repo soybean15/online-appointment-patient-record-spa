@@ -6,7 +6,7 @@
   
    
       <q-list bordered>
-        <q-item v-for="doctor in userStore.doctors" :key="doctor.id" class="q-my-sm" clickable v-ripple>
+        <q-item @click="userStore.setUser(doctor)" v-for="doctor in userStore.doctors" :key="doctor.id" class="q-my-sm" clickable v-ripple>
           <q-item-section avatar>
             <q-avatar color="primary" text-color="white">
               <img :src="doctor.profile[0].image "/>

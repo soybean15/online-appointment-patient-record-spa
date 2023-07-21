@@ -59,7 +59,7 @@ export default {
   setup() {
     const userStore = useAdminStore().userStore;
     
-    const persistent= ref(true)
+    const persistent= ref(false)
   
     onMounted(() => {
       userStore.getUsers();

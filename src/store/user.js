@@ -7,7 +7,8 @@ export const useUserStore = defineStore('user', {
     statePatients:null,
     stateCurrent:null,
     stateUsers:null,
-    stateDoctors:null
+    stateDoctors:null,
+    stateSelectedUser:null
    
      
 
@@ -16,7 +17,8 @@ export const useUserStore = defineStore('user', {
     patients: (state) => state.statePatients,
     current:(state)=>state.stateCurrent,
     users:(state)=>state.stateUsers,
-    doctors:(state)=>state.stateDoctors
+    doctors:(state)=>state.stateDoctors ,
+    selectedUser:(state)=>state.stateSelectedUser
   },
   actions: {
 
@@ -49,6 +51,10 @@ export const useUserStore = defineStore('user', {
       const data  = await axios.post('api/admin/patient/search',{keyword})
       this.statePatients = data.data.results
 
+    },
+    setUser(user){
+      this.stateSelectedUser = user
+      console.log(this.stateSelectedUser)
     }
    
   },
