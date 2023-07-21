@@ -15,7 +15,7 @@
 
       <q-tabs align="left">
         <q-route-tab to="/home" label="HOME" />
-        <q-route-tab to="/services" label="Services" />
+        <q-route-tab :to="{name:'home_service'}" label="Services" />
         <q-route-tab to="/about" label="About" />
       </q-tabs>
     </q-header>
