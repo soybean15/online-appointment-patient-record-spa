@@ -5,30 +5,49 @@ import router from '../router/index'
 export const useServiceStore = defineStore('service', {
     state: () => ({
 
-        stateServices:null,
-        stateServiceForm :{
-            name:null,
-            price:null
+        stateServices: null,
+        stateServiceForm: {
+            name: null,
+            price: null,
+            image: null,
+            description: null,
+            image: null
         }
     }),
     getters: {
-        services:(state)=>state.stateServices,
-        serviceForm:(state)=>state.stateServiceForm
+        services: (state) => state.stateServices,
+        serviceForm: (state) => state.stateServiceForm
 
     },
     actions: {
 
-        async getServices(){
+        async getServices() {
             const data = await axios.get('api/services')
-            this.stateServices =data.data.services
+            this.stateServices = data.data.services
         },
-        async addService(){
-            const data =  await axios.post('api/admin/services/add', this.stateServiceForm)
+        async addService(image) {
+            this.stateServiceForm.image = image
+            const data = await axios.post('api/admin/services/add', this.stateServiceForm,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            )
             this.stateServices.push(data.data.service)
         },
-        async updateService(){
-        
-           const data  = await axios.post(`api/admin/services/edit/${this.stateServiceForm.id}`,this.serviceForm)
+        async updateService(image) {
+            this.stateServiceForm.image = image
+            const data = await axios.post(`api/admin/services/edit/${this.stateServiceForm.id}`, this.serviceForm,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+        },
+        async deleteService(service){
+            const data = await axios.post(`api/admin/services/edit/${service.id}`)
+            
         }
 
 

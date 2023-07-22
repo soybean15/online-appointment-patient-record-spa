@@ -17,7 +17,7 @@
           <div class="row justify-center">
             <div class="relative">
               <q-avatar size="100px" rounded class="">
-                <img src="https://cdn.quasar.dev/img/avatar.png" />
+                <img :src="image_blob" />
               </q-avatar>
 
               <q-file
@@ -28,6 +28,7 @@
                 color="purple-12"
                 v-model="imageFile"
                 label="Label"
+                @update:model-value="print"
               ></q-file>
               <q-icon
                 class="absolute bottom-2 right-0 cursor-pointer"
@@ -63,7 +64,7 @@
             <q-input
               filled
               type="textarea"
-              v-model="serviceStore.serviceForm.price"
+              v-model="serviceStore.serviceForm.description"
               label="Description "
             />
 
@@ -107,6 +108,7 @@ export default {
     const loading = ref(false);
     const fileInputRef = ref(null);
     const  imageFile = ref(null)
+    const image_blob = ref('https://cdn.quasar.dev/img/avatar.png')
 
     const delay = (ms) => {
       return new Promise((resolve) => setTimeout(resolve, ms));
@@ -121,7 +123,7 @@ export default {
           await serviceStore.updateService();
         } else {
           await delay(1000);
-          await serviceStore.addService();
+          await serviceStore.addService(imageFile.value);
         }
 
         loading.value = false;
@@ -132,9 +134,12 @@ export default {
       persistent,
       fileInputRef,
       imageFile,
+      image_blob,
       onClick: (row) => {
+        console.log(row)
         if (row.name) {
           onEdit.value = true;
+          image_blob.value = row.image
         } else {
           onEdit.value = false;
         }
@@ -154,10 +159,11 @@ export default {
 
       
       print: () => {
-        authStore.user.profile[0].blob_image = URL.createObjectURL(
+        image_blob.value = URL.createObjectURL(
           imageFile.value
         );
 
+        console.log( imageFile.value)
        
       },
     };
