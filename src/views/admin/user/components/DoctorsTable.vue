@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="max-width: 550px">
+  <div class="q-pa-md" style="max-width: 700px">
     <q-toolbar class="bg-primary text-white shadow-2">
       <q-toolbar-title>Doctors</q-toolbar-title>
     </q-toolbar>

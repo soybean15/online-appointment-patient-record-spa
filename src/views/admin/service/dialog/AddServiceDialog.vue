@@ -1,6 +1,6 @@
 <template>
-  <span >
-    <slot :onClick="onClick" ></slot>
+  <span>
+    <slot :onClick="onClick"></slot>
 
     <q-dialog
       v-model="persistent"
@@ -14,6 +14,31 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
+          <div class="row justify-center">
+            <div class="relative">
+              <q-avatar size="100px" rounded class="">
+                <img src="https://cdn.quasar.dev/img/avatar.png" />
+              </q-avatar>
+
+              <q-file
+                ref="fileInputRef"
+                clearable
+                class="hidden"
+                filled
+                color="purple-12"
+                v-model="imageFile"
+                label="Label"
+              ></q-file>
+              <q-icon
+                class="absolute bottom-2 right-0 cursor-pointer"
+                @click="openFile"
+                color="blue-grey-1"
+                label="Click"
+                name="photo_camera"
+                size="2.2em"
+              ></q-icon>
+            </div>
+          </div>
           <q-form @submit="onSubmit" class="q-gutter-md">
             <q-input
               filled
@@ -35,8 +60,20 @@
               mask="#.##"
             />
 
+            <q-input
+              filled
+              type="textarea"
+              v-model="serviceStore.serviceForm.price"
+              label="Description "
+            />
+
             <div>
-              <q-btn :loading="loading" label="Submit" type="submit" color="primary" />
+              <q-btn
+                :loading="loading"
+                label="Submit"
+                type="submit"
+                color="primary"
+              />
               <q-btn
                 label="Reset"
                 type="reset"
@@ -48,8 +85,8 @@
           </q-form>
         </q-card-section>
 
-        <q-card-actions align="right" class="bg-white text-teal" >
-          <q-btn  flat label="Exit"  v-close-popup  />
+        <q-card-actions align="right" class="bg-white text-teal">
+          <q-btn flat label="Exit" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -62,55 +99,67 @@ import { useQuasar } from "quasar";
 import { useAdminStore } from "@/store/admin";
 
 export default {
-
-  emit:['onClick'],
-  setup(props, {emit}) {
+  emit: ["onClick"],
+  setup(props, { emit }) {
     const serviceStore = useAdminStore().serviceStore;
-    const persistent = ref(false)
-    const onEdit = ref(false)
-    const loading = ref(false)
+    const persistent = ref(false);
+    const onEdit = ref(false);
+    const loading = ref(false);
+    const fileInputRef = ref(null);
+    const  imageFile = ref(null)
 
-    const delay = (ms)=> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-    
+    const delay = (ms) => {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    };
 
     return {
       onSubmit: async () => {
         //
-        loading.value = true
-        if(onEdit.value){
+        loading.value = true;
+        if (onEdit.value) {
           await delay(1000);
-          await serviceStore.updateService()
-        }else{
+          await serviceStore.updateService();
+        } else {
           await delay(1000);
           await serviceStore.addService();
         }
 
-        loading.value = false
-        persistent.value = false
+        loading.value = false;
+        persistent.value = false;
       },
       serviceStore,
+    
+      persistent,
+      fileInputRef,
+      imageFile,
+      onClick: (row) => {
+        if (row.name) {
+          onEdit.value = true;
+        } else {
+          onEdit.value = false;
+        }
+        serviceStore.serviceForm.id = row.id;
+        serviceStore.serviceForm.name = row.name;
+        serviceStore.serviceForm.price = row.price;
+
+        persistent.value = !persistent.value;
+      },
+      loading,
+      openFile: () => {
+        fileInputRef.value.pickFiles();
+      },
       handleClick: () => {
         console.log("click");
       },
-      persistent,
-      onClick:(row)=>{
-        if(row.name){      
-          onEdit.value = true
+
+      
+      print: () => {
+        authStore.user.profile[0].blob_image = URL.createObjectURL(
+          imageFile.value
+        );
+
        
-        }else{
-          onEdit.value = false
-        }  
-        serviceStore.serviceForm.id = row.id 
-        serviceStore.serviceForm.name = row.name
-        serviceStore.serviceForm.price = row.price
-
-
-        persistent.value =!persistent.value
-      },loading
-     
+      },
     };
   },
 };

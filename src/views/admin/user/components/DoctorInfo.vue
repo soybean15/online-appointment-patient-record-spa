@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="column p-5 bg-surface rounded-lg" v-if="userStore.selectedUser">
+    <div
+      class="column p-5 my-4 bg-surface rounded-lg"
+      v-if="userStore.selectedUser"
+    >
       <div class="row">
         <q-avatar size="100px" class="col self-center">
           <img :src="userStore.selectedUser.profile[0].image" />
@@ -9,7 +12,9 @@
 
       <div class="column">
         <div class="row self-center text-2xl">{{ fullname }}</div>
-        <div class="row self-center text-lg font-secondary">{{userStore.selectedUser.doctor.specialty}}</div>
+        <div class="row self-center text-lg font-secondary">
+          {{ userStore.selectedUser.doctor.specialty }}
+        </div>
         <div class="row self-center text-md">
           {{ userStore.selectedUser.profile[0].contact_number }}
         </div>
@@ -19,7 +24,6 @@
 
         <div class="row">
           <q-expansion-item
-           
             expand-separator
             icon="medical_services"
             label="Service Offered"
@@ -27,19 +31,19 @@
           >
             <q-card>
               <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
+
+                <div>
+                     <AddServiceDialog/>
+
+                </div>
+              
               </q-card-section>
             </q-card>
           </q-expansion-item>
         </div>
 
-
         <div class="Schedules">
           <q-expansion-item
-           
             expand-separator
             icon="today"
             label="Schedules"
@@ -63,7 +67,11 @@
 <script>
 import { useAdminStore } from "@/store/admin";
 import { computed } from "vue";
+import AddServiceDialog from "../dialog/AddServicesDialog";
 export default {
+  components: {
+    AddServiceDialog,
+  },
   setup() {
     const userStore = useAdminStore().userStore;
 
