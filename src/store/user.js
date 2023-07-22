@@ -22,13 +22,21 @@ export const useUserStore = defineStore('user', {
   },
   actions: {
 
-    async getUsers(){
-      const data = await axios.get('api/admin/doctor/users')
-      this.stateUsers=data.data.users
+    async getUsers(keyword){
+      console.log(keyword)
+      const data = await axios.post('api/admin/doctor/users',{keyword})
+      this.stateUsers=data.data.users.data
     },
 
-    async addDoctor(user){
-      const data = await axios.post('api/admin/doctor/add',{user})
+    async addDoctor(user,specialty){
+  
+      
+      const data = await axios.post('api/admin/doctor/add',{user,specialty})
+      
+     this.getDoctors()
+
+   
+     
 
     },
     async getDoctors(){
@@ -58,4 +66,5 @@ export const useUserStore = defineStore('user', {
     }
    
   },
+  
 })

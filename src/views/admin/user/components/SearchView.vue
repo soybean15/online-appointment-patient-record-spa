@@ -1,6 +1,6 @@
 <template>
   <div class="row m-3 justify-between items-center">
-    <q-input outlined v-model="text" label="Search" 
+    <q-input outlined  label="Search" 
     @keydown.enter.prevent="submit"
     v-model.trim="key" dense>
       <template v-slot:append>

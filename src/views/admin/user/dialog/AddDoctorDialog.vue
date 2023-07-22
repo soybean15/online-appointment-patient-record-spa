@@ -14,13 +14,12 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-            
-          <div >
+          <div>
             <q-input
               outlined
-              v-model="text"
+            
               label="Search"
-              @keydown.enter.prevent="submit"
+              @keydown.enter.prevent="onSubmit"
               v-model.trim="key"
               dense
             >
@@ -30,9 +29,26 @@
             </q-input>
           </div>
           <div class="py-2">Double click to select</div>
-          <q-scroll-area class="p-2" style="height: 200px; max-width: 100%">
-            <div @dblclick="submit(user)" v-for="user in  userStore.users" :key="user.id" class="caption cursor-pointer">
-              {{ user.profile[0].firstname }}
+          <q-scroll-area
+            class="p-2"
+            style="height: 200px; max-width: 100%"
+            v-if="userStore.users"
+          >
+            <div
+              :class="{ 'font-secondary': index === selectedUser }"
+              @dblclick="submit(user)"
+              @click="selectedUser = index"
+              v-for="(user, index) in userStore.users"
+              :key="index"
+              class="caption cursor-pointer items-center row p-1"
+            >
+              <q-avatar size="40px">
+                <img :src="user.profile.image" />
+              </q-avatar>
+
+              <div class="px-2">
+                {{ `${user.profile.firstname} ${user.profile.lastname}` }}
+              </div>
             </div>
             <template v-slot:loading>
               <div class="row justify-center q-my-md">
@@ -43,7 +59,6 @@
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          
           <q-btn flat label="close" v-close-popup />
         </q-card-actions>
       </q-card>
@@ -58,27 +73,32 @@ import { useAdminStore } from "@/store/admin";
 export default {
   setup() {
     const userStore = useAdminStore().userStore;
-    
-    const persistent= ref(false)
-  
+
+    const persistent = ref(false);
+
+    const selectedUser = ref();
+    const key = ref("");
+
     onMounted(() => {
-      userStore.getUsers();
+      userStore.getUsers(key.value);
     });
 
     return {
-   persistent,
+      persistent,
       userStore,
       onSubmit: () => {
-       
+        userStore.getUsers(key.value);
+        key.value = "";
       },
-      submit: async(user) => {
-       console.log(user)
-        await userStore.addDoctor(user)
+      submit: async (user) => {
+        console.log(user);
+        await userStore.addDoctor(user);
 
-        persistent.value= false
+        persistent.value = false;
+        console.log(selectedUser.value);
       },
-     
-      
+      selectedUser,
+      key
     };
   },
 };
