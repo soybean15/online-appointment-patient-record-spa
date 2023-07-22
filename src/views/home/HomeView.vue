@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="col gt-sm">
-                <q-img src="../../assets/img/logo/doc1.png" class="q-pa-xl"
+                <q-img src="../../assets/img/images/doc1.png" class="q-pa-xl"
                 style="max-height:650px; margin-left:auto; margin-right: auto; display: block;"></q-img>
                 
             </div>

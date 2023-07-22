@@ -1,5 +1,5 @@
 <template>
-    <q-page class="" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+    <q-page class="" style="">
 
 <div class="row bg-primary q-pa-xl justify-center">
   <div class="q-ma-xl ">
@@ -64,7 +64,7 @@
   
   <div class="col items-center q-py-md q-px-md justify-center">
       <div class="row justify-center q-px-lg"> 
-        <img src="../assets/img/logo/doctor1.png"  style="width: 300px; height: 200px; border-radius: 5px">
+        <img src="../assets/img/images/doctor1.png"  style="width: 300px; height: 200px; border-radius: 5px">
       </div>
   </div>
   <div class="col q-py-xl">
@@ -76,7 +76,7 @@
   <div class="row bg-yellow-1 text-gray-700 q-pb-lg">
       <div class="col items-center q-py-md q-px-md justify-center">
           <div class="row justify-center "> 
-            <img src="../assets/img/logo/doctor3.png"  style="width: 300px; height: 200px; border-radius: 5px;">
+            <img src="../assets/img/images/doctor3.png"  style="width: 300px; height: 200px; border-radius: 5px;">
           </div>
       </div>
       <div class="col q-py-xl">
@@ -107,7 +107,7 @@
 
   <div class="col items-center q-py-sm q-px-md justify-center">
       <div class="row justify-center"> 
-        <img src="../assets/img/logo/clinic3.jpg"  style="width: 450px; height: 400px; border-radius: 5px;">
+        <img src="../assets/img/images/clinic3.jpg"  style="width: 450px; height: 400px; border-radius: 5px;">
       </div>
   </div> 
 </div>
