@@ -61,6 +61,7 @@ export default {
     return {
       userStore,
       specialty,
+
       save:(doctor,close)=>{
         userStore.addDoctor(doctor, specialty.value)
         specialty.value=''

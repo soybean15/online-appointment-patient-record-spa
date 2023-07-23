@@ -31,12 +31,31 @@
           >
             <q-card>
               <q-card-section>
+                <q-list bordered>
+                  <q-item
+                    clickable
+                    v-ripple
+                    v-for="service in userStore.selectedUser.doctor.services"
+                    :key="service.id"
+                  >
+                    <q-item-section avatar>
+                      <q-avatar rounded>
+                        <img :src="service.image" />
+                      </q-avatar>
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>{{ service.name }}</q-item-label>
+                      <q-item-label caption
+                        >Secondary line text. Lorem ipsum dolor sit amet,
+                        consectetur adipiscit elit.</q-item-label
+                      >
+                    </q-item-section>
+                  </q-item>
+                </q-list>
 
                 <div>
-                     <AddServiceDialog/>
-
+                  <AddServiceDialog />
                 </div>
-              
               </q-card-section>
             </q-card>
           </q-expansion-item>
