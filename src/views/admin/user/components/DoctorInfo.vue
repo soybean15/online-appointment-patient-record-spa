@@ -31,12 +31,31 @@
           >
             <q-card>
               <q-card-section>
+                <q-list bordered>
+                  <q-item
+                    clickable
+                    v-ripple
+                    v-for="service in userStore.selectedUser.doctor.services"
+                    :key="service.id"
+                  >
+                    <q-item-section avatar>
+                      <q-avatar rounded>
+                        <img :src="service.image" />
+                      </q-avatar>
+                    </q-item-section>
+                    <q-item-section>
+                      <q-item-label>{{ service.name }}</q-item-label>
+                      <q-item-label caption
+                        >Secondary line text. Lorem ipsum dolor sit amet,
+                        consectetur adipiscit elit.</q-item-label
+                      >
+                    </q-item-section>
+                  </q-item>
+                </q-list>
 
                 <div>
-                     <AddServiceDialog/>
-
+                  <AddServiceDialog />
                 </div>
-              
               </q-card-section>
             </q-card>
           </q-expansion-item>
@@ -51,10 +70,19 @@
           >
             <q-card>
               <q-card-section>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Quidem, eius reprehenderit eos corrupti commodi magni quaerat ex
-                numquam, dolorum officiis modi facere maiores architecto
-                suscipit iste eveniet doloribus ullam aliquid.
+               
+                <div
+                  class="fit row wrap justify-start items-start content-start"
+                >
+                  <div class="" v-for="(day, index)  in userStore.selectedUser.doctor.available_schedules" :key="day">
+                    <q-checkbox
+                      class=""
+                      v-model="day.selected"
+                      @click="setSchedule(index +1)"
+                      :label="day.name"
+                    />
+                  </div>
+                </div>
               </q-card-section>
             </q-card>
           </q-expansion-item>
@@ -66,17 +94,25 @@
 
 <script>
 import { useAdminStore } from "@/store/admin";
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 import AddServiceDialog from "../dialog/AddServicesDialog";
+
+const mapSchedule = (week, days) => {
+  days.array.forEach((element) => {
+    console.log(element);
+  });
+};
 export default {
   components: {
     AddServiceDialog,
   },
   setup() {
     const userStore = useAdminStore().userStore;
+  
 
     return {
       userStore,
+  
       fullname: computed(() => {
         if (userStore.selectedUser) {
           if (userStore.selectedUser.profile[0].gender === "Male") {
@@ -86,6 +122,11 @@ export default {
           }
         }
       }),
+
+      setSchedule: (index) => {
+        console.log(index);
+        userStore.setSchedule(index);
+      },
     };
   },
 };

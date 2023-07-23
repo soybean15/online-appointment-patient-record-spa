@@ -44,6 +44,21 @@ export const useUserStore = defineStore('user', {
       this.stateDoctors = data.data.doctors
     },
 
+   
+    async addServices(services){
+  
+      const data = axios.post('api/admin/doctor/services',{
+        services:services,
+       doctor_id: this.selectedUser.doctor.id
+      })
+
+    },
+    async setSchedule(dayOfWeek){
+      const data = axios.post('api/admin/doctor/schedule',{
+        day_of_week:dayOfWeek,
+        doctor_id: this.selectedUser.doctor.id
+      })
+    },
     async getPatients(path,keyword){
         if(!path){
             path = 'api/admin/patient'
@@ -55,6 +70,8 @@ export const useUserStore = defineStore('user', {
         this.statePatients = data.data.patients
     },
 
+
+
     async searchPatient(keyword){
       const data  = await axios.post('api/admin/patient/search',{keyword})
       this.statePatients = data.data.results
@@ -63,7 +80,8 @@ export const useUserStore = defineStore('user', {
     setUser(user){
       this.stateSelectedUser = user
       console.log(this.stateSelectedUser)
-    }
+    },
+
    
   },
   
