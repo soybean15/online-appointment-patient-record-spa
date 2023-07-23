@@ -2,11 +2,11 @@
 
     <q-page class="">
         <!-- Header -->
-        <div class="row bg-primary">
+        <div class="row bg-cyan-5">
             <!-- Maxilife Multispecialty Clinic and Diagnostic Center -->
-            <div class="col">
-                <div style="text-align:center; max-width: 650px; margin-right: auto; margin-left: auto;">
-                    <div class="text-h4 text-bold text-white q-mt-xl q-pt-xl q-pb-lg" >Let Maxilife Multispecialty Clinic 
+            <div class="col text-white">
+                <div style="text-align:center; max-width: 650px; margin-right: auto; margin-left: auto;" class="q-pt-md  ">
+                    <div class="text-h4 text-bold  q-mt-xl q-pt-xl q-pb-lg" >Let Maxilife Multispecialty Clinic 
                         <hr/>Care with your Health</div>
                     <div class="text-h6 q-px-lg q-pb-sm"> Book your appointment from the comfort 
                         of your own home and receive quality care from our expert team</div>
@@ -19,9 +19,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col gt-sm">
-                <q-img src="../../assets/img/images/doc1.png" class="q-pa-xl"
-                style="max-height:650px; margin-left:auto; margin-right: auto; display: block;"></q-img>
+            <div class="col gt-sm q-px-sm  q-mx-xl q-mt-sm opacity-80">
+                <q-img src="../../assets/img/images/doctor2.png" 
+                style="max-height:650px; margin-left:auto; margin-right: auto; display: block; border-radius: 10px; width:500px; height: 500px; "></q-img>
                 
             </div>
 
