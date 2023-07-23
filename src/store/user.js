@@ -53,6 +53,12 @@ export const useUserStore = defineStore('user', {
       })
 
     },
+    async setSchedule(dayOfWeek){
+      const data = axios.post('api/admin/doctor/schedule',{
+        day_of_week:dayOfWeek,
+        doctor_id: this.selectedUser.doctor.id
+      })
+    },
     async getPatients(path,keyword){
         if(!path){
             path = 'api/admin/patient'
