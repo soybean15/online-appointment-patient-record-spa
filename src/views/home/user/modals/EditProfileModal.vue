@@ -253,8 +253,7 @@ export default {
           imageFile.value
         );
 
-        console.log(authStore.user.profile[0].image);
-        console.log(authStore.user.profile[0].blob_image);
+       
       },
       dateValidationRule: (val) => {
         if (!val) {
