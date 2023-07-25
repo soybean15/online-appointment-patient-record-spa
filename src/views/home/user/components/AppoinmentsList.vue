@@ -3,7 +3,7 @@
       <q-list class="bg-surface shadow-md rounded-md p-4 max-w-3xl"  >
         
     
-        <q-item-label class="row items-center justify-between" header>Appointments  <q-btn round  dense color="primary" icon="add"  /></q-item-label>
+        <q-item-label class="row items-center justify-between" header>Appointments <AddAppointmentModal/></q-item-label>
 
   
         <q-item>
@@ -80,7 +80,11 @@
     </div>
   </template>
 <script>
+import AddAppointmentModal from '../modals/AddAppointmentModal.vue'
+
 export default {
+
+    components:{AddAppointmentModal}
 
 }
 </script>
