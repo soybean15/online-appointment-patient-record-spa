@@ -27,6 +27,12 @@ const routes = [
 
       },
       {
+        path: '/appointment',
+        name: 'appointment',
+        component: () => import('@/views/home/user/AppointmentView')
+
+      },
+      {
         path: '/about',
         name: 'about',
    

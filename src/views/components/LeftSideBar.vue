@@ -22,6 +22,7 @@
       :active="activeSideBar === 'appointment'"
       @click="activeSideBar = 'appointment'"
       clickable
+      to="appointment"
       v-ripple
     >
       <q-item-section avatar>
