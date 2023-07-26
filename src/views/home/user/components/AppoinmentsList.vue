@@ -1,6 +1,6 @@
 <template>
     <div class="q-pa-md" style="">
-      <q-list class="bg-surface shadow-md rounded-md p-4 max-w-3xl"  >
+      <q-list class="bg-surface shadow-md rounded-md p-4 "  >
         
     
         <q-item-label class="row items-center justify-between" header>Appointments <AddAppointmentModal/></q-item-label>
