@@ -1,11 +1,11 @@
 <template>
     <div class="row">
 
-        <div class="col-5"> 
+        <div class="col-9"> 
             <AppoinmentsList/>
         </div>
       
-        <div class="col-4"> 
+        <div class="col-3"> 
             <AppoinmentsList/>
         </div>
 

@@ -129,7 +129,7 @@
 
 
   </div>
-  
+
 </template>
 
 
@@ -139,6 +139,7 @@
 import { useAuthStore } from "@/store/auth";
 import { computed, onMounted } from "vue";
 import { format } from "date-fns";
+
 import EditProfileModal from './modals/EditProfileModal.vue';
 
 export default {
