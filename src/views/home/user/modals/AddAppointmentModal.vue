@@ -39,8 +39,10 @@
                       onNext(2,done1)
                     "
                     color="primary"
-                    label="Let's Start"
+                    label="Continue"
+                    :disable ='appointmentStore.selectedService==null'
                   />
+                 
                 </q-stepper-navigation>
               </q-step>
 
@@ -51,6 +53,8 @@
                 :done="step > 2"
                 :header-nav="step > 2"
               >
+
+              <DoctorStep/>
                 <q-stepper-navigation>
                   <q-btn
                     @click="
@@ -109,14 +113,17 @@
 import { onMounted, ref } from "vue";
 import ServiceStep from "./appointment/ServiceStep.vue";
 import { useAppointmentStore } from "@/store/appointment";
+import DoctorStep from "./appointment/DoctorStep.vue";
 export default {
   components: {
     ServiceStep,
+    DoctorStep
   },
   setup() {
     const appointmentStore = useAppointmentStore();
     const  step= ref(1)
 
+    console.log(appointmentStore.selectedService)
     onMounted(() => {
       appointmentStore.index();
       
@@ -127,7 +134,8 @@ export default {
      onNext:(newStep,done)=>{
       done=true
       step.value=newStep
-    }
+    },
+    appointmentStore
     };
     
   },
