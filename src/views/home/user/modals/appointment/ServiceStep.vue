@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-auto h-56 row wrap justify-start items-start content-start"
+  <div style="height: 400px;" class="overflow-auto row wrap justify-start items-start content-start"
   >
     <div
       class=""

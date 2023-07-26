@@ -25,19 +25,18 @@
             >
               <q-step
                 :name="1"
-                title="Select campaign settings"
+                title="Select Services"
                 icon="settings"
                 :done="step > 1"
                 :header-nav="step > 1"
               >
-                Welcome to Maxilife Online Appointemnt
+             
+              <ServiceStep />
+
                 <q-stepper-navigation>
                   <q-btn
                     @click="
-                      () => {
-                        done1 = true;
-                        step = 2;
-                      }
+                      onNext(2,done1)
                     "
                     color="primary"
                     label="Let's Start"
@@ -47,20 +46,15 @@
 
               <q-step
                 :name="2"
-                title="Select Service"
+                title="Select Doctors"
                 icon="create_new_folder"
                 :done="step > 2"
                 :header-nav="step > 2"
               >
-                <ServiceStep />
-
                 <q-stepper-navigation>
                   <q-btn
                     @click="
-                      () => {
-                        done2 = true;
-                        step = 3;
-                      }
+                       onNext(3,done2)
                     "
                     color="primary"
                     label="Continue"
@@ -75,42 +69,12 @@
                 </q-stepper-navigation>
               </q-step>
 
+
               <q-step
                 :name="3"
-                title="Select Doctir"
-                icon="create_new_folder"
-                :done="step > 3"
-                :header-nav="step > 3"
-              >
-                An ad group contains one or more ads which target a shared set
-                of keywords.
-
-                <q-stepper-navigation>
-                  <q-btn
-                    @click="
-                      () => {
-                        done2 = true;
-                        step = 3;
-                      }
-                    "
-                    color="primary"
-                    label="Continue"
-                  />
-                  <q-btn
-                    flat
-                    @click="step = 2"
-                    color="primary"
-                    label="Back"
-                    class="q-ml-sm"
-                  />
-                </q-stepper-navigation>
-              </q-step>
-
-              <q-step
-                :name="4"
                 title="Create an ad"
                 icon="add_comment"
-                :header-nav="step > 4"
+                :header-nav="step > 3"
               >
                 Try out different ad text to see what brings in the most
                 customers, and learn how to enhance your ads using features like
@@ -122,7 +86,7 @@
                   <q-btn color="primary" @click="done3 = true" label="Finish" />
                   <q-btn
                     flat
-                    @click="step = 3"
+                    @click="step = 2"
                     color="primary"
                     label="Back"
                     class="q-ml-sm"
@@ -151,14 +115,21 @@ export default {
   },
   setup() {
     const appointmentStore = useAppointmentStore();
+    const  step= ref(1)
 
     onMounted(() => {
       appointmentStore.index();
+      
     });
     return {
-      persistent: ref(true),
-      step: ref(1),
+      persistent: ref(false),
+     step,
+     onNext:(newStep,done)=>{
+      done=true
+      step.value=newStep
+    }
     };
+    
   },
 };
 </script>

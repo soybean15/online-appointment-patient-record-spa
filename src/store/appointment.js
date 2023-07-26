@@ -5,13 +5,15 @@ import axios from 'axios'
 export const useAppointmentStore = defineStore('appointment', {
     state: () => ({
 
-        stateServices:null
+        stateServices:null,
+        stateSelectedService:null
 
     }),
 
 
     getters: {
-        services: (state) => state.stateServices
+        services: (state) => state.stateServices,
+        selectedService :(state)=>state.stateSelectedService
    
     },
 
@@ -22,6 +24,9 @@ export const useAppointmentStore = defineStore('appointment', {
             const data = await axios.get('api/user/appointment')
             this.stateServices = data.data.services
 
+        },
+        selectService(service){
+            this.stateSelectedService=service
         }
 
 
