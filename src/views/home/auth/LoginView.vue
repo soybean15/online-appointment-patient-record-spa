@@ -52,7 +52,7 @@
                     {{ authStore.errors.password[0] }}
                   </div>
                   <q-input
-                  :type="isPwd ? 'password' : 'text'"
+                  :type="isPwd ? 'text' : 'password'"
                     standout="bg-teal text-white"
                     v-model="authStore.form.password"
                     label="Password"

@@ -40,7 +40,7 @@
                     "
                     color="primary"
                     label="Continue"
-                    :disable ='appointmentStore.selectedService==null'
+                    :disable ='!appointmentStore.selectedService'
                   />
                  
                 </q-stepper-navigation>
@@ -62,6 +62,7 @@
                     "
                     color="primary"
                     label="Continue"
+                    :disable="!appointmentStore.selectedDoctor"
                   />
                   <q-btn
                     flat
@@ -69,28 +70,60 @@
                     color="primary"
                     label="Back"
                     class="q-ml-sm"
+                  
                   />
                 </q-stepper-navigation>
               </q-step>
 
 
+
+
               <q-step
                 :name="3"
-                title="Create an ad"
-                icon="add_comment"
+                title="Select Date"
+                icon="create_new_folder"
+                :done="step > 3"
                 :header-nav="step > 3"
               >
-                Try out different ad text to see what brings in the most
-                customers, and learn how to enhance your ads using features like
-                ad extensions. If you run into any problems with your ads, find
-                out how to tell if they're running and how to resolve approval
-                issues.
 
+              <DateStep/>
                 <q-stepper-navigation>
-                  <q-btn color="primary" @click="done3 = true" label="Finish" />
+                  <q-btn
+                    @click="
+                       onNext(4,done3)
+                    "
+                    color="primary"
+                    label="Continue"
+                    :disable="!appointmentStore.selectedDoctor"
+                  />
                   <q-btn
                     flat
                     @click="step = 2"
+                    color="primary"
+                    label="Back"
+                    class="q-ml-sm"
+                  
+                  />
+                </q-stepper-navigation>
+              </q-step>
+
+
+
+
+
+              <q-step
+                :name="4"
+                title="Summary"
+                icon="add_comment"
+                :header-nav="step > 4"
+              >
+                <SummaryStepVue/>
+
+                <q-stepper-navigation>
+                  <q-btn color="primary" @click="done3 = true" label="Set Appointment" />
+                  <q-btn
+                    flat
+                    @click="step = 3"
                     color="primary"
                     label="Back"
                     class="q-ml-sm"
@@ -114,10 +147,14 @@ import { onMounted, ref } from "vue";
 import ServiceStep from "./appointment/ServiceStep.vue";
 import { useAppointmentStore } from "@/store/appointment";
 import DoctorStep from "./appointment/DoctorStep.vue";
+import DateStep from './appointment/DateStep.vue';
+import SummaryStepVue from './appointment/SummaryStep.vue';
 export default {
   components: {
     ServiceStep,
-    DoctorStep
+    DoctorStep,
+    DateStep,
+    SummaryStepVue
   },
   setup() {
     const appointmentStore = useAppointmentStore();
