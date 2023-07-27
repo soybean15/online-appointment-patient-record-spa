@@ -21,14 +21,12 @@ export default {
       const currentMonth = currentDate.getMonth();
 
 
+      const start = new Date(currentYear, currentMonth, currentDate.getDate()); // Set start to current date
 
-      const firstDayOfMonth = new Date(currentYear, currentMonth, 1);
-
-      
-      const lastDayOfMonth = new Date(currentYear, currentMonth + 1, 0);
-
+// Set end to the last day of the next year
+const end = new Date(currentYear + 2, 0, 0);
       const allDates = [];
-      for (let date = firstDayOfMonth; date <= lastDayOfMonth; date.setDate(date.getDate() + 1)) {
+      for (let date = start; date <= end; date.setDate(date.getDate() + 1)) {
         const day =date.getDay()
         let isDateValid =  appointmentStore.selectedDoctor.schedules.some(schedule => schedule.day_of_week === day);
       
