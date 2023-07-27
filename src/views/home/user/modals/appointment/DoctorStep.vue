@@ -1,50 +1,53 @@
 <template>
-    <div style="height: 400px;" class="overflow-auto row wrap justify-start items-start content-start"
+  <div
+    style="height: 400px"
+    class="overflow-auto row wrap justify-start items-start content-start"
   >
-  
     <div
-      class="relative"
+      class="relative m-1  cursor-pointer column items-center"
+      @click="appointmentStore.selectDoctor(doctor)"
       v-for="doctor in appointmentStore.selectedService.doctors"
       :key="doctor.id"
     >
-    <div class="absolute  " style="border-radius: 10px; height: 190px;width: 225px"></div>
-     <div>
+      <div
+        :class="{'bg-red-300 ': doctor == appointmentStore.selectedDoctor}"
+        class="absolute  rounded-full"
+        style="height: 11rem; width: 11rem"
+      ></div>
+      <div class="p-2 ">
+        <q-avatar round style="height: 10rem; width: 10rem">
+          <img :src="doctor.user.profile.image" />
+        </q-avatar>
 
-
-        <q-card
-           
-               class="cursor-pointer  text-gray-7 q-ma-sm shadow-3 "
-              style="border-radius: 10px; width: 210px"
-            >
-              <q-img
-                style="height: 170px; max-width: 300px"
-                :src="doctor.user.profile.image"
-              >
-                <div class="absolute-bottom text-center">
-                  {{ `${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`}}
-                </div>
-              </q-img>
-            </q-card>
-     </div>
+        <div class="col m-3 row justify-center">
+          {{ fullName(doctor) }}
+        </div>
+      </div>
     </div>
   </div>
- 
 </template>
 
 <script>
-import { useAppointmentStore } from '@/store/appointment';
+import { useAppointmentStore } from "@/store/appointment";
+
 export default {
-    setup(){
-        const appointmentStore = useAppointmentStore()
-        console.log(appointmentStore.selectedService.doctors)
+  setup() {
+    const appointmentStore = useAppointmentStore();
+    console.log(appointmentStore.selectedService.doctors);
 
-        return {appointmentStore}
-
-    }
-
-}
+    return {
+      appointmentStore,
+      fullName: (doctor) => {
+        if (doctor.user.profile.gender === "Male") {
+          return `Dr. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
+        } else {
+          return `Dra. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
+        }
+      },
+    };
+  },
+};
 </script>
 
 <style>
-
 </style>

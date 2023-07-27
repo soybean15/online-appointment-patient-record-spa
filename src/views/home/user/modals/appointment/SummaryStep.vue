@@ -1,0 +1,55 @@
+<template>
+  <q-card dark bordered class="my-card">
+    <q-card-section>
+      <div class="text-h6">Appointment Details</div>
+    </q-card-section>
+
+    <q-separator dark inset />
+
+    <q-card-section>
+      <div class="column">
+        <div class="col">
+          <div>Applicant:</div>
+          <div>{{ fullName() }}</div>
+        </div>
+        <div class="col">
+          <div>Service:</div>
+          <div>{{ appointmentStore.selectedService.name }}</div>
+        </div>
+        <div class="col">
+          <div>Assigned Doctor:</div>
+          <div>{{ doctorName(appointmentStore.selectedDoctor) }}</div>
+        </div>
+      </div>
+    </q-card-section>
+  </q-card>
+</template>
+
+<script>
+import { useAuthStore } from "@/store/auth";
+import { useAppointmentStore } from "@/store/appointment";
+export default {
+  setup() {
+    const authStore = useAuthStore();
+    const appointmentStore = useAppointmentStore();
+
+    return {
+      authStore,
+      appointmentStore,
+      fullName: () => {
+        return `${authStore.user.profile[0].firstname} ${authStore.user.profile[0].lastname}`;
+      },
+      doctorName: (doctor) => {
+        if (doctor.user.profile.gender === "Male") {
+          return `Dr. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
+        } else {
+          return `Dra. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
+        }
+      },
+    };
+  },
+};
+</script>
+
+<style>
+</style>
