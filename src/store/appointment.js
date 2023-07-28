@@ -61,11 +61,17 @@ export const useAppointmentStore = defineStore('appointment', {
                     }
                 )
                 this.stateLoading = false
+                this.clearData()
             } catch (error) {
                     this.stateLoading = false
             }
 
 
+        },
+        clearData(){
+            this.stateSelectedDoctor = null
+            this.stateDate =null
+            this.stateSelectedService = null
         }
 
 

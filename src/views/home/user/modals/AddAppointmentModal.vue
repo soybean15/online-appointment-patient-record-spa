@@ -177,11 +177,12 @@ export default {
   setup() {
     const appointmentStore = useAppointmentStore();
     const step = ref(1);
+    const persistent= ref(false)
 
     console.log(appointmentStore.selectedService);
     
     return {
-      persistent: ref(false),
+      persistent,
       step,
       onNext: (newStep, done) => {
         done = true;
@@ -193,6 +194,7 @@ export default {
         await appointmentStore.setAppointment()
       
         close()
+        persistent.value = false
       }
     };
   },

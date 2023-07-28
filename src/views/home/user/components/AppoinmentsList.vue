@@ -5,27 +5,31 @@
         >Appointments <AddAppointmentModal
       /></q-item-label>
 
-      <div v-if="appointmentStore.appointments > 0">
+      <div v-if="appointmentStore.appointments && appointmentStore.appointments.length  > 0">
         <div
           v-for="appointment in appointmentStore.appointments"
           :key="appointment.id"
         >
           <q-item>
             <q-item-section top avatar>
-              <q-avatar color="primary" text-color="white" icon="bluetooth" />
+              <q-avatar color="primary" text-color="white"  >
+                <img :src="appointment.doctor.user.profile[0].image">
+              </q-avatar>
             </q-item-section>
 
             <q-item-section>
-              <q-item-label>Single line item</q-item-label>
+              <q-item-label>{{appointment.service.name}}</q-item-label>
               <q-item-label caption lines="2"
-                >Secondary line text. Lorem ipsum dolor sit amet, consectetur
-                adipiscit elit.</q-item-label
+                >{{fullName(appointment.doctor)}}</q-item-label
+              >
+              <q-item-label caption lines="2"
+                >{{appointment.schedule_date}}</q-item-label
               >
             </q-item-section>
 
             <q-item-section side top>
-              <q-item-label caption>5 min ago</q-item-label>
-              <q-icon name="star" color="yellow" />
+              <q-item-label class="mb-2" caption>{{ appointment.time_ago }}</q-item-label>
+              <q-badge outline  :color="statusColor(appointment.status)" :label="appointment.status" />
             </q-item-section>
           </q-item>
           <q-separator spaced inset="item" />
@@ -50,6 +54,23 @@ export default {
 
     return {
       appointmentStore,
+      statusColor:(status)=>{
+        if (status=='pending'){
+          return 'orange'
+        }else if (status=='approved'){
+          return 'green'
+        }else if (status=='rejected'){
+          return 'red'
+        }
+
+      },
+      fullName: (doctor) => {
+        if (doctor.user.profile.gender === "Male") {
+          return `Dr. ${doctor.user.profile[0].firstname}  ${doctor.user.profile[0].lastname}`;
+        } else {
+          return `Dra. ${doctor.user.profile[0].firstname}  ${doctor.user.profile[0].lastname}`;
+        }
+      },
     };
   },
 };
