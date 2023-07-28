@@ -1,5 +1,5 @@
 <template>
-  <q-card dark bordered class="my-card">
+  <q-card  bordered class="">
     <q-card-section>
       <div class="text-h6">Appointment Details</div>
     </q-card-section>
@@ -9,16 +9,20 @@
     <q-card-section>
       <div class="column">
         <div class="col">
-          <div>Applicant:</div>
+          <div class="font-semibold text-lg font-secondary">Applicant:</div>
           <div>{{ fullName() }}</div>
         </div>
         <div class="col">
-          <div>Service:</div>
+          <div class="font-semibold text-lg font-secondary">Service:</div>
           <div>{{ appointmentStore.selectedService.name }}</div>
         </div>
         <div class="col">
-          <div>Assigned Doctor:</div>
+          <div class="font-semibold text-lg font-secondary">Assigned Doctor:</div>
           <div>{{ doctorName(appointmentStore.selectedDoctor) }}</div>
+        </div>
+        <div class="col">
+          <div class="font-semibold text-lg font-secondary">Selected Date:</div>
+          <div>{{ appointmentStore.date }}</div>
         </div>
       </div>
     </q-card-section>
