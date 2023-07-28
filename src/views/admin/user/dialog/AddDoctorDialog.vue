@@ -91,7 +91,7 @@ export default {
         key.value = "";
       },
       submit: async (user) => {
-        console.log(user);
+      
         await userStore.addDoctor(user);
 
         persistent.value = false;

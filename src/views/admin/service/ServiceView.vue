@@ -41,7 +41,7 @@
               <q-btn icon="mode_edit" @click="onClick(props.row)"></q-btn>
             </AddServiceDialogVue>
 
-            <ConfirmDialog >
+            <ConfirmDialog :pos="'top'">
 
               <template v-slot:button="{ open }">
                 <q-btn icon="delete" @click="open"></q-btn>

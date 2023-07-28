@@ -11,7 +11,7 @@
 </template>
   
   <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useAppointmentStore } from "@/store/appointment";
 import {  format } from "date-fns";
 export default {
@@ -21,7 +21,9 @@ export default {
 
     const currentDate = ref(format(new Date(), "yyyy-MM-dd"));
 
-    const eventsFn = () => {
+
+
+    const getAvailableDates = () => {
       const currentDate = new Date();
       const currentYear = currentDate.getFullYear();
       const currentMonth = currentDate.getMonth();
@@ -45,7 +47,19 @@ export default {
     
       allDatesInCurrentMonth.value = allDates;
     };
-    eventsFn();
+
+    getAvailableDates();
+
+
+    watch(currentDate,()=>{
+
+      appointmentStore.setDate(currentDate.value)
+
+    })
+
+
+
+
 
 
     return {

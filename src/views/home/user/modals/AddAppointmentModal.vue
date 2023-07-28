@@ -8,7 +8,7 @@
       transition-show="scale"
       transition-hide="scale"
     >
-      <q-card class="text-white" style="width: 800px; max-width: 80vw">
+      <q-card class="" style="width: 800px; max-width: 80vw">
         <q-card-section>
           <div class="text-h6">Create an Appoiment</div>
         </q-card-section>
@@ -30,19 +30,15 @@
                 :done="step > 1"
                 :header-nav="step > 1"
               >
-             
-              <ServiceStep />
+                <ServiceStep />
 
                 <q-stepper-navigation>
                   <q-btn
-                    @click="
-                      onNext(2,done1)
-                    "
+                    @click="onNext(2, done1)"
                     color="primary"
                     label="Continue"
-                    :disable ='!appointmentStore.selectedService'
+                    :disable="!appointmentStore.selectedService"
                   />
-                 
                 </q-stepper-navigation>
               </q-step>
 
@@ -53,13 +49,10 @@
                 :done="step > 2"
                 :header-nav="step > 2"
               >
-
-              <DoctorStep/>
+                <DoctorStep />
                 <q-stepper-navigation>
                   <q-btn
-                    @click="
-                       onNext(3,done2)
-                    "
+                    @click="onNext(3, done2)"
                     color="primary"
                     label="Continue"
                     :disable="!appointmentStore.selectedDoctor"
@@ -70,13 +63,9 @@
                     color="primary"
                     label="Back"
                     class="q-ml-sm"
-                  
                   />
                 </q-stepper-navigation>
               </q-step>
-
-
-
 
               <q-step
                 :name="3"
@@ -85,13 +74,10 @@
                 :done="step > 3"
                 :header-nav="step > 3"
               >
-
-              <DateStep/>
+                <DateStep />
                 <q-stepper-navigation>
                   <q-btn
-                    @click="
-                       onNext(4,done3)
-                    "
+                    @click="onNext(4, done3)"
                     color="primary"
                     label="Continue"
                     :disable="!appointmentStore.selectedDoctor"
@@ -102,14 +88,9 @@
                     color="primary"
                     label="Back"
                     class="q-ml-sm"
-                  
                   />
                 </q-stepper-navigation>
               </q-step>
-
-
-
-
 
               <q-step
                 :name="4"
@@ -117,10 +98,45 @@
                 icon="add_comment"
                 :header-nav="step > 4"
               >
-                <SummaryStepVue/>
+                <SummaryStepVue />
 
                 <q-stepper-navigation>
-                  <q-btn color="primary" @click="done3 = true" label="Set Appointment" />
+
+                  <ConfirmDialog >
+                    <template v-slot:button="{ open }">
+                     
+                  <q-btn
+                    color="primary"
+                    @click="open"
+                    label="Set Appointment"
+                  />
+                    </template>
+
+                    <template v-slot:title>
+                      <div
+                        class="flex justify-center px-3 q-py-lg text-h6 text-bold"
+                      >
+                        Create appointment
+                      </div>
+                    </template>
+                    <template v-slot:prompt>
+                      <div class="pb-5 px-3 flex text-h7" align="center">
+                        You are about to confirm the appointment. Please note that if you need to reschedule, you must contact the admin to make the necessary arrangements. Are you ready to proceed?"
+                      </div>
+                    </template>
+
+                    <template v-slot:actions="{ close }">
+                      <div class="row justify-evenly q-mb-md">
+                        <div>
+                          <q-btn :loading="appointmentStore.loading" @click="onClick(close)" color="secondary" label="Confirm" />
+                        </div>
+                        <div>
+                          <q-btn @click="close" color="red" label="Cancel" />
+                        </div>
+                      </div>
+                    </template>
+                  </ConfirmDialog>
+
                   <q-btn
                     flat
                     @click="step = 3"
@@ -147,34 +163,38 @@ import { onMounted, ref } from "vue";
 import ServiceStep from "./appointment/ServiceStep.vue";
 import { useAppointmentStore } from "@/store/appointment";
 import DoctorStep from "./appointment/DoctorStep.vue";
-import DateStep from './appointment/DateStep.vue';
-import SummaryStepVue from './appointment/SummaryStep.vue';
+import DateStep from "./appointment/DateStep.vue";
+import SummaryStepVue from "./appointment/SummaryStep.vue";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 export default {
   components: {
     ServiceStep,
     DoctorStep,
     DateStep,
-    SummaryStepVue
+    SummaryStepVue,
+    ConfirmDialog
   },
   setup() {
     const appointmentStore = useAppointmentStore();
-    const  step= ref(1)
+    const step = ref(1);
 
-    console.log(appointmentStore.selectedService)
-    onMounted(() => {
-      appointmentStore.index();
-      
-    });
+    console.log(appointmentStore.selectedService);
+    
     return {
       persistent: ref(false),
-     step,
-     onNext:(newStep,done)=>{
-      done=true
-      step.value=newStep
-    },
-    appointmentStore
+      step,
+      onNext: (newStep, done) => {
+        done = true;
+        step.value = newStep;
+      },
+      appointmentStore,
+      onClick:async(close)=>{
+
+        await appointmentStore.setAppointment()
+      
+        close()
+      }
     };
-    
   },
 };
 </script>
