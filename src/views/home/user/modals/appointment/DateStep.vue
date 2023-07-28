@@ -34,7 +34,7 @@ export default {
       const end = new Date(currentYear + 2, 0, 0);
       const allDates = [];
       for (let date = start; date <= end; date.setDate(date.getDate() + 1)) {
-        const day = date.getDay();
+        const day = date.getDay()+1;
         let isDateValid = appointmentStore.selectedDoctor.schedules.some(
           (schedule) => schedule.day_of_week === day
         );
