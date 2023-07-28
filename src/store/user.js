@@ -30,10 +30,10 @@ export const useUserStore = defineStore('user', {
 
     async addDoctor(user,specialty){
   
-      
       const data = await axios.post('api/admin/doctor/add',{user,specialty})
       
-     this.getDoctors()
+       this.getDoctors()
+       this.getUsers('')
 
    
      
