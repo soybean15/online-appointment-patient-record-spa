@@ -7,6 +7,7 @@ export const useAppointmentStore = defineStore('appointment', {
     state: () => ({
 
         stateServices: null,
+        stateDoctors:null  ,
         stateSelectedService: null,
         stateSelectedDoctor: null,
         stateDate: null,
@@ -17,7 +18,8 @@ export const useAppointmentStore = defineStore('appointment', {
 
 
     getters: {
-        services: (stateDate) => stateDate.stateServices,
+        services: (state) => state.stateServices,
+        doctors:(state)=> state.stateDoctors,
         selectedService: (state) => state.stateSelectedService,
         selectedDoctor: (state) => state.stateSelectedDoctor,
         date: (state) => state.stateDate,
@@ -33,6 +35,7 @@ export const useAppointmentStore = defineStore('appointment', {
             const data = await axios.get('api/user/appointment')
             this.stateServices = data.data.services
             this.stateAppointments = data.data.appointments
+            this.stateDoctors = data.data.doctors.data
 
         },
         selectService(service) {

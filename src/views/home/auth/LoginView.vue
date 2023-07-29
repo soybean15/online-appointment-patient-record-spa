@@ -1,10 +1,10 @@
 <template>
   <div class="">
-    <div label="Click me" color="primary" @click="persistent = true">
+    <div label="Click me" color="primary" @click="authStore.dialog.login = true">
       <slot></slot>
     </div>
     <q-dialog
-      v-model="persistent"
+      v-model="authStore.dialog.login"
       persistent
       transition-show="scale"
       transition-hide="scale"
@@ -96,16 +96,12 @@ export default {
   setup() {
     const authStore = useAuthStore();
     const loading = ref(false);
-    const persistent = ref(false);
+   
     const onLogin = async () => {
       loading.value = true;
       await authStore.handleLogin();
 
       await authStore.getUser();
-
-      if (authStore.user) {
-        persistent.value = false;
-      }
 
       loading.value = false;
     };
@@ -114,7 +110,7 @@ export default {
       authStore,
       onLogin,
       loading,
-      persistent,
+
       isPwd:ref(false)
     };
   },

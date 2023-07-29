@@ -53,7 +53,7 @@ export default {
     const authStore = useAuthStore();
     onMounted(() => {
       authStore.getUser();
-      console.log(authStore.isAdmin)
+      console.log(authStore.user)
     });
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);

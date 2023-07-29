@@ -5,7 +5,7 @@
     </div>
 
     <div class="col-3">
-      <AppoinmentsList />
+      <AppointmentSidePanel />
     </div>
   </div>
 </template>
@@ -14,9 +14,12 @@
 import { onMounted } from "vue";
 import AppoinmentsList from "./components/AppoinmentsList.vue";
 import {useAppointmentStore} from '@/store/appointment'
-
+import AppointmentSidePanel from "./components/AppointmentSidePanel.vue";
 export default {
-  components: { AppoinmentsList },
+  components: { 
+    AppoinmentsList,
+    AppointmentSidePanel
+  },
   setup() {
 
     const appointmentStore = useAppointmentStore()
