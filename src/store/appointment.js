@@ -63,8 +63,9 @@ export const useAppointmentStore = defineStore('appointment', {
 
                     }
                 )
+                this.stateAppointments.push(data.data.appointment)
                 this.stateLoading = false
-                this.clearData()
+               
             } catch (error) {
                     this.stateLoading = false
             }

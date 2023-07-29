@@ -3,7 +3,7 @@
     <q-list
       bordered
       class="bg-surface rounded-borders"
-      style="max-width: 350px"
+    
     >
       <q-item-label header>Doctors</q-item-label>
 

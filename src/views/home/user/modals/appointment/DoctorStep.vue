@@ -3,6 +3,8 @@
     style="height: 400px"
     class="overflow-auto row wrap justify-start items-start content-start"
   >
+
+  <div v-if="appointmentStore.selectedService">
     <div
       class="relative m-1  cursor-pointer column items-center"
       @click="appointmentStore.selectDoctor(doctor)"
@@ -24,6 +26,9 @@
         </div>
       </div>
     </div>
+
+  </div>
+ 
   </div>
 </template>
 
