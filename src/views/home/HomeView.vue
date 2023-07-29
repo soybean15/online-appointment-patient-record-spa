@@ -10,13 +10,8 @@
                         <hr/>Care with your Health</div>
                     <div class="text-h6 q-px-lg q-pb-sm"> Book your appointment from the comfort 
                         of your own home and receive quality care from our expert team</div>
-                    <div class=" bg-white text-grey mb-5 q-px-xl q-my-md q-mb-md rounded-lg ">Set an Apppointment
-                        <q-btn color="cyan" 
-                            icon-right="calendar_today" 
-                            label="" 
-                            class="q-my-sm "
-                            style="align-items: end; margin-left: 10px;"/>
-                    </div>
+                    <q-btn align="around" class="btn-fixed-width" to="appointment" color="primary" label="Set An Appointment" icon="calendar_today" outline />
+                   
                 </div>
             </div>
             <div class="col gt-sm q-px-sm q-py-xl q-mx-xl  opacity-85">

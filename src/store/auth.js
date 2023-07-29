@@ -18,7 +18,11 @@ export const useAuthStore = defineStore('auth', {
             update:false
         },
         authErrors:[],
-        authIsAdmin:false
+        authIsAdmin:false,
+        authDialog:{
+            login:false,
+            register:false
+        }
 
     }),
     getters: {
@@ -26,7 +30,8 @@ export const useAuthStore = defineStore('auth', {
         success:(state)=>state.authSuccess,
         errors:(state)=>state.authErrors,
         form: (state) => state.authForm,
-        isAdmin :(state)=>state.authIsAdmin
+        isAdmin :(state)=>state.authIsAdmin,
+        dialog:(state)=>state.authDialog
 
     },
     actions: {
@@ -75,7 +80,7 @@ export const useAuthStore = defineStore('auth', {
 
 
 
-                router.push('/')
+                this.authDialog.login= false
 
                 this.authErrors = []
 
@@ -121,6 +126,8 @@ export const useAuthStore = defineStore('auth', {
             this.authErrors =[]
             this.authUser = null
             this.authIsAdmin = false
+
+            this.router.push('/')
         },
 
         async updateProfile(image){

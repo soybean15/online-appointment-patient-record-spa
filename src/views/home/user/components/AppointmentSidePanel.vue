@@ -7,28 +7,39 @@
     >
       <q-item-label header>Doctors</q-item-label>
 
-      <div v-for="doctor in appointmentStore.doctors" :key="doctor.key">
-        <q-item clickable v-ripple>
-          <q-item-section avatar>
-            <q-avatar>
-              <img :src="doctor.user.profile[0].image" />
-            </q-avatar>
-          </q-item-section>
+      <div
+        v-if="
+          appointmentStore.appointments && appointmentStore.doctors.length > 0
+        "
+      >
+        <div v-for="doctor in appointmentStore.doctors" :key="doctor.key">
+          <q-item clickable v-ripple>
+            <q-item-section avatar>
+              <q-avatar>
+                <img :src="doctor.user.profile[0].image" />
+              </q-avatar>
+            </q-item-section>
 
-          <q-item-section>
-            <q-item-label lines="1">{{ doctor.full_name }}</q-item-label>
-            <q-item-label caption lines="2">
-              <span class="text-weight-bold">Janet</span>
-              -- I'll be in your neighborhood doing errands this weekend. Do you
-              want to grab brunch?
-            </q-item-label>
-          </q-item-section>
+            <q-item-section>
+              <q-item-label lines="1">{{ doctor.full_name }}</q-item-label>
+              <q-item-label caption lines="2">
+                <span class="text-weight-bold">Janet</span>
+                -- I'll be in your neighborhood doing errands this weekend. Do
+                you want to grab brunch?
+              </q-item-label>
+            </q-item-section>
 
-          <q-item-section side top> 1 min ago </q-item-section>
-        </q-item>
+            <q-item-section side top> 1 min ago </q-item-section>
+          </q-item>
 
-        <q-separator inset="item" />
+          <q-separator inset="item" />
+        </div>
       </div>
+      <div v-else>
+        <q-item-label header>No Available Doctor</q-item-label>
+      </div>
+
+
 
       <div class="row justify-between items-center">
         <q-item-label header>Services</q-item-label>

@@ -29,7 +29,25 @@ const routes = [
       {
         path: '/appointment',
         name: 'appointment',
-        component: () => import('@/views/home/user/AppointmentView')
+        component: () => import('@/views/home/user/AppointmentView'),
+        beforeEnter: async (to, from, next) => {
+          const authStore = useAuthStore()
+    
+          if(!authStore.user){
+            await authStore.getUser()
+          }
+
+          console.log(authStore.user)
+          if(!authStore.user){
+            next('/');
+            authStore.dialog.login = true
+          }else{
+            next();
+          }
+         
+    
+    
+        },
 
       },
       {

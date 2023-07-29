@@ -1,10 +1,10 @@
 <template>
   <div class="">
-    <div label="Click me" color="primary" @click="persistent = true">
+    <div label="Click me" color="primary" @click="authStore.dialog.register = true">
       <slot></slot>
     </div>
     <q-dialog
-      v-model="persistent"
+      v-model="authStore.dialog.register"
       persistent
       transition-show="scale"
       transition-hide="scale"
@@ -128,7 +128,7 @@ import { useAuthStore } from '@/store/auth';
 
 export default {
   setup() {
-    const persistent = ref(false);
+  
     const authStore = useAuthStore()
     const loading = ref(false);
 
@@ -147,7 +147,7 @@ export default {
 
 
     return { 
-      persistent,
+
       authStore,
       onRegister
      };
