@@ -41,6 +41,7 @@ const routes = [
           if(!authStore.user){
             next('/');
             authStore.dialog.login = true
+            authStore.authNextPath='/appointment'
           }else{
             next();
           }
