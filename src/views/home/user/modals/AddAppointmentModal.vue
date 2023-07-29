@@ -191,10 +191,10 @@ export default {
       appointmentStore,
       onClick:async(close)=>{
 
-        await appointmentStore.setAppointment()
-      
+        await appointmentStore.setAppointment() 
         close()
         persistent.value = false
+        appointmentStore.clearData()
       }
     };
   },

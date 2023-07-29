@@ -1,10 +1,10 @@
 <template>
   <div class="row">
-    <div class="col-9">
+    <div class="col-8">
       <AppoinmentsList />
     </div>
 
-    <div class="col-3">
+    <div class="col-4">
       <AppointmentSidePanel />
     </div>
   </div>
