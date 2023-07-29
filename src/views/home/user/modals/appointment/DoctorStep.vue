@@ -20,7 +20,7 @@
         </q-avatar>
 
         <div class="col m-3 row justify-center">
-          {{ fullName(doctor) }}
+          {{ doctor.full_name }}
         </div>
       </div>
     </div>
@@ -37,13 +37,7 @@ export default {
 
     return {
       appointmentStore,
-      fullName: (doctor) => {
-        if (doctor.user.profile.gender === "Male") {
-          return `Dr. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
-        } else {
-          return `Dra. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
-        }
-      },
+     
     };
   },
 };
