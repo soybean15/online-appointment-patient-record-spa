@@ -22,7 +22,8 @@ export const useAuthStore = defineStore('auth', {
         authDialog:{
             login:false,
             register:false
-        }
+        },
+        authNextPath: '/'
 
     }),
     getters: {
@@ -82,6 +83,9 @@ export const useAuthStore = defineStore('auth', {
 
                 this.authDialog.login= false
 
+                router.push(this.authNextPath)
+                this.authNextPath = '/'
+
                 this.authErrors = []
 
 
@@ -126,6 +130,7 @@ export const useAuthStore = defineStore('auth', {
             this.authErrors =[]
             this.authUser = null
             this.authIsAdmin = false
+            this.authNextPath = '/'
 
             this.router.push('/')
         },
