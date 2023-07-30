@@ -8,7 +8,7 @@
         flat
         bordered
         title="Treats"
-       
+       :rows="appointmentStore.pending.data"
         :columns="columns"
         row-key="name"
       >
