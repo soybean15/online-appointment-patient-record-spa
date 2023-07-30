@@ -3,7 +3,7 @@ import axios from 'axios'
 import { format } from "date-fns";
 import { useAuthStore } from './auth';
 
-export const useAppointmentStore = defineStore('appointment', {
+export const useAppointmentStore = defineStore('user_appointment', {
     state: () => ({
 
         stateServices: null,

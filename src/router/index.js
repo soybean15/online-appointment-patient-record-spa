@@ -112,6 +112,12 @@ const routes = [
         name: 'doctors',
         component: ()=> import ('@/views/admin/user/DoctorsView'),
     
+      }, 
+      {
+        path: 'appointment',
+        name: 'adminAppointment',
+        component: ()=> import ('@/views/admin/appointment/AppointmentView'),
+    
       },
     ]
   },

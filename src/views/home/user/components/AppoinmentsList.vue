@@ -46,7 +46,7 @@
 </template>
 <script>
 import AddAppointmentModal from "../modals/AddAppointmentModal.vue";
-import { useAppointmentStore } from "@/store/appointment";
+import { useAppointmentStore } from "@/store/userAppointment";
 export default {
   components: { AddAppointmentModal },
   setup() {

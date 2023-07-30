@@ -22,7 +22,7 @@
         <q-item-section> Dashboard </q-item-section>
       </q-item>
 
-      <q-item clickable v-ripple>
+      <q-item :to="{name:'adminAppointment'}" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="pending_actions" />
         </q-item-section>

@@ -13,7 +13,7 @@
 <script>
 import { onMounted } from "vue";
 import AppoinmentsList from "./components/AppoinmentsList.vue";
-import {useAppointmentStore} from '@/store/appointment'
+import {useAppointmentStore} from '@/store/userAppointment'
 import AppointmentSidePanel from "./components/AppointmentSidePanel.vue";
 export default {
   components: { 

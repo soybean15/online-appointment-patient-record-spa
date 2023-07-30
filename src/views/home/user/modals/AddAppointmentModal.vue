@@ -161,7 +161,7 @@
   <script>
 import { onMounted, ref } from "vue";
 import ServiceStep from "./appointment/ServiceStep.vue";
-import { useAppointmentStore } from "@/store/appointment";
+import { useAppointmentStore } from "@/store/userAppointment";
 import DoctorStep from "./appointment/DoctorStep.vue";
 import DateStep from "./appointment/DateStep.vue";
 import SummaryStepVue from "./appointment/SummaryStep.vue";

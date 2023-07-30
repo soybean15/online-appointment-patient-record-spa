@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { useAppointmentStore } from "@/store/appointment";
+import { useAppointmentStore } from "@/store/userAppointment";
 import { onMounted, ref } from "vue";
 export default {
   setup() {

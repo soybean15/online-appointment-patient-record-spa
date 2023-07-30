@@ -31,7 +31,7 @@
 
 <script>
 import { useAuthStore } from "@/store/auth";
-import { useAppointmentStore } from "@/store/appointment";
+import { useAppointmentStore } from "@/store/userAppointment";
 export default {
   setup() {
     const authStore = useAuthStore();
