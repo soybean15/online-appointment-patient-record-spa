@@ -12,7 +12,7 @@
   
   <script>
 import { ref, watch } from "vue";
-import { useAppointmentStore } from "@/store/appointment";
+import { useAppointmentStore } from "@/store/userAppointment";
 import {  format } from "date-fns";
 export default {
   setup() {

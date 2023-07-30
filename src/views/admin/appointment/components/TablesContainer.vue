@@ -10,24 +10,24 @@
           align="justify"
           narrow-indicator
         >
-          <q-tab name="mails" label="Mails" />
-          <q-tab name="alarms" label="Alarms" />
-          <q-tab name="movies" label="Movies" />
+          <q-tab name="pending" label="Pending" />
+          <q-tab name="approved" label="Approved" />
+          <q-tab name="completed" label="Completed" />
         </q-tabs>
 
         <q-separator />
 
         <q-tab-panels v-model="tab" animated>
-          <q-tab-panel name="mails">
+          <q-tab-panel name="pending">
           <AppointmentTable/>
           </q-tab-panel>
 
-          <q-tab-panel name="alarms">
+          <q-tab-panel name="approved">
             <div class="text-h6">Alarms</div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </q-tab-panel>
 
-          <q-tab-panel name="movies">
+          <q-tab-panel name="completed">
             <div class="text-h6">Movies</div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </q-tab-panel>
@@ -45,7 +45,7 @@
     components:{AppointmentTable},
     setup () {
       return {
-        tab: ref('mails'),
+        tab: ref('pending'),
         splitterModel: ref(20)
       }
     }
