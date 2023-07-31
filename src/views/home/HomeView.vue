@@ -133,7 +133,7 @@
                                 </div>                               
                             </div>
                             <div class="row  q-pl-xl  ">
-                                 <div class="bg-white text-teal q-py-md q-px-md text-bold " style="border-radius: 5px;">Book your Appointment
+                                 <div class="bg-teal text-teal-1 q-py-md q-px-md text-bold " style="border-radius: 5px;">Book your Appointment
                                  </div>
                             </div>
                 </div>
