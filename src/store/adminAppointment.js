@@ -27,9 +27,22 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             this.stateApproved = data.data.approved
             this.stateCompleted = data.data.completed
             this.statePending = data.data.pending
-           
+     
 
         },
+
+        //gamitin na naten to
+        async approve(row){
+            const data = await axios.post('api/admin/appointment/approve',{
+                id: row.id
+            })//yan ang payload
+
+        },
+        async reject(row){
+            const data = await axios.post('api/admin/appointment/reject',{
+                id:row.id
+            })
+        }
        
 
     },

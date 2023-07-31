@@ -37,7 +37,7 @@ const columns = [
   {
     name: "image",
     required: true,
-    label: 'image',
+    label: '',
     align: "center",
     field: (row) => row.profile.image,
     format: (val) => `${val}`,
