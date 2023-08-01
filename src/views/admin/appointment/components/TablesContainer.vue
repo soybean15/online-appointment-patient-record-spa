@@ -28,8 +28,7 @@
           </q-tab-panel>
 
           <q-tab-panel name="completed">
-            <div class="text-h6">Movies</div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  <AppointmentCompleted />
           </q-tab-panel>
         </q-tab-panels>
       </q-card>
@@ -38,6 +37,8 @@
   </template>
   
   <script>
+
+  import AppointmentCompleted from './AppointmentCompleted.vue';
   import AppointmentPendingTable from './AppointmentPendingTable.vue';
   import AppointmentApprovedTable from './AppointmentApprovedTable.vue';
   import { ref } from 'vue'
@@ -45,7 +46,8 @@
   export default {
     components:{
       AppointmentPendingTable,
-      AppointmentApprovedTable
+      AppointmentApprovedTable,
+      AppointmentCompleted
     },
     setup () {
       return {
