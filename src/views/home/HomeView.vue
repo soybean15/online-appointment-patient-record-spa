@@ -101,10 +101,10 @@
 
 
         <!-- third section -->
-        <div class="row justify-center text-h6 q-py-xl q-pt-md q-mt-lg ">Book your Appointment </div>
-        <div class=" q-md">
+        <div class="row justify-center text-h6 q-py-xl q-pt-md q-my-xl ">Book Your Appointment </div>
+        <div class=" q-md ">
              <div class="row q-px-xl">
-                 <div class="col-12 col-lg-6 justify-center q-px-md q-py-xl ">
+                 <div class="col-12 col-lg-6 justify-center q-px-md q-py-sm ">
                         <q-img src="../../assets/img/images/doctor4.jpg" style="max-height: 600px; height: 450px;">
                             <div class="absolute-full">
                                 <div class="row opacity-75 q-pt-md q-pl-md">
@@ -117,13 +117,13 @@
                         </q-img>
                  </div>
                      
-                 <div class="col-12 col-lg-6  justify-center q-px-xl q-py-lg bg-teal-500">
+                 <div class="col-12 col-lg-6  justify-center q-px-xl q-py-lg border-y-2  rounded-xl" style="border-color: teal;">
                         
-                            <div class="row text-h3  q-py-md q-px-xl">
+                            <div class="row text-h3  q-py-md q-px-xl text-teal-5">
                                 How it works?
                             </div>
                             <div class="row q-py-sm q-pl-xl ">
-                                <div class=" q-py-sm q-px-md text-bold text-h7">
+                                <div class=" q-py-sm q-px-md text-bold text-h7 text-gray-500">
                                     <ol>
                                         <li class="q-pb-md">1. Browse Services: Explore the list of available services offered by our professionals. From health consultations to beauty treatments, we've got you covered.</li>
                                         <li class="q-pb-md">2. Select Your Expert: Choose from a list of skilled and certified professionals in your area. Read their profiles and find the perfect match for your needs.</li>
@@ -133,7 +133,7 @@
                                 </div>                               
                             </div>
                             <div class="row  q-pl-xl  ">
-                                 <div class="bg-white text-teal q-py-md q-px-md text-bold " style="border-radius: 5px;">Book your Appointment
+                                 <div class="bg-teal text-teal-1 q-py-md q-px-md text-bold " style="border-radius: 5px;">Book your Appointment
                                  </div>
                             </div>
                 </div>
@@ -143,7 +143,7 @@
 
 
 
-        <div class="row  q-pa-xl justify-center">
+        <div class="row  q-pa-xl justify-center q-mt-xl relative">
                 <div class="col gt-md gt-sm"></div>
                 <div class=" col-12 col-lg-4 q-px-lg justify-center text-center">
                     <div class="row text-h3 justify-center q-py-md"> About Us</div>
@@ -158,8 +158,19 @@
                    </div>
                 
                  </div> 
-                <div class="col gt-md gt-sm"></div>    
+                <div class="col gt-md gt-sm"></div>  
+                <div class="absolute top-10 -right-2 rotate-45 icons">
+                    <q-icon name="calendar_today " color="amber" size="50px"/>
+                </div>  
+                <div class="absolute top-17 left-20 -rotate-45 ">
+                    <q-icon name="emergency" color="blue" size="50px"/>
+                </div> 
+                <div class="absolute bottom-5 -left-2 -rotate-45 ">
+                    <q-icon name="local_hospital" color="red" size="50px"/>
+                </div> 
+                
         </div>
+        
         
      
         
@@ -175,3 +186,9 @@ export default {
 
 }
 </script>
+
+
+<style scoped>
+
+
+</style>
