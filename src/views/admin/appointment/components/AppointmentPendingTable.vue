@@ -57,7 +57,7 @@
             />
           </div>
           <div v-else>
-            {{ selectedItem.done }}
+            {{ props.row.done }} 
           </div>
         </q-td>
       </template>
