@@ -34,10 +34,31 @@
 
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
-        
-          <q-btn dense color="green" @click="appointmentStore.approve(props.row)" icon-right="done_all" label="Approve" />
+          <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
+          <div v-if="!props.row.done">
+            <q-btn
+              dense
+              color="green"
+              :loading="loading[0] && selectedItem == props.row"
+              size="13px"
+              @click="onApprove(props)"
+              icon-right="done_all"
+              label="Approve"
+            />
 
-          <q-btn dense color="red"   @click="appointmentStore.reject(props.row)" icon-right="cancel" label="Decline" />
+            <q-btn
+              dense
+              color="red"
+              :loading="loading[1] && selectedItem == props.row"
+              size="13px"
+              @click="onDecline(props)"
+              icon-right="cancel"
+              label="Decline"
+            />
+          </div>
+          <div v-else>
+            {{ selectedItem.done }}
+          </div>
         </q-td>
       </template>
     </q-table>
@@ -46,6 +67,7 @@
   
   <script>
 import { useAppointmentStore } from "@/store/adminAppointment";
+import { ref } from "vue";
 const columns = [
   {
     name: "image",
@@ -114,14 +136,35 @@ const columns = [
 export default {
   setup() {
     const appointmentStore = useAppointmentStore();
+    const loading = ref([false,false]);
+    const selectedItem = ref();
 
     return {
       columns,
       appointmentStore,
-      onClick:(row)=>{
-       //testing kung tama ung naclick
-        console.log(row)
-      }
+      loading,
+      selectedItem,
+      onApprove: async (props) => {
+        selectedItem.value = props.row;
+        loading.value[0] = true;
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        //await  appointmentStore.approve(props.row)
+
+        loading.value[0] = false;
+
+        props.row.done = "Approved";
+      },
+      onDecline: async (props) => {
+        selectedItem.value= props.row;
+        loading.value[1] = true;
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        //await  appointmentStore.reject(props.row)
+
+        loading.value[1] = false;
+        props.row.done = "Declined";
+      },
     };
   },
 };

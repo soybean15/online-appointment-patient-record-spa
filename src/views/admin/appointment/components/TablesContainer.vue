@@ -19,12 +19,12 @@
 
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel name="pending">
-          <AppointmentTable/>
+          <AppointmentPendingTable/>
           </q-tab-panel>
 
           <q-tab-panel name="approved">
-            <div class="text-h6">Alarms</div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+           
+           <AppointmentApprovedTable/>
           </q-tab-panel>
 
           <q-tab-panel name="completed">
@@ -38,11 +38,15 @@
   </template>
   
   <script>
-  import AppointmentTable from './AppointmentTable.vue';
+  import AppointmentPendingTable from './AppointmentPendingTable.vue';
+  import AppointmentApprovedTable from './AppointmentApprovedTable.vue';
   import { ref } from 'vue'
   
   export default {
-    components:{AppointmentTable},
+    components:{
+      AppointmentPendingTable,
+      AppointmentApprovedTable
+    },
     setup () {
       return {
         tab: ref('pending'),
