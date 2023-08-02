@@ -57,7 +57,16 @@
             />
           </div>
           <div v-else>
-            {{ props.row.done }} 
+
+            <div v-if="props.row.done=='Approved'">
+              <q-chip outline square color="cyan" text-color="white" icon="alarm" :label="props.row.done " />
+            </div>
+            <div v-else>
+              <q-chip outline square color="red" text-color="white" icon="alarm" :label="props.row.done " />
+            </div>
+
+           
+          
           </div>
         </q-td>
       </template>
@@ -149,7 +158,7 @@ export default {
         loading.value[0] = true;
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        //await  appointmentStore.approve(props.row)
+        await  appointmentStore.approve(props.row)
 
         loading.value[0] = false;
 
