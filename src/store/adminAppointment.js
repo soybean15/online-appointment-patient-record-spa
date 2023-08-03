@@ -42,6 +42,11 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             const data = await axios.post('api/admin/appointment/reject',{
                 id:row.id
             })
+        },
+        async getPending(path){
+            console.log(path)
+            const data = await axios.get(path)
+           this.statePending = data.data.pending
         }
        
 
