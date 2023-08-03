@@ -12,7 +12,7 @@
         >
           <q-tab name="pending" label="Pending" />
           <q-tab name="incoming" label="In Coming" />
-          <q-tab name="completed" label="Completed" />
+          <q-tab name="attended" label="Attended/Fulfilled" />
         </q-tabs>
 
         <q-separator />
@@ -27,7 +27,7 @@
            <AppointmentApprovedTable/>
           </q-tab-panel>
 
-          <q-tab-panel name="completed">
+          <q-tab-panel name="attended">
                   <AppointmentCompleted />
           </q-tab-panel>
         </q-tab-panels>

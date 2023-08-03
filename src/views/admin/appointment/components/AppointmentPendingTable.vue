@@ -59,10 +59,10 @@
           <div v-else>
 
             <div v-if="props.row.done=='Approved'">
-              <q-chip outline square color="cyan" text-color="white" icon="alarm" :label="props.row.done " />
+              <q-chip outline square color="cyan" text-color="white" icon-right="done_outline" :label="props.row.done " />
             </div>
             <div v-else>
-              <q-chip outline square color="red" text-color="white" icon="alarm" :label="props.row.done " />
+              <q-chip outline square color="red" text-color="white" icon-right="error" :label="props.row.done " />
             </div>
 
            
@@ -76,7 +76,7 @@
   
   <script>
 import { useAppointmentStore } from "@/store/adminAppointment";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 const columns = [
   {
     name: "image",
@@ -147,12 +147,25 @@ export default {
     const appointmentStore = useAppointmentStore();
     const loading = ref([false,false]);
     const selectedItem = ref();
+    const current = ref()
+
+
+
+
+    watch(current,async()=>{
+
+      console.log(appointmentStore.pending.links[current.value].url)
+     
+     appointmentStore.getPending(appointmentStore.pending.links[current.value].url)
+
+    })
 
     return {
       columns,
       appointmentStore,
       loading,
       selectedItem,
+      current,
       onApprove: async (props) => {
         selectedItem.value = props.row;
         loading.value[0] = true;

@@ -8,11 +8,22 @@
         flat
         bordered
         title="Treats"
-        :rows="appointmentStore.completed.data"                 
+        :rows="appointmentStore.attended.data"                 
         :columns="columns"
         row-key="name"
 
       >
+
+      <template v-slot:top-right>
+        <q-pagination
+          v-model="current"
+          color="primary"
+          :max="appointmentStore.attended.last_page"
+          :max-pages="5"
+          boundary-numbers
+        />
+      </template>
+
 
       <template v-slot:body-cell-image="props">
         <q-td :props="props">
@@ -46,6 +57,7 @@
   <script>
 
   import { useAppointmentStore } from '@/store/adminAppointment';
+import { ref, watch } from 'vue';
   const columns = [
     {
       name: 'image',
@@ -118,10 +130,20 @@
   export default {
     setup () {
 
+      const current = ref()
         const appointmentStore = useAppointmentStore();
+
+        watch(current,()=>{
+
+          appointmentStore.getAttended(appointmentStore.attended.links[current.value].url)
+        })
+
+
+
       return {
         columns,
-        appointmentStore
+        appointmentStore,
+        current
       }
     }
   }
