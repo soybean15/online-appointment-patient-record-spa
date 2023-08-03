@@ -171,7 +171,7 @@ export default {
         loading.value[0] = true;
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        //await  appointmentStore.approve(props.row)
+        await  appointmentStore.approve(props.row)
 
         loading.value[0] = false;
 

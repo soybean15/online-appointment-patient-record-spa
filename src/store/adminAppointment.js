@@ -7,7 +7,7 @@ export const useAppointmentStore = defineStore('admin_appointment', {
 
         statePending:null,
         stateApproved:null,
-        stateCompleted:null
+        stateAttended:null
 
     }),
 
@@ -15,7 +15,7 @@ export const useAppointmentStore = defineStore('admin_appointment', {
     getters: {
       pending:(state)=>state.statePending,
       approved:(state)=>state.stateApproved,
-      completed:(state)=>state.stateCompleted
+      attended:(state)=>state.stateAttended
 
     },
 
@@ -25,17 +25,17 @@ export const useAppointmentStore = defineStore('admin_appointment', {
         async index() {
             const data = await axios.get('api/admin/appointment')
             this.stateApproved = data.data.approved
-            this.stateCompleted = data.data.completed
+            this.stateAttended = data.data.attended
             this.statePending = data.data.pending
      
 
         },
 
-        //gamitin na naten to
+     
         async approve(row){
             const data = await axios.post('api/admin/appointment/approve',{
                 id: row.id
-            })//yan ang payload
+            })
 
         },
         async reject(row){
@@ -44,10 +44,23 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             })
         },
         async getPending(path){
-            console.log(path)
+         
             const data = await axios.get(path)
            this.statePending = data.data.pending
+        },
+        async getAttended(path){
+          
+            const data = await axios.get(path)
+           this.stateAttended = data.data.attended
+        },
+
+        async getApprovedByRange(dateRange){
+
+            const data = await axios.post('api/admin/appointment/approved-with-range',{date:dateRange})
+
+            this.stateApproved = data.data.approved
         }
+       
        
 
     },
