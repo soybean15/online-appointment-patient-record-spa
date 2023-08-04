@@ -7,7 +7,8 @@ export const useAppointmentStore = defineStore('admin_appointment', {
 
         statePending:null,
         stateApproved:null,
-        stateAttended:null
+        stateAttended:null,
+        stateSelectedRow:null
 
     }),
 
@@ -15,7 +16,8 @@ export const useAppointmentStore = defineStore('admin_appointment', {
     getters: {
       pending:(state)=>state.statePending,
       approved:(state)=>state.stateApproved,
-      attended:(state)=>state.stateAttended
+      attended:(state)=>state.stateAttended,
+      selectedRow:(state)=>state.stateSelectedRow
 
     },
 
@@ -38,11 +40,20 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             })
 
         },
-        async reject(row){
+        async reject(remarks){
             const data = await axios.post('api/admin/appointment/reject',{
-                id:row.id
+               id: this.stateSelectedRow.id,
+               remarks:remarks
             })
         },
+        async reschedule(newSchedule){
+            const  data = await axios.post('api/admin/appointment/change-schedule',{
+                id: this.stateSelectedRow.id,
+                newSchedule: newSchedule
+            })
+
+        },
+
         async getPending(path){
          
             const data = await axios.get(path)
@@ -59,6 +70,12 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             const data = await axios.post('api/admin/appointment/approved-with-range',{date:dateRange})
 
             this.stateApproved = data.data.approved
+        },
+        
+        async setRow(row){
+
+            this.stateSelectedRow = row
+
         }
        
        

@@ -48,7 +48,7 @@
 
 
 
-            <DeclineAppointmentModal/>
+            <DeclineAppointmentModal @onDecline = 'onDecline(props)'/>
 
           </div>
           <div v-else>
@@ -177,14 +177,12 @@ export default {
         props.row.done = "Approved";
       },
       onDecline: async (props) => {
-        selectedItem.value= props.row;
-        loading.value[1] = true;
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        //await  appointmentStore.reject(props.row)
+        console.log(props.row.schedule_date)
 
-        loading.value[1] = false;
-        props.row.done = "Declined";
+        appointmentStore.setRow(props.row)
+
+      
       },
     };
   },
