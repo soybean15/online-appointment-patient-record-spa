@@ -46,15 +46,10 @@
               label="Approve"
             />
 
-            <q-btn
-              dense
-              color="red"
-              :loading="loading[1] && selectedItem == props.row"
-              size="13px"
-              @click="onDecline(props)"
-              icon-right="cancel"
-              label="Decline"
-            />
+
+
+            <DeclineAppointmentModal @onDecline = 'onDecline(props)'/>
+
           </div>
           <div v-else>
 
@@ -76,6 +71,7 @@
   
   <script>
 import { useAppointmentStore } from "@/store/adminAppointment";
+import DeclineAppointmentModal from "../modal/DeclineAppointmentModal.vue";
 import { ref, watch } from "vue";
 const columns = [
   {
@@ -143,6 +139,9 @@ const columns = [
 ];
 
 export default {
+  components:{
+    DeclineAppointmentModal
+  },
   setup() {
     const appointmentStore = useAppointmentStore();
     const loading = ref([false,false]);
@@ -178,14 +177,12 @@ export default {
         props.row.done = "Approved";
       },
       onDecline: async (props) => {
-        selectedItem.value= props.row;
-        loading.value[1] = true;
 
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        //await  appointmentStore.reject(props.row)
+        console.log(props.row.schedule_date)
 
-        loading.value[1] = false;
-        props.row.done = "Declined";
+        appointmentStore.setRow(props.row)
+
+      
       },
     };
   },
