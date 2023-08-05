@@ -22,12 +22,12 @@
           <AppointmentPendingTable/>
           </q-tab-panel>
 
-          <q-tab-panel name="incoming">
+          <q-tab-panel v-model="tab" name="incoming">
            
            <AppointmentApprovedTable/>
           </q-tab-panel>
 
-          <q-tab-panel name="attended">
+          <q-tab-panel v-model="tab" name="attended">
                   <AppointmentCompleted />
           </q-tab-panel>
         </q-tab-panels>
@@ -41,7 +41,8 @@
   import AppointmentCompleted from './AppointmentCompleted.vue';
   import AppointmentPendingTable from './AppointmentPendingTable.vue';
   import AppointmentApprovedTable from './AppointmentApprovedTable.vue';
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
+  import { useAppointmentStore } from '@/store/adminAppointment';
   
   export default {
     components:{
@@ -50,8 +51,15 @@
       AppointmentCompleted
     },
     setup () {
+      const tab= ref('pending')
+      const appointmentStore = useAppointmentStore()
+
+      watch(tab,()=>{
+        console.log('tab changed')
+        appointmentStore.index()
+      })
       return {
-        tab: ref('pending'),
+        tab,
         splitterModel: ref(20)
       }
     }

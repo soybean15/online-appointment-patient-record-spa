@@ -7,8 +7,14 @@
       size="13px"
       @click="onDecline"
       icon-right="cancel"
-      label="Decline"
-    />
+    
+    >
+    <q-tooltip anchor="top middle" self="bottom middle" :offset="[10, 10]">
+          <strong>Decline</strong> 
+       
+        </q-tooltip>
+  
+  </q-btn>
 
     <q-dialog v-model="dialog" persistent>
       <q-card class="my-card" style="width: 400px">
