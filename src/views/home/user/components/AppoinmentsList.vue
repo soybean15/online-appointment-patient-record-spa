@@ -30,7 +30,7 @@
             <q-item-section side top>
               <div v-if="appointment.status === ''"></div>
               <q-item-label class="mb-2" caption>{{ appointment.time_ago }}</q-item-label>
-              <q-badge outline  :color="statusColor(appointment.status)" :label="appointment.status" />
+              <q-badge outline  :color="chipColors[appointment.status]" :label="appointment.status" />
             </q-item-section>
           </q-item>
           <q-separator spaced inset="item" />
@@ -53,18 +53,21 @@ export default {
   setup() {
     const appointmentStore = useAppointmentStore();
 
-    return {
-      appointmentStore,
-      statusColor:(status)=>{
-        if (status=='pending'){
-          return 'orange'
-        }else if (status=='approved'){
-          return 'green'
-        }else if (status=='rejected'){
-          return 'red'
-        }
 
-      },
+  
+
+
+    return {
+
+      appointmentStore,
+     chipColors : {
+      pending: 'orange',
+     rejected: 'red',
+     rescheduled: 'blue',
+     approved: 'yellow',
+     completed: 'green'
+     
+   },
       fullName: (doctor) => {
         if (doctor.user.profile.gender === "Male") {
           return `Dr. ${doctor.user.profile[0].firstname}  ${doctor.user.profile[0].lastname}`;

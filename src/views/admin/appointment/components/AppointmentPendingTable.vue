@@ -196,7 +196,7 @@ export default {
     const chipColors = {
      
       rejected: { color: 'red', icon: 'cancel' },
-      rescheduled: { color: 'orange', icon: 'pending_actions' },
+      rescheduled: { color: 'blue', icon: 'pending_actions' },
       approved: { color: 'yellow', icon: 'done_outline' },
       
     };
