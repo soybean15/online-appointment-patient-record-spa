@@ -32,10 +32,49 @@
         </q-td>
       </template>
 
+      <template v-slot:body-cell-contact="props">
+        <q-td :props="props">
+
+          <div class="row justify-around">
+            <q-icon
+            size="2em"
+            class="cursor-pointer"
+            name="call"
+            @click="makeCall(props)"
+          >
+            <q-tooltip
+              anchor="top middle"
+              self="bottom middle"
+              :offset="[10, 10]"
+            >
+              <strong>{{ props.row.user.profile[0].contact_number }}</strong>
+            </q-tooltip>
+          </q-icon>
+
+          <q-icon
+            size="2em"
+            class="cursor-pointer"
+            name="mail"
+            @click="sendEmail(props)"
+          >
+            <q-tooltip
+              anchor="top middle"
+              self="bottom middle"
+              :offset="[10, 10]"
+            >
+              <strong>{{ props.row.user.email }}</strong>
+            </q-tooltip>
+          </q-icon>
+
+          </div>
+        
+        </q-td>
+      </template>
+
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
           <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
-          <div v-if="!props.row.done">
+          <div class="row justify-around" v-if="!props.row.done">
             <q-btn
               dense
               color="green"
@@ -43,24 +82,30 @@
               size="13px"
               @click="onApprove(props)"
               icon-right="done_all"
-              label="Approve"
-            />
+            >
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                <strong>Approve</strong>
+              </q-tooltip>
+            </q-btn>
 
-
-
-            <DeclineAppointmentModal @onDecline = 'onDecline(props)'/>
-
+            <DeclineAppointmentModal @onDecline="onDecline(props)" />
           </div>
           <div v-else>
-
-            <div v-if="props.row.done=='Approved'">
-              <q-chip outline square color="cyan" text-color="white" icon-right="done_outline" :label="props.row.done " />
-            </div>
-            <div v-else>
-              <q-chip outline square color="red" text-color="white" icon-right="error" :label="props.row.done " />
-            </div>
-
-           
+         
+              <q-chip
+                outline
+                square
+                :color=" chipColors[props.row.done].color"
+                text-color="white"
+                :icon-right="chipColors[props.row.done].icon"
+                :label="props.row.done"
+              />
+          
+         
           
           </div>
         </q-td>
@@ -118,9 +163,8 @@ const columns = [
     name: "contact",
     required: true,
     label: "Contact",
-    align: "left",
-    field: (row) => row.user.profile[0].contact_number,
-    format: (val) => `${val}`,
+    align: "center",
+
   },
   {
     name: "doctor",
@@ -139,25 +183,32 @@ const columns = [
 ];
 
 export default {
-  components:{
-    DeclineAppointmentModal
+  components: {
+    DeclineAppointmentModal,
   },
   setup() {
     const appointmentStore = useAppointmentStore();
-    const loading = ref([false,false]);
+    const loading = ref([false, false]);
     const selectedItem = ref();
-    const current = ref()
+    const current = ref();
 
 
-
-
-    watch(current,async()=>{
-
-      console.log(appointmentStore.pending.links[current.value].url)
+    const chipColors = {
      
-     appointmentStore.getPending(appointmentStore.pending.links[current.value].url)
+      rejected: { color: 'red', icon: 'cancel' },
+      rescheduled: { color: 'orange', icon: 'pending_actions' },
+      approved: { color: 'yellow', icon: 'done_outline' },
+      
+    };
 
-    })
+
+    watch(current, async () => {
+      console.log(appointmentStore.pending.links[current.value].url);
+
+      appointmentStore.getPending(
+        appointmentStore.pending.links[current.value].url
+      );
+    });
 
     return {
       columns,
@@ -165,25 +216,40 @@ export default {
       loading,
       selectedItem,
       current,
+      chipColors,
+      getChip:(status)=>{
+        return chipColors[status]
+      },
+
       onApprove: async (props) => {
         selectedItem.value = props.row;
         loading.value[0] = true;
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        await  appointmentStore.approve(props.row)
+        appointmentStore.setRow(props.row)
+
+        await appointmentStore.approve();
 
         loading.value[0] = false;
 
-        props.row.done = "Approved";
-      },
-      onDecline: async (props) => {
-
-        console.log(props.row.schedule_date)
-
-        appointmentStore.setRow(props.row)
-
       
       },
+      onDecline: async (props) => {
+        console.log(props.row.schedule_date);
+
+        appointmentStore.setRow(props.row);
+      },
+
+      makeCall(props) {
+        const phoneNumber = props.row.user.profile[0].contact_number;
+        const telLink = `tel:${phoneNumber}`;
+        window.location.href = telLink;
+      },
+      sendEmail(props) {
+      const recipientEmail = props.row.user.profile[0].email;
+      const mailtoLink = `mailto:${recipientEmail}`;
+      window.location.href = mailtoLink;
+    },
     };
   },
 };

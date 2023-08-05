@@ -28,6 +28,7 @@
             </q-item-section>
 
             <q-item-section side top>
+              <div v-if="appointment.status === ''"></div>
               <q-item-label class="mb-2" caption>{{ appointment.time_ago }}</q-item-label>
               <q-badge outline  :color="statusColor(appointment.status)" :label="appointment.status" />
             </q-item-section>

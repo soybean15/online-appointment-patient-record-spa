@@ -34,10 +34,12 @@ export const useAppointmentStore = defineStore('admin_appointment', {
         },
 
      
-        async approve(row){
+        async approve(){
             const data = await axios.post('api/admin/appointment/approve',{
-                id: row.id
+                id: this.selectedRow.id
             })
+
+            this.stateSelectedRow.done = 'approved'
 
         },
         async reject(remarks){
@@ -45,12 +47,17 @@ export const useAppointmentStore = defineStore('admin_appointment', {
                id: this.stateSelectedRow.id,
                remarks:remarks
             })
+
+
+            this.stateSelectedRow.done = 'rejected'
         },
         async reschedule(newSchedule){
             const  data = await axios.post('api/admin/appointment/change-schedule',{
                 id: this.stateSelectedRow.id,
                 newSchedule: newSchedule
             })
+
+            this.stateSelectedRow.done = 'rescheduled'
 
         },
 

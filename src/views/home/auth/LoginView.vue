@@ -11,7 +11,7 @@
     >
       <q-card style="width: 100%">
         <q-card-section>
-          <div class="q-pa-md">
+          <q-form @submit="onLogin" class="q-pa-md">
             <q-list bordered>
               <q-item>
                 <q-item-section avatar>
@@ -72,13 +72,17 @@
                   <q-btn
                     :loading="loading"
                     color="secondary"
-                    @click="onLogin"
+                    type="submit"
                     label="Login"
-                  />
+                  >
+                  <template v-slot:loading>
+        Please Wait...
+      </template>
+                </q-btn>
                 </q-item-section>
               </q-item>
             </q-list>
-          </div>
+          </q-form>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
@@ -99,6 +103,7 @@ export default {
    
     const onLogin = async () => {
       loading.value = true;
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       await authStore.handleLogin();
 
       await authStore.getUser();
