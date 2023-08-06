@@ -12,7 +12,10 @@ export const useAppointmentStore = defineStore('user_appointment', {
         stateSelectedDoctor: null,
         stateDate: null,
         stateLoading: false,
-        stateAppointments:null
+        stateAppointments:null,
+        
+
+        stateSelectedAppointment:null
 
     }),
 
@@ -24,7 +27,8 @@ export const useAppointmentStore = defineStore('user_appointment', {
         selectedDoctor: (state) => state.stateSelectedDoctor,
         date: (state) => state.stateDate,
         loading: (state) => state.stateLoading,
-        appointments:(state)=>state.stateAppointments
+        appointments:(state)=>state.stateAppointments,
+        selectedAppointment:(state)=>state.stateSelectedAppointment
 
     },
 
@@ -76,6 +80,10 @@ export const useAppointmentStore = defineStore('user_appointment', {
             this.stateSelectedDoctor = null
             this.stateDate =null
             this.stateSelectedService = null
+        },
+
+        setSelectedAppointment(appointment){
+            this.stateSelectedAppointment = appointment
         }
 
 
