@@ -10,14 +10,14 @@ const routes = [
     name: 'main',
     redirect: '/home',
     component: () => import(/* webpackChunkName: "about" */ '@/views/MainView'),
-    
+
 
     children: [
 
       {
         path: '/home',
         name: 'home',
-        component:HomeView
+        component: HomeView
 
       },
       {
@@ -32,37 +32,49 @@ const routes = [
         component: () => import('@/views/home/user/AppointmentView'),
         beforeEnter: async (to, from, next) => {
           const authStore = useAuthStore()
-    
-          if(!authStore.user){
+
+          if (!authStore.user) {
             await authStore.getUser()
           }
 
           console.log(authStore.user)
-          if(!authStore.user){
+          if (!authStore.user) {
             next('/');
             authStore.dialog.login = true
-            authStore.authNextPath='/appointment'
-          }else{
+            authStore.authNextPath = '/appointment'
+          } else {
             next();
           }
-         
-    
-    
+
+
+
         },
+        children: [
+       
+          
+        ]
 
       },
       {
         path: '/about',
         name: 'about',
-   
+
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
       },
       {
         path: 'service',
         name: 'home_service',
-        component:()=>import('@/views/home/ServiceView')
+        component: () => import('@/views/home/ServiceView')
 
       },
+      {
+        path: '/apointment-details',
+        name: 'appointentDetails',
+    
+        component: () => import('@/views/home/user/components/AppointmentDetails'),
+      },
+    
+    
 
     ]
 
@@ -72,20 +84,20 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component:()=> import('@/views/admin/AdminView'),
+    component: () => import('@/views/admin/AdminView'),
     beforeEnter: async (to, from, next) => {
       const authStore = useAuthStore()
 
-      if(!authStore.user){
+      if (!authStore.user) {
         await authStore.getUser()
       }
       const isAdmin = authStore.isAdmin;
 
       if (isAdmin) {
-       
+
         next();
       } else {
-        
+
         next('/');
       }
 
@@ -93,34 +105,35 @@ const routes = [
     },
 
 
-    children:[
+    children: [
       {
         path: 'services',
         name: 'services',
-        component: ()=> import ('@/views/admin/service/ServiceView'),
-    
-    
+        component: () => import('@/views/admin/service/ServiceView'),
+
+
       },
       {
         path: 'patients',
         name: 'patients',
-        component: ()=> import ('@/views/admin/user/PatientView'),
-    
-      },  
+        component: () => import('@/views/admin/user/PatientView'),
+
+      },
       {
         path: 'doctors',
         name: 'doctors',
-        component: ()=> import ('@/views/admin/user/DoctorsView'),
-    
-      }, 
+        component: () => import('@/views/admin/user/DoctorsView'),
+
+      },
       {
         path: 'appointment',
         name: 'adminAppointment',
-        component: ()=> import ('@/views/admin/appointment/AppointmentView'),
-    
+        component: () => import('@/views/admin/appointment/AppointmentView'),
+
       },
     ]
   },
+
 
 
 
