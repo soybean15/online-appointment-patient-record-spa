@@ -23,6 +23,8 @@ export default {
   //need to pass parent route name ex :appointment
   props: ["prefix"],
   setup() {
+
+    
     const routes = router.currentRoute.value.fullPath.split("/")
     .filter(segment => segment !== '')
     .map(segment => segment.charAt(0).toUpperCase() + segment.slice(1));

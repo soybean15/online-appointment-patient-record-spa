@@ -84,8 +84,25 @@ export const useAppointmentStore = defineStore('user_appointment', {
 
         setSelectedAppointment(appointment){
             this.stateSelectedAppointment = appointment
-        }
+        },
 
+        async userAction(action){
+            const data = await  axios.post('api/user/appointment/action',{
+                id: this.stateSelectedAppointment.id,
+                action: action
+            })
+
+            this.stateSelectedAppointment = data.data.appointment
+        }
+        ,
+        async changeSchedule(date){
+            const data = await axios.post('api/user/appointment/change-schedule',{
+                id:this.selectedAppointment.id,
+                newDate:date
+            })
+            this.stateSelectedAppointment = data.data.appointment
+        }
+     
 
     },
 })

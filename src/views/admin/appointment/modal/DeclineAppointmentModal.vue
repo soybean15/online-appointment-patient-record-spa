@@ -75,7 +75,7 @@
   <script>
 import { ref, watch } from "vue";
 import { useAppointmentStore } from "@/store/adminAppointment";
-import { format } from "date-fns";
+
 export default {
   components: {},
   props: ["schedule"],
@@ -93,7 +93,7 @@ export default {
     console.log(props.schedule);
 
     watch(schedule, () => {
-      console.log('schedule updated');
+      console.log(schedule.value);
     });
 
 

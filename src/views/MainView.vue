@@ -33,7 +33,7 @@
 
     <q-footer elevated class="bg-grey-8 text-white q-pa-xl">
     
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-6 q-pa-lg  col-md-6 col-lg-4">
           <div class="text-h5 q-pa-md ">Maxilife Multispecialty Clinic and Diagnostic Center</div>
           <div class="q-px-md"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</div>
@@ -61,7 +61,7 @@
             <div class="q-px-sm">Facebook Page</div>            
          </div>
       </div>
-      </div>
+      </div> -->
     </q-footer>
   </q-layout>
 </template>
