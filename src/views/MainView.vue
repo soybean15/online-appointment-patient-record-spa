@@ -27,6 +27,8 @@
     <q-page-container>
      
       <router-view />
+
+      <router-view name="details"></router-view>
     </q-page-container>
 
     <q-footer elevated class="bg-grey-6 text-white">
@@ -45,6 +47,7 @@
            </div>
        </div>
       </div>
+
     </q-footer>
   </q-layout>
 </template>
