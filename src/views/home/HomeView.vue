@@ -153,7 +153,7 @@
                    </div>
 
                    <div class="row  q-pl-xl justify-center q-py-lg">
-                        <div class="text-white bg-teal q-py-md q-px-md text-bold " style="border-radius: 5px;">Learn More
+                        <div class="text-white bg-amber-5 q-py-md q-px-md text-bold " style="border-radius: 5px;">Learn More
                         </div>
                    </div>
                 
@@ -171,6 +171,48 @@
                 
         </div>
         
+
+        <div class="q-pa-md w-full" >
+    <q-card class="my-card">
+      <q-parallax
+        class="relative top-0"
+        src="../../assets/image1.jpg"
+        :height="400">
+            <div class="absolute">
+             <div class="row  q-pa-xl justify-center q-mt-xl relative ">
+                <div class="col gt-md gt-sm"></div>
+                <div class=" col-12 col-lg-4 q-px-lg justify-center text-center">
+                    <div class="row text-h3 justify-center q-py-md"> About Us</div>
+                    <div class="row">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.      
+                   </div>
+
+                   <div class="row  q-pl-xl justify-center q-py-lg">
+                        <div class="text-white bg-amber-5 q-py-md q-px-md text-bold " style="border-radius: 5px;">Learn More
+                        </div>
+                   </div>
+                
+                 </div> 
+                <div class="col gt-md gt-sm"></div>  
+                <div class="absolute top-10 -right-2 rotate-45 icons">
+                    <q-icon name="calendar_today " color="amber" size="50px"/>
+                </div>  
+                <div class="absolute top-17 left-20 -rotate-45 ">
+                    <q-icon name="emergency" color="blue" size="50px"/>
+                </div> 
+                <div class="absolute bottom-5 -left-2 -rotate-45 ">
+                    <q-icon name="local_hospital" color="red" size="50px"/>
+                </div> 
+                
+           </div>
+        </div>
+
+      </q-parallax>
+  
+      
+    </q-card>
+  </div>
         
      
         

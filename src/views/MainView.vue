@@ -31,15 +31,37 @@
       <router-view name="details"></router-view>
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar>
-          <div>Title</div>
-        </q-toolbar-title>
-      </q-toolbar>
+    <q-footer elevated class="bg-grey-8 text-white q-pa-xl">
+    
+      <div class="row">
+        <div class="col-6 q-pa-lg  col-md-6 col-lg-4">
+          <div class="text-h5 q-pa-md ">Maxilife Multispecialty Clinic and Diagnostic Center</div>
+          <div class="q-px-md"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</div>
+            
+                
+        </div>
+        <div class="col-6 q-pa-lg justify-center flex q-px-lg col-md-6 col-lg-4">
+          <div>
+          <div class="row justify-center text-h5 q-pa-md">Address</div>
+          <div class="row justify-center">Jose Abad Santos Avenue, San Fernando Sur 3107 Cabiao, Philippines</div>
+        </div>
+      </div>
+      <div class="col-6 q-pa-lg q-px-lg q-pl-xl col-md-6 col-lg-4 ">
+         <div class="row text-h5 q-pa-md">Contacts</div>
+         <div class="row">
+            <div class="q-px-sm"> <q-icon name="phone" size="25px"/></div>
+            <div class="q-px-sm">0956 875 8900</div>            
+         </div>
+         <div class="row q-py-md">
+            <div class="q-px-sm"> <q-icon name="email" size="25px"/></div>
+            <div class="q-px-sm">maxilife_clinic2018@yahoo.com</div>            
+         </div>
+         <div class="row">
+            <div class="q-px-sm"> <q-icon name="phone" size="25px"/></div>
+            <div class="q-px-sm">Facebook Page</div>            
+         </div>
+      </div>
+      </div>
     </q-footer>
   </q-layout>
 </template>
