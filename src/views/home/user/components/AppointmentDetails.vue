@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md" style="">
-    <BreadCrumbs :routes="routes" />
+    <BreadCrumbs :prefix="'appointment'"/>
 
     <div
       class="column bg-surface rounded-md p-4"
@@ -67,11 +67,7 @@ export default {
 
 console.log(appointmentStore.selectedAppointment)
     return {
-      routes: [
-        { name: "Home", route: "home" },
-        { name: "Appointment", route: "appointment" },
-        { name: "Details", route: "appointentDetails" },
-      ],   chipColors: {
+      chipColors: {
         pending: "orange",
         rejected: "red",
         rescheduled: "blue",

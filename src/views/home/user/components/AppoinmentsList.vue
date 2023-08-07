@@ -1,6 +1,7 @@
 <template>
   <div class="q-pa-md" style="">
-    <BreadCrumbs :routes="routes"/>
+    <BreadCrumbs :prefix="'appointment'"/>
+
     <q-list class="bg-surface shadow-md rounded-md p-4">
       <q-item-label class="row items-center justify-between" header
         >Appointments <AddAppointmentModal
@@ -44,7 +45,7 @@
               <q-item-label class="mb-2" caption>{{
                 appointment.time_ago
               }}</q-item-label>
-              <router-link :to="{name:'appointentDetails'}">  <q-btn
+              <router-link :to="{name:'appointmentDetails'}">  <q-btn
                 outline
                 dense
                 style="color: goldenrod"
@@ -65,21 +66,19 @@
       </div>
     </q-list>
   </div>
+
 </template>
 <script>
 import AddAppointmentModal from "../modals/AddAppointmentModal.vue";
 import { useAppointmentStore } from "@/store/userAppointment";
 import BreadCrumbs from "@/components/BreadCrumbs.vue";
-import router from "@/router";
+
 export default {
   components: { AddAppointmentModal,BreadCrumbs },
   setup() {
     const appointmentStore = useAppointmentStore();
 
-    const routes=[
-      {name:'Home',route:'home'},
-      {name:'Appointment',route:'appointment'}
-    ]
+ 
 
     return {
       appointmentStore,
@@ -90,7 +89,7 @@ export default {
         approved: "yellow",
         completed: "green",
       },
-      routes,
+
    
     };
   },

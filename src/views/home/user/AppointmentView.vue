@@ -7,7 +7,10 @@
     <div class="col-4">
       <AppointmentSidePanel />
     </div>
-  </div>
+
+  </div>  
+
+
 </template>
 
 <script>

@@ -50,7 +50,8 @@ const routes = [
 
         },
         children: [
-       
+
+      
           
         ]
 
@@ -67,12 +68,18 @@ const routes = [
         component: () => import('@/views/home/ServiceView')
 
       },
+
       {
-        path: '/apointment-details',
-        name: 'appointentDetails',
-    
-        component: () => import('@/views/home/user/components/AppointmentDetails'),
+        path: '/appointment/details',
+        name: 'appointmentDetails',
+        component:  () => import('@/views/home/user/components/AppointmentDetails'), // Parent router-view
+         
+       
+
       },
+   
+    
+     
     
     
 

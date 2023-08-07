@@ -27,6 +27,8 @@
     <q-page-container>
      
       <router-view />
+
+      <router-view name="details"></router-view>
     </q-page-container>
 
     <q-footer elevated class="bg-grey-8 text-white">
