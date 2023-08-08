@@ -4,6 +4,7 @@
   <div class="q-pa-md" style="">
     <BreadCrumbs :prefix="'appointment'" />
 
+
     <div
       class="column bg-surface rounded-md p-4"
       v-if="authStore.user && appointmentStore.selectedAppointment"
@@ -50,20 +51,21 @@
       </div>
 
       <q-separator />
-      <div class="col row justify-between items-center">
-        <div class="column mt-3">
+      <div class="col  mt-3 row justify-between items-center">
+        <div class= " col-7 column">
           <strong class="font-secondary font-lg"> Date Scheduled</strong>
           <div class="font-thin font-sm">{{appointmentStore.selectedAppointment.schedule_date}}</div>
         </div>
 
-        <div v-if="appointmentStore.selectedAppointment.status === 'pending'">
+        <div class="col-5 row justify-end" v-if="appointmentStore.selectedAppointment.status === 'pending'">
           <ChangeScheduleModalVue/>
+          <q-btn class="mx-2" color="red" :loading="loading['cancel']"  @click="userAction('cancel')" dense label="Cancel" />
         </div>
         <div  v-else-if="appointmentStore.selectedAppointment.status === 'rescheduled'">
           <q-btn class="mx-2" :loading="loading['accept']"  @click="userAction('accept')" color="green" dense label="Accept" />
           <q-btn  color="red" :loading="loading['decline']"  @click="userAction('decline')" dense label="Decline" />
         </div>
-        <div v-else-if="appointmentStore.selectedAppointment.status === 'approved' || appointmentStore.selectedAppointment.status === 'rejected'">
+        <div v-else-if="appointmentStore.selectedAppointment.status === 'approved' || appointmentStore.selectedAppointment.status === 'rejected' || appointmentStore.selectedAppointment.status === 'canceled'">
           <q-chip
           square
           outline
@@ -99,7 +101,8 @@ export default {
    
     const loading = ref({
       accept:false,
-      decline:false
+      decline:false,
+      cancel:false
     })
 
     try {
@@ -113,10 +116,11 @@ export default {
     return {
       chipColors: {
         pending: "orange",
-        rejected: "red",
+        rejected: "red-7",
         rescheduled: "blue",
         approved: "yellow",
         completed: "green",
+        canceled: "red-11"
       },
 
       authStore,

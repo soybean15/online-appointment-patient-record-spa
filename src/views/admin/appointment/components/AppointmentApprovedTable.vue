@@ -57,6 +57,101 @@
           />
         </q-td>
       </template>
+
+
+
+      <template v-slot:body-cell-contact="props">
+        <q-td :props="props">
+
+          <div class="row justify-around">
+            <q-icon
+            size="2em"
+            class="cursor-pointer"
+            name="call"
+            @click="makeCall(props)"
+          >
+            <q-tooltip
+              anchor="top middle"
+              self="bottom middle"
+              :offset="[10, 10]"
+            >
+              <strong>{{ props.row.user.profile[0].contact_number }}</strong>
+            </q-tooltip>
+          </q-icon>
+
+          <q-icon
+            size="2em"
+            class="cursor-pointer"
+            name="mail"
+            @click="sendEmail(props)"
+          >
+            <q-tooltip
+              anchor="top middle"
+              self="bottom middle"
+              :offset="[10, 10]"
+            >
+              <strong>{{ props.row.user.email }}</strong>
+            </q-tooltip>
+          </q-icon>
+
+          </div>
+        
+        </q-td>
+      </template>
+
+
+
+      <template v-slot:body-cell-actions="props">
+        <q-td :props="props">
+          <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
+          <div class="row justify-around" >
+            <q-btn
+              dense
+              color="green"      
+              size="13px"
+              label="Complete"
+            >
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                <strong>Approve</strong>
+              </q-tooltip>
+            </q-btn>
+
+            <q-btn
+              dense
+              color="deep-orange-9"      
+              size="13px"
+              label="Missed"
+            >
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                <strong>Missed</strong>
+              </q-tooltip>
+            </q-btn>
+          </div>
+          <!-- <div v-else>
+         
+              <q-chip
+                outline
+                square
+                :color=" chipColors[props.row.done].color"
+                text-color="white"
+                :icon-right="chipColors[props.row.done].icon"
+                :label="props.row.done"
+              />
+          
+         
+          
+          </div> -->
+        </q-td>
+      </template>
+
     </q-table>
   </div>
 
@@ -151,7 +246,17 @@ export default {
       save:()=>{
         console.log('range '+dateRange.value)
         appointmentStore.getApprovedByRange(dateRange.value)
-      }
+      },
+      makeCall(props) {
+        const phoneNumber = props.row.user.profile[0].contact_number;
+        const telLink = `tel:${phoneNumber}`;
+        window.location.href = telLink;
+      },
+      sendEmail(props) {
+      const recipientEmail = props.row.user.profile[0].email;
+      const mailtoLink = `mailto:${recipientEmail}`;
+      window.location.href = mailtoLink;
+    },
      
     };
   },

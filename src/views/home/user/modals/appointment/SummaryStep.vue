@@ -10,15 +10,15 @@
       <div class="column">
         <div class="col">
           <div class="font-semibold text-lg font-secondary">Applicant:</div>
-          <div>{{ fullName() }}</div>
+          <div>{{authStore.user.profile[0].full_name }}</div>
         </div>
         <div class="col">
           <div class="font-semibold text-lg font-secondary">Service:</div>
-          <div>{{ appointmentStore.selectedService.name }}</div>
+          <div >{{ appointmentStore.selectedService.name }}</div>
         </div>
         <div class="col">
           <div class="font-semibold text-lg font-secondary">Assigned Doctor:</div>
-          <div>{{ doctorName(appointmentStore.selectedDoctor) }}</div>
+          <div>{{ appointmentStore.selectedDoctor.user.profile.full_name }}</div>
         </div>
         <div class="col">
           <div class="font-semibold text-lg font-secondary">Selected Date:</div>
@@ -39,17 +39,9 @@ export default {
 
     return {
       authStore,
-      appointmentStore,
-      fullName: () => {
-        return `${authStore.user.profile[0].firstname} ${authStore.user.profile[0].lastname}`;
-      },
-      doctorName: (doctor) => {
-        if (doctor.user.profile.gender === "Male") {
-          return `Dr. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
-        } else {
-          return `Dra. ${doctor.user.profile.firstname}  ${doctor.user.profile.lastname}`;
-        }
-      },
+      appointmentStore
+  
+   
     };
   },
 };

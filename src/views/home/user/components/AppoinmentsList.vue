@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md" style="">
-    <BreadCrumbs :prefix="'appointment'"/>
+
 
     <q-list class="bg-surface shadow-md rounded-md p-4">
       <q-item-label class="row items-center justify-between" header
@@ -88,6 +88,7 @@ export default {
         rescheduled: "blue",
         approved: "yellow",
         completed: "green",
+        canceled: "red-11"
       },
 
    
