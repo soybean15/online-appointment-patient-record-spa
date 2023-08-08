@@ -1,4 +1,8 @@
 <template>
+  <div class="column">
+    <BreadCrumbs :prefix="'appointment'" />
+
+  </div>
   <div class="row">
     <div class="col-8">
       <AppoinmentsList />
@@ -18,10 +22,12 @@ import { onMounted } from "vue";
 import AppoinmentsList from "./components/AppoinmentsList.vue";
 import {useAppointmentStore} from '@/store/userAppointment'
 import AppointmentSidePanel from "./components/AppointmentSidePanel.vue";
+import BreadCrumbs from '@/components/BreadCrumbs'
 export default {
   components: { 
     AppoinmentsList,
-    AppointmentSidePanel
+    AppointmentSidePanel,
+    BreadCrumbs
   },
   setup() {
 

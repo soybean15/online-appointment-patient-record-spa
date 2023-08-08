@@ -194,6 +194,7 @@ export default {
         await appointmentStore.setAppointment() 
         close()
         persistent.value = false
+        step.value= 1
         appointmentStore.clearData()
       }
     };
