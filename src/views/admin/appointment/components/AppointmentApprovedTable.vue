@@ -12,7 +12,7 @@
       :columns="columns"
       row-key="name"
     >
-      <template v-slot:top-right>
+      <template v-slot:bottom>
         <q-pagination
           v-model="current"
           color="primary"
@@ -22,29 +22,60 @@
         />
       </template>
 
+
+      
+      <template v-slot:top-right>
+        <q-input outlined bottom-slots v-model="text" label="Search" counter maxlength="12" dense>
+        
+
+        
+        <template v-slot:append>
+          <q-icon v-if="text !== ''" name="close" @click="text = ''" class="cursor-pointer" />
+      
+        </template>
+
+        <template v-slot:prepend>
+        
+          <q-icon name="search" />
+        </template>
+      </q-input>
+
+      </template>
+
+
       <template v-slot:top-left>
-        <div class="row">
-          <q-btn icon-right="event" label="Filter" rounded color="primary">
-            <q-popup-proxy
-            
-              cover
-              transition-show="scale"
-              transition-hide="scale"
-            >
-              <q-date v-model="dateRange" range>
-                <div class="row items-center justify-end q-gutter-sm">
-                  <q-btn label="Cancel" color="primary" flat v-close-popup />
-                  <q-btn
-                    label="OK"
-                    color="primary"
-                    flat
-                    @click="save"
-                    v-close-popup
-                  />
-                </div>
-              </q-date>
-            </q-popup-proxy>
-          </q-btn>
+        <div class="row justify-between items-center">
+          <div class="text-xl px-2">Filter:</div>
+          <q-btn-group outline>
+            <q-btn color="brown" label="All" icon-right="calendar_month" />
+            <q-btn
+              outline
+              color="brown"
+              label="Today"
+              icon-right="today"
+            />
+            <q-btn outline color="brown" label="Missed" icon-right="pending_actions"/>
+            <q-btn outline color="brown" label="Date(s)" icon-right="date_range">
+              <q-popup-proxy
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="dateRange" range>
+                  <div class="row items-center justify-end q-gutter-sm">
+                    <q-btn label="Cancel" color="primary" flat v-close-popup />
+                    <q-btn
+                      label="OK"
+                      color="primary"
+                      flat
+                      @click="save"
+                      v-close-popup
+                    />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-btn>
+          </q-btn-group>
         </div>
       </template>
 
@@ -58,59 +89,47 @@
         </q-td>
       </template>
 
-
-
       <template v-slot:body-cell-contact="props">
         <q-td :props="props">
-
           <div class="row justify-around">
             <q-icon
-            size="2em"
-            class="cursor-pointer"
-            name="call"
-            @click="makeCall(props)"
-          >
-            <q-tooltip
-              anchor="top middle"
-              self="bottom middle"
-              :offset="[10, 10]"
+              size="2em"
+              class="cursor-pointer"
+              name="call"
+              @click="makeCall(props)"
             >
-              <strong>{{ props.row.user.profile[0].contact_number }}</strong>
-            </q-tooltip>
-          </q-icon>
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                <strong>{{ props.row.user.profile[0].contact_number }}</strong>
+              </q-tooltip>
+            </q-icon>
 
-          <q-icon
-            size="2em"
-            class="cursor-pointer"
-            name="mail"
-            @click="sendEmail(props)"
-          >
-            <q-tooltip
-              anchor="top middle"
-              self="bottom middle"
-              :offset="[10, 10]"
+            <q-icon
+              size="2em"
+              class="cursor-pointer"
+              name="mail"
+              @click="sendEmail(props)"
             >
-              <strong>{{ props.row.user.email }}</strong>
-            </q-tooltip>
-          </q-icon>
-
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                <strong>{{ props.row.user.email }}</strong>
+              </q-tooltip>
+            </q-icon>
           </div>
-        
         </q-td>
       </template>
-
-
 
       <template v-slot:body-cell-actions="props">
         <q-td :props="props">
           <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
-          <div class="row justify-around" >
-            <q-btn
-              dense
-              color="green"      
-              size="13px"
-              label="Complete"
-            >
+          <div class="row justify-around">
+            <q-btn dense color="green" size="13px" label="Complete">
               <q-tooltip
                 anchor="top middle"
                 self="bottom middle"
@@ -120,12 +139,7 @@
               </q-tooltip>
             </q-btn>
 
-            <q-btn
-              dense
-              color="deep-orange-9"      
-              size="13px"
-              label="Missed"
-            >
+            <q-btn dense color="deep-orange-9" size="13px" label="Missed">
               <q-tooltip
                 anchor="top middle"
                 self="bottom middle"
@@ -151,16 +165,14 @@
           </div> -->
         </q-td>
       </template>
-
     </q-table>
   </div>
-
 </template>
   
   <script>
 import { useAppointmentStore } from "@/store/adminAppointment";
-import {  format } from "date-fns";
-import { ref } from 'vue';
+import { format } from "date-fns";
+import { ref } from "vue";
 const columns = [
   {
     name: "image",
@@ -234,18 +246,18 @@ export default {
   setup() {
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
 
-    console.log(currentDate.value)
+    console.log(currentDate.value);
 
-    const dateRange= ref({ from: currentDate.value, to: currentDate.value })
+    const dateRange = ref({ from: currentDate.value, to: currentDate.value });
     const appointmentStore = useAppointmentStore();
     return {
       columns,
       appointmentStore,
       currentDate,
       dateRange,
-      save:()=>{
-        console.log('range '+dateRange.value)
-        appointmentStore.getApprovedByRange(dateRange.value)
+      save: () => {
+        console.log("range " + dateRange.value);
+        appointmentStore.getApprovedByRange(dateRange.value);
       },
       makeCall(props) {
         const phoneNumber = props.row.user.profile[0].contact_number;
@@ -253,11 +265,10 @@ export default {
         window.location.href = telLink;
       },
       sendEmail(props) {
-      const recipientEmail = props.row.user.profile[0].email;
-      const mailtoLink = `mailto:${recipientEmail}`;
-      window.location.href = mailtoLink;
-    },
-     
+        const recipientEmail = props.row.user.profile[0].email;
+        const mailtoLink = `mailto:${recipientEmail}`;
+        window.location.href = mailtoLink;
+      },
     };
   },
 };

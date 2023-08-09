@@ -85,27 +85,20 @@
       <router-view></router-view>
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar>
-          <div>Title</div>
-        </q-toolbar-title>
-      </q-toolbar>
-
-   
-    </q-footer>
+    <FooterView/>
   </q-layout>
 
 </template>
   
   <script>
+  import FooterView from "../components/FooterView.vue";
 import { onMounted, ref } from "vue";
 import { useAdminStore } from "@/store/admin";
 
 export default {
+  components:{
+    FooterView
+  },
   setup() {
     const leftDrawerOpen = ref(false);
     const adminStore = useAdminStore()
