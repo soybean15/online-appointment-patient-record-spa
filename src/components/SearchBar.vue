@@ -28,6 +28,8 @@ export default {
             submit:()=>{
                
                 emit('onSearch',text.value)
+
+                
                
             }
         }

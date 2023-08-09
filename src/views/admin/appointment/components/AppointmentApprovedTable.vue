@@ -26,45 +26,15 @@
       
       <template v-slot:top-right>
 
-        <SearchBar @onSearch="onSearch"/>
+        <SearchBar @onSearch="appointmentStore.searchApproved('approved',$event)"/>
     
       </template>
 
 
       <template v-slot:top-left>
-        <div class="row justify-between items-center">
-          <div class="text-xl px-2">Filter:</div>
-          <q-btn-group outline>
-            <q-btn color="brown" label="All" icon-right="calendar_month" />
-            <q-btn
-              outline
-              color="brown"
-              label="Today"
-              icon-right="today"
-            />
-            <q-btn outline color="brown" label="Missed" icon-right="pending_actions"/>
-            <q-btn outline color="brown" label="Date(s)" icon-right="date_range">
-              <q-popup-proxy
-                cover
-                transition-show="scale"
-                transition-hide="scale"
-              >
-                <q-date v-model="dateRange" range>
-                  <div class="row items-center justify-end q-gutter-sm">
-                    <q-btn label="Cancel" color="primary" flat v-close-popup />
-                    <q-btn
-                      label="OK"
-                      color="primary"
-                      flat
-                      @click="save"
-                      v-close-popup
-                    />
-                  </div>
-                </q-date>
-              </q-popup-proxy>
-            </q-btn>
-          </q-btn-group>
-        </div>
+
+        <FilterGroup @filterByRange=" appointmentStore.getApprovedByRange();"/>
+       
       </template>
 
       <template v-slot:body-cell-image="props">
@@ -163,6 +133,8 @@ import { format } from "date-fns";
 import { ref } from "vue";
 
 import SearchBar from '@/components/SearchBar.vue';
+
+import FilterGroup from '@/components/FilterGroup.vue';
 const columns = [
   {
     name: "image",
@@ -234,7 +206,8 @@ const columns = [
 
 export default {
   components:{
-    SearchBar
+    SearchBar,
+    FilterGroup
   },
   setup() {
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
