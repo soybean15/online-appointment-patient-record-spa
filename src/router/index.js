@@ -91,6 +91,7 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
+    redirect:{name:'dashboard'},
     component: () => import('@/views/admin/AdminView'),
     beforeEnter: async (to, from, next) => {
       const authStore = useAuthStore()
@@ -113,6 +114,13 @@ const routes = [
 
 
     children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('@/views/admin/dashboard/Dashboard'),
+
+
+      },
       {
         path: 'services',
         name: 'services',

@@ -14,7 +14,7 @@
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <q-item clickable v-ripple>
+      <q-item :to="{name:'dashboard'}" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="dashboard" />
         </q-item-section>
