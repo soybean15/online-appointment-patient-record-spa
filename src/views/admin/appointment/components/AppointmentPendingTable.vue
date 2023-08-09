@@ -12,7 +12,7 @@
       :columns="columns"
       row-key="name"
     >
-      <template v-slot:top-right>
+      <template v-slot:bottom>
         <q-pagination
           v-model="current"
           color="primary"
@@ -20,6 +20,11 @@
           :max-pages="5"
           boundary-numbers
         />
+      </template>
+
+      <template v-slot:top-right>
+      <SearchBar @onSearch="appointmentStore.searchApproved('approved',$event)"/>
+
       </template>
 
       <template v-slot:body-cell-image="props">
@@ -117,6 +122,7 @@
   <script>
 import { useAppointmentStore } from "@/store/adminAppointment";
 import DeclineAppointmentModal from "../modal/DeclineAppointmentModal.vue";
+import SearchBar from "@/components/SearchBar.vue";
 import { ref, watch } from "vue";
 const columns = [
   {
@@ -185,6 +191,7 @@ const columns = [
 export default {
   components: {
     DeclineAppointmentModal,
+    SearchBar
   },
   setup() {
     const appointmentStore = useAppointmentStore();

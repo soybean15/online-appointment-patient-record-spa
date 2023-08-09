@@ -5,18 +5,22 @@ import axios from 'axios'
 export const useAppointmentStore = defineStore('admin_appointment', {
     state: () => ({
 
-        statePending:null,
-        stateApproved:null,
-        stateAttended:null,
+        stateData:{
+            pending:null,
+            approved:null,
+            attended:null,
+        },
+
+       
         stateSelectedRow:null
 
     }),
 
 
     getters: {
-      pending:(state)=>state.statePending,
-      approved:(state)=>state.stateApproved,
-      attended:(state)=>state.stateAttended,
+      pending:(state)=>state.stateData.pending,
+      approved:(state)=>state.stateData.approved,
+      attended:(state)=>state.stateData.attended,
       selectedRow:(state)=>state.stateSelectedRow
 
     },
@@ -26,9 +30,9 @@ export const useAppointmentStore = defineStore('admin_appointment', {
 
         async index() {
             const data = await axios.get('api/admin/appointment')
-            this.stateApproved = data.data.approved
-            this.stateAttended = data.data.attended
-            this.statePending = data.data.pending
+            this.stateData.approved = data.data.approved
+            this.stateData.attended = data.data.attended
+            this.stateData.pending = data.data.pending
      
 
         },
@@ -64,26 +68,40 @@ export const useAppointmentStore = defineStore('admin_appointment', {
         async getPending(path){
          
             const data = await axios.get(path)
-           this.statePending = data.data.pending
+           this.stateData.pending = data.data.pending
         },
         async getAttended(path){
           
             const data = await axios.get(path)
-           this.stateAttended = data.data.attended
+           this.stateData.attended = data.data.attended
         },
 
         async getApprovedByRange(dateRange){
+            console.log(dateRange)
 
             const data = await axios.post('api/admin/appointment/approved-with-range',{date:dateRange})
 
-            this.stateApproved = data.data.approved
+            this.stateData.approved = data.data.approved
         },
         
         async setRow(row){
 
             this.stateSelectedRow = row
 
-        }
+        },
+        async searchApproved(status, text){
+
+            const data = await axios.post('api/admin/appointment/search',{
+                status:status,
+                search_item:text
+            })
+            
+
+
+
+
+        },
+      
        
        
 

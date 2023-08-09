@@ -6,7 +6,7 @@
       @click="activeSideBar = 'profile'"
       clickable
       v-ripple
-      to="profile"
+      :to="{name:'profile'}"
     >
       <q-item-section  avatar>
         <q-icon class="" name="person" />
