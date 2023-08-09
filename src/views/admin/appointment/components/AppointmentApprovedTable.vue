@@ -25,21 +25,9 @@
 
       
       <template v-slot:top-right>
-        <q-input outlined bottom-slots v-model="text" label="Search" counter maxlength="12" dense>
-        
 
-        
-        <template v-slot:append>
-          <q-icon v-if="text !== ''" name="close" @click="text = ''" class="cursor-pointer" />
-      
-        </template>
-
-        <template v-slot:prepend>
-        
-          <q-icon name="search" />
-        </template>
-      </q-input>
-
+        <SearchBar @onSearch="onSearch"/>
+    
       </template>
 
 
@@ -173,6 +161,8 @@
 import { useAppointmentStore } from "@/store/adminAppointment";
 import { format } from "date-fns";
 import { ref } from "vue";
+
+import SearchBar from '@/components/SearchBar.vue';
 const columns = [
   {
     name: "image",
@@ -243,6 +233,9 @@ const columns = [
 ];
 
 export default {
+  components:{
+    SearchBar
+  },
   setup() {
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
 
@@ -269,6 +262,9 @@ export default {
         const mailtoLink = `mailto:${recipientEmail}`;
         window.location.href = mailtoLink;
       },
+      onSearch:(text)=>{
+        console.log(text)
+      }
     };
   },
 };
