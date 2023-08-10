@@ -25,8 +25,9 @@
 <!--         
       //Second Row -->
 
-        <div class="q-pa-xl">
+        <div class="">
             <div class="flex justify-center">What We Can Offer</div>
+
             <Swiper />
 
         </div>
@@ -116,7 +117,7 @@
 <script>
 
 
-import Swiper from "@/views/components/Swiper.vue"
+import Swiper from "@/components/Swiper.vue"
 export default {
     components: {
         Swiper
