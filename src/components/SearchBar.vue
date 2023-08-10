@@ -1,5 +1,5 @@
 <template>
-      <q-input    @keydown.enter.prevent="submit" outlined bottom-slots v-model="text" label="Search"  maxlength="12" dense>
+      <q-input    @keydown.enter.prevent="submit" outlined bottom-slots v-model="text" label="Search"  maxlength="16" dense>
         
 
         

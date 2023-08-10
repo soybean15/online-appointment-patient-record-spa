@@ -23,15 +23,19 @@
       </template>
 
       <template v-slot:top-right>
-        <SearchBar
-          @onSearch="appointmentStore.searchApproved('approved', $event)"
-        />
+        <SearchBar @onSearch="appointmentStore.search('approved', $event)" />
       </template>
 
       <template v-slot:top-left>
-        <FilterGroup :buttons="buttons" >
+        <FilterGroup :buttons="buttons">
           <template v-slot:pop-up>
-            <q-btn dense color="brown" outline label="Date(s)" icon-right="date_range">
+            <q-btn
+              dense
+              color="brown"
+              outline
+              label="Date(s)"
+              icon-right="date_range"
+            >
               <q-popup-proxy
                 ref="qDateProxy"
                 cover
@@ -56,14 +60,24 @@
         </FilterGroup>
       </template>
 
-      <template v-slot:body-cell-image="props">
-        <q-td :props="props">
-          <img
-            :src="props.row.user.profile[0].image"
-            alt="Profile Image"
-            style="width: 40px; height: 40px"
-          />
-        </q-td>
+      <template v-slot:body-cell-fullname="props">
+       
+          <q-td :props="props">
+            <div class="w-max row items-center justify-start">
+              <img
+
+              :src="props.row.user.profile[0].image"
+              alt="Profile Image"
+              style="width: 40px; height: 40px"
+            />
+
+            <span class="ml-3">{{props.row.user.profile[0].full_name}}</span>
+        
+
+            </div>
+           
+          </q-td>
+        
       </template>
 
       <template v-slot:body-cell-contact="props">
@@ -156,13 +170,14 @@ import SearchBar from "@/components/SearchBar.vue";
 import FilterGroup from "@/components/FilterGroup.vue";
 const columns = [
   {
-    name: "image",
+    name: "ref_id",
     required: true,
-    label: "",
+    label: "Reference No.",
     align: "left",
-    field: (row) => row.user.profile[0].image,
+    field: (row) => row.reference_id,
     format: (val) => `${val}`,
   },
+
   {
     name: "fullname",
     required: true,
@@ -171,6 +186,7 @@ const columns = [
     field: (row) => row.user.profile[0].full_name,
     format: (val) => `${val}`,
     sortable: true,
+   
   },
   {
     name: "service",
@@ -228,7 +244,7 @@ export default {
     SearchBar,
     FilterGroup,
   },
-  props:['buttons'],
+  props: ["buttons"],
   setup() {
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
 
@@ -258,8 +274,6 @@ export default {
       onSearch: (text) => {
         console.log(text);
       },
-
-     
     };
   },
 };
