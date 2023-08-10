@@ -13,7 +13,33 @@
         row-key="name"
 
       >
-
+      <template v-slot:top-left>
+        <FilterGroup :buttons="buttons" >
+          <template v-slot:pop-up>
+            <q-btn dense color="brown" outline label="Date(s)" icon-right="date_range">
+              <q-popup-proxy
+                ref="qDateProxy"
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="dateRange" range>
+                  <div class="row items-center justify-end q-gutter-sm">
+                    <q-btn label="Cancel" color="primary" flat v-close-popup />
+                    <q-btn
+                      label="OK"
+                      color="primary"
+                      flat
+                      @click="save"
+                      v-close-popup
+                    />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-btn>
+          </template>
+        </FilterGroup>
+      </template>
       
 
       <template v-slot:top-right>
@@ -58,7 +84,9 @@
   
   <script>
 
-  import { useAppointmentStore } from '@/store/adminAppointment';
+
+import { useAppointmentStore } from '@/store/adminAppointment';
+import FilterGroup from "@/components/FilterGroup.vue";
 import { ref, watch } from 'vue';
   const columns = [
     {
@@ -130,6 +158,10 @@ import { ref, watch } from 'vue';
   
   
   export default {
+    components:{
+      FilterGroup
+    },
+    props:['buttons'],
     setup () {
 
       const current = ref()

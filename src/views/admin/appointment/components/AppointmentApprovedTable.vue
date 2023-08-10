@@ -22,29 +22,62 @@
         />
       </template>
 
-
-      
       <template v-slot:top-right>
-
-        <SearchBar @onSearch="appointmentStore.searchApproved('approved',$event)"/>
-    
+        <SearchBar @onSearch="appointmentStore.search('approved', $event)" />
       </template>
-
 
       <template v-slot:top-left>
-
-        <FilterGroup @filterByRange=" appointmentStore.getApprovedByRange();"/>
-       
+        <FilterGroup :buttons="buttons">
+          <template v-slot:pop-up>
+            <q-btn
+              dense
+              color="brown"
+              outline
+              label="Date(s)"
+              icon-right="date_range"
+            >
+              <q-popup-proxy
+                ref="qDateProxy"
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="dateRange" range>
+                  <div class="row items-center justify-end q-gutter-sm">
+                    <q-btn label="Cancel" color="primary" flat v-close-popup />
+                    <q-btn
+                      label="OK"
+                      color="primary"
+                      flat
+                      @click="save"
+                      v-close-popup
+                    />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-btn>
+          </template>
+        </FilterGroup>
       </template>
 
-      <template v-slot:body-cell-image="props">
-        <q-td :props="props">
-          <img
-            :src="props.row.user.profile[0].image"
-            alt="Profile Image"
-            style="width: 40px; height: 40px"
-          />
-        </q-td>
+      <template v-slot:body-cell-fullname="props">
+       
+          <q-td :props="props">
+            <div class="w-max row items-center justify-start">
+              <img
+
+              :src="props.row.user.profile[0].image"
+              alt="Profile Image"
+              style="width: 40px; height: 40px"
+            />
+
+            <span class="ml-3">{{props.row.user.profile[0].full_name}}</span>
+        
+
+            </div>
+           
+          </q-td>
+        
       </template>
 
       <template v-slot:body-cell-contact="props">
@@ -132,18 +165,19 @@ import { useAppointmentStore } from "@/store/adminAppointment";
 import { format } from "date-fns";
 import { ref } from "vue";
 
-import SearchBar from '@/components/SearchBar.vue';
+import SearchBar from "@/components/SearchBar.vue";
 
-import FilterGroup from '@/components/FilterGroup.vue';
+import FilterGroup from "@/components/FilterGroup.vue";
 const columns = [
   {
-    name: "image",
+    name: "ref_id",
     required: true,
-    label: "",
+    label: "Reference No.",
     align: "left",
-    field: (row) => row.user.profile[0].image,
+    field: (row) => row.reference_id,
     format: (val) => `${val}`,
   },
+
   {
     name: "fullname",
     required: true,
@@ -152,6 +186,7 @@ const columns = [
     field: (row) => row.user.profile[0].full_name,
     format: (val) => `${val}`,
     sortable: true,
+   
   },
   {
     name: "service",
@@ -205,10 +240,11 @@ const columns = [
 ];
 
 export default {
-  components:{
+  components: {
     SearchBar,
-    FilterGroup
+    FilterGroup,
   },
+  props: ["buttons"],
   setup() {
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
 
@@ -235,9 +271,9 @@ export default {
         const mailtoLink = `mailto:${recipientEmail}`;
         window.location.href = mailtoLink;
       },
-      onSearch:(text)=>{
-        console.log(text)
-      }
+      onSearch: (text) => {
+        console.log(text);
+      },
     };
   },
 };

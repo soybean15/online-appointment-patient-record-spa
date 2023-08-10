@@ -22,6 +22,36 @@
         />
       </template>
 
+
+
+      <template v-slot:top-left>
+        <FilterGroup :buttons="buttons" >
+          <template v-slot:pop-up>
+            <q-btn dense color="brown" outline label="Date(s)" icon-right="date_range">
+              <q-popup-proxy
+                ref="qDateProxy"
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="dateRange" range>
+                  <div class="row items-center justify-end q-gutter-sm">
+                    <q-btn label="Cancel" color="primary" flat v-close-popup />
+                    <q-btn
+                      label="OK"
+                      color="primary"
+                      flat
+                      @click="save"
+                      v-close-popup
+                    />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-btn>
+          </template>
+        </FilterGroup>
+      </template>
+
       <template v-slot:top-right>
       <SearchBar @onSearch="appointmentStore.searchApproved('approved',$event)"/>
 
@@ -123,6 +153,7 @@
 import { useAppointmentStore } from "@/store/adminAppointment";
 import DeclineAppointmentModal from "../modal/DeclineAppointmentModal.vue";
 import SearchBar from "@/components/SearchBar.vue";
+import FilterGroup from "@/components/FilterGroup.vue";
 import { ref, watch } from "vue";
 const columns = [
   {
@@ -191,8 +222,10 @@ const columns = [
 export default {
   components: {
     DeclineAppointmentModal,
-    SearchBar
+    SearchBar,
+    FilterGroup
   },
+  props:['buttons'],
   setup() {
     const appointmentStore = useAppointmentStore();
     const loading = ref([false, false]);

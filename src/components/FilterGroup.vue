@@ -3,81 +3,49 @@
     <div class="text-xl px-2">Filter:</div>
     <q-btn-group outline>
       <q-btn
-        dense
-        :outline="active != 'all'"
-        @click="onClick('all')"
+        v-for="button in buttons"
+        :key="button.label"
+        :outline="active != button.action"
+        @click="onClick(button.onClick, button.action)"
         color="brown"
-        label="All"
-        icon-right="calendar_month"
-      />
-      <q-btn
-        dense
-        color="brown"
-        label="Today"
-        icon-right="today"
-        @click="onClick('today')"
-        :outline="active != 'today'"
-      />
-      <q-btn
-        dense
-        :outline="active != 'missed'"
-        @click="onClick('missed')"
-        color="brown"
-        label="Missed"
-        icon-right="pending_actions"
-      />
-      <q-btn
-        dense
-        :outline="active != 'range'"
-        @click="onClick('range')"
-        color="brown"
-        label="Date(s)"
-        icon-right="date_range"
+        :label="button.label"
+        :icon-right="button.icon"
       >
-        <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-          <q-date v-model="dateRange" range>
-            <div class="row items-center justify-end q-gutter-sm">
-              <q-btn label="Cancel" color="primary" flat v-close-popup />
-              <q-btn
-                label="OK"
-                color="primary"
-                flat
-                @click="onDateRange"
-                v-close-popup
-              />
-            </div>
-          </q-date>
-        </q-popup-proxy>
       </q-btn>
+
+      <slot name="pop-up" > </slot>
+  
     </q-btn-group>
+
+
   </div>
 </template>
 
 <script>
-import { ref } from "vue";
-import { format } from "date-fns";
+import { ref, watch } from "vue";
+
 
 export default {
-  emits: ["filterByRange"],
-  setup(props, { emit }) {
-    const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
-    const active = ref("all");
+  props: ['buttons'],
+  setup(props) {
 
-    const dateRange = ref({ from: currentDate.value, to: currentDate.value });
+
+    const active = ref(props.buttons[0].action);
+
+
+    watch(active,()=>{
+      console.log(active)
+    })
+    
 
     return {
       active,
-      currentDate,
-      dateRange,
-      onClick: (value) => {
+      onClick: (click, value) => {
+        click();
         active.value = value;
       },
-      onDateRange: () => {
-        console.log(dateRange.value)
-    
-        emit('filterByRange',dateRange.value)
-       
-      },
+     
+      
     };
   },
 };

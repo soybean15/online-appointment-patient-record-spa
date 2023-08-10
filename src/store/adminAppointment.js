@@ -11,6 +11,8 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             attended:null,
         },
 
+        stateStatus:null,
+
        
         stateSelectedRow:null
 
@@ -21,12 +23,17 @@ export const useAppointmentStore = defineStore('admin_appointment', {
       pending:(state)=>state.stateData.pending,
       approved:(state)=>state.stateData.approved,
       attended:(state)=>state.stateData.attended,
-      selectedRow:(state)=>state.stateSelectedRow
+      selectedRow:(state)=>state.stateSelectedRow,
+      status:(state)=>state.stateStatus
 
     },
 
 
     actions: {
+        setStatus(status){
+            this.stateStatus=status
+            console.log(this.stateStatus)
+        },
 
         async index() {
             const data = await axios.get('api/admin/appointment')
@@ -89,18 +96,28 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             this.stateSelectedRow = row
 
         },
-        async searchApproved(status, text){
+        async search(status, text){
 
             const data = await axios.post('api/admin/appointment/search',{
                 status:status,
                 search_item:text
             })
+
+            this.stateData[status] = data.data.appointments
             
 
 
 
 
         },
+        
+        async filter(action){
+            const data = await axios.post('api/admin/appointment/filter-by-action',{
+                status:this.stateStatus,
+                action:action
+            })
+            this.stateData[this.stateStatus] = data.data.appointments
+        }
       
        
        
