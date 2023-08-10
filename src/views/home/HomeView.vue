@@ -10,7 +10,7 @@
                         <hr/>Care with your Health</div>
                     <div class="text-h6 q-px-lg q-pb-sm"> Book your appointment from the comfort 
                         of your own home and receive quality care from our expert team</div>
-                    <q-btn align="around" class="btn-fixed-width" to="appointment" color="primary" label="Set An Appointment" icon="calendar_today" outline />
+                    <q-btn align="around" class="btn-fixed-width q-mb-md" to="appointment" color="primary" label="Set An Appointment" icon="calendar_today" outline />
                    
                 </div>
             </div>
@@ -22,88 +22,22 @@
 
         </div>
 
-        
+<!--         
+      //Second Row -->
 
-        <!-- Second Row -->
-        <div class="q-mx-xl q-px-xl ">
-            <div class="row justify-center text-h6 q-py-xl q-pt-md q-my-lg ">Our Best Offered</div>            
-            <div class="row q-py-sm q-px-lg justify-evenly" >
-            
-                <div class="col-12 col-lg-4 q-px-xl q-pt-md "  >
-                    <div class="flex-col" >
-                        <q-card class=" text-gray bg-white">
-                            <div class="flex justify-center ">
-                                <q-img src="../../assets/img/images/facility1.jpg" style="max-height: 200px; height: 200px;"></q-img>
-                            </div>                                                      
-                        </q-card>   
-                        <div class="text-h7 q-ml-sm q-py-md">
-                            <div class="text-h6 q-my-sm text-amber-9">
-                                Well cleaned and neat facility 
-                            </div>
-                            <div class="q-pr-md">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                            </div>
-                        </div>    
-                    </div>               
-                </div>
-            
+        <div class="q-pa-xl">
+            <div class="flex justify-center">What We Can Offer</div>
+            <Swiper />
 
-                <div class="col-12 col-lg-4 q-px-xl q-pt-md "  >
-                    <div class="flex-col" >
-                        <q-card class=" text-gray bg-white">
-                            <div class="flex justify-center ">
-                                <q-img src="../../assets/img/images/service1.jpg" style="max-height: 200px; height: 200px;"></q-img>
-                            </div>                                                      
-                        </q-card>   
-                        <div class="text-h7 q-ml-sm q-py-md">
-                            <div class="text-h6 q-my-sm text-amber-9">
-                                Affordable and Quality Services 
-                            </div>
-                            <div class="q-pr-md">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                            </div>
-                        </div>    
-                    </div>               
-                </div>
-
-
-                <div class="col-12 col-lg-4 q-px-xl q-pt-md "  >
-                    <div class="flex-col" >
-                        <q-card class=" text-gray bg-white">
-                            <div class="flex justify-center ">
-                                <q-img src="../../assets/img/images/maxilife-staff.jpg" style="max-height: 200px; height: 200px;"></q-img>
-                            </div>                                                      
-                        </q-card>   
-                        <div class="text-h7 q-ml-sm q-py-md">
-                            <div class="text-h6 q-my-sm text-amber-9">
-                                Best healthcare providers
-                            </div>
-                            <div class="q-pr-md">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.
-                            </div>
-                        </div>    
-                    </div>               
-                </div>
-
-
-            
-
-
-
-            
-    
-            
-        
-
-            </div>
         </div>
-
 
 
         <!-- third section -->
         <div class="row justify-center text-h6 q-py-xl q-pt-md q-my-xl ">Book Your Appointment </div>
-        <div class=" q-md ">
-             <div class="row q-px-xl">
+
+        <div class="row">
+     
+        
                  <div class="col-12 col-lg-6 justify-center q-px-md q-py-sm ">
                         <q-img src="../../assets/img/images/doctor4.jpg" style="max-height: 600px; height: 450px;">
                             <div class="absolute-full">
@@ -115,7 +49,7 @@
                                 </div>                              
                             </div>
                         </q-img>
-                 </div>
+                 </div> 
                      
                  <div class="col-12 col-lg-6  justify-center q-px-xl q-py-lg border-y-2  rounded-xl" style="border-color: teal;">
                         
@@ -137,7 +71,7 @@
                                  </div>
                             </div>
                 </div>
-             </div>               
+                     
         </div>
         
 
@@ -171,49 +105,7 @@
                 
         </div>
         
-
-        <div class="q-pa-md w-full" >
-    <q-card class="my-card">
-      <q-parallax
-        class="relative top-0"
-        src="../../assets/image1.jpg"
-        :height="400">
-            <div class="absolute">
-             <div class="row  q-pa-xl justify-center q-mt-xl relative ">
-                <div class="col gt-md gt-sm"></div>
-                <div class=" col-12 col-lg-4 q-px-lg justify-center text-center">
-                    <div class="row text-h3 justify-center q-py-md"> About Us</div>
-                    <div class="row">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.      
-                   </div>
-
-                   <div class="row  q-pl-xl justify-center q-py-lg">
-                        <div class="text-white bg-amber-5 q-py-md q-px-md text-bold " style="border-radius: 5px;">Learn More
-                        </div>
-                   </div>
-                
-                 </div> 
-                <div class="col gt-md gt-sm"></div>  
-                <div class="absolute top-10 -right-2 rotate-45 icons">
-                    <q-icon name="calendar_today " color="amber" size="50px"/>
-                </div>  
-                <div class="absolute top-17 left-20 -rotate-45 ">
-                    <q-icon name="emergency" color="blue" size="50px"/>
-                </div> 
-                <div class="absolute bottom-5 -left-2 -rotate-45 ">
-                    <q-icon name="local_hospital" color="red" size="50px"/>
-                </div> 
-                
-           </div>
-        </div>
-
-      </q-parallax>
-  
-      
-    </q-card>
-  </div>
-        
+    
      
         
     </q-page>
@@ -223,7 +115,12 @@
 
 <script>
 
+
+import Swiper from "@/views/components/Swiper.vue"
 export default {
+    components: {
+        Swiper
+    }
 
 
 }

@@ -1,20 +1,22 @@
 <template>
     <q-page class="" style="">
+   
+      <div class="">
+    <q-parallax :height="400" :speed="0.5">
+      <template v-slot:media>
+        <img src="../../src/assets/image1.jpg" style="height: 800px;">
+      </template>
 
-<div class="row bg-primary q-pa-xl justify-center">
-  <div class="q-ma-xl ">
-    <div class="text-h4">About Us</div>
-     <div class="text-h6 row justify-center"> Read More</div>
-    </div>     
-</div>
+      <h1 class=" text-h4 row justify-center">Maxilife Multispecialty Clinic and Diagnostic Center </h1>
+    </q-parallax>
+   </div>
+
 
 
 <div class="row  q-pa-xl justify-center">
   <div class="col gt-sm"></div>
-  <div class=" col q-px-lg justify-center text-center">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.      
-   </div> 
+  <div class=" col q-px-lg justify-center text-center text-h6">Read More
+           </div> 
   <div class="col gt-sm"></div>    
 </div>
 
@@ -22,11 +24,8 @@
 
 <!-- History -->
 <div class="row q-my-md q-pa-xl bg-yellow-1 text-gray-700">
-  <div class="col items-center q-py-lg q-px-md justify-center">
-      <div class="row justify-center"> 
-        <img src="../assets/image1.jpg"  style="width: 600px; height: 400px; border-radius: 5px;">
-      </div>
-  </div>
+  
+
   <div class="col q-py-md">
     <div class="row text-h4">History
     </div>
@@ -63,7 +62,7 @@
 <div class="row q-px-md bg-yellow-1 text-gray-700 ">
   
   <div class="col items-center q-py-md q-px-md justify-center">
-      <div class="row justify-center q-px-lg"> 
+      <div class="row justify-center q-px-lg rounded-full"> 
         <img src="../assets/img/images/doctor1.png"  style="width: 300px; height: 200px; border-radius: 5px">
       </div>
   </div>
