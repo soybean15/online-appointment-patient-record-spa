@@ -31,7 +31,7 @@
       <template v-slot:top-left>
         <FilterGroup :buttons="buttons" >
           <template v-slot:pop-up>
-            <q-btn dense color="brown" label="Date(s)" icon-right="date_range">
+            <q-btn dense color="brown" outline label="Date(s)" icon-right="date_range">
               <q-popup-proxy
                 ref="qDateProxy"
                 cover
@@ -228,6 +228,7 @@ export default {
     SearchBar,
     FilterGroup,
   },
+  props:['buttons'],
   setup() {
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
 
@@ -258,32 +259,7 @@ export default {
         console.log(text);
       },
 
-     buttons :[
-      {
-        label: "All",
-        action: "all",
-        icon: "calendar_month",
-        onClick: () => {
-          console.log("test all");
-        },
-      },
-      {
-        label: "Today",
-        action: "today",
-        icon: "today",
-        onClick: () => {
-          console.log("test today");
-        },
-      },
-      {
-        label: "Missed",
-        action: "missed",
-        icon: "pending_actions",
-        onClick: () => {
-          console.log("test missed");
-        },
-      },
-    ]
+     
     };
   },
 };

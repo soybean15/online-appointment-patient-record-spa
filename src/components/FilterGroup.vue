@@ -13,41 +13,8 @@
       >
       </q-btn>
 
-      <slot name="pop-up"> </slot>
-      <!-- <q-btn
-        dense
-        :outline="active != 'all'"
-        @click="onClick('all')"
-        color="brown"
-        label="All"
-        icon-right="calendar_month"
-      />
-      <q-btn
-        dense
-        color="brown"
-        label="Today"
-        icon-right="today"
-        @click="onClick('today')"
-        :outline="active != 'today'"
-      />
-      <q-btn
-        dense
-        :outline="active != 'missed'"
-        @click="onClick('missed')"
-        color="brown"
-        label="Missed"
-        icon-right="pending_actions"
-      />
-      <q-btn
-        dense
-        :outline="active != 'range'"
-        @click="onClick('range')"
-        color="brown"
-        label="Date(s)"
-        icon-right="date_range"
-      >
-        
-      </q-btn> -->
+      <slot name="pop-up" > </slot>
+  
     </q-btn-group>
 
 
@@ -55,7 +22,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 
 export default {
@@ -64,6 +31,12 @@ export default {
 
 
     const active = ref(props.buttons[0].action);
+
+
+    watch(active,()=>{
+      console.log(active)
+    })
+    
 
     return {
       active,
