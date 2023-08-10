@@ -22,19 +22,38 @@
         />
       </template>
 
-
-      
       <template v-slot:top-right>
-
-        <SearchBar @onSearch="appointmentStore.searchApproved('approved',$event)"/>
-    
+        <SearchBar
+          @onSearch="appointmentStore.searchApproved('approved', $event)"
+        />
       </template>
 
-
       <template v-slot:top-left>
-
-        <FilterGroup @filterByRange=" appointmentStore.getApprovedByRange();"/>
-       
+        <FilterGroup :buttons="buttons" >
+          <template v-slot:pop-up>
+            <q-btn dense color="brown" label="Date(s)" icon-right="date_range">
+              <q-popup-proxy
+                ref="qDateProxy"
+                cover
+                transition-show="scale"
+                transition-hide="scale"
+              >
+                <q-date v-model="dateRange" range>
+                  <div class="row items-center justify-end q-gutter-sm">
+                    <q-btn label="Cancel" color="primary" flat v-close-popup />
+                    <q-btn
+                      label="OK"
+                      color="primary"
+                      flat
+                      @click="save"
+                      v-close-popup
+                    />
+                  </div>
+                </q-date>
+              </q-popup-proxy>
+            </q-btn>
+          </template>
+        </FilterGroup>
       </template>
 
       <template v-slot:body-cell-image="props">
@@ -132,9 +151,9 @@ import { useAppointmentStore } from "@/store/adminAppointment";
 import { format } from "date-fns";
 import { ref } from "vue";
 
-import SearchBar from '@/components/SearchBar.vue';
+import SearchBar from "@/components/SearchBar.vue";
 
-import FilterGroup from '@/components/FilterGroup.vue';
+import FilterGroup from "@/components/FilterGroup.vue";
 const columns = [
   {
     name: "image",
@@ -205,9 +224,9 @@ const columns = [
 ];
 
 export default {
-  components:{
+  components: {
     SearchBar,
-    FilterGroup
+    FilterGroup,
   },
   setup() {
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
@@ -235,9 +254,36 @@ export default {
         const mailtoLink = `mailto:${recipientEmail}`;
         window.location.href = mailtoLink;
       },
-      onSearch:(text)=>{
-        console.log(text)
-      }
+      onSearch: (text) => {
+        console.log(text);
+      },
+
+     buttons :[
+      {
+        label: "All",
+        action: "all",
+        icon: "calendar_month",
+        onClick: () => {
+          console.log("test all");
+        },
+      },
+      {
+        label: "Today",
+        action: "today",
+        icon: "today",
+        onClick: () => {
+          console.log("test today");
+        },
+      },
+      {
+        label: "Missed",
+        action: "missed",
+        icon: "pending_actions",
+        onClick: () => {
+          console.log("test missed");
+        },
+      },
+    ]
     };
   },
 };
