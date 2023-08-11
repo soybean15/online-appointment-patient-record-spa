@@ -7,23 +7,16 @@
         <img src="../../src/assets/image1.jpg" style="height: 800px;">
       </template>
 
-      <h1 class=" text-h4 row justify-center">Maxilife Multispecialty Clinic and Diagnostic Center </h1>
+      <h1 class=" text-h4 row justify-center text-white">Maxilife Multispecialty Clinic and Diagnostic Center </h1>
     </q-parallax>
    </div>
 
 
 
-<div class="row  q-pa-xl justify-center">
-  <div class="col gt-sm"></div>
-  <div class=" col q-px-lg justify-center text-center text-h6">Read More
-           </div> 
-  <div class="col gt-sm"></div>    
-</div>
-
 
 
 <!-- History -->
-<div class="row q-my-md q-pa-xl bg-yellow-1 text-gray-700">
+<div class="row q-mb-md q-pa-xl bg-yellow-1 text-gray-700">
   
 
   <div class="col q-py-md">
@@ -59,56 +52,43 @@
 <!-- Doctors -->
 
 <div class="row justify-center  q-mt-md q-pa-md bg-yellow-1 text-gray-700 text-h4">Doctors</div>
-<div class="row q-px-md bg-yellow-1 text-gray-700 ">
-  
-  <div class="col items-center q-py-md q-px-md justify-center">
-      <div class="row justify-center q-px-lg rounded-full"> 
-        <img src="../assets/img/images/doctor1.png"  style="width: 300px; height: 200px; border-radius: 5px">
-      </div>
-  </div>
-  <div class="col q-py-xl">
-      <div class="row text-h6 text-bold">Dr. Emerson DC. Garcia</div>
-      <div class="row q-mr-xl q-pr-md text-h7" >UROSURGEON </div>
-  </div>
-</div>
+<div class="row q-px-md bg-yellow-1 text-gray-700 justify-center items-center">
+   <DoctorCard />
 
-  <div class="row bg-yellow-1 text-gray-700 q-pb-lg">
-      <div class="col items-center q-py-md q-px-md justify-center">
-          <div class="row justify-center "> 
-            <img src="../assets/img/images/doctor3.png"  style="width: 300px; height: 200px; border-radius: 5px;">
-          </div>
-      </div>
-      <div class="col q-py-xl">
-        <div class="row text-h6 text-bold">Dra. Kristina T. Vergara-Garcia</div>
-        <div class="row q-mr-xl q-pr-md text-h7" >OBSTETRICIAN/GYNECOLOGIST </div>
-      </div>
-  </div>
+</div>
 
 
 <!-- Branches -->
-<div class="row q-my-md q-pa-xl"> 
+<div class="row q-my-sm q-pa-xl justify-center relative"> 
      
-  <div class="col q-py-md justify-center q-pl-xl">
-        <div class="row text-h4 q-pa-lg" >Branches</div>
-        <div class="row text-h5 q-pl-xl q-mt-lg">
-          <q-icon name="location_on"/>Cabiao Branch 
+  <div class="col-12 col-lg-6 q-py-md  q-pl-xl justify-center">
+     
+     
+        <div class="row text-h4 q-pl-xl q-mt-lg items-center justify-center">
+          <q-icon name="location_on"/>Location 
         </div>
-        <div class="row q-py-sm q-mr-xl q-pl-xl">
+        <div class="row q-py-sm q-mr-xl q-pl-xl items-center justify-center text-h6">
           Jose Abad Santos Avenue, San Fernando Sur, Cabiao, Philippines, 3107   
          </div>
-        
-        <div class="row text-h5 q-pl-xl q-mt-lg">
-          <q-icon name="location_on"/>Jaen Branch 
-        </div>
-        <div class="row q-py-sm q-mr-xl q-pl-xl">
-          Jose Abad Santos Avenue, San Fernando Sur, Cabiao, Philippines, 3107    </div>
+     
+
   </div>
 
-  <div class="col items-center q-py-sm q-px-md justify-center">
-      <div class="row justify-center"> 
-        <img src="../assets/img/images/clinic3.jpg"  style="width: 450px; height: 400px; border-radius: 5px;">
+  <div class="col-12 col-lg-6 items-start q-py-sm q-px-md justify-start">
+      <div class="row justify-start"> 
+        <img src="../assets/img/images/clinic3.jpg"  style="width: 100%; height: 400px; border-radius: 5px;">
       </div>
-  </div> 
+  </div>
+  
+  <div class="absolute top-10 -right-2 rotate-45 icons">
+                    <q-icon name="calendar_today " color="amber" size="50px"/>
+                </div>  
+                <div class="absolute top-17 left-20 -rotate-45 ">
+                    <q-icon name="emergency" color="blue" size="50px"/>
+                </div> 
+                <div class="absolute bottom-5 -left-2 -rotate-45 ">
+                    <q-icon name="local_hospital" color="red" size="50px"/>
+                </div> 
 </div>
 
 
@@ -119,3 +99,18 @@
 
 </q-page>
 </template>
+
+<script>
+  import DoctorCard from "@/components/DoctorCard.vue"
+
+  export default{
+    components: {
+      DoctorCard
+    },
+    setup(){
+      return {
+         DoctorCard
+      }
+    }
+  }
+</script>
