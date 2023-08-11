@@ -101,7 +101,7 @@
 </template>
 
 <script>
-  import DoctorCard from "@/components/DoctorCard.vue"
+  import DoctorCard from "@/views/components/about/DoctorCard.vue"
 
   export default{
     components: {

@@ -1,6 +1,6 @@
 <template>
   <q-page class="">
-    <div class="bg-white h-screen">
+    <div class="bg-white ">
       <!-- Hero Section -->
       <div
         class="row bg-primary hero-section relative overflow-auto"
@@ -111,45 +111,26 @@
       <div>
         <SwiperView>
           <template v-slot:swiper-slide>
-            <swiper-slide>
-              <div class="col q-py-lg">
-                <img
-                  src="@/assets/img/images/maxilife-staff.jpg"
-                  style="height:  100%; border-radius: 20px"
-                />
-                <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                  Best healthcare providers
-                </div>
-              </div>
-            </swiper-slide>
+           
+            <swiper-slide v-for="item in swiperItems" :key="item.title" >
 
-            <swiper-slide>
-              <div class="">
+              <div class="col q-py-lg">
                 <img
                   src="@/assets/img/images/maxilife-staff.jpg"
                   style="height: 100%; border-radius: 20px"
                 />
                 <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                  Best healthcare providers
+                {{ item.title}}
                 </div>
               </div>
             </swiper-slide>
 
-            <swiper-slide>
-              <div class="col q-py-lg">
-                <img
-                  src="@/assets/img/images/maxilife-staff.jpg"
-                  style="height:  100%; border-radius: 20px"
-                />
-                <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                  Best healthcare providers
-                </div>
-              </div>
-            </swiper-slide>
           </template>
         </SwiperView>
       </div>
     </div>
+
+   
 
     <!-- third section -->
   </q-page>
@@ -161,6 +142,31 @@ import SwiperView from "@/components/SwiperView.vue";
 export default {
   components: {
     SwiperView,
+  },
+  setup() {
+
+    return {
+      swiperItems: [
+        {
+          image: "@/assets/img/images/maxilife-staff.jpg",
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+        {
+          image: "@/assets/img/images/maxilife-staff.jpg",
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+        {
+          image: "@/assets/img/images/maxilife-staff.jpg",
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+      ],
+    };
   },
 };
 </script>
