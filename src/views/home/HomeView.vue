@@ -1,46 +1,82 @@
 <template>
 
     <q-page class="">
+        <div class="bg-white">
         <!-- Hero Section -->
-        <div class="row bg-primary">
+        <div class="row bg-primary hero-section relative overflow-auto" style="height: 450px; ">
             <!-- Maxilife Multispecialty Clinic and Diagnostic Center -->
-            <div class="col text-white">
+           <svg xmlns="http://www.w3.org/2000/svg" class="absolute -bottom-0 " viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,320L80,309.3C160,299,320,277,480,266.7C640,256,800,256,960,218.7C1120,181,1280,107,1360,69.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+           
+            <div class="col-12  col-lg-10 text-white relative ">
                 <div style="text-align:center; max-width: 650px; margin-right: auto; margin-left: auto;" class="q-pt-md  ">
                     <div class="text-h4 text-bold  q-mt-xl q-pt-xl q-pb-lg" >Let Maxilife Multispecialty Clinic 
                         <hr/>Care with your Health</div>
                     <div class="text-h6 q-px-lg q-pb-sm"> Book your appointment from the comfort 
                         of your own home and receive quality care from our expert team</div>
-                    <q-btn align="around" class="btn-fixed-width q-mb-md" to="appointment" color="primary" label="Set An Appointment" icon="calendar_today" outline />
-                   
+                      <q-btn align="around" class="btn-fixed-width q-mb-md" to="appointment" color="secondary" label="Set An Appointment" icon="calendar_today" outline />
+                       
+                      <div class="col gt-sm opacity-85 absolute  -bottom-0 -right-20">
+                        <q-img src="../../assets/img/images/doctor2.png" 
+                          style="width:420px; height: 450px; ;" class="row justify-center shadow-b-xl"></q-img>
+                      </div>
                 </div>
             </div>
-            <div class="col gt-sm q-px-sm q-py-xl q-mx-xl  opacity-85">
-                <q-img src="../../assets/img/images/doctor2.png" 
-                style="max-height:650px; margin-left:auto; margin-right: auto; display: block; border-radius: 10px; width:500px; height: 550px; "></q-img>
-                
-            </div>
-
+            <div class="col col-lg-2 gt-sm"></div>
+           
+        
         </div>
-
+ 
 <!--         
       //Second Row -->
 
-        <div class="">
-            <div class="flex justify-center">What We Can Offer</div>
+           <div class="row q-pa-lg q-mx-xl">
+            <div class="col-1 gt-sm"></div>
+             <div class="col-12 col-md-12 col-lg-7 q-px-xl">
+                <div class="flex justify-start text-secondary text-h6">What We Can Offer</div>
+                <div class="row">
+                    <div class="col q-py-lg ">
+                          <div>
+                            <img src="@/assets/img/images/facility1.jpg" style="height: 180px; border-radius: 20px;" />
+                           </div>
+                            <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                                Well cleaned and neat facility
+                            </div>                                                                              
+                    </div>
 
-            <Swiper />
+                    <div class="col q-py-lg q-px-sm">  
+                        <div>                     
+                            <img src="@/assets/img/images/service1.jpg" style="height: 180px; border-radius: 20px;" />      </div>                     
+                            <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                                Affordable and Quality Services
+                            </div>
+                   </div>
 
-        </div>
+                    <div class="col q-py-lg ">              
+                            <img src="@/assets/img/images/maxilife-staff.jpg"  style="height: 180px; border-radius: 20px;" />                       
+                            <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                                Best healthcare providers
+                            </div>                                         
+                    </div>
+                </div>
+             </div>
+             <div class="col-12 col-md-12 col-lg-4"></div>
+           </div>  
 
+
+            
+            </div>
+             <div class="flex justify-center text-primary">What We Can Offer</div>
+
+              <Swiper />
 
         <!-- third section -->
         <div class="row justify-center text-h6 q-py-xl q-pt-md q-my-xl ">Book Your Appointment </div>
 
-        <div class="row">
+        <div class="row q-mx-xl">
      
         
-                 <div class="col-12 col-lg-6 justify-center q-px-md q-py-sm ">
-                        <q-img src="../../assets/img/images/doctor4.jpg" style="max-height: 600px; height: 450px;">
+                 <div class="col-12 col-lg-6 justify-center q-pl-md q-py-sm  ">
+                        <q-img src="../../assets/img/images/doctor4.jpg" style="max-height: 600px; height: 470px;">
                             <div class="absolute-full">
                                 <div class="row opacity-75 q-pt-md q-pl-md">
                                     <img src="../../assets/img/images/logo1.png" style="width: 130px; height: 100px; ">
@@ -52,59 +88,15 @@
                         </q-img>
                  </div> 
                      
-                 <div class="col-12 col-lg-6  justify-center q-px-xl q-py-lg border-y-2  rounded-xl" style="border-color: teal;">
-                        
-                            <div class="row text-h3  q-py-md q-px-xl text-teal-5">
-                                How it works?
-                            </div>
-                            <div class="row q-py-sm q-pl-xl ">
-                                <div class=" q-py-sm q-px-md text-bold text-h7 text-gray-500">
-                                    <ol>
-                                        <li class="q-pb-md">1. Browse Services: Explore the list of available services offered by our professionals. From health consultations to beauty treatments, we've got you covered.</li>
-                                        <li class="q-pb-md">2. Select Your Expert: Choose from a list of skilled and certified professionals in your area. Read their profiles and find the perfect match for your needs.</li>
-                                        <li class="q-pb-md">3. Pick Your Available Schedule: View the real-time availability of your chosen expert and select a date and time that suits you best.</li>
-                                        <li class="q-pb-md">4. Confirm and Book: Double-check your appointment details and confirm your booking. You'll receive an instant confirmation via email and SMS.</li>
-                                    </ol>
-                                </div>                               
-                            </div>
-                            <div class="row  q-pl-xl  ">
-                                 <div class="bg-teal text-teal-1 q-py-md q-px-md text-bold " style="border-radius: 5px;">Book your Appointment
-                                 </div>
-                            </div>
-                </div>
+                 
+                
                      
         </div>
         
 
 
 
-        <div class="row  q-pa-xl justify-center q-mt-xl relative">
-                <div class="col gt-md gt-sm"></div>
-                <div class=" col-12 col-lg-4 q-px-lg justify-center text-center">
-                    <div class="row text-h3 justify-center q-py-md"> About Us</div>
-                    <div class="row">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.      
-                   </div>
 
-                   <div class="row  q-pl-xl justify-center q-py-lg">
-                        <div class="text-white bg-amber-5 q-py-md q-px-md text-bold " style="border-radius: 5px;">Learn More
-                        </div>
-                   </div>
-                
-                 </div> 
-                <div class="col gt-md gt-sm"></div>  
-                <div class="absolute top-10 -right-2 rotate-45 icons">
-                    <q-icon name="calendar_today " color="amber" size="50px"/>
-                </div>  
-                <div class="absolute top-17 left-20 -rotate-45 ">
-                    <q-icon name="emergency" color="blue" size="50px"/>
-                </div> 
-                <div class="absolute bottom-5 -left-2 -rotate-45 ">
-                    <q-icon name="local_hospital" color="red" size="50px"/>
-                </div> 
-                
-        </div>
         
     
      
@@ -128,7 +120,12 @@ export default {
 </script>
 
 
-<style scoped>
+<style >
+
+/* .hero-section{
+    z-index:5;
+    background: linear-gradient(-60deg, rgb(253, 252, 252),rgb(247, 249, 247),rgb(149, 149, 151),yellow);
+} */
 
 
 </style>
