@@ -36,6 +36,38 @@
 
     <swiper-slide>
       <q-card >
+        <img src="@/assets/img/images/facility1.jpg" />
+        <div class="absolute-bottom p-3  bg-gradient-to-t from-black to-transparent">
+          <div class="text-h6 q-my-sm text-white text-bold">
+            Well cleaned and neat facility
+          </div>
+          <div class=" text-white">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+            blanditiis tenetur unde suscipit, quam beatae rerum inventore
+            consectetur, neque doloribus, .
+          </div>
+        </div>
+      </q-card>
+    </swiper-slide>
+
+    <swiper-slide>
+      <q-card >
+        <img src="@/assets/img/images/facility1.jpg" />
+        <div class="absolute-bottom p-3  bg-gradient-to-t from-black to-transparent">
+          <div class="text-h6 q-my-sm text-white text-bold">
+            Well cleaned and neat facility
+          </div>
+          <div class=" text-white">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
+            blanditiis tenetur unde suscipit, quam beatae rerum inventore
+            consectetur, neque doloribus, .
+          </div>
+        </div>
+      </q-card>
+    </swiper-slide>
+
+    <swiper-slide>
+      <q-card >
         <img src="@/assets/img/images/service1.jpg" />
         <div class="absolute-bottom p-3 bg-gradient-to-t from-black to-transparent" >
           <div class="text-h6 q-my-sm text-white text-bold">
