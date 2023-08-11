@@ -2,7 +2,7 @@
 
     <q-page class="">
         <!-- Hero Section -->
-        <div class="row bg-teal-4">
+        <div class="row bg-primary">
             <!-- Maxilife Multispecialty Clinic and Diagnostic Center -->
             <div class="col text-white">
                 <div style="text-align:center; max-width: 650px; margin-right: auto; margin-left: auto;" class="q-pt-md  ">
