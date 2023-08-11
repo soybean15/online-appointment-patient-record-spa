@@ -5,7 +5,7 @@
         <img src="../assets/img/images/doctor1.png" style="width:300px; height: 250px; ">
 
       <q-card-section class="bg-primary text-white">
-        <div class="text-h7">Dr. Emerson DC. Garcia</div>
+        <div class="text-h7 text-gray-700">Dr. Emerson DC. Garcia</div>
         <div class="text-subtitle2">Urosurgeon</div>
       </q-card-section>   
     </q-card>
@@ -16,7 +16,7 @@
         <img src="../assets/img/images/doctor3.png" style="width:300px; height: 250px;">
 
       <q-card-section class="bg-primary text-white">
-        <div class="text-h7">Dra. Kristina T. Vergara-Garcia</div>
+        <div class="text-h7 text-gray-700">Dra. Kristina T. Vergara-Garcia</div>
         <div class="text-subtitle2">Obstetrician/Gynecologist</div>
       </q-card-section>   
     </q-card>

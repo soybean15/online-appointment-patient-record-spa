@@ -16,7 +16,7 @@
 
 
 <!-- History -->
-<div class="row q-mb-md q-pa-xl bg-yellow-1 text-gray-700">
+<div class="row q-mb-md q-pa-xl bg-primary text-gray-700">
   
 
   <div class="col q-py-md">
@@ -51,8 +51,8 @@
 
 <!-- Doctors -->
 
-<div class="row justify-center  q-mt-md q-pa-md bg-yellow-1 text-gray-700 text-h4">Doctors</div>
-<div class="row q-px-md bg-yellow-1 text-gray-700 justify-center items-center">
+<div class="row justify-center  q-mt-md q-pa-md  text-gray-700 text-h4 q-mx-xl ">Doctors</div>
+<div class="row q-px-md text-gray-700 justify-center items-center q-mx-xl">
    <DoctorCard />
 
 </div>
