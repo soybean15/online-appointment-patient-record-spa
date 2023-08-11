@@ -115,7 +115,19 @@
               <div class="col q-py-lg">
                 <img
                   src="@/assets/img/images/maxilife-staff.jpg"
-                  style="height: 180px; border-radius: 20px"
+                  style="height:  100%; border-radius: 20px"
+                />
+                <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                  Best healthcare providers
+                </div>
+              </div>
+            </swiper-slide>
+
+            <swiper-slide>
+              <div class="">
+                <img
+                  src="@/assets/img/images/maxilife-staff.jpg"
+                  style="height: 100%; border-radius: 20px"
                 />
                 <div class="text-h7 q-my-sm text-gray-800 text-bold">
                   Best healthcare providers
@@ -127,19 +139,7 @@
               <div class="col q-py-lg">
                 <img
                   src="@/assets/img/images/maxilife-staff.jpg"
-                  style="height: 180px; border-radius: 20px"
-                />
-                <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                  Best healthcare providers
-                </div>
-              </div>
-            </swiper-slide>
-
-            <swiper-slide>
-              <div class="col q-py-lg">
-                <img
-                  src="@/assets/img/images/maxilife-staff.jpg"
-                  style="height: 180px; border-radius: 20px"
+                  style="height:  100%; border-radius: 20px"
                 />
                 <div class="text-h7 q-my-sm text-gray-800 text-bold">
                   Best healthcare providers
