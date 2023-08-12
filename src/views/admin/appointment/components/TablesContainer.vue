@@ -19,15 +19,15 @@
 
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="pending">
-          <AppointmentPendingTable :buttons="buttons" />
+          <AppointmentPendingTable :chipColors="chipColors" :buttons="buttons" />
         </q-tab-panel>
 
-        <q-tab-panel v-model="tab" name="approved">
-          <AppointmentApprovedTable :buttons="buttons" />
+        <q-tab-panel v-model="tab"  name="approved">
+          <AppointmentApprovedTable :chipColors="chipColors" :buttons="buttons" />
         </q-tab-panel>
 
-        <q-tab-panel v-model="tab" name="completed">
-          <AppointmentCompleted :buttons="buttons" />
+        <q-tab-panel v-model="tab"  name="completed">
+          <AppointmentCompleted :chipColors="chipColors" :buttons="buttons" />
         </q-tab-panel>
       </q-tab-panels>
     </q-card>
@@ -80,6 +80,14 @@ export default {
         },
 
       ],
+       chipColors : {
+     
+     rejected: { color: 'red', icon: 'cancel' },
+     rescheduled: { color: 'blue', icon: 'pending_actions' },
+     approved: { color: 'yellow', icon: 'done_outline' },
+     
+   }
+
     };
   },
 };

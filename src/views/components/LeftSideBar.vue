@@ -39,7 +39,7 @@
       v-ripple
     >
       <q-item-section avatar>
-        <q-icon name="book_online" />
+        <q-icon name="receipt_long" />
       </q-item-section>
 
       <q-item-section> Records </q-item-section>
@@ -74,42 +74,15 @@
     </div>
    
 
-
-    <q-item>
-      <q-item-section>
-        <AuthDialog>Account</AuthDialog>
-      </q-item-section>
-    </q-item>
-    <hr />
-    <div v-if="!authStore.user">
-      <q-item clickable v-ripple>
+  
+      <q-item clickable :active="activeSideBar === 'settings'"   @click="activeSideBar = 'settings'" v-ripple>
         <q-item-section avatar>
-          <q-icon name="login" />
+          <q-icon name="settings" />
         </q-item-section>
 
-        <q-item-section>
-          <LoginView>Sign in</LoginView>
-        </q-item-section>
+        <q-item-section> Settings </q-item-section>
       </q-item>
-      <q-item clickable v-ripple>
-        <q-item-section avatar>
-          <q-icon name="person_add_alt" />
-        </q-item-section>
 
-        <q-item-section>
-          <RegisterView> Register</RegisterView>
-        </q-item-section>
-      </q-item>
-    </div>
-    <div v-else>
-      <q-item clickable @click="authStore.handleLogout" v-ripple>
-        <q-item-section avatar>
-          <q-icon name="logout" />
-        </q-item-section>
-
-        <q-item-section> Logout </q-item-section>
-      </q-item>
-    </div>
   </q-list>
 </template>
 

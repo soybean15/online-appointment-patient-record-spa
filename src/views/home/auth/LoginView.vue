@@ -1,8 +1,16 @@
 <template>
   <div class="">
-    <div label="Click me" color="primary" @click="authStore.dialog.login = true">
+    <q-btn
+      class="mx-1"
+      size="10px"
+      color="white"
+      text-color="primary"
+      rounded
+      @click="authStore.dialog.login = true"
+    >
       <slot></slot>
-    </div>
+    </q-btn>
+
     <q-dialog
       v-model="authStore.dialog.login"
       persistent
@@ -52,7 +60,7 @@
                     {{ authStore.errors.password[0] }}
                   </div>
                   <q-input
-                  :type="isPwd ? 'text' : 'password'"
+                    :type="isPwd ? 'text' : 'password'"
                     standout="bg-teal text-white"
                     v-model="authStore.form.password"
                     label="Password"
@@ -75,10 +83,8 @@
                     type="submit"
                     label="Login"
                   >
-                  <template v-slot:loading>
-        Please Wait...
-      </template>
-                </q-btn>
+                    <template v-slot:loading> Please Wait... </template>
+                  </q-btn>
                 </q-item-section>
               </q-item>
             </q-list>
@@ -100,7 +106,7 @@ export default {
   setup() {
     const authStore = useAuthStore();
     const loading = ref(false);
-   
+
     const onLogin = async () => {
       loading.value = true;
       await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -116,7 +122,7 @@ export default {
       onLogin,
       loading,
 
-      isPwd:ref(false)
+      isPwd: ref(false),
     };
   },
 };

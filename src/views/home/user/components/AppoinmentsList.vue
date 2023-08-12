@@ -29,7 +29,7 @@
                 >{{ appointment.service.name }}
                 <q-badge
                   outline
-                  :color="chipColors[appointment.status]"
+                  :color="chipColors[appointment.status].color"
                   :label="appointment.status"
                 />
               </q-item-label>
@@ -72,24 +72,21 @@
 import AddAppointmentModal from "../modals/AddAppointmentModal.vue";
 import { useAppointmentStore } from "@/store/userAppointment";
 import BreadCrumbs from "@/components/BreadCrumbs.vue";
+import getChipColors from '@/data/chipColor'
 
 export default {
   components: { AddAppointmentModal,BreadCrumbs },
   setup() {
     const appointmentStore = useAppointmentStore();
 
+    const {chipColors} = getChipColors()
+    console.log(chipColors)
+
  
 
     return {
       appointmentStore,
-      chipColors: {
-        pending: "orange",
-        rejected: "red",
-        rescheduled: "blue",
-        approved: "yellow",
-        completed: "green",
-        canceled: "red-11"
-      },
+      chipColors
 
    
     };

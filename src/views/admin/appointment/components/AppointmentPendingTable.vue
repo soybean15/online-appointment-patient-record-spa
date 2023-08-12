@@ -10,6 +10,7 @@
       title="Treats"
       :rows="appointmentStore.pending.data"
       :columns="columns"
+      :rows-per-page-options="[0]"
       row-key="name"
     >
       <template v-slot:bottom>
@@ -225,7 +226,7 @@ export default {
     SearchBar,
     FilterGroup
   },
-  props:['buttons'],
+  props:['buttons','chipColors'],
   setup() {
     const appointmentStore = useAppointmentStore();
     const loading = ref([false, false]);
@@ -233,19 +234,13 @@ export default {
     const current = ref();
 
 
-    const chipColors = {
-     
-      rejected: { color: 'red', icon: 'cancel' },
-      rescheduled: { color: 'blue', icon: 'pending_actions' },
-      approved: { color: 'yellow', icon: 'done_outline' },
-      
-    };
-
+ 
 
     watch(current, async () => {
-      console.log(appointmentStore.pending.links[current.value].url);
+    
 
-      appointmentStore.getPending(
+      appointmentStore.getData(
+        'pending',
         appointmentStore.pending.links[current.value].url
       );
     });
@@ -256,7 +251,7 @@ export default {
       loading,
       selectedItem,
       current,
-      chipColors,
+
       getChip:(status)=>{
         return chipColors[status]
       },
