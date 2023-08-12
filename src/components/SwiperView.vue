@@ -1,5 +1,5 @@
 <template>
-    <div class="text-black">
+    <div class="text-black bg-primary q-py-xl">
         <swiper-container
     :slides-per-view="3"
     :space-between="spaceBetween"
