@@ -72,20 +72,14 @@ export const useAppointmentStore = defineStore('admin_appointment', {
 
         },
 
-        async getPending(path){
+        async getData(status,path){
          
             const data = await axios.get(path)
-           this.stateData.pending = data.data.pending
-        },
-        async getAttended(path){
-          
-            const data = await axios.get(path)
-           this.stateData.attended = data.data.attended
+           this.stateData[status] = data.data[status]
         },
 
         async getApprovedByRange(dateRange){
-            console.log(dateRange)
-
+            
             const data = await axios.post('api/admin/appointment/approved-with-range',{date:dateRange})
 
             this.stateData.approved = data.data.approved

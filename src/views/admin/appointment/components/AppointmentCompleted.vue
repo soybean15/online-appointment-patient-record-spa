@@ -11,6 +11,7 @@
         :rows="appointmentStore.attended.data"                 
         :columns="columns"
         row-key="name"
+        :rows-per-page-options="[0]"
 
       >
       <template v-slot:top-left>
@@ -161,7 +162,7 @@ import { ref, watch } from 'vue';
     components:{
       FilterGroup
     },
-    props:['buttons'],
+    props:['buttons','chipColors'],
     setup () {
 
       const current = ref()
@@ -169,7 +170,7 @@ import { ref, watch } from 'vue';
 
         watch(current,()=>{
 
-          appointmentStore.getAttended(appointmentStore.attended.links[current.value].url)
+          appointmentStore.getData('completed',appointmentStore.attended.links[current.value].url)
         })
 
 

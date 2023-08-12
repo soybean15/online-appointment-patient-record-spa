@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh LpR fff">
-    <q-header reveal   class="bg-primary text-white" height-hint="98">
+    <q-header reveal elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
@@ -8,49 +8,73 @@
           <q-avatar>
             <img src="../assets/img/logo/logo.png" />
           </q-avatar>
-           Maxilife
+          Maxilife
         </q-toolbar-title>
 
-      </q-toolbar>
+        <q-tabs align="justify">
+          <q-route-tab to="/home" label="HOME" />
+          <q-route-tab :to="{ name: 'home_service' }" label="Services" />
+          <q-route-tab to="/about" label="About" />
 
-      <q-tabs align="left">
-        <q-route-tab to="/home" label="HOME" />
-        <q-route-tab :to="{name:'home_service'}" label="Services" />
-        <q-route-tab to="/about" label="About" />
-      </q-tabs>
+          <div v-if="!authStore.user">
+            <q-route-tab class="ml-10 row">
+              <div class="row">
+                <LoginView>Sign in</LoginView>
+                <RegisterView>Register</RegisterView>
+              </div>
+            </q-route-tab>
+          </div>
+          <div v-else>
+            <q-route-tab class="ml-10 row">
+              <q-btn
+                class="mx-1"
+                size="10px"
+                color="white"
+                text-color="primary"
+                rounded
+                label="Log out"
+                @click="authStore.handleLogout"
+              />
+            </q-route-tab>
+          </div>
+        </q-tabs>
+      </q-toolbar>
     </q-header>
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
       <LeftSideBar
     /></q-drawer>
 
-   
     <q-page-container>
-     
       <router-view />
 
       <router-view name="details"></router-view>
     </q-page-container>
 
-    
-
-   <FooterViewVue/>
+    <FooterViewVue />
   </q-layout>
 </template>
 
 <script>
-
 import { onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
 import { useAuthStore } from "@/store/auth";
 import LeftSideBar from "@/views/components/LeftSideBar.vue";
-import FooterViewVue from './components/FooterView.vue';
+import FooterViewVue from "./components/FooterView.vue";
+import LoginView from "@/views/home/auth/LoginView";
+import RegisterView from "@/views/home/auth/RegisterView.vue";
+
 export default {
-  components: { LeftSideBar,FooterViewVue },
+  components: {
+    LeftSideBar,
+    FooterViewVue,
+    RegisterView,
+    LoginView,
+  },
   setup() {
     const authStore = useAuthStore();
     onMounted(() => {
       authStore.getUser();
-      console.log(authStore.user)
+      console.log(authStore.user);
     });
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
@@ -60,6 +84,7 @@ export default {
     // toggle
 
     return {
+      authStore,
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;

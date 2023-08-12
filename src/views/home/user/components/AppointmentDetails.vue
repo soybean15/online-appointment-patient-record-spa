@@ -13,7 +13,7 @@
         <div class="col font-bold text-lg">Appointment Details</div>
         <q-badge
           outline
-          :color="chipColors[appointmentStore.selectedAppointment.status]"
+          :color="chipColors[appointmentStore.selectedAppointment.status].color"
           :label="appointmentStore.selectedAppointment.status"
         />
       </div>
@@ -69,7 +69,7 @@
           <q-chip
           square
           outline
-          :color="chipColors[appointmentStore.selectedAppointment.status]"
+          :color="chipColors[appointmentStore.selectedAppointment.status].color"
           :label="appointmentStore.selectedAppointment.status"
           size="15px"
         />
@@ -88,6 +88,7 @@ import { useAuthStore } from "@/store/auth";
 import router from "@/router";
 import { ref } from 'vue';
 import ChangeScheduleModalVue from '../modals/ChangeScheduleModal.vue';
+import getChipColors from '@/data/chipColor';
 export default {
   components: {
     BreadCrumbs,
@@ -97,6 +98,8 @@ export default {
   setup() {
     const appointmentStore = useAppointmentStore();
     const authStore = useAuthStore();
+
+    const {chipColors } = getChipColors()
 
    
     const loading = ref({
@@ -114,15 +117,7 @@ export default {
     }
 
     return {
-      chipColors: {
-        pending: "orange",
-        rejected: "red-7",
-        rescheduled: "blue",
-        approved: "yellow",
-        completed: "green",
-        canceled: "red-11"
-      },
-
+      chipColors,
       authStore,
       appointmentStore,
       userAction: async(action)=>{

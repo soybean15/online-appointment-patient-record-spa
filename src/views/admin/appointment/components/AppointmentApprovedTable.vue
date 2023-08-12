@@ -11,12 +11,13 @@
       :rows="appointmentStore.approved.data"
       :columns="columns"
       row-key="name"
+      :rows-per-page-options="[0]"
     >
       <template v-slot:bottom>
         <q-pagination
           v-model="current"
           color="primary"
-          :max="appointmentStore.attended.last_page"
+          :max="appointmentStore.approved.last_page"
           :max-pages="5"
           boundary-numbers
         />
@@ -61,23 +62,17 @@
       </template>
 
       <template v-slot:body-cell-fullname="props">
-       
-          <q-td :props="props">
-            <div class="w-max row items-center justify-start">
-              <img
-
+        <q-td :props="props">
+          <div class="w-max row items-center justify-start">
+            <img
               :src="props.row.user.profile[0].image"
               alt="Profile Image"
               style="width: 40px; height: 40px"
             />
 
-            <span class="ml-3">{{props.row.user.profile[0].full_name}}</span>
-        
-
-            </div>
-           
-          </q-td>
-        
+            <span class="ml-3">{{ props.row.user.profile[0].full_name }}</span>
+          </div>
+        </q-td>
       </template>
 
       <template v-slot:body-cell-contact="props">
@@ -163,7 +158,7 @@
   <script>
 import { useAppointmentStore } from "@/store/adminAppointment";
 import { format } from "date-fns";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 import SearchBar from "@/components/SearchBar.vue";
 
@@ -186,7 +181,6 @@ const columns = [
     field: (row) => row.user.profile[0].full_name,
     format: (val) => `${val}`,
     sortable: true,
-   
   },
   {
     name: "service",
@@ -231,10 +225,11 @@ const columns = [
     field: (row) => row.doctor.full_name,
     format: (val) => `${val}`,
   },
+
   {
     name: "actions",
     required: true,
-    label: "Actions",
+    label: "Status",
     align: "center",
   },
 ];
@@ -244,8 +239,18 @@ export default {
     SearchBar,
     FilterGroup,
   },
-  props: ["buttons"],
+
+  props: ["buttons", "chipColors"],
   setup() {
+    const current = ref();
+
+    watch(current, () => {
+      appointmentStore.getData(
+        'approved',
+        appointmentStore.approved.links[current.value].url
+      );
+    });
+
     const currentDate = ref(format(new Date(), "yyyy/MM/dd"));
 
     console.log(currentDate.value);
@@ -256,6 +261,7 @@ export default {
       columns,
       appointmentStore,
       currentDate,
+      current,
       dateRange,
       save: () => {
         console.log("range " + dateRange.value);
