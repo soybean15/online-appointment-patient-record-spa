@@ -63,88 +63,46 @@
       <!--         
       //Second Row -->
 
-      <div class="row q-pa-lg q-mx-md ">
-        <div class="col-1 gt-sm"></div>
-        <div class="col-12 col-md-12 col-lg-7">
-          <div class="row text-primary text-h6">
-               What We Can Offer
-          </div>
-          <div class="row justify-center">
-        
-          <div class="row justify-start">
+
+        <div class="row">
+          <div class="col-7">
+
+      <SwiperView>
+            <template v-slot:swiper-slide>
+              <swiper-slide v-for="item in swiperItems" :key="item.title">
+                <div class="col q-py-lg">
+                  <div class="flex q-py-lg">
+                    <q-img
+                      :src="item.img"
+                      style="border-radius: 20px; height: "
+                      :ratio="4 / 3"
+                      class="border-2 border-color-primary shadow-xl"
+                    />
+                  </div>
+                  <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                    {{ item.title }}
+                  </div>
+                </div>
+              </swiper-slide>
+            </template>
+          </SwiperView>
 
             
-            <div class="col q-py-lg">
-              <div>
-                <img
-                  src="@/assets/img/images/facility1.jpg"
-                  style="height: 180px; border-radius: 20px"
-                  
-                />
-              </div>
-              <div class="text-h7 q-my-md  text-gray-800 text-bold">
-                Well cleaned and neat facility
-              </div>
-            </div>
-
-            <div class="col q-py-lg q-px-lg">
-              <div>
-                <img
-                  src="@/assets/img/images/service1.jpg"
-                  style="height: 180px; border-radius: 20px"
-                />
-              </div>
-              <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                Affordable and Quality Services
-              </div>
-            </div>
-
-            <div class="col q-py-lg">
-              <img
-                src="@/assets/img/images/maxilife-staff.jpg"
-                style="height: 180px; border-radius: 20px"
-              />
-              <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                Best healthcare providers
-              </div>
-            </div>  </div>
-            <div class="row q-pa-xl ">     
-              <div class="flex justify-center">     
-                <img src="../../assets/img/images/img8.png" 
-                style="height: 300px;">                    
-             </div>
-            </div>    
           </div>
+
+          <div class="col-4 text-4xl text-black">HEllo</div>
         </div>
-        <div class="col-12 gt-sm col-lg-4">
-          <div class="q-mt-xl row justify-center">
-            <img src="../../assets/img/images/img5.jpg" style="height: 600px;" class=" border-4 border-primary ">
-          </div>
-        </div>
-      </div>
+     
+
+        
+
+     
+
+
+
 
       <div>
-        <SwiperView>
-          <template v-slot:swiper-slide>
-           
-            <swiper-slide v-for="item in swiperItems" :key="item.title" >
-
-              <div class="col q-py-lg">
-                <div class="flex q-py-lg ">
-                <img
-                  :src="item.img"
-                  style=" border-radius: 20px; height: 400px;"
-                  class="border-2 border-color-primary shadow-xl"
-                />
-               </div>
-                <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                {{ item.title}}
-                </div>
-              </div>
-            </swiper-slide>
-
-          </template>
-        </SwiperView>
+      
       </div>
     </div>
 
