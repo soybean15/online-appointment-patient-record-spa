@@ -58,10 +58,12 @@
 import { onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
 import { useAuthStore } from "@/store/auth";
+import {useSystemStore} from '@/store/system'
 import LeftSideBar from "@/views/components/LeftSideBar.vue";
 import FooterViewVue from "./components/FooterView.vue";
 import LoginView from "@/views/home/auth/LoginView";
 import RegisterView from "@/views/home/auth/RegisterView.vue";
+
 
 export default {
   components: {
@@ -72,7 +74,9 @@ export default {
   },
   setup() {
     const authStore = useAuthStore();
+    const systemStore =useSystemStore()
     onMounted(() => {
+      systemStore.index()
       authStore.getUser();
       console.log(authStore.user);
     });
