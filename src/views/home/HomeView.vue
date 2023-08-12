@@ -63,26 +63,31 @@
       <!--         
       //Second Row -->
 
-      <div class="row q-pa-lg q-mx-xl">
+      <div class="row q-pa-lg q-mx-md ">
         <div class="col-1 gt-sm"></div>
-        <div class="col-12 col-md-12 col-lg-7 q-px-xl">
-          <div class="flex justify-start text-secondary text-h6">
-            What We Can Offer
+        <div class="col-12 col-md-12 col-lg-7">
+          <div class="row text-primary text-h6">
+               What We Can Offer
           </div>
-          <div class="row">
+          <div class="row justify-center">
+        
+          <div class="row justify-start">
+
+            
             <div class="col q-py-lg">
               <div>
                 <img
                   src="@/assets/img/images/facility1.jpg"
                   style="height: 180px; border-radius: 20px"
+                  
                 />
               </div>
-              <div class="text-h7 q-my-sm text-gray-800 text-bold">
+              <div class="text-h7 q-my-md  text-gray-800 text-bold">
                 Well cleaned and neat facility
               </div>
             </div>
 
-            <div class="col q-py-lg q-px-sm">
+            <div class="col q-py-lg q-px-lg">
               <div>
                 <img
                   src="@/assets/img/images/service1.jpg"
@@ -102,10 +107,20 @@
               <div class="text-h7 q-my-sm text-gray-800 text-bold">
                 Best healthcare providers
               </div>
-            </div>
+            </div>  </div>
+            <div class="row q-pa-xl ">     
+              <div class="flex justify-center">     
+                <img src="../../assets/img/images/img8.png" 
+                style="height: 300px;">                    
+             </div>
+            </div>    
           </div>
         </div>
-        <div class="col-12 col-md-12 col-lg-4"></div>
+        <div class="col-12 gt-sm col-lg-4">
+          <div class="q-mt-xl row justify-center">
+            <img src="../../assets/img/images/img5.jpg" style="height: 600px;" class=" border-4 border-primary ">
+          </div>
+        </div>
       </div>
 
       <div>
@@ -115,10 +130,13 @@
             <swiper-slide v-for="item in swiperItems" :key="item.title" >
 
               <div class="col q-py-lg">
+                <div class="flex q-py-lg ">
                 <img
-                  src="@/assets/img/images/maxilife-staff.jpg"
-                  style="height: 100%; border-radius: 20px"
+                  :src="item.img"
+                  style=" border-radius: 20px; height: 400px;"
+                  class="border-2 border-color-primary shadow-xl"
                 />
+               </div>
                 <div class="text-h7 q-my-sm text-gray-800 text-bold">
                 {{ item.title}}
                 </div>
@@ -148,23 +166,36 @@ export default {
     return {
       swiperItems: [
         {
-          image: "@/assets/img/images/maxilife-staff.jpg",
+          img: require("@/assets/img/images/img3.png"),
           title: "Best healthcare providers",
           description:
             "Book your appointment from the comfort of your own home and receive quality care from our expert team",
         },
         {
-          image: "@/assets/img/images/maxilife-staff.jpg",
+          img: require("@/assets/img/images/img6.png"),
           title: "Best healthcare providers",
           description:
             "Book your appointment from the comfort of your own home and receive quality care from our expert team",
         },
         {
-          image: "@/assets/img/images/maxilife-staff.jpg",
+          img: require("@/assets/img/images/img2.jpg"),
           title: "Best healthcare providers",
           description:
             "Book your appointment from the comfort of your own home and receive quality care from our expert team",
         },
+        {
+          img: require("@/assets/img/images/img1.jpg"),
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+        // {
+        //   img: require("@/assets/img/images/img9.png"),
+        //   title: "Best healthcare providers",
+        //   description:
+        //     "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        // },
+       
       ],
     };
   },

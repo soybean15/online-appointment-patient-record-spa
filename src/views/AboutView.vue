@@ -1,33 +1,38 @@
 <template>
     <q-page class="" style="">
    
-      <div class="">
+      <div class="row bg-primary">
+        <div class="col-12 col-lg-6 q-pa-xl">
     <q-parallax :height="400" :speed="0.5">
       <template v-slot:media>
-        <img src="../../src/assets/image1.jpg" style="height: 800px;">
+        <img src="../../src/assets/image1.jpg" style="height: 1000px;">
       </template>
 
-      <h1 class=" text-h4 row justify-center text-white">Maxilife Multispecialty Clinic and Diagnostic Center </h1>
-    </q-parallax>
-   </div>
+      </q-parallax>
+      <h1 class=" text-h4 row justify-end  text-white">Maxilife Multispecialty Clinic and Diagnostic Center </h1>
+    
+  </div>
 
 
 
 
 
 <!-- History -->
-<div class="row q-mb-md q-pa-xl bg-primary text-gray-700">
-  
+      <div class="col-12 col-lg-6 first-letter:q-mb-md q-pa-xl bg-primary text-gray-700">
+        
 
-  <div class="col q-py-md">
-    <div class="row text-h4">History
-    </div>
-    <div class="row q-py-md q-mr-xl q-pr-md">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.           
-    </div>
-  </div>
-</div>
+        <div class="row ">
+          <div class="row text-h4">History
+          </div>
+          <div class="row q-py-md q-mr-xl q-pr-md">
+            <p>
+            Maxilife is a healthcare facility more popularly known as birthing center in San Fernando Sur, Cabiao, Neva Ecija which was established by Dr. Emerson D.C. Garcia and Dr. Kristina T. Vergara-Garcia, started its construction on May 2, 2017 through the help and supervision of Arch. Medel D.C. Garcia and Arch. Kristel R. Garcia. It formally opened its doors to the public on February 2, 2018 when it started the out-patient services staffed by Nurses, Midwives, Pediatricians, Obstetricians and other subspecialty doctors such as Urosurgeon, Medical Internist & Radiologist/Sonologist. It was the only private birthing facility of its kind in San Fernando Sur, Cabiao, Nueva Ecija when it was first established.
+      <br /> The site where the healthcare facility stands which has an approximate area of 240 square meters along the highway just beside Eastern Gas Station was given by their beloved parents Ernesto and Maxima Garcia. The facility operations commenced amidst problems and difficulties which usually beset a new undertaking. Nurses, attendants and other personel were mobilized to go on the vicinity to announce that the facility was already in operation. soon enough, there was a gradual increase in th number of patients and different cases treated in the facility.
+      <br />Later, because of the increasing number of patients seeking for a diagnostic ultrasound, the institution decided to procure such equipment to better serve and attend to patient needs. Maxilife as a birthing facility presents a more home-like comfortable environment than a hospital labor ward, typically with more options labor:food/drink, music, and the attendance of family and frie desired. Other characteristics can also include a fully air-condi labor and delivery room with very clean comfort rooms large e for patients who are wheelchair dependent. The décor is mea emphasize the normality of birth.
+             <br />In Maxilife, pregnant women are free to act more spontaneously during their birth, such as squatting, walking and performing other postures that can help assist in labor. Its primary purpose of reaching out to the sick and the needy was achieved in line of patient satisfaction. True to its vision and mission, Maxilife Maternity Lying-in and Multispecialty Clinic Co. is committed to serve all patients regardless of creed, color, religion and socio-economic status.    
+          </p></div>
+        </div>
+      </div> </div>
 
 <!-- Mission Vision -->
 <div class="row q-my-md q-pa-xl">     
