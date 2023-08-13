@@ -11,7 +11,7 @@
       </div>
 
       <div class="column">
-        <div class="row self-center text-2xl">{{ fullname }}</div>
+        <div class="row self-center text-2xl">{{ userStore.selectedUser.doctor.full_name }}</div>
         <div class="row self-center text-lg font-secondary">
           {{ userStore.selectedUser.doctor.specialty }}
         </div>
@@ -133,8 +133,15 @@
                       </q-icon>
                     </template>
                   </q-input>
+
+                 
                  
                 </div>
+                <div class="row justify-end mx-5">
+                  <q-btn class="self-end" @click="userStore.setDoctorTime()" dense label="submit" />
+                </div>
+              
+                
               </q-card-section>
             </q-card>
           </q-expansion-item>
@@ -178,8 +185,7 @@ export default {
         console.log(index);
         userStore.setSchedule(index);
       },
-      start:ref('08:00:00'),
-      end:ref()
+     
     };
   },
 };
