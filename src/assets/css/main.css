@@ -6,41 +6,48 @@
     font-family: 'Nunito';
     src: url('./fonts/Nunito-Regular.ttf');
 }
+
 @font-face {
     font-family: 'Satoshi';
     src: url('./fonts/Satoshi-Variable.ttf');
 }
 
-.font-nonito{
+.font-nonito {
     font-family: 'Nunito';
 }
 
-.font-satoshi{
+.font-satoshi {
     font-family: 'Satoshi';
 }
-
-.body--light{
-    --surface:#f8f8f8;
-    --onSurface:#ffffff;
+.primary-background {
+    background-color: var(--primary-background-color);
+    /* Add other primary styles here */
+  }
+.body--light {
+    --surface: #f8f8f8;
+    --onSurface: #ffffff;
     --text: #1d1c1c;
     --text2: #727070;
 }
-.body--dark{
-    --surface:#202020;
-    --onSurface:#2e2d2d;
-    --text:#f7f3f2;
+
+.body--dark {
+    --surface: #202020;
+    --onSurface: #2e2d2d;
+    --text: #f7f3f2;
     --text2: #8a8787;
 }
 
-.bg-surface{
+.bg-surface {
     background-color: var(--surface);
     color: var(--text);
 }
+
 .bg-onSurface {
     background-color: var(--onSurface);
 }
-.font-secondary{
-    color:var(--text2)
+
+.font-secondary {
+    color: var(--text2)
 }
 
 

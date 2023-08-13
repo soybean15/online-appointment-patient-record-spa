@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="bg-primary text-white">
+    <q-header elevated class=" text-white" :style="{'background-color': config.primary}">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
@@ -8,13 +8,13 @@
           <q-avatar>
             <img src="../../assets/img/logo/logo.png" />
           </q-avatar>
-           Maxilife
+          Maxilife
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <q-item :to="{name:'dashboard'}" clickable v-ripple>
+      <q-item :to="{ name: 'dashboard' }" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="dashboard" />
         </q-item-section>
@@ -22,7 +22,7 @@
         <q-item-section> Dashboard </q-item-section>
       </q-item>
 
-      <q-item :to="{name:'adminAppointment'}" clickable v-ripple>
+      <q-item :to="{ name: 'adminAppointment' }" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="pending_actions" />
         </q-item-section>
@@ -38,7 +38,7 @@
         <q-item-section> Calendar </q-item-section>
       </q-item>
 
-      <q-item :to="{name:'services'}" clickable v-ripple>
+      <q-item :to="{ name: 'services' }" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="medical_services" />
         </q-item-section>
@@ -49,23 +49,19 @@
       <q-expansion-item icon="perm_identity" label="Users">
         <q-card>
           <q-card-section
-            ><q-item :to="{name:'patients'}" clickable v-ripple>
+            ><q-item :to="{ name: 'patients' }" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="masks" />
               </q-item-section>
 
               <q-item-section> Patients </q-item-section>
-
-             
             </q-item>
-           <q-item :to="{name:'doctors'}" clickable v-ripple>
+            <q-item :to="{ name: 'doctors' }" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon name="vaccines" />
               </q-item-section>
 
               <q-item-section> Doctors </q-item-section>
-
-             
             </q-item>
           </q-card-section>
         </q-card>
@@ -79,40 +75,56 @@
 
         <q-item-section> Exit </q-item-section>
       </q-item>
+
+      <q-item :to="{ name: 'settings' }" clickable v-ripple>
+        <q-item-section avatar>
+          <q-icon name="settings" />
+        </q-item-section>
+
+        <q-item-section> Settings </q-item-section>
+      </q-item>
     </q-drawer>
 
     <q-page-container>
       <router-view></router-view>
     </q-page-container>
 
-    <FooterView/>
+    <FooterView />
   </q-layout>
-
 </template>
   
   <script>
-  import FooterView from "../components/FooterView.vue";
+import FooterView from "../components/FooterView.vue";
 import { onMounted, ref } from "vue";
 import { useAdminStore } from "@/store/admin";
-
+import {useConfigStore} from '@/data/config'
 export default {
-  components:{
-    FooterView
+  components: {
+    FooterView,
   },
   setup() {
     const leftDrawerOpen = ref(false);
-    const adminStore = useAdminStore()
+    const adminStore = useAdminStore();
 
-    onMounted(()=>{
-      adminStore.index()
-    })
+    const config = useConfigStore()
+  
+    onMounted(async () => {
+      adminStore.index();
+      
+    });
 
     return {
       leftDrawerOpen,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
+      config
     };
   },
 };
 </script>
+
+<style >
+
+
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <q-list padding class="font-nonito font-bold">
+  <q-list padding class=" font-nonito font-bold">
     <div v-if="authStore.user">
       <q-item
       :active="activeSideBar === 'profile'"
@@ -75,14 +75,6 @@
    
 
   
-      <q-item clickable :active="activeSideBar === 'settings'"   @click="activeSideBar = 'settings'" v-ripple>
-        <q-item-section avatar>
-          <q-icon name="settings" />
-        </q-item-section>
-
-        <q-item-section> Settings </q-item-section>
-      </q-item>
-
   </q-list>
 </template>
 
@@ -91,19 +83,27 @@ import LoginView from "@/views/home/auth/LoginView";
 import RegisterView from "@/views/home/auth/RegisterView.vue";
 import { ref } from "vue";
 import { useAuthStore } from "@/store/auth";
+import { useConfigStore } from "@/data/config";
 export default {
   components: { LoginView, RegisterView },
 
   setup() {
     const authStore = useAuthStore();
 
+    const config = useConfigStore()
+    const primary = ref(config.primary)
+
     return {
       activeSideBar: ref(),
       authStore,
+      primary
     };
   },
 };
 </script>
 
 <style>
+.q-item.q-router-link--active, .q-item--active {
+  color: v-bind(primary);
+}
 </style>
