@@ -125,6 +125,8 @@ export default {
 </script>
 
 <style >
-
+.q-item.q-router-link--active, .q-item--active {
+  color: v-bind(primary);
+}
 
 </style>

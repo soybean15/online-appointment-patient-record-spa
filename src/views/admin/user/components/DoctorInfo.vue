@@ -70,18 +70,70 @@
           >
             <q-card>
               <q-card-section>
-               
                 <div
                   class="fit row wrap justify-start items-start content-start"
                 >
-                  <div class="" v-for="(day, index)  in userStore.selectedUser.doctor.available_schedules" :key="day">
+                  <div
+                    class=""
+                    v-for="(day, index) in userStore.selectedUser.doctor
+                      .available_schedules"
+                    :key="day"
+                  >
                     <q-checkbox
                       class=""
                       v-model="day.selected"
-                      @click="setSchedule(index +1)"
+                      @click="setSchedule(index + 1)"
                       :label="day.name"
                     />
                   </div>
+                </div>
+
+                <div class="row justify-around">
+                  <q-input  label="Start time" class="col-5" dense outlined v-model="userStore.selectedUser.doctor.from" mask="time" :rules="['time']">
+                    <template v-slot:append>
+                      <q-icon name="access_time" class="cursor-pointer">
+                        <q-popup-proxy
+                          cover
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-time v-model="userStore.selectedUser.doctor.from">
+                            <div class="row items-center justify-end">
+                              <q-btn
+                                v-close-popup
+                                label="Close"
+                                color="primary"
+                                flat
+                              />
+                            </div>
+                          </q-time>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input> 
+                  <q-input  label="End time" class="col-5" dense outlined v-model="userStore.selectedUser.doctor.to" mask="time"  :rules="[val => !!val || 'End time is required']">
+                    <template v-slot:append>
+                      <q-icon name="access_time" class="cursor-pointer">
+                        <q-popup-proxy
+                          cover
+                          transition-show="scale"
+                          transition-hide="scale"
+                        >
+                          <q-time v-model="userStore.selectedUser.doctor.to">
+                            <div class="row items-center justify-end">
+                              <q-btn
+                                v-close-popup
+                                label="Close"
+                                color="primary"
+                                flat
+                              />
+                            </div>
+                          </q-time>
+                        </q-popup-proxy>
+                      </q-icon>
+                    </template>
+                  </q-input>
+                 
                 </div>
               </q-card-section>
             </q-card>
@@ -108,11 +160,10 @@ export default {
   },
   setup() {
     const userStore = useAdminStore().userStore;
-  
 
     return {
       userStore,
-  
+
       fullname: computed(() => {
         if (userStore.selectedUser) {
           if (userStore.selectedUser.profile[0].gender === "Male") {
@@ -127,6 +178,8 @@ export default {
         console.log(index);
         userStore.setSchedule(index);
       },
+      start:ref('08:00:00'),
+      end:ref()
     };
   },
 };
