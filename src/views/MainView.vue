@@ -1,10 +1,10 @@
 <template>
   <q-layout view="hHh LpR fff">
-    <q-header reveal elevated class="bg-primary text-white" height-hint="98">
-      <q-toolbar>
+    <q-header reveal elevated class=" text-white" height-hint="98" :style="{'background-color':$primary} ">
+      <q-toolbar class="">
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
+        <q-toolbar-title >
           <q-avatar>
             <img src="../assets/img/logo/logo.png" />
           </q-avatar>
@@ -29,7 +29,7 @@
               <q-btn
                 class="mx-1"
                 size="10px"
-                color="white"
+                style="background-color: white !important;"
                 text-color="primary"
                 rounded
                 label="Log out"
@@ -55,10 +55,10 @@
 </template>
 
 <script>
+import {useConfigStore} from '@/data/config'
 import { onMounted, ref } from "vue";
 import { useQuasar } from "quasar";
 import { useAuthStore } from "@/store/auth";
-import {useSystemStore} from '@/store/system'
 import LeftSideBar from "@/views/components/LeftSideBar.vue";
 import FooterViewVue from "./components/FooterView.vue";
 import LoginView from "@/views/home/auth/LoginView";
@@ -74,17 +74,22 @@ export default {
   },
   setup() {
     const authStore = useAuthStore();
-    const systemStore =useSystemStore()
+    const config= useConfigStore()
+
+
+
+
     onMounted(() => {
-      systemStore.index()
+
       authStore.getUser();
-      console.log(authStore.user);
+  
+    
     });
     const leftDrawerOpen = ref(false);
     const rightDrawerOpen = ref(false);
 
     const $q = useQuasar();
-
+   
     // toggle
 
     return {
@@ -99,7 +104,14 @@ export default {
         rightDrawerOpen.value = !rightDrawerOpen.value;
       },
       $q,
+      config
     };
   },
 };
 </script>
+
+<style >
+
+
+
+</style>

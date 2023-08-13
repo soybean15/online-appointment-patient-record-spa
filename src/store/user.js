@@ -59,6 +59,19 @@ export const useUserStore = defineStore('user', {
         doctor_id: this.selectedUser.doctor.id
       })
     },
+
+    async setDoctorTime(){
+
+      const data = await axios.post('api/admin/doctor/time',{
+        id:this.stateSelectedUser.doctor.id,
+        from:this.stateSelectedUser.doctor.from,
+        to:this.stateSelectedUser.doctor.to
+      })
+
+      this.stateSelectedUser = data.data.doctor
+
+
+    },
     async getPatients(path,keyword){
         if(!path){
             path = 'api/admin/patient'
@@ -77,6 +90,8 @@ export const useUserStore = defineStore('user', {
       this.statePatients = data.data.results
 
     },
+
+
     setUser(user){
       this.stateSelectedUser = user
       console.log(this.stateSelectedUser)

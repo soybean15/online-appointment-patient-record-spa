@@ -72,11 +72,13 @@ const routes = [
       {
         path: '/appointment/details',
         name: 'appointmentDetails',
-        component:  () => import('@/views/home/user/components/AppointmentDetails'), // Parent router-view
+        component:  () => import('@/views/home/user/components/AppointmentDetails'), 
          
        
 
       },
+   
+    
    
     
      
@@ -144,6 +146,15 @@ const routes = [
         path: 'appointment',
         name: 'adminAppointment',
         component: () => import('@/views/admin/appointment/AppointmentView'),
+
+      },
+
+      {
+        path: '/settings',
+        name: 'settings',
+        component:  () => import('@/views/admin/SettingsView'),
+         
+       
 
       },
     ]

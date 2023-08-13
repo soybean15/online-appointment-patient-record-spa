@@ -3,8 +3,11 @@
     <div class="bg-white ">
       <!-- Hero Section -->
       <div
-        class="row bg-primary hero-section relative overflow-auto"
-        style="height: 450px"
+        class="row   hero-section relative overflow-auto"
+        style="height: 450px; "
+        :style="{'background-color': $primary }"
+        
+       
       >
         <!-- Maxilife Multispecialty Clinic and Diagnostic Center -->
         <svg
@@ -90,7 +93,7 @@
             
           </div>
 
-          <div class="col-4 text-4xl text-black">HEllo</div>
+          <div class="col-4 primary text-4xl">HEllo</div>
         </div>
      
 
@@ -166,4 +169,6 @@ export default {
     z-index:5;
     background: linear-gradient(-60deg, rgb(253, 252, 252),rgb(247, 249, 247),rgb(149, 149, 151),yellow);
 } */
+
+
 </style>

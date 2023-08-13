@@ -3,10 +3,11 @@
     <q-btn
       class="mx-1"
       size="10px"
-      color="white"
+      
       text-color="primary"
       rounded
       @click="authStore.dialog.login = true"
+      style="background-color: white !important;"
     >
       <slot></slot>
     </q-btn>
@@ -128,5 +129,5 @@ export default {
 };
 </script>
 
-<style>
+<style >
 </style>
