@@ -78,6 +78,7 @@ export default {
 
 
 
+
     onMounted(() => {
 
       authStore.getUser();
@@ -110,10 +111,6 @@ export default {
 </script>
 
 <style >
-.q-btn{
-  background-color: v-bind($primary) !important;
-
-}
 
 
 

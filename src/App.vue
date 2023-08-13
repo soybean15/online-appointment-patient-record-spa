@@ -1,51 +1,36 @@
 <template>
-  <div class=" font-nonito">
-  <router-view></router-view>
-</div>
+  <div class="font-nonito">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
+import { useSystemStore } from "./store/system";
+import { onMounted, ref } from "vue";
+import { useConfigStore } from "./data/config";
 
-import { useSystemStore } from './store/system';
-import { onMounted, ref } from 'vue';
-import { useConfigStore } from './data/config';
-import { useQuasar } from "quasar";
 export default {
- 
-  setup(){
-    const systemStore = useSystemStore()
-    const $q = useQuasar();
-  
-    const config = useConfigStore()
-    const primary =ref(config.primary)
+  setup() {
+    const systemStore = useSystemStore();
 
-    
 
-  
+    const config = useConfigStore();
+    const primary = ref(config.primary);
 
- 
-    onMounted(()=>{
-      systemStore.index()
-    })
+    onMounted(() => {
+      systemStore.index();
+    });
 
     return {
-      primary
-    }
-  }
-  
+      primary,
+    };
+  },
 };
 </script>
 <style >
-
-.bg-main{
-  background-color: v-bind(primary)
+.q-btn {
+  background-color: v-bind(primary) !important;
+  
+  
 }
-
-.color-main{
-  color:v-bind(primary)
-}
-
-
-
-
 </style>

@@ -3,8 +3,10 @@
     <div class="bg-white ">
       <!-- Hero Section -->
       <div
-        class="row bg-main  hero-section relative overflow-auto"
-        style="height: 450px"
+        class="row   hero-section relative overflow-auto"
+        style="height: 450px; "
+        :style="{'background-color': $primary }"
+        
        
       >
         <!-- Maxilife Multispecialty Clinic and Diagnostic Center -->
