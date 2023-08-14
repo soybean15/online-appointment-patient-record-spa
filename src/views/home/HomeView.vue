@@ -48,7 +48,7 @@
               outline
             />
 
-            <div class="col gt-sm opacity-85 absolute -bottom-0 -right-20">
+            <div class="col gt-sm opacity-85 absolute -bottom-8 -right-20 q-pt-">
               <q-img
                 src="../../assets/img/images/doctor2.png"
                 style="width: 420px; height: 450px"
@@ -64,51 +64,80 @@
       //Second Row -->
 
 
-        <div class="row">
-          <div class="col-7">
-
-      <SwiperView>
-            <template v-slot:swiper-slide>
-              <swiper-slide v-for="item in swiperItems" :key="item.title">
-                <div class="col q-py-lg">
-                  <div class="flex q-py-lg">
-                    <q-img
-                      :src="item.img"
-                      style="border-radius: 20px; height: "
-                      :ratio="4 / 3"
-                      class="border-2 border-color-primary shadow-xl"
-                    />
-                  </div>
-                  <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                    {{ item.title }}
-                  </div>
-                </div>
-              </swiper-slide>
-            </template>
-          </SwiperView>
-
-            
+        <div class="row justify-center items-center">
+          <div class="col col-lg-1"></div>
+          <div class="col-12 col-lg-7 q-px-xl q-py-md">
+            <div class="text-secondary text-h6 q-px-xl">What We can Offer</div>
+            <div class="">
+              
+              <SwiperView>
+                    <template v-slot:swiper-slide>
+                      <swiper-slide v-for="item in swiperItems" :key="item.title">
+                        <div class="col q-py-lg">
+                          <div class="flex q-py-lg">
+                            <q-img
+                              :src="item.img"
+                              style="border-radius: 20px; height: "
+                              :ratio="4 / 3"
+                              class="border-2 border-color-primary shadow-xl"
+                            />
+                          </div>
+                          <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                            {{ item.title }}
+                          </div>
+                        </div>
+                      </swiper-slide>
+                    </template>
+                  </SwiperView>
+               </div>
+                         
           </div>
 
-          <div class="col-4 text-4xl text-black">HEllo</div>
+          <div class="col-12 col-lg-4 text-4xl text-white q-my-xl  bg-primary">
+            <div class="row justify-center items-center text-h5 q-my-md">           
+                 Presyong ABOT KAYA <br />  Alagang DOCTORA
+            </div>
+            
+            <!-- <div class="row relative q-mt-xl ">
+
+              <div class="col-6 gt-sm absolute top-10 -right-5">
+                <div>
+                  <img src="../../assets/img/images/img5.jpg " style="width: 500px; height: 400px;">
+                </div>
+              
+            </div>
+            </div> -->
+
+              
+          </div>
         </div>
      
 
         
 
-     
-
-
-
+     <div class="row justify-center">
+       <div class="col-8">
+         <div class="row q-pa-md q-mx-md q-my-xl justify-center">
+                <img src="../../assets/img/images/img8.png" 
+                 style="width: 500px; height: 300px;">
+          </div>
+       </div>
+      <div class="col-4 gt-sm"> </div>  
+    </div>
 
       <div>
       
-      </div>
+     </div>
     </div>
 
    
-
     <!-- third section -->
+
+   
+   
+ 
+ 
+  
   </q-page>
 </template>
 
@@ -125,6 +154,24 @@ export default {
       swiperItems: [
         {
           img: require("@/assets/img/images/img3.png"),
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+        {
+          img: require("@/assets/img/images/facility1.jpg"),
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+        {
+          img: require("@/assets/img/images/service1.jpg"),
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+        {
+          img: require("@/assets/img/images/maxilife-staff.jpg"),
           title: "Best healthcare providers",
           description:
             "Book your appointment from the comfort of your own home and receive quality care from our expert team",

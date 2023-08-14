@@ -3,14 +3,11 @@ import HomeView from '../views/home/HomeView.vue'
 import { useAuthStore } from '@/store/auth'
 
 const routes = [
-
-
   {
     path: '/',
     name: 'main',
     redirect: '/home',
     component: () => import(/* webpackChunkName: "about" */ '@/views/MainView'),
-
 
     children: [
 
@@ -46,12 +43,8 @@ const routes = [
             next();
           }
 
-
-
         },
         children: [
-
-      
           
         ]
 
