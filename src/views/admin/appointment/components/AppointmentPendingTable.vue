@@ -7,11 +7,11 @@
       table-header-class="text-brown"
       flat
       bordered
-      title="Treats"
+     
       :rows="appointmentStore.pending.data"
       :columns="columns"
       :rows-per-page-options="[0]"
-      row-key="name"
+    
     >
       <template v-slot:bottom>
         <q-pagination

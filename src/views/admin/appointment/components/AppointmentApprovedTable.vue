@@ -1,13 +1,12 @@
 <template>
-  <div class="">
+  <div >
     <q-table
-      color="primary"
+      
       card-class="text-brown"
       table-class="text-grey-8"
       table-header-class="text-brown"
       flat
       bordered
-      title="Treats"
       :rows="appointmentStore.approved.data"
       :columns="columns"
       row-key="name"
@@ -60,18 +59,13 @@
           </template>
         </FilterGroup>
       </template>
-
-      <template v-slot:body-cell-fullname="props">
+      <template v-slot:body-cell-image="props">
         <q-td :props="props">
-          <div class="w-max row items-center justify-start">
-            <img
-              :src="props.row.user.profile[0].image"
-              alt="Profile Image"
-              style="width: 40px; height: 40px"
-            />
-
-            <span class="ml-3">{{ props.row.user.profile[0].full_name }}</span>
-          </div>
+          <img
+            :src="props.row.user.profile[0].image"
+            alt="Profile Image"
+            style="width: 40px; height: 40px"
+          />
         </q-td>
       </template>
 
@@ -111,7 +105,7 @@
         </q-td>
       </template>
 
-      <template v-slot:body-cell-actions="props">
+      <template v-slot:body-cell-status="props">
         <q-td :props="props">
           <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
           <div class="row justify-around">
@@ -124,7 +118,6 @@
 
           
           </div>
-   
         </q-td>
       </template>
     </q-table>
@@ -140,33 +133,38 @@ import SearchBar from "@/components/SearchBar.vue";
 
 import FilterGroup from "@/components/FilterGroup.vue";
 const columns = [
+  // {
+  //   name: "ref_id",
+  //   required: true,
+  //   label: "Reference No.",
+  //   align: "left",
+  //   field: (row) => row.reference_id,
+  //   format: (val) => `${val}`,
+  // },
   {
-    name: "ref_id",
+    name: "image",
     required: true,
-    label: "Reference No.",
-    align: "left",
-    field: (row) => row.reference_id,
+    label: "",
+    align: "center",
+    field: (row) => row.user.profile[0].image,
     format: (val) => `${val}`,
+    sortable: false,
+    "q-table-col-props": {
+      "class-name": "q-py-xs",
+      "style-name": "width: 60px",
+    },
   },
 
   {
-    name: "fullname",
+    name: "name",
     required: true,
-    label: "Full Name",
+    label: "Patient Name",
     align: "left",
     field: (row) => row.user.profile[0].full_name,
     format: (val) => `${val}`,
     sortable: true,
   },
-  {
-    name: "service",
-    required: true,
-    label: "Service",
-    align: "left",
-    field: (row) => row.service.name,
-    format: (val) => `${val}`,
-    sortable: true,
-  },
+
   {
     name: "service",
     required: true,
@@ -203,7 +201,7 @@ const columns = [
   },
 
   {
-    name: "actions",
+    name: "status",
     required: true,
     label: "Status",
     align: "center",
@@ -214,7 +212,7 @@ export default {
   components: {
     SearchBar,
     FilterGroup,
-    CompleteAppointmentModal
+    CompleteAppointmentModal,
   },
 
   props: ["buttons", "chipColors"],
@@ -223,7 +221,7 @@ export default {
 
     watch(current, () => {
       appointmentStore.getData(
-        'approved',
+        "approved",
         appointmentStore.approved.links[current.value].url
       );
     });
