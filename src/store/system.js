@@ -16,24 +16,24 @@ export const useSystemStore = defineStore('system', {
         async index() {
             const data = await axios.get('api')
             this.systemSettings = data.data
-            this.systemPrimaryColor = data.data.theme_color == null ? "#49b265" : this.systemSettings.theme_color
+            this.systemPrimaryColor = data.data.theme_color.primary == null ? "#49b265" :data.data.theme_color.primary
 
-
-            console.log( `${localStorage.getItem('primary')} ${data.data.theme_color}`)
-            if(localStorage.getItem('primary')==='null'  || localStorage.getItem('primary') != data.data.theme_color ){
+            console.log( `${localStorage.getItem('primary')} ${data.data.theme_color.primary}`)
+            if(localStorage.getItem('primary')==='null'  || localStorage.getItem('primary') != data.data.theme_color.primary ){
                 console.log('no COlor')
               
                 console.log(localStorage.getItem('primary'))
-                localStorage.setItem('primary',data.data.theme_color);
+                localStorage.setItem('primary',data.data.theme_color.primary);
             }
 
-            console.log(localStorage.getItem('primary'))
-            // if (primary.value !== systemStore.primaryColor) {
-            //     primary.value = systemStore.primaryColor;
-            //     localStorage.setItem('primary', primary.value);
-            // }
+          
 
          
+        },
+        async changeTheme(theme){
+            const data = await axios.post('api/admin/settings/theme',{
+                primary:theme.primary
+            })
         }
 
     }

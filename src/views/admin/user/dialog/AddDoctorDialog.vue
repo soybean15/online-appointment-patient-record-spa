@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <q-btn label="Add Doctor" color="primary" @click="persistent = true" />
+    <q-btn label="Add Doctor"  @click="persistent = true" />
 
     <q-dialog
       v-model="persistent"

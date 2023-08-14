@@ -1,13 +1,13 @@
 <template>
-  <div class="q-pa-md">
+  <div class="w-full">
     <q-card>
       <q-tabs
         v-model="tab"
         dense
         class="text-grey"
-        active-color="primary"
-        indicator-color="primary"
-        align="justify"
+        :active-color="$primary"
+        align="start"
+        shrink
         narrow-indicator
       >
         <q-tab name="pending" label="Pending" />

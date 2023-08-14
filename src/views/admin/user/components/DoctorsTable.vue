@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md" style="max-width: 700px">
-    <q-toolbar class="bg-primary text-white shadow-2">
+    <q-toolbar class=" text-white shadow-2" :style="{'background-color':$primary}">
       <q-toolbar-title>Doctors</q-toolbar-title>
     </q-toolbar>
 
