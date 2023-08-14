@@ -14,24 +14,25 @@
           >
         </q-item-section>
         <q-item-section side top>
-          
+          <q-input outlined v-model="color.primary" class="my-input">
+            <template v-slot:append>
+              <q-icon name="colorize" class="cursor-pointer">
+                <q-popup-proxy
+                  cover
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-color @change="onChange" v-model="color.primary" />
+                </q-popup-proxy>
+              </q-icon>
+            </template>
 
-            <q-input
-            outlined
-        
-        v-model="color"
-        class="my-input"
-      >
-        <template v-slot:append>
-          <q-icon  name="colorize" class="cursor-pointer">
-            <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-              <q-color v-model="color" />
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
+            <template v-slot:prepend>
 
+              <q-icon  filled name="palette" :style="{color: color.primary}"/>
 
+            </template>
+          </q-input>
         </q-item-section>
       </q-item>
 
@@ -67,21 +68,26 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { onUpdated, ref, watch } from "vue";
+import { useSystemStore } from "@/store/system";
 export default {
+  setup() {
+    const color = ref({
+      primary:"#FF00FF"
+    });
+    const systemStore = useSystemStore()
+    watch(color, () => {});
 
-    
-    setup(){
-        
-
-
-        return {
-            color: ref('#FF00FF'),
-        }
-    }
+    return {
+      color,
+      onChange: () => {
+        console.log(color.value.primary);
+         systemStore.changeTheme(color.value)
+      },
+    };
+  },
 };
 </script>
 
 <style>
-
 </style>
