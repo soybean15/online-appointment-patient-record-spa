@@ -5,10 +5,12 @@ import axios from 'axios'
 export const useAppointmentStore = defineStore('admin_appointment', {
     state: () => ({
 
+        //initial data
         stateData:{
             pending:null,
             approved:null,
             attended:null,
+           
         },
 
         stateStatus:null,
@@ -40,6 +42,7 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             this.stateData.approved = data.data.approved
             this.stateData.attended = data.data.attended
             this.stateData.pending = data.data.pending
+        
      
 
         },

@@ -11,11 +11,18 @@
         :rows="rows"
         :columns="columns"
         row-key="name"
-      />
+      >
+    
+        <template v-slot::body-cell-status="props">
+            
+        </template>
+    </q-table>
     </div>
   </template>
   
   <script>
+import getChipColors from '@/data/chipColor';
+
   const columns = [
     {
       name: 'ref_id',
@@ -78,9 +85,9 @@
     format: (val) => `${val}`,
   },
   {
-    name: "actions",
+    name: "status",
     required: true,
-    label: "Actions",
+    label: "Status",
     align: "center",
   },
     
@@ -88,9 +95,10 @@
   
   export default {
     setup () {
+        const {chipColor} = getChipColors
       return {
         columns,
-      
+        chipColor
       }
     }
   }
