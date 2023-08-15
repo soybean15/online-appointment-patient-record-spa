@@ -12,10 +12,10 @@
         :columns="columns"
         row-key="name"
       >
-    
+<!--     
         <template v-slot::body-cell-status="props">
             
-        </template>
+        </template> -->
     </q-table>
     </div>
   </template>
