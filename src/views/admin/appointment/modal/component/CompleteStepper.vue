@@ -12,6 +12,7 @@
           :name="1"
           title="Patient details"
           icon="settings"
+          
           :done="step > 1"
         >
         <!-- patient name [label]
