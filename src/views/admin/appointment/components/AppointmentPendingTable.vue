@@ -54,7 +54,7 @@
       </template>
 
       <template v-slot:top-right>
-      <SearchBar @onSearch="appointmentStore.searchApproved('approved',$event)"/>
+      <SearchBar @onSearch="appointmentStore.search('pending',$event)"/>
 
       </template>
 

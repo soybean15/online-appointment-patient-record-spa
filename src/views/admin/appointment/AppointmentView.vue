@@ -24,14 +24,16 @@
 
         <q-tab-panels v-model="tab" animated>
           <q-tab-panel name="all" v-model="tab"> 
-             <AppointmentTableView/>
+             <AppointmentTableView :data="appointmentStore.appointments" :status="null"/>
           </q-tab-panel>
 
           <q-tab-panel v-model="tab" name="status">
             <TablesContainer />
           </q-tab-panel>
 
-          <q-tab-panel v-model="tab" name="rejected"> qwe </q-tab-panel>
+          <q-tab-panel v-model="tab" name="rejected"> 
+            <AppointmentTableView :data="appointmentStore.canceled_rejected" :status="'canceled_rejected'"/>
+          </q-tab-panel>
         </q-tab-panels>
       </div>
     </div>
@@ -43,6 +45,8 @@ import TablesContainer from "./components/TablesContainer.vue";
 import AppointmentTableView from "./components/AppointmentTable.vue"
 import { useAppointmentStore } from "@/store/adminAppointment";
 import { onMounted, ref } from "vue";
+
+
 export default {
   components: {
     TablesContainer,
@@ -57,6 +61,7 @@ export default {
 
     return {
       tab: ref("all"),
+      appointmentStore
     };
   },
 };
