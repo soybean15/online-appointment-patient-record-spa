@@ -22,6 +22,11 @@
         />
       </template>
 
+
+
+
+
+
       <template v-slot:top-right>
         <SearchBar @onSearch="appointmentStore.search('approved', $event)" />
       </template>
@@ -60,6 +65,8 @@
         </FilterGroup>
       </template>
       <template v-slot:body-cell-image="props">
+
+        
         <q-td :props="props">
           <img
             :src="props.row.user.profile[0].image"

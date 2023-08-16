@@ -10,6 +10,7 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             pending:null,
             approved:null,
             attended:null,
+            appointments:null,
            
         },
 
@@ -26,7 +27,8 @@ export const useAppointmentStore = defineStore('admin_appointment', {
       approved:(state)=>state.stateData.approved,
       attended:(state)=>state.stateData.attended,
       selectedRow:(state)=>state.stateSelectedRow,
-      status:(state)=>state.stateStatus
+      status:(state)=>state.stateStatus,
+      appointments:(state)=>state.stateData.appointments
 
     },
 
@@ -42,6 +44,9 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             this.stateData.approved = data.data.approved
             this.stateData.attended = data.data.attended
             this.stateData.pending = data.data.pending
+             this.stateData.appointments = data.data.appointments
+
+            console.log( data.data.appointments)
         
      
 
@@ -78,7 +83,14 @@ export const useAppointmentStore = defineStore('admin_appointment', {
         async getData(status,path){
          
             const data = await axios.get(path)
-           this.stateData[status] = data.data[status]
+
+            if(!status){
+               
+                this.stateData['appointments'] = data.data['appointments']
+            }else{
+                this.stateData[status] = data.data[status]
+            }
+           
         },
 
         async getApprovedByRange(dateRange){
@@ -100,8 +112,13 @@ export const useAppointmentStore = defineStore('admin_appointment', {
                 search_item:text
             })
 
-            this.stateData[status] = data.data.appointments
-            
+          
+            if(!status){
+               
+                this.stateData['appointments'] = data.data['appointments']
+            }else{
+                this.stateData[status] = data.data[status]
+            }
 
 
 
