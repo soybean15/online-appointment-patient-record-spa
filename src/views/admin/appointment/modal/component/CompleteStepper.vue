@@ -26,50 +26,56 @@
         blood_pressure -->
           <q-card>
               <q-card-section>
-            <div class="text-h6">Patient Details</div>
+            <div class="text-md">Patient Details</div>
               </q-card-section>
 
               <q-separator dark inset />
 
               <q-card-section class="row">
-                <div class="col-6">
-                  <div class="col">
-                    <div class=" text-md font-secondary">Patient name: </div>
-                    <div>Jean</div>
+                <div class="col-6 q-pr-xl q-pl-sm">
+                  <div class="col mx-2 border-b border-gray-500">
+                    <div class="row font-secondary py-1 ">Patient name: </div>
+                    <div class="row text-sm">Jean Esteban</div>
                   </div>
-                  <div class="col">
+                  <div class="col mx-2 my-4 border-b border-gray-500">
                     <div class=" text-md font-secondary">Birth Date:</div>
                     <div >09/58/20</div>
                   </div>
+
                   <div class="col">
-                    <div class=" text-md font-secondary">Age: </div>
+                    <div class=" text-md font-secondary">
+                      <q-input filled v-model="text" label="Blood Type" stack-label :dense="dense" />
+                    </div>                  
+                  </div>
+
+                  <div class="col q-py-sm">
+                    <div class=" font-semibold text-lg font-secondary">  
+                      <q-input filled v-model="text" label="Weight" stack-label :dense="dense" />
+                    </div>
+                  </div>
+               
+                  
+                </div>
+
+                <div class="col-6">
+                  <div class="col mx-2 border-b border-gray-500">
+                    <div class=" text-md font-secondary py-1">Age: </div>
                     <div>20</div>
                   </div>
-                  <div class="col">
+                  <div class="col mx-2 my-4 border-b border-gray-500">
                     <div class=" text-md font-secondary">Address:</div>
                     <div>Callos</div>
                   </div>
-                  <div class="col">
-                    <div class=" text-md font-secondary">Blood Type:</div>
-                    <div>AB</div>
-                  </div>
-                </div>
-
-                <div class="column-6">
-                  <div class="col">
-                    <div class=" font-semibold text-lg font-secondary">  
-                      <q-input  v-model="text" label="Height" stack-label :dense="dense" />
-                    </div>
-                  </div>
-                  <div class="col">
+                 
+                  <div class="col ">
                     <div class="font-semibold text-lg font-secondary">
-                      <q-input label="Weight" v-model="text" stack-label :dense="dense" class=""/>
+                      <q-input filled label="Blood Pressure" v-model="text" stack-label :dense="dense" class=""/>
                     </div>
                 
                   </div>
-                  <div class="col">
+                  <div class="col q-py-sm">
                     <div class="font-semibold text-lg font-secondary">
-                      <q-input label="Blood Pressure" v-model="text" stack-label :dense="dense" class=""/>
+                      <q-input filled label="Height" v-model="text" stack-label :dense="dense" class=""/>
                   </div>
                   
                   </div>
@@ -91,37 +97,40 @@
           icon="create_new_folder"
           :done="step > 2"
         >
-
-        <div class="row">
-          <div class="col-6 q-px-sm">
-            <q-card>
-              <q-card-section>
-                <div class="text-md text-bold">Diagnosis</div>
-              </q-card-section>
+ 
+         <div class="col-12">     
+          <div class=" q-px-sm">
+        
+                
+             
                 <div class="q-pa-md">
-                  <q-input
-                    v-model="text"
-                    autogrow            
+                  <!-- <div class="text-md text-bold">Diagnosis</div> -->
+                  <q-input 
+                    filled 
+                    label="Diagnosis"
+                    v-model="text" 
+                    stack-label 
+                    :dense="dense" 
                     type="textarea"
-                  />
+                    class="text-white"
+                   />
                 </div>
-            </q-card>
+          
           </div>
-          <div class="col-6 q-px-sm">
-            <q-card>
-              <q-card-section>
-                <div class="text-md text-bold">Recommendation</div>
-              </q-card-section>
+          <div class=" q-px-sm q-mt-sm">           
                 <div class="q-pa-md">
-                  <q-input
-                    v-model="text"
-                    autogrow
-                    type="textarea"
-                  />
+                  <q-input 
+                    filled 
+                    label="Recommendation"
+                    v-model="text" 
+                    stack-label 
+                    :dense="dense" 
+                    type="textarea" 
+                   />
                 </div>
-            </q-card>
+          
           </div>
-        </div>
+        </div> 
         </q-step>
   
      
@@ -132,11 +141,10 @@
         >
 
          
-              <div class="row q-pa-sm">
                 <div class="col-12">
                   <q-card>
                       <q-card-section>
-                    <div class="text-h6">Patient Details</div>
+                    <div class="text-md text-bold">Patient Details</div>
                       </q-card-section>
 
                       <q-separator dark inset />
@@ -187,32 +195,35 @@
 
 
                       </q-card-section>
-                  </q-card>
-                 </div>
-              </div>
-              <div class="row">
-                <div class="col-6 q-px-sm">
-                  <q-card>
-                    <q-card-section>
-                      <div class="text-md text-bold">Diagnosis</div>
-                    </q-card-section>
-                      <div class="q-pa-md">
-                         /////Diagnosis
-                      </div>
-                  </q-card>
+                  
+                
+             
+                  <div class="row q-px-sm">
+                  <div class="col-12">
+                    <div class=" q-py-sm">
+                      <q-card>
+                        <q-card-section>
+                          <div class=" row text-md text-bold">Diagnosis</div>
+                        </q-card-section>
+                          <div class="row q-pa-md">
+                            /////Diagnosis
+                          </div>
+                      </q-card>
+                    </div>
+                    <div class=" q-py-sm">
+                      <q-card>
+                        <q-card-section>
+                          <div class="text-md text-bold">Recommendation</div>
+                        </q-card-section>
+                          <div class="q-pa-md">
+                            ///Recommendation
+                          </div>
+                      </q-card>
+                    </div>
+                </div>   
                 </div>
-                <div class="col-6 q-px-sm">
-                  <q-card>
-                    <q-card-section>
-                      <div class="text-md text-bold">Recommendation</div>
-                    </q-card-section>
-                      <div class="q-pa-md">
-                         ///Recommendation
-                      </div>
-                  </q-card>
-                </div>
-              
-            </div>
+          </q-card>
+        </div>
         </q-step>
   
         <template v-slot:navigation>

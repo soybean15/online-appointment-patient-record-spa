@@ -70,7 +70,7 @@
           <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
           <div>   
              
-               {{ props.row.status }}<q-chip outline color="green" text-color="white" >
+              <q-chip outline color="green" text-color="white" > {{ props.row.status }}
             </q-chip>
         </div> 
          
