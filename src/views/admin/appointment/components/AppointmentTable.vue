@@ -1,5 +1,5 @@
 <template>
-  <div v-if="appointmentStore.appointments">
+  <div v-if="data">
     <q-table
       color="primary"
       card-class=" text-brown"
@@ -8,13 +8,13 @@
       flat
       bordered
       title="Treats"
-      :rows="appointmentStore.appointments.data"
+      :rows="data.data"
       :columns="columns"
       row-key="name"
     >
 
     <template v-slot:top-right>
-        <SearchBar @onSearch="appointmentStore.search(null, $event)" />
+        <SearchBar @onSearch="appointmentStore.search(status, $event)" />
       </template>
       <template v-slot:body-cell-contact="props">
         <q-td :props="props">
@@ -79,10 +79,10 @@
         <q-pagination
           v-model="current"
           color="primary"
-          :max="appointmentStore.appointments.last_page"
+          :max="data.last_page"
           :max-pages="5"
           boundary-numbers
-          @click="onClick"
+      
         />
       </template>
 
@@ -170,14 +170,15 @@ export default {
   components:{
     SearchBar
   },
-  setup() {
+  props:['data','status'],
+  setup(props) {
     const { chipColors } = getChipColors();
     const appointmentStore = useAppointmentStore();
 
     const current = ref(1)
 
     watch(current,()=>{
-      appointmentStore.getData(null,appointmentStore.appointments.links[current.value].url )
+      appointmentStore.getData(props.status,props.data.links[current.value].url )
     })
     
 

@@ -69,8 +69,8 @@
         <q-td :props="props">
           <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
           <div>   
-             <q-chip outline color="green" text-color="white" >
-               {{ props.row.status }}
+             
+               {{ props.row.status }}<q-chip outline color="green" text-color="white" >
             </q-chip>
         </div> 
          

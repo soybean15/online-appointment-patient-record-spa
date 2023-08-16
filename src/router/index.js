@@ -9,6 +9,7 @@ const routes = [
     path: '/',
     name: 'main',
     redirect: '/home',
+  
     component: () => import(/* webpackChunkName: "about" */ '@/views/MainView'),
 
 
@@ -17,18 +18,22 @@ const routes = [
       {
         path: '/home',
         name: 'home',
-        component: HomeView
+        meta: { title: 'Maxilife - Home' } ,
+        component: HomeView,
+        
 
       },
       {
         path: '/profile',
         name: 'profile',
+        meta: { title: 'Maxilife - Profile' } ,
         component: () => import('@/views/home/user/ProfileView')
 
       },
       {
         path: '/appointment',
         name: 'appointment',
+        meta: { title: 'Maxilife - Appointments' } ,
         component: () => import('@/views/home/user/AppointmentView'),
         beforeEnter: async (to, from, next) => {
           const authStore = useAuthStore()
@@ -59,12 +64,13 @@ const routes = [
       {
         path: '/about',
         name: 'about',
-
+        meta: { title: 'Maxilife - About' } ,
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
       },
       {
         path: 'service',
         name: 'home_service',
+        meta: { title: 'Maxilife - Services' } ,
         component: () => import('@/views/home/ServiceView')
 
       },
@@ -72,6 +78,7 @@ const routes = [
       {
         path: '/appointment/details',
         name: 'appointmentDetails',
+        meta: { title: 'Maxilife - Appointment Details' } ,
         component:  () => import('@/views/home/user/components/AppointmentDetails'), 
          
        
@@ -119,6 +126,7 @@ const routes = [
       {
         path: 'dashboard',
         name: 'dashboard',
+        meta: { title: 'Admin - Dashboard' } ,
         component: () => import('@/views/admin/dashboard/Dashboard'),
 
 
@@ -170,6 +178,11 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
 
 
 
