@@ -6,21 +6,31 @@
     </div>
 
     <div class="row">
-      <Stat class="mr-1"
+      <div class="col-3 mx-1">
+        <Stat class="col-4 "
         :title="{name:'Users',icon:'group'}"
         value="20,000"
       ></Stat>
-      <Stat class="mr-1"
+      </div>
+   
+      <div class="col-3 mx-1">
+      <Stat class="  mr-1"
         :title="{name:'Total Patients',icon:'personal_injury'}"
         value="46"
       ></Stat>
-      <Stat class="mr-1"
-        :title="{name:'Today\'s Appointment',icon:'personal_injury'}"
+      </div>
+      <div class="col-3 mx-1">
+      <Stat class=" mr-1"
+        :title="{name:'Today\'s Appointment',icon:'pending_actions'}"
         value="46"
       ></Stat>
-      <!-- <Stat></Stat>
-      <Stat></Stat>
-      <Stat></Stat> -->
+      </div>
+   
+    </div>
+
+
+    <div>
+      
     </div>
   </div>
 </template>

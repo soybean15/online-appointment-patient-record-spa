@@ -1,5 +1,5 @@
 <template>
-  <div class="column bg-surface w-full p-2 rounded-md shadow-lg" style="max-width: 15rem;" >
+  <div class="column bg-surface w-full p-2 rounded-md shadow-lg" style="min-width: 15rem;" >
     <div class="row items-center">
         <q-icon :name="title.icon" />
         <span class="px-2">{{title.name}}</span>
