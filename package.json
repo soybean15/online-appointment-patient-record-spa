@@ -9,12 +9,14 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^1.4.0",
+    "chart.js": "^4.3.3",
     "core-js": "^3.8.3",
     "date-fns": "^2.30.0",
     "pinia": "^2.1.4",
     "quasar": "^2.0.0",
     "swiper": "^10.1.0",
     "vue": "^3.2.13",
+    "vue-chartjs": "^5.2.0",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {

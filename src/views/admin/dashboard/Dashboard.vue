@@ -1,26 +1,44 @@
 <template>
-  <div class="p-3">
+  <div class="column p-3">
     <div class="column py-2">
       <div class="text-2xl font-semibold">Welcome back, {{ authStore.user.profile[0].firstname }}</div>
       <div class="font-secondary text-sm">Here's what happening today</div>
     </div>
 
     <div class="row">
-      <Stat class="mr-1"
+      <div class="col-3 mx-1">
+        <Stat class="col-4 "
         :title="{name:'Users',icon:'group'}"
         value="20,000"
       ></Stat>
-      <Stat class="mr-1"
+      </div>
+   
+      <div class="col-3 mx-1">
+      <Stat class="  mr-1"
         :title="{name:'Total Patients',icon:'personal_injury'}"
         value="46"
       ></Stat>
-      <Stat class="mr-1"
-        :title="{name:'Today\'s Appointment',icon:'personal_injury'}"
+      </div>
+      <div class="col-3 mx-1">
+      <Stat class=" mr-1"
+        :title="{name:'Today\'s Appointment',icon:'pending_actions'}"
         value="46"
       ></Stat>
-      <!-- <Stat></Stat>
-      <Stat></Stat>
-      <Stat></Stat> -->
+      </div>
+   
+    </div>
+
+    
+
+
+    <div class="row">
+      <div class=" mx-1 my-2 p-3 bg-surface rounded-md ">
+        <BarChartVue/>
+      </div>
+      <div class=" mx-1 my-2 p-3 bg-surface rounded-md ">
+        <LineChart/>
+      </div>
+
     </div>
   </div>
 </template>
@@ -28,9 +46,15 @@
 <script>
 import Stat from "@/components/Stat.vue";
 import { useAuthStore } from "@/store/auth";
+import BarChartVue from '@/components/BarChart.vue';
+import LineChart from "@/components/LineChart.vue";
+
+
 export default {
   components: {
     Stat,
+    BarChartVue,
+    LineChart
   },
 
   setup() {
