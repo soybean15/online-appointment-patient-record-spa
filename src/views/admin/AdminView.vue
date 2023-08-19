@@ -30,7 +30,7 @@
         <q-item-section> Appointments </q-item-section>
       </q-item>
 
-      <q-item clickable v-ripple>
+      <q-item :to="{name:'calendar'}" clickable v-ripple>
         <q-item-section avatar>
           <q-icon name="calendar_today" />
         </q-item-section>

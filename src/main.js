@@ -6,6 +6,7 @@ import './components/axios'
 import '@/assets/css/main.css'
 import { Quasar } from 'quasar'
 import quasarUserOptions from './quasar-user-options'
+import VueApexCharts from "vue3-apexcharts";
 
 import { useConfigStore } from './data/config'
 
@@ -22,7 +23,7 @@ pinia.use(({store})=>{
 
 app.use(pinia)
 app.use(router)
-
+app.use(VueApexCharts)
 
 const configStore = useConfigStore(); 
 app.config.globalProperties.$primary = configStore.primary;
