@@ -165,6 +165,15 @@ const routes = [
        
 
       },
+      {
+        path: '/calendar',
+        name: 'calendar',
+        meta: { title: 'Admin - calendar' } ,
+        component:  () => import('@/views/admin/calendar/CalendarView'),
+         
+       
+
+      },
     ]
   },
 
