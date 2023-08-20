@@ -212,28 +212,48 @@
                     <q-card-section>
                       <div class="row text-md text-bold">Diagnosis</div>
 
-                      <q-list
-                        v-for="(item, index) in patientRecordStore.patientRecord
-                          .diagnosis"
-                        :key="index"
+                      <div
+                        class="py-2"
+                        v-if="
+                          patientRecordStore.patientRecord.diagnosis.length == 0
+                        "
                       >
-                        <div class="row items-center">
-                          <span class="text-3xl mr-2">{{ `\u2022` }}</span>
-                          {{ `${item}` }}
-                        </div>
-                      </q-list>
+                        N/A
+                      </div>
+
+                      <div v-else>
+                        <q-list
+                          v-for="(item, index) in patientRecordStore
+                            .patientRecord.diagnosis"
+                          :key="index"
+                        >
+                          <div class="row items-center">
+                            <span class="text-3xl mr-2">{{ `\u2022` }}</span>
+                            {{ `${item}` }}
+                          </div>
+                        </q-list>
+                      </div>
 
                       <div class="text-md text-bold">Recommendation(s)</div>
-                      <q-list
-                        v-for="(item, index) in patientRecordStore.patientRecord
-                          .recommendation"
-                        :key="index"
-                      >
-                        <div class="row items-center">
-                          <span class="text-3xl mr-2">{{ `\u2022` }}</span>
-                          {{ `${item}` }}
-                        </div>
-                      </q-list>
+
+                      <div
+                        v-if="
+                          patientRecordStore.patientRecord.recommendation
+                            .length == 0
+                        "
+                      ></div>
+                      <div v-else>
+                        <q-list
+                          v-for="(item, index) in patientRecordStore
+                            .patientRecord.recommendation"
+                          :key="index"
+                        >
+                          <div class="row items-center">
+                            <span class="text-3xl mr-2">{{ `\u2022` }}</span>
+                            {{ `${item}` }}
+                          </div>
+                        </q-list>
+                      </div>
                     </q-card-section>
                   </q-card>
                 </div>
@@ -246,9 +266,12 @@
       <template v-slot:navigation>
         <q-stepper-navigation>
           <q-btn
-          @click="step === 4 ? (onFinish(), $refs.stepper.next()) : $refs.stepper.next()"
-
-            color="primary"
+            @click="
+              step === 4
+                ? (onFinish(), $refs.stepper.next())
+                : $refs.stepper.next()
+            "
+            :loading="loading"
             :label="step === 4 ? 'Finish' : 'Continue'"
           />
           <q-btn
@@ -275,14 +298,21 @@ export default {
     RecommendationAndDiagnosisStep,
   },
   setup() {
+    const loading = ref(false);
     const patientRecordStore = usePatientRecordStore();
 
     return {
       step: ref(1),
       patientRecordStore,
-      onFinish:()=>{
-        patientRecordStore.addRecord()
-      }
+      onFinish: async () => {
+        loading.value = true;
+
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await patientRecordStore.addRecord();
+        loading.value = false;
+        patientRecordStore.dialog.state = false;
+      },
+      loading,
     };
   },
 };

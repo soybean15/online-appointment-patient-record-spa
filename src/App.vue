@@ -30,6 +30,7 @@ export default {
 <style >
 .q-btn {
   background-color: v-bind(primary) !important;
+
   
   
 }

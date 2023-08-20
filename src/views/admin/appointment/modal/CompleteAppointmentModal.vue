@@ -12,7 +12,7 @@
       </q-tooltip>
     </q-btn>
     <q-dialog
-      v-model="persistent"
+      v-model="patientRecordStore.dialog.state"
       persistent
       transition-show="scale"
       transition-hide="scale"
@@ -30,7 +30,7 @@
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn flat label="OK" v-close-popup />
+          <q-btn @click="patientRecordStore.dialog.state = false" flat label="Close" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -49,7 +49,7 @@ export default {
   setup(props) {
     const patientRecordStore = usePatientRecordStore()
     const row = props.props.row
-    const persistent= ref(false)
+   
 
  
 const parsedDate = new Date(row.updated_at);
@@ -62,13 +62,14 @@ const formattedDate = ref(`${year}-${month}-${day}`)
 
 
     return {
-      persistent,
+      patientRecordStore,
        onClick:()=>{
-        persistent.value = true
+        patientRecordStore.dialog.state = true
         row.date_diagnosed = formattedDate
         patientRecordStore.setData(row)
         
        },
+    
        formattedDate
     };
   },

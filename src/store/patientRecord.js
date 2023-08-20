@@ -19,7 +19,9 @@ export const usePatientRecordStore = defineStore('patientRecord',{
             blood_pressure:null
         },
         stateSelectedRow:null,
-        stateDialog:false
+        stateDialog:{
+           state: false
+        }
 
 
     }),
