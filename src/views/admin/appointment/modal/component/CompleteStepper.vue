@@ -100,8 +100,8 @@
 
       <q-step
         :name="2"
-        title="Diagnosis and recommendation"
-        caption="Optional"
+        title="Diagnosis and Recommendation"
+        caption="(Optional)"
         icon="create_new_folder"
         :done="step > 2"
       >

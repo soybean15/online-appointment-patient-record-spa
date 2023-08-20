@@ -41,7 +41,7 @@ import CompleteStepper from './component/CompleteStepper.vue'
     },
     setup () {
       return {
-        persistent: ref(false)
+        persistent: ref(true)
       }
     }
   }
