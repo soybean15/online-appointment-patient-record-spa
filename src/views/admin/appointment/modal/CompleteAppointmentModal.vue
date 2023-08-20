@@ -19,7 +19,10 @@
     >
       <q-card class="" style="width: 800px; max-width: 90vw">
         <q-card-section>
-          <div class="text-h6">Complete Appointment</div>
+          <div class="text-h6 row justify-between">
+            <div>Complete Appointment</div>
+            <div>Date:{{ formattedDate }} </div>
+          </div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -45,14 +48,28 @@ export default {
   props:['props'],
   setup(props) {
     const patientRecordStore = usePatientRecordStore()
+    const row = props.props.row
     const persistent= ref(false)
+
+ 
+const parsedDate = new Date(row.updated_at);
+
+const year = parsedDate.getFullYear();
+const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
+const day = String(parsedDate.getDate()).padStart(2, '0');
+
+const formattedDate = ref(`${year}-${month}-${day}`)
+
+
     return {
       persistent,
        onClick:()=>{
         persistent.value = true
-        patientRecordStore.setData(props.props.row)
+        row.date_diagnosed = formattedDate
+        patientRecordStore.setData(row)
         
-       }
+       },
+       formattedDate
     };
   },
 };

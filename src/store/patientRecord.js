@@ -18,13 +18,15 @@ export const usePatientRecordStore = defineStore('patientRecord',{
             user_id:null,
             blood_pressure:null
         },
-        stateSelectedRow:null
+        stateSelectedRow:null,
+        stateDialog:false
 
 
     }),
     getters:{
         patientRecord:(state)=>state.statePatientRecord,
-        selectedRow:(state)=>state.stateSelectedRow
+        selectedRow:(state)=>state.stateSelectedRow,
+        dialog:(state)=>state.stateDialog
         
     },
     actions:{
@@ -33,6 +35,10 @@ export const usePatientRecordStore = defineStore('patientRecord',{
             this.stateSelectedRow = row
             this.statePatientRecord.user_id =row.user_id 
             this.statePatientRecord.appointment_id = row.id
+            this.statePatientRecord.date_diagnosed =row.date_diagnosed
+        },
+        async addRecord(){
+            const data = await axios.post('api/admin/patient/record/add',this.statePatientRecord)
         }
     }
 

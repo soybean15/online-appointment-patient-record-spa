@@ -246,7 +246,8 @@
       <template v-slot:navigation>
         <q-stepper-navigation>
           <q-btn
-            @click="$refs.stepper.next()"
+          @click="step === 4 ? (onFinish(), $refs.stepper.next()) : $refs.stepper.next()"
+
             color="primary"
             :label="step === 4 ? 'Finish' : 'Continue'"
           />
@@ -279,6 +280,9 @@ export default {
     return {
       step: ref(1),
       patientRecordStore,
+      onFinish:()=>{
+        patientRecordStore.addRecord()
+      }
     };
   },
 };
