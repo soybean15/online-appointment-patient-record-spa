@@ -1,38 +1,21 @@
 
 import { ref } from "vue";
 import { defineStore } from 'pinia'
-// const getConfig =  () => {
-
-
-//   const primary = localStorage.getItem('primary')
-
-//   return { primary };
-// };
-
-// export default getConfig;
-
+import { useQuasar } from "quasar";
 
 export const useConfigStore = defineStore('config', () => {
   const primary = ref(localStorage.getItem('primary'))
 
-  const isDark = ref(localStorage.getItem('darkmode'))
+  const $q = useQuasar();
 
 
 
-  if (isDark == 'null') {
-    isDark.value = true
-  }
-  
-  const darkModeToggle = () => {
-    console.log('darkmode toggle')
-    isDark.value = !isDark.value
-    console.log(isDark.value)
-    localStorage.setItem('darkmode',isDark.value)
+  const dark = ref(localStorage.getItem('dark') === 'true');
 
-
-  }
+  $q.dark.set(dark.value);
 
 
 
-  return { primary, isDark, darkModeToggle };
+
+  return { primary, dark, $q };
 })
