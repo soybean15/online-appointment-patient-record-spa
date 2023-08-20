@@ -46,6 +46,7 @@
 <script>
 import Stat from "@/components/Stat.vue";
 import { useAuthStore } from "@/store/auth";
+import { onMounted, onUnmounted } from 'vue';
 
 
 export default {
@@ -56,6 +57,15 @@ export default {
 
   setup() {
     const authStore = useAuthStore();
+    console.log('dashboard Setup')
+    onMounted(()=>{
+      console.log('dashboard mounted')
+    })
+
+    onUnmounted(()=>{
+      console.log('dashboard unmounted')
+    })
+    
 
     return { 
       authStore,
