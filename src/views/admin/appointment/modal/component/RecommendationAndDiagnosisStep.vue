@@ -3,7 +3,7 @@
     <div>
       <div>Diagnosis</div>
       <q-list class="px-5 pt-2 pb-0"  >
-        <q-item v-for="(item, index) in diagnosis" :key="index">
+        <q-item v-for="(item, index) in patientRecordStore.patientRecord.diagnosis" :key="index">
          
             <div class="row items-center"> <span class="text-3xl mr-2">{{`\u2022`}}</span>
             {{ `${item}` }}</div>
@@ -45,7 +45,7 @@
     <div>
       <div>Recommendation</div>
       <q-list class="px-5 pt-2 pb-0" >
-        <q-item v-for="(item, index) in recommendation" :key="index">
+        <q-item v-for="(item, index) in patientRecordStore.patientRecord.recommendation" :key="index">
          
             <div class="row items-center"> <span class="text-3xl mr-2">{{`\u2022`}}</span>
             {{ `${item}` }}</div>
@@ -86,6 +86,7 @@
 
 <script>
 import { ref } from "vue";
+import {usePatientRecordStore} from '@/store/patientRecord'
 export default {
   setup() {
     const diagnosis = ref([]);
@@ -93,18 +94,21 @@ export default {
     const d_text = ref("");
     const r_text = ref("");
 
+    const patientRecordStore = usePatientRecordStore()
+
 
     return {
-      diagnosis,
-      recommendation,
+   
+        patientRecordStore,
+     
       d_text,
       r_text,
       onSend: (action) => {
         if (action === "diagnosis") {
-          diagnosis.value.push(d_text.value);
+            patientRecordStore.patientRecord.diagnosis.push(d_text.value);
           d_text.value = "";
         } else {
-            recommendation.value.push(r_text.value)
+            patientRecordStore.patientRecord.recommendation.push(r_text.value)
             r_text.value =''
         }
       },

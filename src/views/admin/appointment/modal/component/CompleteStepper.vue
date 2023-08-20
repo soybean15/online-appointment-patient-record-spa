@@ -7,7 +7,6 @@
         icon="settings"
         :done="step > 1"
       >
-      
         <q-card>
           <q-card-section>
             <div class="text-md">Patient Details</div>
@@ -19,11 +18,15 @@
             <div class="col-6 q-pr-xl q-pl-sm">
               <div class="col mx-2 border-b border-gray-500">
                 <div class="row font-secondary py-1">Patient name:</div>
-                <div class="row text-sm">{{patientRecordStore.selectedRow.user.profile[0].full_name}}</div>
+                <div class="row text-sm">
+                  {{ patientRecordStore.selectedRow.user.profile[0].full_name }}
+                </div>
               </div>
               <div class="col mx-2 my-4 border-b border-gray-500">
                 <div class="text-md font-secondary">Birth Date:</div>
-                <div>{{patientRecordStore.selectedRow.user.profile[0].birthdate}}</div>
+                <div>
+                  {{ patientRecordStore.selectedRow.user.profile[0].birthdate }}
+                </div>
               </div>
 
               <div class="col">
@@ -102,11 +105,7 @@
             <div class="q-pa-md">
               <!-- <div class="text-md text-bold">Diagnosis</div> -->
 
-
-
-
-              <RecommendationAndDiagnosisStep/>
-             
+              <RecommendationAndDiagnosisStep />
             </div>
           </div>
         </div>
@@ -125,39 +124,83 @@
               <div class="col-6">
                 <div class="">
                   <div class="text-md font-secondary">Patient name:</div>
-                  <div>{{patientRecordStore.selectedRow.user.profile[0].full_name}}</div>
+                  <div>
+                    {{
+                      patientRecordStore.selectedRow.user.profile[0].full_name
+                    }}
+                  </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Birth Date:</div>
-                  <div>{{patientRecordStore.selectedRow.user.profile[0].birthdate}}</div>
+                  <div>
+                    {{
+                      patientRecordStore.selectedRow.user.profile[0].birthdate
+                    }}
+                  </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Age:</div>
-                  <div>{{patientRecordStore.selectedRow.user.profile[0].age}}</div>
+                  <div>
+                    {{ patientRecordStore.selectedRow.user.profile[0].age }}
+                  </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Address:</div>
-                  <div>{{patientRecordStore.selectedRow.user.profile[0].address}}</div>
+                  <div>
+                    {{ patientRecordStore.selectedRow.user.profile[0].address }}
+                  </div>
                 </div>
               </div>
 
               <div class="col-6">
                 <div class="">
                   <div class="text-md font-secondary">Height:</div>
-                  <div>{{`${patientRecordStore.patientRecord.height==null ? 'N/A':patientRecordStore.patientRecord.height}`}}</div>
+                  <div>
+                    {{
+                      `${
+                        patientRecordStore.patientRecord.height == null
+                          ? "N/A"
+                          : patientRecordStore.patientRecord.height
+                      }`
+                    }}
+                  </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Weight:</div>
-                  <div>{{`${patientRecordStore.patientRecord.weight==null ? 'N/A':patientRecordStore.patientRecord.weight}`}}</div>
+                  <div>
+                    {{
+                      `${
+                        patientRecordStore.patientRecord.weight == null
+                          ? "N/A"
+                          : patientRecordStore.patientRecord.weight
+                      }`
+                    }}
+                  </div>
                 </div>
 
                 <div class="">
                   <div class="text-md font-secondary">Blood Pressure:</div>
-                  <div>{{`${patientRecordStore.patientRecord.blood_pressure==null ? 'N/A':patientRecordStore.patientRecord.blood_pressure}`}}</div>
+                  <div>
+                    {{
+                      `${
+                        patientRecordStore.patientRecord.blood_pressure == null
+                          ? "N/A"
+                          : patientRecordStore.patientRecord.blood_pressure
+                      }`
+                    }}
+                  </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Blood Type:</div>
-                  <div>{{`${patientRecordStore.patientRecord.blood_type==null ? 'N/A':patientRecordStore.patientRecord.blood_type}`}}</div>
+                  <div>
+                    {{
+                      `${
+                        patientRecordStore.patientRecord.blood_type == null
+                          ? "N/A"
+                          : patientRecordStore.patientRecord.blood_type
+                      }`
+                    }}
+                  </div>
                 </div>
               </div>
             </q-card-section>
@@ -169,9 +212,29 @@
                     <q-card-section>
                       <div class="row text-md text-bold">Diagnosis</div>
 
-                      <div class="text-md text-bold">Recommendation</div>
+                      <q-list
+                        v-for="(item, index) in patientRecordStore.patientRecord
+                          .diagnosis"
+                        :key="index"
+                      >
+                        <div class="row items-center">
+                          <span class="text-3xl mr-2">{{ `\u2022` }}</span>
+                          {{ `${item}` }}
+                        </div>
+                      </q-list>
+
+                      <div class="text-md text-bold">Recommendation(s)</div>
+                      <q-list
+                        v-for="(item, index) in patientRecordStore.patientRecord
+                          .recommendation"
+                        :key="index"
+                      >
+                        <div class="row items-center">
+                          <span class="text-3xl mr-2">{{ `\u2022` }}</span>
+                          {{ `${item}` }}
+                        </div>
+                      </q-list>
                     </q-card-section>
-                    <div class="row q-pa-md">/////Diagnosis</div>
                   </q-card>
                 </div>
               </div>
@@ -206,19 +269,16 @@ import { ref } from "vue";
 import RecommendationAndDiagnosisStep from "./RecommendationAndDiagnosisStep.vue";
 import { usePatientRecordStore } from "@/store/patientRecord";
 
-
 export default {
-  components:{
-    RecommendationAndDiagnosisStep
+  components: {
+    RecommendationAndDiagnosisStep,
   },
   setup() {
-    const patientRecordStore = usePatientRecordStore()
- 
-   
+    const patientRecordStore = usePatientRecordStore();
+
     return {
       step: ref(1),
-      patientRecordStore
-      
+      patientRecordStore,
     };
   },
 };

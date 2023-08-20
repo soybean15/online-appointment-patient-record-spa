@@ -12,8 +12,8 @@ export const usePatientRecordStore = defineStore('patientRecord',{
             height:null,
             weight:null,
             date_diagnosed:null,
-            recommendation:null,
-            diagnosis:null,
+            recommendation:[],
+            diagnosis:[],
             appointment_id:null,
             user_id:null,
             blood_pressure:null
