@@ -118,7 +118,7 @@
           <div class="row justify-around">
            
 
-            <CompleteAppointmentModal/>
+            <CompleteAppointmentModal :props="props"/>
 
 
 
