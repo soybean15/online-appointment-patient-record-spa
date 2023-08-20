@@ -16,7 +16,9 @@
       <template v-slot:bottom>
         <q-pagination
           v-model="current"
-          color="primary"
+          color="white"
+          active-color="white"
+          :active-text-color="$primary"
           :max="appointmentStore.pending.last_page"
           :max-pages="5"
           boundary-numbers
