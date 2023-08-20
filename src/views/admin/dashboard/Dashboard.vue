@@ -33,10 +33,10 @@
 
     <div class="row">
       <div class="  col-5 mx-1 my-2 p-1 bg-surface rounded-md ">
-        <apexchart width="400" type="bar" :options="options" :series="series"></apexchart>
+        <BarChart/>
       </div>
       <div class=" mx-1 my-2 p-1 bg-surface rounded-md ">
-        <apexchart width="400" type="line" :options="options" :series="series"></apexchart>
+       
       </div>
 
     </div>
@@ -46,31 +46,31 @@
 <script>
 import Stat from "@/components/Stat.vue";
 import { useAuthStore } from "@/store/auth";
+import { onMounted, onUnmounted } from 'vue';
+import BarChart from "@/components/BarChart.vue";
 
 
 export default {
   components: {
     Stat,
-  
+    BarChart
   },
 
   setup() {
     const authStore = useAuthStore();
+    console.log('dashboard Setup')
+    onMounted(()=>{
+      console.log('dashboard mounted')
+    })
+
+    onUnmounted(()=>{
+      console.log('dashboard unmounted')
+    })
+    
 
     return { 
       authStore,
-      options: {
-        chart: {
-          id: 'vuechart-example'
-        },
-        xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-        }
-      },
-      series: [{
-        name: 'series-1',
-        data: [30, 40, 45, 50, 49, 60, 70, 91]
-      }]
+     
     };
   },
 };

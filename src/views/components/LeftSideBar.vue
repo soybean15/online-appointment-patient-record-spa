@@ -55,7 +55,7 @@
 
       <q-item-section> Dark Mode </q-item-section>
       <q-item-section>
-        <q-toggle v-model="value" color="primary" @click="$q.dark.toggle()" />
+        <q-toggle v-model="isDark" color="primary" @click="darkModeToggle" />
       </q-item-section>
     </q-item>
     <div v-if="authStore.isAdmin">
@@ -81,22 +81,37 @@
 <script>
 import LoginView from "@/views/home/auth/LoginView";
 import RegisterView from "@/views/home/auth/RegisterView.vue";
-import { ref } from "vue";
+
+import { ref, watch } from "vue";
 import { useAuthStore } from "@/store/auth";
 import { useConfigStore } from "@/data/config";
+
+
 export default {
   components: { LoginView, RegisterView },
 
   setup() {
     const authStore = useAuthStore();
+   
 
-    const config = useConfigStore()
-    const primary = ref(config.primary)
+
+    const {primary,isDark,darkModeToggle} = useConfigStore()
+
+  
+    console.log(isDark)
+
+    watch(isDark,()=>{
+      console.log(isDark)
+    })
+   
 
     return {
       activeSideBar: ref(),
       authStore,
-      primary
+      primary,
+      isDark,
+      darkModeToggle
+     
     };
   },
 };

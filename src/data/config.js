@@ -13,7 +13,26 @@ import { defineStore } from 'pinia'
 
 
 export const useConfigStore = defineStore('config', () => {
-    const primary = ref(localStorage.getItem('primary'))
+  const primary = ref(localStorage.getItem('primary'))
 
-    return { primary };
-  })
+  const isDark = ref(localStorage.getItem('darkmode'))
+
+
+
+  if (isDark == 'null') {
+    isDark.value = true
+  }
+  
+  const darkModeToggle = () => {
+    console.log('darkmode toggle')
+    isDark.value = !isDark.value
+    console.log(isDark.value)
+    localStorage.setItem('darkmode',isDark.value)
+
+
+  }
+
+
+
+  return { primary, isDark, darkModeToggle };
+})

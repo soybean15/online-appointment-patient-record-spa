@@ -109,27 +109,12 @@
           <div class="q-px-sm">
             <div class="q-pa-md">
               <!-- <div class="text-md text-bold">Diagnosis</div> -->
-              <q-input
-                filled
-                label="Diagnosis"
-                v-model="text"
-                stack-label
-                :dense="dense"
-                type="textarea"
-                class="text-white"
-              />
-            </div>
-          </div>
-          <div class="q-px-sm q-mt-sm">
-            <div class="q-pa-md">
-              <q-input
-                filled
-                label="Recommendation"
-                v-model="text"
-                stack-label
-                :dense="dense"
-                type="textarea"
-              />
+
+
+
+
+              <RecommendationAndDiagnosisStep/>
+             
             </div>
           </div>
         </div>
@@ -226,8 +211,12 @@
   
   <script>
 import { ref } from "vue";
+import RecommendationAndDiagnosisStep from "./RecommendationAndDiagnosisStep.vue";
 
 export default {
+  components:{
+    RecommendationAndDiagnosisStep
+  },
   setup() {
     return {
       step: ref(1),
