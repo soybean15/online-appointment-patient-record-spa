@@ -94,7 +94,6 @@ export const useUserStore = defineStore('user', {
 
     setUser(user){
       this.stateSelectedUser = user
-      console.log(this.stateSelectedUser)
     },
 
    

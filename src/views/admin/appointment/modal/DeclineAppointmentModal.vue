@@ -90,8 +90,6 @@ export default {
 
     const loading = ref(false)
 
-    console.log(props.schedule);
-
     watch(schedule, () => {
       console.log(schedule.value);
     });

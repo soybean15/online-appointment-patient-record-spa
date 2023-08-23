@@ -136,7 +136,6 @@ export default {
       imageFile,
       image_blob,
       onClick: (row) => {
-        console.log(row)
         if (row.name) {
           onEdit.value = true;
           image_blob.value = row.image
@@ -154,7 +153,6 @@ export default {
         fileInputRef.value.pickFiles();
       },
       handleClick: () => {
-        console.log("click");
       },
 
       
@@ -163,7 +161,7 @@ export default {
           imageFile.value
         );
 
-        console.log( imageFile.value)
+        
        
       },
     };
