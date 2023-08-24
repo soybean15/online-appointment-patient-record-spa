@@ -58,13 +58,11 @@ export default {
 
   setup() {
     const authStore = useAuthStore();
-    console.log('dashboard Setup')
+
     onMounted(()=>{
-      console.log('dashboard mounted')
     })
 
     onUnmounted(()=>{
-      console.log('dashboard unmounted')
     })
     
 

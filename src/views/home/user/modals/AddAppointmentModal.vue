@@ -179,7 +179,7 @@ export default {
     const step = ref(1);
     const persistent= ref(false)
 
-    console.log(appointmentStore.selectedService);
+   
     
     return {
       persistent,

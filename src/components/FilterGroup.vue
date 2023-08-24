@@ -34,7 +34,7 @@ export default {
 
 
     watch(active,()=>{
-      console.log(active)
+     
     })
     
 

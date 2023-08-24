@@ -131,8 +131,7 @@ export const useAppointmentStore = defineStore('admin_appointment', {
             this.stateSelectedRow = row
 
         },
-        async search(status, text){
-            console.log(status)
+        async search(status, text){          
             const data = await axios.post('api/admin/appointment/search',{
                 status:status,
                 search_item:text
