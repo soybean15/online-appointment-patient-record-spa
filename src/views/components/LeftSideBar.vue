@@ -86,7 +86,6 @@ export default {
     watch(
       () => $q.dark.isActive,
       (val) => {
-        console.log(val);
         localStorage.setItem('dark', val);
         $q.dark.set(val)
       }

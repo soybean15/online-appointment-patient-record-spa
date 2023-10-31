@@ -200,7 +200,6 @@ export default defineComponent({
           }
         })
       }
-      console.log(map)
       return map
     }
   },
@@ -231,25 +230,18 @@ export default defineComponent({
       this.$refs.calendar.next()
     },
     onMoved (data) {
-      console.log('onMoved', data)
     },
     onChange (data) {
-      console.log('onChange', data)
     },
     onClickDate (data) {
-      console.log('onClickDate', data)
     },
     onClickDay (data) {
-      console.log('onClickDay', data)
     },
     onClickWorkweek (data) {
-      console.log('onClickWorkweek', data)
     },
     onClickHeadDay (data) {
-      console.log('onClickHeadDay', data)
     },
     onClickHeadWorkweek (data) {
-      console.log('onClickHeadWorkweek', data)
     }
   }
 })

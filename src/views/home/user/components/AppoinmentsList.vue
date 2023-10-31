@@ -80,7 +80,7 @@ export default {
     const appointmentStore = useAppointmentStore();
 
     const {chipColors} = getChipColors()
-    console.log(chipColors)
+    
 
  
 

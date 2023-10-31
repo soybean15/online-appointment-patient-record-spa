@@ -272,7 +272,6 @@ export default {
       
       },
       onDecline: async (props) => {
-        console.log(props.row.schedule_date);
 
         appointmentStore.setRow(props.row);
       },

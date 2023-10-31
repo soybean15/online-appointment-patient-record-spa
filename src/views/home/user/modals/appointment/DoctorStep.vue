@@ -55,8 +55,7 @@ import { useAppointmentStore } from "@/store/userAppointment";
 export default {
   setup() {
     const appointmentStore = useAppointmentStore();
-    console.log(appointmentStore.selectedService.doctors);
-
+   
     return {
       appointmentStore,
     };
