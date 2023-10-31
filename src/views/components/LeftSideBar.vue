@@ -69,7 +69,7 @@
 import LoginView from "@/views/home/auth/LoginView";
 import RegisterView from "@/views/home/auth/RegisterView.vue";
 
-import { ref, toRef, watch } from "vue";
+import { ref, watch } from "vue";
 import { useAuthStore } from "@/store/auth";
 import { useConfigStore } from "@/data/config";
 

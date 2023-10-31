@@ -40,7 +40,7 @@
         </q-tabs>
       </q-toolbar>
     </q-header>
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+    <q-drawer v-model="leftDrawerOpen" side="left" bordered>
       <LeftSideBar
     /></q-drawer>
 
@@ -86,7 +86,7 @@ export default {
     
     });
     const leftDrawerOpen = ref(false);
-    const rightDrawerOpen = ref(false);
+
 
     const $q = useQuasar();
    
@@ -99,10 +99,7 @@ export default {
         leftDrawerOpen.value = !leftDrawerOpen.value;
       },
 
-      rightDrawerOpen,
-      toggleRightDrawer() {
-        rightDrawerOpen.value = !rightDrawerOpen.value;
-      },
+
       $q,
       config
     };
