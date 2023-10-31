@@ -2,7 +2,7 @@
   
   <div class="text-sm " v-if="news">
 
-    <q-list bordered padding class="" >
+    <q-list  padding class="" >
         
      <q-item-label header>Health news</q-item-label>
 
