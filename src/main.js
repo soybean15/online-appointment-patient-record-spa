@@ -8,7 +8,6 @@ import { Quasar } from 'quasar'
 import quasarUserOptions from './quasar-user-options'
 import VueApexCharts from "vue3-apexcharts";
 
-import { useConfigStore } from './data/config'
 
 
 const app = createApp(App).use(Quasar, quasarUserOptions)
@@ -20,12 +19,11 @@ pinia.use(({store})=>{
 })
 
 
-
 app.use(pinia)
 app.use(router)
 app.use(VueApexCharts)
 
-const configStore = useConfigStore(); 
-app.config.globalProperties.$primary = configStore.primary;
+
+
 
 app.mount('#app')
