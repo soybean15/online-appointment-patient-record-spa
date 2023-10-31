@@ -1,67 +1,80 @@
 <template>
-    <div class="">
-        <swiper-container
-    :slides-per-view="3"
-    :space-between="spaceBetween"
-    :centered-slides="true"
-    :rewind="true"
-    :pagination="{
+  <div class="">
+    <div class="px-10 text-lg">{{title}}</div>
+    <swiper-container
+      class="flex h-40 sm:h-[400px] mx-1.5 overflow-visible"
+      ref="{swiperRef}"
+      :slidesPerView="3"
+      :initialSlide="1"
+      :centeredSlides="true"
+      :rewind="true"
+      :spaceBetween="10"
+      :pagination="{
       hideOnClick: true
     }"
-     :coverflowEffect="{
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: false,
-    }"
-     :autoplay="{
+      :autoplay="{
         delay: 2500,
         disableOnInteraction: false,
       }"
-    :breakpoints="{
-      768: {
-        slidesPerView: 3,
-      },
-    }"
-    @progress="onProgress"
-    :effect="'coverflow'"
-    :slideToClickedSlide="true"
-    @slidechange="onSlideChange"
-  >
-   <slot name="swiper-slide"></slot>
-   
-  </swiper-container>
+      :breakpoints="{
+        900: {
+          initialSlide: 2,
+          slidesPerView: 2,
+          spaceBetween: 10,
+        },
 
-</div>
-  
+        1190: {
+          slidesPerView: 3,
+          spaceBetween: 10,
+        },
+        1300: {
+          initialSlide: 3,
+          slidesPerView: 3,
+          spaceBetween: 10,
+        },
+      }"
+      :onProgress="onProgress"
+      :effect="fade"
+      :slideToClickedSlide="true"
+      :loading="lazy"
+    >
+      <slot name="swiper-slide"></slot>
+    </swiper-container>
+  </div>
 </template>
 
 <script>
-import { register } from 'swiper/element/bundle';
-register()
+import { register } from "swiper/element/bundle";
+register();
 export default {
-    setup() {
-      const spaceBetween = 10;
-      const onProgress = (e) => {
-        const [swiper, progress] = e.detail;
-      
-      };
+  props:['title'],
+  setup() {
+    const spaceBetween = 10;
+    const onProgress = (e) => {
+      const [swiper, progress] = e.detail;
+    };
+    const onSlideChange = (e) => {
+      const [swiper, progress] = e.detail;
 
-      const onSlideChange = (e) => {
-        
-      }
+      console.log(swiper.activeIndex);
+    };
 
-      return {
-        spaceBetween,
-        onProgress,
-        onSlideChange,
-      };
-    }
-
-}
+    return {
+      spaceBetween,
+      onProgress,
+      onSlideChange,
+    };
+  },
+};
 </script>
 
 <style>
+.swiper-slide-active {
+  transform: scale(1);
 
+}
+swiper-slide:not(.swiper-slide-active) {
+  transform: scale(0.9);
+
+}
 </style>

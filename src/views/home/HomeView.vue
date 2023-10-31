@@ -3,9 +3,9 @@
     <div class="bg-white ">
       <!-- Hero Section -->
       <div
-        class="row hero-section relative overflow-auto "
+        class="row hero-section relative overflow-auto bg-primary "
         style="height: 450px; "
-        :style="{'background-color': $primary }"
+       
         
        
       >
@@ -81,17 +81,17 @@
 
 
         <div class="row flex justify-center">
-          <div class="col-12 col-lg-7 col-md-7  ">
+          <div class="col-12  col-md-8  ">
 
-              <SwiperView>
+              <SwiperView :title="'Our Special Services'">
                     <template v-slot:swiper-slide>
                       <swiper-slide v-for="item in swiperItems" :key="item.title">
-                        <div class="col q-py-lg">
-                          <div class="flex q-py-lg">
+                        <div class="col ">
+                          <div class="">
                             <q-img
                               :src="item.img"
-                              style="border-radius: 20px; height: "
-                              :ratio="4 / 3"
+                              style="border-radius: 20px; height: 350px "
+                            
                               class="border-2 border-color-primary shadow-xl"
                             />
                           </div>
@@ -107,7 +107,7 @@
           </div>
 
 
-          <div class="col-4 primary text-4xl">
+          <div class="col-12 col-md-4 primary text-4xl">
 
             <HealthNewsApi/>
           </div>
