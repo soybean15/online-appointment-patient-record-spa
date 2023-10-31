@@ -28,15 +28,10 @@ export default {
 };
 </script>
 <style >
-.q-btn {
-  background-color: v-bind(primary) !important;
 
-  
-  
-}
-.q-tabs .q-tab.q-tab--active  {
+/* .q-tabs .q-tab.q-tab--active  {
   color: v-bind(primary) !important;
   
   
-}
+} */
 </style>

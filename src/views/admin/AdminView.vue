@@ -1,6 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class=" text-white" :style="{'background-color': config.primary}">
+    <!-- :style="{'background-color': config.primary}" -->
+    <q-header elevated class="bg-primary text-white"  >
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 

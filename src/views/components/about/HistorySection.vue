@@ -1,6 +1,6 @@
 <template>
     <div
-        class="col-12 col-lg-6 first-letter:q-mb-md q-pa-xl bg-primary text-gray-700"
+        class="col-12 col-lg-6 first-letter:q-mb-md q-pa-xl bg-primary "
       >
         <div class="row">
           <div class="row text-h4">History</div>
