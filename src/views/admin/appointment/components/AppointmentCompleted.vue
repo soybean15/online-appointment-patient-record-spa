@@ -89,6 +89,7 @@
 
 
 import { useAppointmentStore } from '@/store/adminAppointment';
+import { usePatientRecordStore } from '@/store/patientRecord';
 import FilterGroup from "@/components/FilterGroup.vue";
 import { ref, watch } from 'vue';
   const columns = [
@@ -169,6 +170,7 @@ import { ref, watch } from 'vue';
 
       const current = ref()
         const appointmentStore = useAppointmentStore();
+        const patientRecord = usePatientRecordStore();
 
         watch(current,()=>{
 
@@ -180,7 +182,8 @@ import { ref, watch } from 'vue';
       return {
         columns,
         appointmentStore,
-        current
+        current,
+        patientRecord,
       }
     }
   }

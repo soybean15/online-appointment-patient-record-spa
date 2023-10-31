@@ -3,7 +3,7 @@
     <div class="bg-white ">
       <!-- Hero Section -->
       <div
-        class="row   hero-section relative overflow-auto "
+        class="row hero-section relative overflow-auto "
         style="height: 450px; "
         :style="{'background-color': $primary }"
         
@@ -22,81 +22,96 @@
           ></path>
         </svg>
 
-        <div class="col-12 col-lg-10 text-white relative">
-          <div
-            style="
-              text-align: center;
-              max-width: 650px;
-              margin-right: auto;
-              margin-left: auto;
-            "
-            class="q-pt-md"
-          >
-            <div class="text-h4 text-bold q-mt-xl q-pt-xl q-pb-lg">
+        <div class="row justify-center  ">
+          <div class="gt-sm col-lg-2 "></div>
+          <div style="text-align: center;" class="row justify-center q-pt-md col-12 col-lg-7 col-md-8 col-sm-12 q-px-xl text-white">
+        
+            <div class="q-px-md">
+            <div class="text-h4 text-bold q-pt-lg q-mt-xl">
               Let Maxilife Multispecialty Clinic
               <hr />
               Care with your Health
-            </div>
-            <div class="text-h6 q-px-lg q-pb-sm">
-              Book your appointment from the comfort of your own home and
-              receive quality care from our expert team
-            </div>
-            <q-btn
-              align="around"
-              class="btn-fixed-width q-mb-md"
-              to="appointment"
-             
-              label="Set An Appointment"
-              icon="calendar_today"
-              outline
-            />
 
-            <div class="col  gt-sm opacity-85 absolute bottom-0 -right-20">
+              <span >
+               <div class="text-h6  q-pt-lg">
+                  Book your appointment from the comfort of your own home and
+                  receive quality care from our expert team
+                </div>
+              </span>
+              <span>
+                <div class="q-pt-lg">
+                    <q-btn
+                        align="around"
+                        class="btn-fixed-width q-mb-md"
+                        to="appointment"
+                      
+                        label="Set An Appointment"
+                        icon="calendar_today"
+                        outline
+                      />
+                      </div>
+              </span>
+             
+            </div>
+            </div>
+           
+            <div>
+         
+            </div>
+        
+        
+         
+          </div>
+
+          <div class="col-lg-3 col-md-4 gt-sm opacity-85 q-mt-lg">
+            <div class="q-pa-md row justify-end">
               <q-img
                 src="../../assets/img/images/doctor2.png"
-                style="width: 400px; height: 430px"
-                class="row justify-center shadow-b-xl"
+                style="width: 320px; height: 370px"
+                class="shadow-b-xl rounded-xl"
               ></q-img>
             </div>
-          </div>
+            </div>
         </div>
-        <div class="col col-lg-2 gt-sm"></div>
+    
       </div>
 
       <!--         
       //Second Row -->
 
 
-        <div class="row">
-          <div class="col-7">
+        <div class="row flex justify-center">
+          <div class="col-12 col-lg-7 col-md-7  ">
 
-      <SwiperView>
-            <template v-slot:swiper-slide>
-              <swiper-slide v-for="item in swiperItems" :key="item.title">
-                <div class="col q-py-lg">
-                  <div class="flex q-py-lg">
-                    <q-img
-                      :src="item.img"
-                      style="border-radius: 20px; height: "
-                      :ratio="4 / 3"
-                      class="border-2 border-color-primary shadow-xl"
-                    />
-                  </div>
-                  <div class="text-h7 q-my-sm text-gray-800 text-bold">
-                    {{ item.title }}
-                  </div>
-                </div>
-              </swiper-slide>
-            </template>
-          </SwiperView>
+              <SwiperView>
+                    <template v-slot:swiper-slide>
+                      <swiper-slide v-for="item in swiperItems" :key="item.title">
+                        <div class="col q-py-lg">
+                          <div class="flex q-py-lg">
+                            <q-img
+                              :src="item.img"
+                              style="border-radius: 20px; height: "
+                              :ratio="4 / 3"
+                              class="border-2 border-color-primary shadow-xl"
+                            />
+                          </div>
+                          <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                            {{ item.title }}
+                          </div>
+                        </div>
+                      </swiper-slide>
+                    </template>
+                  </SwiperView>
 
             
           </div>
+
 
           <div class="col-4 primary text-4xl">
 
             <HealthNewsApi/>
           </div>
+
         </div>
 
 

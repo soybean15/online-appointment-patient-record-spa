@@ -109,7 +109,8 @@ export default {
           d_text.value = "";
         } else {
             patientRecordStore.patientRecord.recommendation.push(r_text.value)
-            r_text.value =''
+            r_text.value ="";
+            console.log(patientRecordStore.patientRecord.recommendation);
         }
       },
     };

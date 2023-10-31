@@ -41,7 +41,9 @@ export const usePatientRecordStore = defineStore('patientRecord',{
         },
         async addRecord(){
             const data = await axios.post('api/admin/patient/record/add',this.statePatientRecord)
-        }
+        },
+
+        
     }
 
 })
