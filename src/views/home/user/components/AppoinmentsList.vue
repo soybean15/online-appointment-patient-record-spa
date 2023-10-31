@@ -27,11 +27,11 @@
             <q-item-section>
               <q-item-label
                 >{{ appointment.service.name }}
-                <q-badge
+                <!-- <q-badge
                   outline
                   :color="chipColors[appointment.status].color"
                   :label="appointment.status"
-                />
+                /> -->
               </q-item-label>
               <q-item-label caption lines="2">{{
                 appointment.doctor.full_name
@@ -79,14 +79,14 @@ export default {
   setup() {
     const appointmentStore = useAppointmentStore();
 
-    const {chipColors} = getChipColors()
+    const { chipColors } = getChipColors()
     
 
  
 
     return {
       appointmentStore,
-      chipColors
+      chipColors,
 
    
     };

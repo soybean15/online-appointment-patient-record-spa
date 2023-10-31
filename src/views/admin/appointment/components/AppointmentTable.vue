@@ -64,12 +64,12 @@
 
       <template v-slot:body-cell-status="props">
         <q-td :props="props">
-          <q-chip
+          <!-- <q-chip
             outline
-            :color="chipColors[props.row.status].color"
+           :color="chipColors[props.row.status].color"
             text-color="white"
             :label="props.row.status"
-          />
+          /> -->
         </q-td>
       </template>
 
