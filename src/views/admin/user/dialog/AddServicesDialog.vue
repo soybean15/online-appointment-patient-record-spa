@@ -58,9 +58,7 @@ export default {
       persistent,
       userStore,
       onSelect(service){
-        console.log(service)
         selectedServices.value.push(service)
-        console.log(selectedServices.value)
       },
       onClick:async()=>{
         loading.value = true

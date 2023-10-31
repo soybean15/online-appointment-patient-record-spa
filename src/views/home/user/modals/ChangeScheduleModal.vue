@@ -33,11 +33,11 @@ export default {
     const   icon= ref(false)
 
     watch(date,()=>{
-        console.log(date.value)
+       
     })
   
   
-    console.log()
+   
     return {
     icon,
       date,

@@ -249,7 +249,6 @@ export default {
       current,
       dateRange,
       save: () => {
-        console.log("range " + dateRange.value);
         appointmentStore.getApprovedByRange(dateRange.value);
       },
       makeCall(props) {

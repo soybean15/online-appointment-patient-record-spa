@@ -238,8 +238,7 @@
 
                       <div
                         v-if="
-                          patientRecordStore.patientRecord.recommendation
-                            .length == 0
+                          patientRecordStore.patientRecord.recommendation.length == 0
                         "
                       ></div>
                       <div v-else>

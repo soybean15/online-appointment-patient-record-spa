@@ -158,7 +158,7 @@ import AddServiceDialog from "../dialog/AddServicesDialog";
 
 const mapSchedule = (week, days) => {
   days.array.forEach((element) => {
-    console.log(element);
+    
   });
 };
 export default {
@@ -182,7 +182,6 @@ export default {
       }),
 
       setSchedule: (index) => {
-        console.log(index);
         userStore.setSchedule(index);
       },
      

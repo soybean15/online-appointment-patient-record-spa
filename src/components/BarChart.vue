@@ -1,6 +1,6 @@
 <template>
   <apexchart
-    width="400"
+    width="500"
     type="bar"
     :options="options"
     :series="series"
@@ -8,21 +8,48 @@
 </template>
 
 <script>
+import ApexCharts from 'vue3-apexcharts'; // Import the ApexCharts component
+
 export default {
-  setup() {
+  components: {
+    apexchart: ApexCharts, // Register the ApexCharts component
+  },
+  data() {
     return {
       options: {
         chart: {
-          id: "vuechart-example",
+          type: 'bar',
+          height: 500,
+          
+        },
+        plotOptions: {
+          bar: {
+            
+            horizontal: true,
+          },
+        },
+        dataLabels: {
+          enabled: true,
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+          categories: [
+            'Januay',
+            'February',
+            'March',
+            'April',
+            'Italy',
+            'France',
+            'Japan',
+            'United States',
+            'China',
+            'Germany',
+          ],
         },
+       
       },
       series: [
         {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91],
+          data: [20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
         },
       ],
     };

@@ -49,7 +49,6 @@ export const useAppointmentStore = defineStore('user_appointment', {
             this.stateSelectedDoctor = doctor
         },
         setDate(date) {
-            console.log(`date ${date}`)
             this.stateDate = date
         },
         async setAppointment() {
