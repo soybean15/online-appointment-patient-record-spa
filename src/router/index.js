@@ -84,6 +84,16 @@ const routes = [
        
 
       },
+
+      {
+        path: '/forgot-password',
+        name: 'forgotPassword',
+        meta: { title: 'Maxilife - Appointment Details' } ,
+        component:  () => import('@/views/home/auth/ForgotPasswordView.vue'), 
+         
+       
+
+      },
    
     
    

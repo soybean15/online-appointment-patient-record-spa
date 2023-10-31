@@ -3,7 +3,7 @@
     <div class="bg-white ">
       <!-- Hero Section -->
       <div
-        class="row   hero-section relative overflow-auto"
+        class="row   hero-section relative overflow-auto "
         style="height: 450px; "
         :style="{'background-color': $primary }"
         
@@ -45,16 +45,16 @@
               align="around"
               class="btn-fixed-width q-mb-md"
               to="appointment"
-              color="secondary"
+             
               label="Set An Appointment"
               icon="calendar_today"
               outline
             />
 
-            <div class="col gt-sm opacity-85 absolute -bottom-0 -right-20">
+            <div class="col  gt-sm opacity-85 absolute bottom-0 -right-20">
               <q-img
                 src="../../assets/img/images/doctor2.png"
-                style="width: 420px; height: 450px"
+                style="width: 400px; height: 430px"
                 class="row justify-center shadow-b-xl"
               ></q-img>
             </div>
@@ -95,13 +95,6 @@
 
           <div class="col-4 primary text-4xl">HEllo</div>
         </div>
-     
-
-        
-
-     
-
-
 
 
       <div>
