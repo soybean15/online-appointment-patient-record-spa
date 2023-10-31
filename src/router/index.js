@@ -31,6 +31,20 @@ const routes = [
 
       },
       {
+        path: '/status',
+        name: 'status',
+        meta: { title: 'Status' } ,
+        component: () => import('@/views/StatusView')
+
+      },
+      {
+        path: '/reset-password/:token',
+        name: 'resetPassword',
+        meta: { title: 'Reset Password' } ,
+        component: () => import('@/views/home/auth/ResetPasswordView')
+
+      },
+      {
         path: '/appointment',
         name: 'appointment',
         meta: { title: 'Maxilife - Appointments' } ,

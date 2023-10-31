@@ -106,7 +106,12 @@
             
           </div>
 
-          <div class="col-12 col-lg-4 col-md-7 primary text-4xl justify-center">HEllo</div>
+
+          <div class="col-4 primary text-4xl">
+
+            <HealthNewsApi/>
+          </div>
+
         </div>
 
 
@@ -124,9 +129,11 @@
 <script>
 import SwiperView from "@/components/SwiperView.vue";
 
+import HealthNewsApi from './components/HealthNewsApi.vue';
 export default {
   components: {
     SwiperView,
+    HealthNewsApi
   },
   setup() {
 
