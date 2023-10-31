@@ -24,7 +24,7 @@ export default {
       adminStore: useAdminStore(),
       submit:async()=>{
         await userStore.getPatients(null,key.value)
-        key.value = ''
+       
 
       },key
     };

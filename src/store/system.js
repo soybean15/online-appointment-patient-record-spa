@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
 
+import { setCssVar } from 'quasar'
 
 export const useSystemStore = defineStore('system', {
     state: () => ({
@@ -23,7 +24,9 @@ export const useSystemStore = defineStore('system', {
                 console.log('no COlor')
               
                 console.log(localStorage.getItem('primary'))
+                setCssVar('primary', data.data.theme_color.primary)
                 localStorage.setItem('primary',data.data.theme_color.primary);
+              
             }
 
           
@@ -34,6 +37,7 @@ export const useSystemStore = defineStore('system', {
             const data = await axios.post('api/admin/settings/theme',{
                 primary:theme.primary
             })
+            setCssVar('primary', theme.primary)
         }
 
     }

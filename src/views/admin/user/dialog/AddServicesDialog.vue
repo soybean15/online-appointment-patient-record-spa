@@ -30,7 +30,7 @@
             </q-item>
           </div>
         </q-scroll-area>
-        <q-btn :loading="loading" color="secondary" @click="onClick()" label="Button" />
+        <q-btn class="my-4" :loading="loading" color="secondary" @click="onClick()" label="Add Selected" />
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
