@@ -6,8 +6,8 @@
 
     <q-list bordered>
       <q-item
-        @click="userStore.setUser(doctor)"
-        v-for="doctor in userStore.doctors"
+        @click="doctorStore.setUser(doctor)"
+        v-for="doctor in doctors"
         :key="doctor.id"
         class="q-my-sm"
         clickable
@@ -50,22 +50,30 @@
 </template>
   
   <script>
-import { useAdminStore } from "@/store/admin";
-import { onMounted,ref } from "vue";
+
+import { ref } from "vue";
+import {useDoctorStore} from '@/store/doctor'
+import { storeToRefs } from 'pinia';
 
 export default {
   setup() {
-    const userStore = useAdminStore().userStore;
+
     const specialty = ref('')
 
-    return {
-      userStore,
-      specialty,
+    const doctorStore = useDoctorStore()
 
+    const {doctors} = storeToRefs(doctorStore)
+
+    return {
+      
+      specialty,  
+      doctorStore,
+      doctors,
       save:(doctor,close)=>{
-        userStore.addDoctor(doctor, specialty.value)
+
+        doctorStore.addDoctor(doctor, specialty.value)
         specialty.value=''
-        console.log(specialty.value)
+      
         close()
         
       }

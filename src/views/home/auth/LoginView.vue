@@ -80,9 +80,9 @@
               </q-item>
 
 
-              <q-item>
+              <q-item clickable  :to="'forgot-password'" @click="authStore.dialog.login=false">
                 <q-item-section>
-                  <span class="underline cursor-pointer text-secondary">Forgot Password</span>
+                  <span class="underline  text-secondary">Forgot Password</span>
                 </q-item-section>
               </q-item>
 
@@ -102,7 +102,7 @@
               <div class="row justify-center p-4 text-md">
 
                  <span class="font-secondary px-2">No Account?</span>
-                 <span class="text-secondary underline cursor-pointer">Register</span>
+                 <span @click="openRegister" class="text-secondary underline cursor-pointer">Register</span>
               </div>
             </q-list>
           </q-form>
@@ -140,6 +140,10 @@ export default {
       loading,
 
       isPwd: ref(false),
+      openRegister:()=>{
+        authStore.dialog.login = false
+        authStore.dialog.register =  true
+      }
     };
   },
 };
