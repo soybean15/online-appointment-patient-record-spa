@@ -39,41 +39,7 @@ export const useUserStore = defineStore('user', {
      
 
     },
-    async getDoctors(){
-      const data = await axios.get('api/admin/doctor')
-      this.stateDoctors = data.data.doctors
-    },
-
    
-    async addServices(services){
-  
-      const response = await axios.post('api/admin/doctor/services',{
-        services:services,
-       doctor_id: this.selectedUser.doctor.id
-      })
-
-      console.log(response)
-
-      this.selectedUser.doctor = response.data.doctor
-
-    },
-    async setSchedule(dayOfWeek){
-      axios.post('api/admin/doctor/schedule',{
-        day_of_week:dayOfWeek,
-        doctor_id: this.selectedUser.doctor.id
-      })
-    },
-
-    async setDoctorTime(){
-
-      const data = await axios.post('api/admin/doctor/time',{
-        id:this.stateSelectedUser.doctor.id,
-        from:this.stateSelectedUser.doctor.from,
-        to:this.stateSelectedUser.doctor.to
-      })
-
-
-    },
     async getPatients(path,keyword){
         if(!path){
             path = 'api/admin/patient'

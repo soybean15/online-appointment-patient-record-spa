@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import { useAdminStore } from "@/store/admin";
+
 import { computed } from "vue";
 import AddServiceDialog from "../dialog/AddServicesDialog";
 import { useDoctorStore } from '@/store/doctor';
@@ -170,12 +170,12 @@ export default {
     AddServiceDialog,
   },
   setup() {
-    const userStore = useAdminStore().userStore;
+
     const doctorStore = useDoctorStore()
     const {selectedUser} = storeToRefs(doctorStore)
 
     return {
-      userStore,
+ 
       selectedUser,
       doctorStore,
       fullname: computed(() => {

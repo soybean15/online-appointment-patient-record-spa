@@ -90,7 +90,7 @@ export default {
       persistent,
       onSubmit: () => {
         doctorStore.getUsers(key.value);
-        key.value = "";
+
       },
       submit: async (user) => {
       

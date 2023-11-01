@@ -70,9 +70,7 @@ export default {
       doctorStore,
       doctors,
       save:(doctor,close)=>{
-        // userStore.addDoctor(doctor, specialty.value)
-        // specialty.value=''
-        // console.log(specialty.value)
+
         doctorStore.addDoctor(doctor, specialty.value)
         specialty.value=''
       
