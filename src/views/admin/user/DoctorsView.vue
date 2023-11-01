@@ -6,7 +6,7 @@
       <DoctorsTable />
     </div>
 
-    <div class="col-6">
+    <div class="col-7">
         <DoctorInfo/>
     </div>
   </div>

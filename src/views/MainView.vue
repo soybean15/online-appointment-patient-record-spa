@@ -5,10 +5,14 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title >
-          <q-avatar>
+
+          <router-link to="/">
+            <q-avatar  class="cursor-pointer"   >
             <img src="../assets/img/logo/logo.png" />
           </q-avatar>
           Maxilife
+          </router-link>
+  
         </q-toolbar-title>
 
         <q-tabs align="justify">

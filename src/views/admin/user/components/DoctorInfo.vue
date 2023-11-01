@@ -44,7 +44,14 @@
                       </q-avatar>
                     </q-item-section>
                     <q-item-section>
-                      <q-item-label>{{ service.name }}</q-item-label>
+                      <q-item-label>
+                        
+                        <div class="row justify-between">
+                          {{ service.name }}
+                          <q-icon class="hover:text-red-600" name="delete"/>
+                        </div>
+                      
+                      </q-item-label>
                       <q-item-label caption
                         >Secondary line text. Lorem ipsum dolor sit amet,
                         consectetur adipiscit elit.</q-item-label

@@ -8,7 +8,7 @@
       transition-show="scale"
       transition-hide="scale"
     >
-      <q-card class="bg-teal text-white" style="width: 500px">
+      <q-card class=" text-white" style="width: 500px">
         <q-card-section>
           <div class="text-h6">Services</div>
         </q-card-section>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { useAdminStore } from "@/store/admin";
 
 export default {
@@ -64,9 +64,9 @@ export default {
         loading.value = true
         await userStore.addServices(selectedServices.value)
 
-
+        selectedServices.value = []
         loading.value = false
-persistent.value=false
+      persistent.value=false
 
       },
       loading
