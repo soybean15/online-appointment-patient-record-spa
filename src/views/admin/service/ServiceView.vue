@@ -31,20 +31,21 @@
     </div>
 
     <div class="q-pa-md">
-      <q-table title="Services" :rows="rows" :columns="columns" row-key="name">
+      <q-table title="Services" :rows="serviceStore.services ? serviceStore.services:[]" :columns="columns" row-key="name">
         <template v-slot:body-cell-actions="props">
           <q-td :props="props">
             <AddServiceDialogVue
+            class="px-1"
               v-slot:default="{ onClick }"
             
             >
-              <q-btn icon="mode_edit" @click="onClick(props.row)"></q-btn>
+              <q-btn color="primary" icon="mode_edit" @click="onClick(props.row)"></q-btn>
             </AddServiceDialogVue>
 
             <ConfirmDialog :pos="'top'">
 
               <template v-slot:button="{ open }">
-                <q-btn icon="delete" @click="open"></q-btn>
+                <q-btn color="red" icon="delete" @click="open"></q-btn>
               </template>
 
               <template v-slot:title>
@@ -57,7 +58,7 @@
               <template v-slot:actions="{close}">
                 <div class="row justify-evenly q-mb-md ">
                   <div>
-                     <q-btn color="secondary" label="Delete" />
+                     <q-btn @click="onDelete(props.row,close)" color="secondary" label="Delete" />
                   </div>
                  <div>
                     <q-btn @click="close" color="red" label="Cancel" />
@@ -90,7 +91,7 @@ export default {
     const serviceStore = adminStore.serviceStore;
     const persistent = ref(false);
 
-    const rows = ref([]);
+;
     const columns = [
       {
         name: "name",
@@ -119,22 +120,26 @@ export default {
     ];
     onMounted(async () => {
       await serviceStore.getServices();
-      rows.value = serviceStore.services.map((row) => ({
-        ...row,
-        actions: [],
-      }));
+      // rows.value = serviceStore.services.map((row) => ({
+      //   ...row,
+      //   actions: [],
+      // }));
 
-      console.log(rows);
+
     });
 
     return {
       serviceStore,
       columns,
-      rows,
+
       onEdit: (row) => {
         console.log(row);
       },
-      onDelete: (row) => {},
+      onDelete: (row,onClose) => {
+
+        serviceStore.deleteService(row.id)
+        onClose()
+      },
       persistent,
     };
   },

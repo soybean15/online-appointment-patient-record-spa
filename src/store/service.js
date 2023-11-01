@@ -44,9 +44,12 @@ export const useServiceStore = defineStore('service', {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
+
+                this.getServices()
         },
-        async deleteService(service){
-            const data = await axios.post(`api/admin/services/edit/${service.id}`)
+        async deleteService(id){
+             await axios.delete(`api/admin/services/delete/${id}`)
+             this.getServices()
             
         }
 

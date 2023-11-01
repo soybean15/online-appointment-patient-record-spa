@@ -158,6 +158,7 @@ const routes = [
       {
         path: 'services',
         name: 'services',
+        meta: { title: 'Admin - Services' } ,
         component: () => import('@/views/admin/service/ServiceView'),
 
 

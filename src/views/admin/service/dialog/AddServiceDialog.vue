@@ -8,9 +8,9 @@
       transition-show="scale"
       transition-hide="scale"
     >
-      <q-card class="bg-teal text-white" style="width: 400px">
+      <q-card class=" text-white" style="width: 400px">
         <q-card-section>
-          <div class="text-h6">Persistent</div>
+          <div class="text-h6">Add Service</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
@@ -42,7 +42,8 @@
           </div>
           <q-form @submit="onSubmit" class="q-gutter-md">
             <q-input
-              filled
+              outlined
+              dense
               v-model="serviceStore.serviceForm.name"
               label="Service Name*"
               hint="Service Name"
@@ -53,16 +54,18 @@
             />
 
             <q-input
-              filled
+            outlined
+              dense
               fill-mask="0"
               v-model="serviceStore.serviceForm.price"
-              label="Your age *"
+              label="Price *"
               reverse-fill-mask
               mask="#.##"
             />
 
             <q-input
-              filled
+            outlined
+              dense
               type="textarea"
               v-model="serviceStore.serviceForm.description"
               label="Description "
@@ -96,7 +99,7 @@
   
   <script>
 import { ref } from "vue";
-import { useQuasar } from "quasar";
+
 import { useAdminStore } from "@/store/admin";
 
 export default {
