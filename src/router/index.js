@@ -180,6 +180,7 @@ const routes = [
       {
         path: 'appointment',
         name: 'adminAppointment',
+        meta: { title: 'Admin - Appointments' } ,
         component: () => import('@/views/admin/appointment/AppointmentView'),
 
       },

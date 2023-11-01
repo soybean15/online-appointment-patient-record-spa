@@ -79,6 +79,16 @@
         </q-td>
       </template>
 
+      <template v-slot:body-cell-schedule="props">
+        <q-td :props="props">
+
+          <q-chip color="green" text-color="white" icon="event">
+
+         {{formatDate(props.row.schedule_date,"MMM D YYYY")}}
+          </q-chip>
+        </q-td>
+      </template>
+
       <template v-slot:body-cell-contact="props">
         <q-td :props="props">
           <div class="row justify-around">
@@ -142,6 +152,7 @@ import CompleteAppointmentModal from "../modal/CompleteAppointmentModal.vue";
 import SearchBar from "@/components/SearchBar.vue";
 
 import FilterGroup from "@/components/FilterGroup.vue";
+import formatDate from '@/composables/dateFormat';
 const columns = [
   // {
   //   name: "ref_id",
@@ -244,6 +255,7 @@ export default {
     const appointmentStore = useAppointmentStore();
     return {
       columns,
+      formatDate,
       appointmentStore,
       currentDate,
       current,

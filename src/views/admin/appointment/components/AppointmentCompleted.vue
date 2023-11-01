@@ -46,8 +46,8 @@
       <template v-slot:top-right>
         <q-pagination
           v-model="current"
-          color="white"
-          active-color="white"
+          color="primary"
+
           :active-text-color="$primary"
           :max="appointmentStore.attended.last_page"
           :max-pages="5"
@@ -55,6 +55,15 @@
         />
       </template>
 
+      <template v-slot:body-cell-schedule="props">
+        <q-td :props="props">
+
+          <q-chip color="green" text-color="white" icon="event">
+
+         {{formatDate(props.row.schedule_date,"MMM D YYYY")}}
+          </q-chip>
+        </q-td>
+      </template>
 
       <template v-slot:body-cell-image="props">
         <q-td :props="props">
@@ -92,6 +101,8 @@ import { useAppointmentStore } from '@/store/adminAppointment';
 import { usePatientRecordStore } from '@/store/patientRecord';
 import FilterGroup from "@/components/FilterGroup.vue";
 import { ref, watch } from 'vue';
+
+import formatDate from '@/composables/dateFormat';
   const columns = [
     {
       name: 'image',
@@ -182,6 +193,7 @@ import { ref, watch } from 'vue';
       return {
         columns,
         appointmentStore,
+        formatDate,
         current,
         patientRecord,
       }

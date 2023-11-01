@@ -64,22 +64,31 @@
 
       <template v-slot:body-cell-status="props">
         <q-td :props="props">
-          <!-- <q-chip
+          <q-chip
             outline
            :color="chipColors[props.row.status].color"
             text-color="white"
             :label="props.row.status"
-          /> -->
+          />
         </q-td>
       </template>
 
+      <template v-slot:body-cell-schedule="props">
+        <q-td :props="props">
+
+          <q-chip color="green" text-color="white" icon="event">
+
+         {{formatDate(props.row.schedule_date,"MMM D YYYY")}}
+          </q-chip>
+        </q-td>
+      </template>
 
 
       <template v-slot:bottom>
         <q-pagination
           v-model="current"
-          color="white"
-          active-color="white"
+          color="primary"
+
           :active-text-color="$primary"
           :max="data.last_page"
           :max-pages="5"
@@ -100,7 +109,7 @@ import getChipColors from "@/data/chipColor";
 import { useAppointmentStore } from "@/store/adminAppointment";
 import { ref,watch } from 'vue';
 import SearchBar from "@/components/SearchBar.vue";
-
+import formatDate from '@/composables/dateFormat';
 const columns = [
   {
     name: "ref_id",
@@ -189,6 +198,7 @@ export default {
       chipColors,
       appointmentStore,
       current,
+      formatDate,chipColors
      
     };
   },
