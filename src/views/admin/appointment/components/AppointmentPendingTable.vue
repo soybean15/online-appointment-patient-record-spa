@@ -7,17 +7,14 @@
       table-header-class="text-brown"
       flat
       bordered
-     
       :rows="appointmentStore.pending.data"
       :columns="columns"
       :rows-per-page-options="[0]"
-    
     >
       <template v-slot:bottom>
         <q-pagination
           v-model="current"
-          color="white"
-          active-color="white"
+          color="primary"
           :active-text-color="$primary"
           :max="appointmentStore.pending.last_page"
           :max-pages="5"
@@ -25,12 +22,16 @@
         />
       </template>
 
-
-
       <template v-slot:top-left>
-        <FilterGroup :buttons="buttons" >
+        <FilterGroup :buttons="buttons">
           <template v-slot:pop-up>
-            <q-btn dense color="brown" outline label="Date(s)" icon-right="date_range">
+            <q-btn
+              dense
+              color="brown"
+              outline
+              label="Date(s)"
+              icon-right="date_range"
+            >
               <q-popup-proxy
                 ref="qDateProxy"
                 cover
@@ -56,8 +57,7 @@
       </template>
 
       <template v-slot:top-right>
-      <SearchBar @onSearch="appointmentStore.search('pending',$event)"/>
-
+        <SearchBar @onSearch="appointmentStore.search('pending', $event)" />
       </template>
 
       <template v-slot:body-cell-image="props">
@@ -70,42 +70,46 @@
         </q-td>
       </template>
 
+      <template v-slot:body-cell-schedule="props">
+        <q-td :props="props">
+          <q-chip color="green" text-color="white" icon="event">
+         {{formatDate(props.row.schedule,"MMM D YYYY")}}
+          </q-chip>
+        </q-td>
+      </template>
       <template v-slot:body-cell-contact="props">
         <q-td :props="props">
-
           <div class="row justify-around">
             <q-icon
-            size="2em"
-            class="cursor-pointer"
-            name="call"
-            @click="makeCall(props)"
-          >
-            <q-tooltip
-              anchor="top middle"
-              self="bottom middle"
-              :offset="[10, 10]"
+              size="2em"
+              class="cursor-pointer"
+              name="call"
+              @click="makeCall(props)"
             >
-              <strong>{{ props.row.user.profile[0].contact_number }}</strong>
-            </q-tooltip>
-          </q-icon>
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                <strong>{{ props.row.user.profile[0].contact_number }}</strong>
+              </q-tooltip>
+            </q-icon>
 
-          <q-icon
-            size="2em"
-            class="cursor-pointer"
-            name="mail"
-            @click="sendEmail(props)"
-          >
-            <q-tooltip
-              anchor="top middle"
-              self="bottom middle"
-              :offset="[10, 10]"
+            <q-icon
+              size="2em"
+              class="cursor-pointer"
+              name="mail"
+              @click="sendEmail(props)"
             >
-              <strong>{{ props.row.user.email }}</strong>
-            </q-tooltip>
-          </q-icon>
-
+              <q-tooltip
+                anchor="top middle"
+                self="bottom middle"
+                :offset="[10, 10]"
+              >
+                <strong>{{ props.row.user.email }}</strong>
+              </q-tooltip>
+            </q-icon>
           </div>
-        
         </q-td>
       </template>
 
@@ -133,18 +137,14 @@
             <DeclineAppointmentModal @onDecline="onDecline(props)" />
           </div>
           <div v-else>
-         
-              <q-chip
-                outline
-                square
-                :color=" chipColors[props.row.done].color"
-                text-color="white"
-                :icon-right="chipColors[props.row.done].icon"
-                :label="props.row.done"
-              />
-          
-         
-          
+            <q-chip
+              outline
+              square
+              :color="chipColors[props.row.done].color"
+              text-color="white"
+              :icon-right="chipColors[props.row.done].icon"
+              :label="props.row.done"
+            />
           </div>
         </q-td>
       </template>
@@ -158,6 +158,7 @@ import DeclineAppointmentModal from "../modal/DeclineAppointmentModal.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import FilterGroup from "@/components/FilterGroup.vue";
 import { ref, watch } from "vue";
+import formatDate from "@/composables/dateFormat";
 const columns = [
   {
     name: "image",
@@ -204,7 +205,6 @@ const columns = [
     required: true,
     label: "Contact",
     align: "center",
-
   },
   {
     name: "doctor",
@@ -226,36 +226,32 @@ export default {
   components: {
     DeclineAppointmentModal,
     SearchBar,
-    FilterGroup
+    FilterGroup,
   },
-  props:['buttons','chipColors'],
+  props: ["buttons", "chipColors"],
   setup() {
     const appointmentStore = useAppointmentStore();
     const loading = ref([false, false]);
     const selectedItem = ref();
     const current = ref();
 
-
- 
-
     watch(current, async () => {
-    
-
       appointmentStore.getData(
-        'pending',
+        "pending",
         appointmentStore.pending.links[current.value].url
       );
     });
 
     return {
       columns,
+      formatDate,
       appointmentStore,
       loading,
       selectedItem,
       current,
 
-      getChip:(status)=>{
-        return chipColors[status]
+      getChip: (status) => {
+        return chipColors[status];
       },
 
       onApprove: async (props) => {
@@ -263,16 +259,13 @@ export default {
         loading.value[0] = true;
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        appointmentStore.setRow(props.row)
+        appointmentStore.setRow(props.row);
 
         await appointmentStore.approve();
 
         loading.value[0] = false;
-
-      
       },
       onDecline: async (props) => {
-
         appointmentStore.setRow(props.row);
       },
 
@@ -282,10 +275,10 @@ export default {
         window.location.href = telLink;
       },
       sendEmail(props) {
-      const recipientEmail = props.row.user.profile[0].email;
-      const mailtoLink = `mailto:${recipientEmail}`;
-      window.location.href = mailtoLink;
-    },
+        const recipientEmail = props.row.user.profile[0].email;
+        const mailtoLink = `mailto:${recipientEmail}`;
+        window.location.href = mailtoLink;
+      },
     };
   },
 };

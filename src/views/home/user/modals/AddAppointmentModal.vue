@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
-    <q-btn round dense color="main" icon="add" @click="persistent = true" :style="{'background-color':$primary}" />
+    <q-btn round dense color="primary" icon="add" @click="persistent = true" />
 
     <q-dialog
       v-model="persistent"

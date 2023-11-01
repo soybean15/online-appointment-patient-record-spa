@@ -1,31 +1,51 @@
 <template>
-  <div class="q-pa-md" v-if="userStore.patients">
+  <div class="q-pa-md" v-if="patients">
     <q-table
       title="Patients"
       hide-pagination=""
-      :rows="userStore.patients.data"
+      :rows="patients.data"
       :columns="columns"
       row-key="lastname"
     >
+      <template v-slot:body="props">
+        <q-tr :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="selectedUser = props.row">
+          <q-td key="fullname" :props="props">
+            <q-chip>
+              <q-avatar>
+                <img :src="props.row.profile.image" />
+              </q-avatar>
+              {{ props.row.profile.full_name }}
+            </q-chip>
+          </q-td>
+
+          <q-td key="birthdate" :props="props">
+            <q-chip dense color="orange" text-color="white" icon="cake">
+              {{ formatDate(props.row.profile.birthdate, "MMM D YYYY") }}
+            </q-chip>
+          </q-td>
+
+          <q-td key="contact_number" :props="props">
+            <q-chip>
+              <q-avatar icon="call" color="blue" text-color="white" />
+              {{ props.row.profile.contact_number }}
+            </q-chip>
+          </q-td>
+
+          <q-td key="address" :props="props">
+
+              {{props.row.profile.address_home}}
+          </q-td>
+        </q-tr>
+      </template>
+
       <template v-slot:top-right>
         <q-pagination
           v-model="current"
-          color="white"
-          active-color="white"
-          :active-text-color="$primary"
-          :max=" userStore.patients.last_page"
+          color="primary"
+          :max="patients.last_page"
           :max-pages="5"
           boundary-numbers
         />
-      </template>
-      <template v-slot:body-cell-image="props">
-        <q-td :props="props">
-          <img
-            :src="props.row.profile.image"
-            alt="Profile Image"
-            style="width: 40px; height: 40px"
-          />
-        </q-td>
       </template>
     </q-table>
     <div class="q-pa-lg flex flex-center"></div>
@@ -34,45 +54,17 @@
   
   <script>
 import { onMounted, ref, watch } from "vue";
-import { useAdminStore } from "@/store/admin";
+import { usePatientStore } from "@/store/patient";
+
+import { storeToRefs } from "pinia";
+import formatDate from "@/composables/dateFormat";
 const columns = [
   {
-    name: "image",
+    name: "fullname",
     required: true,
-    label: '',
-    align: "center",
-    field: (row) => row.profile.image,
-    format: (val) => `${val}`,
-    sortable: false,
-    "q-table-col-props": {
-      "class-name": "q-py-xs",
-      "style-name": "width: 60px",
-    },
-  },
-  {
-    name: "lastname",
-    required: true,
-    label: "LastName",
+    label: "FullName",
     align: "left",
-    field: (row) => row.profile.lastname,
-    format: (val) => `${val}`,
-    sortable: true,
-  },
-  {
-    name: "firstname",
-    required: true,
-    label: "FirstName",
-    align: "left",
-    field: (row) => row.profile.firstname,
-    format: (val) => `${val}`,
-    sortable: true,
-  },
-  {
-    name: "middlename",
-    required: true,
-    label: "MiddleName",
-    align: "left",
-    field: (row) => row.profile.middlename,
+    field: (row) => row.profile.full_name,
     format: (val) => `${val}`,
     sortable: true,
   },
@@ -102,40 +94,33 @@ const columns = [
     format: (val) => `${val}`,
     sortable: true,
   },
-  {
-    name: "status",
-    required: true,
-    label: "Address",
-    align: "left",
-    field: (row) => row.profile.status,
-    format: (val) => `${val}`,
-    sortable: true,
-  },
 ];
 
 export default {
   setup() {
-    
-
-    const userStore = useAdminStore().userStore;
-    const current = ref()
-   
+    const current = ref(1);
+    const patientStore = usePatientStore();
+    const { patients, selectedUser } = storeToRefs(patientStore);
 
     onMounted(async () => {
-      await userStore.getPatients(null,'');
-     
+      await patientStore.getPatients(null, "");
     });
 
     watch(current, async () => {
-      await userStore.getPatients(userStore.patients.links[current.value].url,'');
-      
-    
+      console.log(current.value);
+
+      await patientStore.getPatients(
+        patients.value.links[current.value].url,
+        ""
+      );
     });
 
     return {
       columns,
-      userStore,
-      current
+      patients,
+      current,
+      selectedUser,
+      formatDate,
     };
   },
 };

@@ -14,16 +14,19 @@
 
 <script>
 import { useAdminStore } from "@/store/admin";
+import {usePatientStore} from '@/store/patient'
 import { ref } from 'vue';
 export default {
   setup() {
-    const adminStore = useAdminStore()
-    const userStore = adminStore.userStore
+  
+
+    const patientStore = usePatientStore()
+
     const key = ref('')
     return {
       adminStore: useAdminStore(),
       submit:async()=>{
-        await userStore.getPatients(null,key.value)
+        await patientStore.getPatients(null,key.value)
        
 
       },key
