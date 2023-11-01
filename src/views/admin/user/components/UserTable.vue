@@ -8,13 +8,32 @@
       row-key="lastname"
     >
       <template v-slot:body="props">
-        <q-tr :props="props" @click="record = props.row.patient_records">
+        <q-tr :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="selectedUser = props.row">
           <q-td key="fullname" :props="props">
-            {{ props.row.profile.full_name }}
+            <q-chip>
+              <q-avatar>
+                <img :src="props.row.profile.image" />
+              </q-avatar>
+              {{ props.row.profile.full_name }}
+            </q-chip>
           </q-td>
 
-          <q-td key="fullname" :props="props">
-            {{ props.row.profile.full_name }}
+          <q-td key="birthdate" :props="props">
+            <q-chip dense color="orange" text-color="white" icon="cake">
+              {{ formatDate(props.row.profile.birthdate, "MMM D YYYY") }}
+            </q-chip>
+          </q-td>
+
+          <q-td key="contact_number" :props="props">
+            <q-chip>
+              <q-avatar icon="call" color="blue" text-color="white" />
+              {{ props.row.profile.contact_number }}
+            </q-chip>
+          </q-td>
+
+          <q-td key="address" :props="props">
+
+              {{props.row.profile.address_home}}
           </q-td>
         </q-tr>
       </template>
@@ -38,6 +57,7 @@ import { onMounted, ref, watch } from "vue";
 import { usePatientStore } from "@/store/patient";
 
 import { storeToRefs } from "pinia";
+import formatDate from "@/composables/dateFormat";
 const columns = [
   {
     name: "fullname",
@@ -74,22 +94,13 @@ const columns = [
     format: (val) => `${val}`,
     sortable: true,
   },
-  {
-    name: "status",
-    required: true,
-    label: "Address",
-    align: "left",
-    field: (row) => row.profile.status,
-    format: (val) => `${val}`,
-    sortable: true,
-  },
 ];
 
 export default {
   setup() {
     const current = ref(1);
     const patientStore = usePatientStore();
-    const { patients, record } = storeToRefs(patientStore);
+    const { patients, selectedUser } = storeToRefs(patientStore);
 
     onMounted(async () => {
       await patientStore.getPatients(null, "");
@@ -108,7 +119,8 @@ export default {
       columns,
       patients,
       current,
-      record,
+      selectedUser,
+      formatDate,
     };
   },
 };

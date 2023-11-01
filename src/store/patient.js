@@ -6,7 +6,7 @@ import { ref } from "vue";
 export const usePatientStore = defineStore('patient',()=>{
 
     const patients = ref(null)
-    const record = ref(null)
+    const selectedUser = ref(null)
     const  getPatients =async(path,keyword)=>{
         if(!path){
             path = 'api/admin/patient'
@@ -34,7 +34,7 @@ export const usePatientStore = defineStore('patient',()=>{
         patients,
         getPatients,
         searchPatients,
-        record
+        selectedUser
     }
 
 
