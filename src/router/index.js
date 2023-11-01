@@ -165,12 +165,14 @@ const routes = [
       {
         path: 'patients',
         name: 'patients',
+        meta: { title: 'Admin - Patients' } ,
         component: () => import('@/views/admin/user/PatientView'),
 
       },
       {
         path: 'doctors',
         name: 'doctors',
+        meta: { title: 'Admin - Doctors' } ,
         component: () => import('@/views/admin/user/DoctorsView'),
 
       },

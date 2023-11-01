@@ -23,7 +23,7 @@ export const useUserStore = defineStore('user', {
   actions: {
 
     async getUsers(keyword){
-      console.log(keyword)
+ 
       const data = await axios.post('api/admin/doctor/users',{keyword})
       this.stateUsers=data.data.users.data
     },

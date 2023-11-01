@@ -2,24 +2,24 @@
   <div>
     <div
       class="column p-5 my-4 bg-surface rounded-lg"
-      v-if="userStore.selectedUser"
+      v-if="selectedUser"
     >
       <div class="row">
         <q-avatar size="100px" class="col self-center">
-          <img :src="userStore.selectedUser.profile[0].image" />
+          <img :src="selectedUser.profile[0].image" />
         </q-avatar>
       </div>
 
       <div class="column">
-        <div class="row self-center text-2xl">{{ userStore.selectedUser.doctor.full_name }}</div>
+        <div class="row self-center text-2xl">{{ selectedUser.doctor.full_name }}</div>
         <div class="row self-center text-lg font-secondary">
-          {{ userStore.selectedUser.doctor.specialty }}
+          {{ selectedUser.doctor.specialty }}
         </div>
         <div class="row self-center text-md">
-          {{ userStore.selectedUser.profile[0].contact_number }}
+          {{ selectedUser.profile[0].contact_number }}
         </div>
         <div class="row self-center text-md">
-          {{ userStore.selectedUser.email }}
+          {{ selectedUser.email }}
         </div>
 
         <div class="row">
@@ -35,7 +35,7 @@
                   <q-item
                     clickable
                     v-ripple
-                    v-for="service in userStore.selectedUser.doctor.services"
+                    v-for="service in selectedUser.doctor.services"
                     :key="service.id"
                   >
                     <q-item-section avatar>
@@ -82,7 +82,7 @@
                 >
                   <div
                     class=""
-                    v-for="(day, index) in userStore.selectedUser.doctor
+                    v-for="(day, index) in selectedUser.doctor
                       .available_schedules"
                     :key="day"
                   >
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="row justify-around">
-                  <q-input  label="Start time" class="col-5" dense outlined v-model="userStore.selectedUser.doctor.from" mask="time" :rules="['time']">
+                  <q-input  label="Start time" class="col-5" dense outlined v-model="selectedUser.doctor.from" mask="time" :rules="['time']">
                     <template v-slot:append>
                       <q-icon name="access_time" class="cursor-pointer">
                         <q-popup-proxy
@@ -104,7 +104,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                         >
-                          <q-time v-model="userStore.selectedUser.doctor.from">
+                          <q-time v-model="selectedUser.doctor.from">
                             <div class="row items-center justify-end">
                               <q-btn
                                 v-close-popup
@@ -118,7 +118,7 @@
                       </q-icon>
                     </template>
                   </q-input> 
-                  <q-input  label="End time" class="col-5" dense outlined v-model="userStore.selectedUser.doctor.to" mask="time"  :rules="[val => !!val || 'End time is required']">
+                  <q-input  label="End time" class="col-5" dense outlined v-model="selectedUser.doctor.to" mask="time"  :rules="[val => !!val || 'End time is required']">
                     <template v-slot:append>
                       <q-icon name="access_time" class="cursor-pointer">
                         <q-popup-proxy
@@ -126,7 +126,7 @@
                           transition-show="scale"
                           transition-hide="scale"
                         >
-                          <q-time v-model="userStore.selectedUser.doctor.to">
+                          <q-time v-model="selectedUser.doctor.to">
                             <div class="row items-center justify-end">
                               <q-btn
                                 v-close-popup
@@ -145,7 +145,7 @@
                  
                 </div>
                 <div class="row justify-end mx-5">
-                  <q-btn class="self-end" @click="userStore.setDoctorTime()" dense label="submit" />
+                  <q-btn color="primary" class="self-end" @click="doctorStore.setDoctorTime()" dense label="submit" />
                 </div>
               
                 
@@ -160,36 +160,36 @@
 
 <script>
 import { useAdminStore } from "@/store/admin";
-import { computed, onMounted, ref } from "vue";
+import { computed } from "vue";
 import AddServiceDialog from "../dialog/AddServicesDialog";
+import { useDoctorStore } from '@/store/doctor';
+import { storeToRefs } from 'pinia';
 
-const mapSchedule = (week, days) => {
-  days.array.forEach((element) => {
-    
-  });
-};
 export default {
   components: {
     AddServiceDialog,
   },
   setup() {
     const userStore = useAdminStore().userStore;
+    const doctorStore = useDoctorStore()
+    const {selectedUser} = storeToRefs(doctorStore)
 
     return {
       userStore,
-
+      selectedUser,
+      doctorStore,
       fullname: computed(() => {
-        if (userStore.selectedUser) {
-          if (userStore.selectedUser.profile[0].gender === "Male") {
-            return `Dr. ${userStore.selectedUser.profile[0].firstname}  ${userStore.selectedUser.profile[0].lastname}`;
+        if (selectedUser.value) {
+          if (selectedUser.value.profile[0].gender === "Male") {
+            return `Dr. ${selectedUser.value.profile[0].firstname}  ${selectedUser.value.profile[0].lastname}`;
           } else {
-            return `Dra. ${userStore.selectedUser.profile[0].firstname}  ${userStore.selectedUser.profile[0].lastname}`;
+            return `Dra. ${selectedUser.value.profile[0].firstname}  ${selectedUser.value.profile[0].lastname}`;
           }
         }
       }),
 
       setSchedule: (index) => {
-        userStore.setSchedule(index);
+        doctorStore.setSchedule(index);
       },
      
     };

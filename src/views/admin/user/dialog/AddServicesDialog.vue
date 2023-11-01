@@ -15,7 +15,7 @@
 
         <q-card-section class="q-pt-none">
           <q-scroll-area   style="height: 300px; max-width: 100%">
-          <div v-for="service in userStore.selectedUser.doctor.services_not_available" :key="service.id">
+          <div v-for="service in selectedUser.doctor.services_not_available" :key="service.id">
             <q-item tag="label" v-ripple>
               <q-item-section side top>
                 <q-checkbox @click="onSelect(service)" v-model="service.selected" />
@@ -43,11 +43,15 @@
 
 <script>
 import { ref } from "vue";
-import { useAdminStore } from "@/store/admin";
+
+import { useDoctorStore } from '@/store/doctor';
+import { storeToRefs } from 'pinia';
 
 export default {
   setup() {
-    const userStore = useAdminStore().userStore;
+
+    const doctorStore = useDoctorStore()
+    const {selectedUser }= storeToRefs(doctorStore)
     const selectedServices = ref([])
     const loading = ref(false)
     const   persistent= ref(false)
@@ -56,13 +60,14 @@ export default {
 
     return {
       persistent,
-      userStore,
+      
+      selectedUser,
       onSelect(service){
         selectedServices.value.push(service)
       },
       onClick:async()=>{
         loading.value = true
-        await userStore.addServices(selectedServices.value)
+        await doctorStore.addServices(selectedServices.value)
 
         selectedServices.value = []
         loading.value = false

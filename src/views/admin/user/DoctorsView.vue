@@ -16,8 +16,9 @@
 import DoctorsTable from "./components/DoctorsTable.vue";
 import AddDoctorDialog from "./dialog/AddDoctorDialog.vue";
 import DoctorInfo from "./components/DoctorInfo.vue";
-import { useAdminStore } from "@/store/admin";
+import {useDoctorStore} from '@/store/doctor'
 import { onMounted } from "vue";
+
 export default {
   components: {
     DoctorsTable,
@@ -25,10 +26,14 @@ export default {
     DoctorInfo
   },
   setup() {
-    const userStore = useAdminStore().userStore;
+
+    const doctorStore = useDoctorStore()
+
+
 
     onMounted(() => {
-      userStore.getDoctors();
+     // userStore.getDoctors();
+     doctorStore.getDoctors()
     });
   },
 };

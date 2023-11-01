@@ -32,13 +32,13 @@
           <q-scroll-area
             class="p-2"
             style="height: 200px; max-width: 100%"
-            v-if="userStore.users"
+            v-if="users"
           >
             <div
               :class="{ 'font-secondary': index === selectedUser }"
               @dblclick="submit(user)"
               @click="selectedUser = index"
-              v-for="(user, index) in userStore.users"
+              v-for="(user, index) in users"
               :key="index"
               class="caption cursor-pointer items-center row p-1"
             >
@@ -68,37 +68,40 @@
   
   <script>
 import { onMounted, ref } from "vue";
-import { useAdminStore } from "@/store/admin";
 
+import {useDoctorStore} from '@/store/doctor'
+import { storeToRefs } from 'pinia';
 export default {
   setup() {
-    const userStore = useAdminStore().userStore;
 
+    const doctorStore = useDoctorStore()
     const persistent = ref(false);
+    
+    const {users} = storeToRefs(doctorStore)
 
     const selectedUser = ref();
     const key = ref("");
 
     onMounted(() => {
-      userStore.getUsers(key.value);
+      doctorStore.getUsers(key.value);
     });
 
     return {
       persistent,
-      userStore,
       onSubmit: () => {
-        userStore.getUsers(key.value);
+        doctorStore.getUsers(key.value);
         key.value = "";
       },
       submit: async (user) => {
       
-        await userStore.addDoctor(user);
+        await doctorStore.addDoctor(user);
 
         persistent.value = false;
-        console.log(selectedUser.value);
+   
       },
       selectedUser,
-      key
+      key,
+      users
     };
   },
 };
