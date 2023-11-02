@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { useAppointmentStore } from './adminAppointment'
+
 
 export const usePatientRecordStore = defineStore('patientRecord',{
 
@@ -21,7 +21,8 @@ export const usePatientRecordStore = defineStore('patientRecord',{
         stateSelectedRow:null,
         stateDialog:{
            state: false
-        }
+        },
+        
 
 
     }),
@@ -40,8 +41,22 @@ export const usePatientRecordStore = defineStore('patientRecord',{
             this.statePatientRecord.date_diagnosed =row.date_diagnosed
         },
         async addRecord(){
-            const data = await axios.post('api/admin/patient/record/add',this.statePatientRecord)
+            await axios.post('api/admin/patient/record/add',this.statePatientRecord)
         },
+        async getLast(){
+
+            try{
+                const response= await axios.post(`api/admin/patient/last/${this.statePatientRecord.user_id}`)
+                this.statePatientRecord.height = response.data.last.height
+                this.statePatientRecord.weight = response.data.last.weight
+                this.statePatientRecord.blood_type = response.data.last.blood_type
+                this.statePatientRecord.blood_pressure = response.data.last.blood_pressure
+    
+            }catch(e){
+
+            }
+        
+        }
 
         
     }

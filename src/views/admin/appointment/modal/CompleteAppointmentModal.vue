@@ -30,7 +30,7 @@
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn @click="patientRecordStore.dialog.state = false" flat label="Close" v-close-popup />
+          <q-btn @click="patientRecordStore.dialog.state = false" flat color="primary" label="Close" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>

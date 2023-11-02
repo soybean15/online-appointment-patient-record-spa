@@ -1,8 +1,8 @@
 <template>
-  <div class="q-pa-md" style="">
+  <div class="px-1" style="">
 
 
-    <q-list class="bg-surface shadow-md rounded-md p-4">
+    <q-list class="bg-surface shadow-md rounded-md p-4" bordered>
       <q-item-label class="row items-center justify-between" header
         >Appointments <AddAppointmentModal
       /></q-item-label>
@@ -46,9 +46,9 @@
                 appointment.time_ago
               }}</q-item-label>
               <router-link :to="{name:'appointmentDetails'}">  <q-btn
-                outline
+                
                 dense
-                color="primary"
+                color="secondary"
                 label="View details"
                 @click="appointmentStore.setSelectedAppointment(appointment)"
               /></router-link>
