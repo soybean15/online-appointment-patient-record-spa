@@ -1,15 +1,16 @@
 <template>
     <div
-        class="col-12 col-lg-6 first-letter:q-mb-md q-pa-xl bg-primary "
+        class="col-12 col-lg-6  q-pa-md" 
       >
-        <div class="row">
-          <div class="row text-h4">History</div>
+      
+         
+          <div class="row text-h6 text-bold text-primary">History</div>
           <div class="row q-py-md q-mr-xl q-pr-md">
             <p>
               Maxilife is a healthcare facility more popularly known as birthing
               center in San Fernando Sur, Cabiao, Neva Ecija which was
-              established by Dr. Emerson D.C. Garcia and Dr. Kristina T.
-              Vergara-Garcia, started its construction on May 2, 2017 through
+              established by <b>Dr. Emerson D.C. Garcia and Dr. Kristina T.
+              Vergara-Garcia</b>, started its construction on May 2, 2017 through
               the help and supervision of Arch. Medel D.C. Garcia and Arch.
               Kristel R. Garcia. It formally opened its doors to the public on
               February 2, 2018 when it started the out-patient services staffed
@@ -48,7 +49,7 @@
             </p>
           </div>
         </div>
-      </div>
+      
 </template>
 
 <script>

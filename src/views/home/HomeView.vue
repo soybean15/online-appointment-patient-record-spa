@@ -22,9 +22,9 @@
           ></path>
         </svg>
 
-        <div class="row justify-center  ">
+        <div class="row justify-center " style="width:100%">
           <div class="gt-sm col-lg-2 "></div>
-          <div style="text-align: center;" class="row justify-center q-pt-md col-12 col-lg-7 col-md-8 col-sm-12 q-px-xl text-white">
+          <div style="text-align: center;" class="row justify-center q-pt-md col-12 col-lg-6 col-md-8 col-sm-12 q-px-xl text-white">
         
             <div class="q-px-md">
             <div class="text-h4 text-bold q-pt-lg q-mt-xl">
@@ -43,8 +43,7 @@
                     <q-btn
                         align="around"
                         class="btn-fixed-width q-mb-md"
-                        to="appointment"
-                      
+                        to="appointment"            
                         label="Set An Appointment"
                         icon="calendar_today"
                         outline
@@ -63,14 +62,15 @@
          
           </div>
 
-          <div class="col-lg-3 col-md-4 gt-sm opacity-85 q-mt-lg">
-            <div class="q-pa-md row justify-end">
+          <div class="col-lg-4 col-md-4 gt-sm opacity-85 q-mt-lg">
+            <div class="q-pa-md row justify-center">
               <q-img
                 src="../../assets/img/images/doctor2.png"
-                style="width: 320px; height: 370px"
+                style="width: 320px; height: 370px;"
                 class="shadow-b-xl rounded-xl"
               ></q-img>
             </div>
+          
             </div>
         </div>
     
@@ -81,21 +81,46 @@
 
 
         <div class="row flex justify-center">
-          <div class="col-12  col-md-8  ">
+     
+          <!-- <div class="col-12 col-md-8 col-lg-8 relative-position q-pa-md">
+            <h2 class="swiper-title text-h6">{{ title }}</h2>
+            <SwiperView class="q-pa-sm" :title="'Our Services Offer'">
+              <template v-slot:swiper-slide>
+                <swiper-slide v-for="item in swiperItems" :key="item.title" >
+                  <div class="col swiper-item q-pa-md">
+                    <div class="image-container ">
+                      <q-img
+                        :src="item.img"
+                        style="border-radius: 20px; height: 230px; object-fit: cover; opacity: 95%;"
+                        class="border-5  shadow-xl bg-primary border-primary hover-effect"
+                      />
+                    </div>
+                    <div class="text-container q-my-sm">
+                      <div class="item-title text-sm text-primary text-bold">{{ item.title }}</div>
+                     
+                    </div>
+                  </div>
+                </swiper-slide>
+              </template>
+            </SwiperView>
+          </div> -->
 
-              <SwiperView :title="'Our Special Services'">
-                    <template v-slot:swiper-slide>
-                      <swiper-slide v-for="item in swiperItems" :key="item.title">
-                        <div class="col ">
+          
+          <div class="col-12 col-lg-8 col-md-8 q-pa-xl">
+
+              <SwiperView :title="'Our Special Services'" class="text-gray-500 text-style-underline">
+                    <template v-slot:swiper-slide >
+                      <swiper-slide v-for="item in swiperItems" :key="item.title" >
+                        <div class="col swiper-item ">
                           <div class="">
                             <q-img
                               :src="item.img"
-                              style="border-radius: 20px; height: 350px "
+                              style="border-radius: 20px; height: 280px "
                             
                               class="border-2 border-color-primary shadow-xl"
                             />
                           </div>
-                          <div class="text-h7 q-my-sm text-gray-800 text-bold">
+                          <div class="text-h7 q-my-sm text-primary text-bold">
                             {{ item.title }}
                           </div>
                         </div>
@@ -103,11 +128,9 @@
                     </template>
                   </SwiperView>
 
-            
           </div>
 
-
-          <div class="col-12 col-md-4 primary text-4xl">
+          <div class="col-12 col-lg-4 col-md-4 text-4xl  rounded-md q-px-md bg-gray-100">
 
             <HealthNewsApi/>
           </div>
@@ -139,21 +162,9 @@ export default {
 
     return {
       swiperItems: [
-        {
+      {
           img: require("@/assets/img/images/img3.png"),
-          title: "Best healthcare providers",
-          description:
-            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
-        },
-        {
-          img: require("@/assets/img/images/img6.png"),
-          title: "Best healthcare providers",
-          description:
-            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
-        },
-        {
-          img: require("@/assets/img/images/img2.jpg"),
-          title: "Best healthcare providers",
+          title: "NEWEST!!",
           description:
             "Book your appointment from the comfort of your own home and receive quality care from our expert team",
         },
@@ -163,6 +174,38 @@ export default {
           description:
             "Book your appointment from the comfort of your own home and receive quality care from our expert team",
         },
+     
+        {
+          img: require("@/assets/img/images/img2.jpg"),
+          title: "Exceptional Equipments",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+
+      
+        {
+          img: require("@/assets/img/images/facility1.jpg"),
+          title: "Clean and Neat Facility",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+        {
+          img: require("@/assets/img/images/service1.jpg"),
+          title: "Good Services",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+      
+      
+        {
+          img: require("@/assets/img/images/img6.png"),
+          title: "Best healthcare providers",
+          description:
+            "Book your appointment from the comfort of your own home and receive quality care from our expert team",
+        },
+     
+     
+     
         // {
         //   img: require("@/assets/img/images/img9.png"),
         //   title: "Best healthcare providers",
@@ -182,6 +225,49 @@ export default {
     z-index:5;
     background: linear-gradient(-60deg, rgb(253, 252, 252),rgb(247, 249, 247),rgb(149, 149, 151),yellow);
 } */
+
+.relative-position {
+  position: relative;
+}
+
+.swiper-title {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.swiper-item {
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.swiper-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  border:20px;
+}
+
+.hover-effect:hover {
+  opacity: 1;
+}
+
+.item-title {
+  font-size: 1.2rem;
+}
+
+.item-description {
+  font-size: 0.9rem;
+}
 
 
 </style>
