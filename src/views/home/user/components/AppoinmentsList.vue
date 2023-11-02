@@ -27,11 +27,11 @@
             <q-item-section>
               <q-item-label
                 >{{ appointment.service.name }}
-                <!-- <q-badge
+                <q-badge
                   outline
                   :color="chipColors[appointment.status].color"
                   :label="appointment.status"
-                /> -->
+                />
               </q-item-label>
               <q-item-label caption lines="2">{{
                 appointment.doctor.full_name
@@ -48,7 +48,7 @@
               <router-link :to="{name:'appointmentDetails'}">  <q-btn
                 outline
                 dense
-                style="color: goldenrod"
+                color="primary"
                 label="View details"
                 @click="appointmentStore.setSelectedAppointment(appointment)"
               /></router-link>

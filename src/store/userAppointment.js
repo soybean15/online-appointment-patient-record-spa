@@ -14,7 +14,7 @@ export const useAppointmentStore = defineStore('user_appointment', {
         stateLoading: false,
         stateAppointments:null,
         
-
+        stateId:null,
         stateSelectedAppointment:null
 
     }),
@@ -28,7 +28,8 @@ export const useAppointmentStore = defineStore('user_appointment', {
         date: (state) => state.stateDate,
         loading: (state) => state.stateLoading,
         appointments:(state)=>state.stateAppointments,
-        selectedAppointment:(state)=>state.stateSelectedAppointment
+        selectedAppointment:(state)=>state.stateSelectedAppointment,
+        referenceId:(state)=>state.stateId
 
     },
 
@@ -62,7 +63,8 @@ export const useAppointmentStore = defineStore('user_appointment', {
                         service_id: this.stateSelectedService.id,
                         doctor_id: this.stateSelectedDoctor.id,
                         user_id: authStore.user.id,
-                        schedule_date: this.stateDate
+                        schedule_date: this.stateDate,
+                        reference_id : this.stateId
 
                     }
                 )
@@ -100,6 +102,10 @@ export const useAppointmentStore = defineStore('user_appointment', {
                 newDate:date
             })
             this.stateSelectedAppointment = data.data.appointment
+        },
+        async generateId(){
+           const response = await axios.get('api/user/appointment/id') 
+           this.stateId = response.data.id
         }
      
 

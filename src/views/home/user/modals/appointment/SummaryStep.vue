@@ -9,6 +9,10 @@
     <q-card-section>
       <div class="column">
         <div class="col">
+          <div class="font-semibold text-lg font-secondary">Reference Id:</div>
+          <div>{{appointmentStore.referenceId }}</div>
+        </div>
+        <div class="col">
           <div class="font-semibold text-lg font-secondary">Applicant:</div>
           <div>{{authStore.user.profile[0].full_name }}</div>
         </div>
@@ -32,10 +36,15 @@
 <script>
 import { useAuthStore } from "@/store/auth";
 import { useAppointmentStore } from "@/store/userAppointment";
+import { onMounted } from 'vue';
 export default {
   setup() {
     const authStore = useAuthStore();
     const appointmentStore = useAppointmentStore();
+
+    onMounted(()=>{
+      appointmentStore.generateId()
+    })
 
     return {
       authStore,

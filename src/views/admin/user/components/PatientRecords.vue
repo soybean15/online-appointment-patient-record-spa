@@ -1,6 +1,6 @@
 <template>
   <div class="row bg-surface rounded-md " v-if="selectedUser">
-    <div class="p-5 bg-onSurface shadow-md rounded-md"  style="max-width:300px">
+    <div class="p-5 bg-onSurface shadow-md rounded-md"  style="max-width:250px">
       <div class="text-lg">Patient Info</div>
 
       <div class="column my-5 items-center">
@@ -11,12 +11,12 @@
         <div class="column items-center">
           <div>{{ selectedUser.profile.full_name }}</div>
           <q-chip>
-            <q-avatar icon="call" color="blue" text-color="white" />
-            {{ selectedUser.profile.contact_number }}
+            <q-avatar size="1.5em" icon="call" color="blue" text-color="white" />
+            <span class="text-xs"> {{ selectedUser.profile.contact_number }}</span>
           </q-chip>
           <q-chip>
-            <q-avatar icon="mail" color="blue" text-color="white" />
-            {{ selectedUser.email }}
+            <q-avatar  size="1.5em" icon="mail" color="blue" text-color="white" />
+            <span class="text-xs">{{ selectedUser.email }}</span>
           </q-chip>
 
           <div class="mt-10 column items-start w-full">

@@ -18,7 +18,16 @@
         />
       </div>
 
-      <div class="column col mt-3">
+
+      <div class="column mt-3">
+        <strong class="font-secondary font-lg">Reference id</strong>
+        <div class="font-sm">
+          {{ appointmentStore.selectedAppointment.reference_id }}
+        </div>
+      </div>
+
+
+      <div class="column col ">
         <strong class="font-secondary font-lg">Booked Service </strong>
         <div class="font-sm">
           {{ appointmentStore.selectedAppointment.service.name }}
