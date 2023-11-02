@@ -1,14 +1,21 @@
 <template>
+  <div class="p-3">
+    <div class="text-lg">Patient Record</div>
+
+  </div>
    <q-table
-      title="Records"
+      title="History"
       :rows="rows"
       :columns="columns"
       row-key="name"
     />
 
+    {{lastRecord}}
+
 </template>
 
 <script>
+import { ref } from 'vue'
 const columns =[
 
 {
@@ -42,9 +49,13 @@ const columns =[
 ]
 export default {
     props:['rows'],
-    setup(){
+    setup(props){
+
+      const lastRecord = ref(props.rows[props.rows.length - 1])
+
         return {
-            columns
+            columns,
+            lastRecord
         }
     }
 
