@@ -69,13 +69,7 @@
       </q-expansion-item>
 
       <hr />
-      <q-item to="/" clickable v-ripple>
-        <q-item-section avatar>
-          <q-icon name="exit_to_app" />
-        </q-item-section>
-
-        <q-item-section> Exit </q-item-section>
-      </q-item>
+     
 
       <q-item :to="{ name: 'settings' }" clickable v-ripple>
         <q-item-section avatar>
@@ -83,6 +77,15 @@
         </q-item-section>
 
         <q-item-section> Settings </q-item-section>
+      </q-item>
+
+
+      <q-item to="/" clickable v-ripple>
+        <q-item-section avatar>
+          <q-icon name="exit_to_app" />
+        </q-item-section>
+
+        <q-item-section> Exit </q-item-section>
       </q-item>
     </q-drawer>
 

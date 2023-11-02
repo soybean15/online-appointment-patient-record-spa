@@ -8,7 +8,7 @@
       row-key="lastname"
     >
       <template v-slot:body="props">
-        <q-tr :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="selectedUser = props.row">
+        <q-tr class="cursor-pointer" :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="selectedUser = props.row">
           <q-td key="fullname" :props="props">
             <q-chip>
               <q-avatar>
