@@ -1,6 +1,6 @@
 <template>
-  <div class="row bg-surface" v-if="selectedUser">
-    <div class="p-5 bg-onSurface shadow-md"  style="max-width:300px">
+  <div class="row bg-surface rounded-md " v-if="selectedUser">
+    <div class="p-5 bg-onSurface shadow-md rounded-md"  style="max-width:300px">
       <div class="text-lg">Patient Info</div>
 
       <div class="column my-5 items-center">
