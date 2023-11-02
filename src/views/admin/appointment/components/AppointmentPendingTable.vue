@@ -73,7 +73,7 @@
       <template v-slot:body-cell-schedule="props">
         <q-td :props="props">
           <q-chip color="green" text-color="white" icon="event">
-         {{formatDate(props.row.schedule,"MMM D YYYY")}}
+         {{formatDate(props.row.schedule_date,"MMM D YYYY")}}
           </q-chip>
         </q-td>
       </template>

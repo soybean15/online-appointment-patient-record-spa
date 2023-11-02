@@ -72,6 +72,7 @@ import RegisterView from "@/views/home/auth/RegisterView.vue";
 import { ref, watch } from "vue";
 import { useAuthStore } from "@/store/auth";
 import { useConfigStore } from "@/data/config";
+import { storeToRefs } from 'pinia';
 
 export default {
   components: { LoginView, RegisterView },
@@ -80,21 +81,22 @@ export default {
     const authStore = useAuthStore();
     
 
-    const { primary,$q, dark } = useConfigStore();
+    const { $q } = useConfigStore();
+    const {dark } = storeToRefs(useConfigStore())
   
-    console.log(dark)
+
     watch(
       () => $q.dark.isActive,
       (val) => {
         localStorage.setItem('dark', val);
         $q.dark.set(val)
+       
       }
     );
 
     return {
       activeSideBar: ref(),
-      authStore,
-      primary,
+      authStore,  
       $q,
       dark,
     };

@@ -1,56 +1,201 @@
 <template>
-   <q-table
-      title="Records"
+  <div class="p-3" v-if="record">
+    <div class="text-lg my-3">Patient Record</div>
+
+    <div class="text-lg">Details</div>
+
+    <div class="row q-gutter-xs">
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg font-bold text-primary">Height</div>
+        <div>
+          {{ record.height }}
+        </div>
+      </div>
+
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-primary">Weight</div>
+        <div>
+          {{ record.weight }}
+        </div>
+      </div>
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-primary">Blood Pressure</div>
+        <div>
+          {{ record.blood_pressure }}
+        </div>
+      </div>
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-red">Blood Type</div>
+        <div>
+          {{ record.blood_type }}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-lg mt-5">Appointment Details</div>
+
+    <div class="row q-gutter-xs">
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-primary">Reference id</div>
+        <div>
+          {{ record.appointment.reference_id }}
+        </div>
+      </div>
+
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-primary">Service</div>
+        <div>
+          <span class="text-xs font-secondary">Service Name:</span>
+          {{ record.service.name }}
+        </div>
+
+        <div>
+          <span class="text-xs font-secondary">Assigned Doctor:</span>
+          <span> {{ record.doctor }}</span>
+        </div>
+      </div>
+
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-primary">Date</div>
+        <div>
+          {{ formatDate(record.date_diagnosed, "MMM DD, YYYY") }}
+        </div>
+      </div>
+
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm w-full">
+        <div class="text-lg text-blue">Diagnosis</div>
+        <div v-if="record.diagnosis.length > 0">
+          <div
+            class="row items-center"
+            v-for="item in record.diagnosis"
+            key="item"
+          >
+            <q-icon name="task_alt" color="primary" class="mx-1" />
+            <span>{{ item }} </span>
+          </div>
+        </div>
+        <div v-else>No Data</div>
+      </div>
+
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm w-full">
+        <div class="text-lg text-blue">Recommendations</div>
+        <div v-if="record.recommendation.length > 0">
+          <div
+            class="row items-center"
+            v-for="item in record.recommendation"
+            key="item"
+          >
+            <q-icon name="task_alt" color="primary" class="mx-1" />
+            <span>{{ item }} </span>
+          </div>
+        </div>
+        <div v-else>No Data</div>
+      </div>
+    </div>
+  </div>
+  <div class="px-3 b">
+    <q-table
+      class="bg-secondary"
+      title="History"
       :rows="rows"
       :columns="columns"
       row-key="name"
-    />
+    >
+      <template v-slot:top-right>
+        <q-input
+          outlined
+          label="Filter"
+          dense
+          debounce="300"
+          color="primary"
+          v-model="filter"
+        >
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
 
+      <template v-slot:body="props">
+        <q-tr :props="props" @click="selectRow(props.row)" :class="{'text-primary':props.row ==record}">
+          <q-td key="reference_id" :props="props">
+            {{ props.row.appointment.reference_id }}
+          </q-td>
+          <q-td key="date_diagnosed" :props="props">
+            {{ formatDate(props.row.date_diagnosed ,'MMM DD YYYY')}}
+          </q-td>
+          <q-td key="service" :props="props">
+            {{ props.row.service.name }}
+          </q-td>
+          <q-td key="doctor" :props="props">
+            {{ props.row.doctor }}
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
+  </div>
 </template>
 
 <script>
-const columns =[
+import { ref } from "vue";
 
-{
-    name: 'date_diagnosed',
+import formatDate from "@/composables/dateFormat";
+
+const columns = [
+  {
+    name: "reference_id",
     required: true,
-    label: 'Date Diagnosed',
-    align: 'left',
-    field: row => row.date_diagnosed,
-    format: val => `${val}`,
-    sortable: true
+    label: "Reference ID",
+    align: "center",
+    field: (row) => row.appointment.reference_id,
+    format: (val) => `${val}`,
+    sortable: true,
+  },
+  {
+    name: "date_diagnosed",
+    required: true,
+    label: "Date Diagnosed",
+    align: "left",
+    field: (row) => row.date_diagnosed,
+    format: (val) => `${formatDate(val, "MMM DD, YYYY")}`,
+    sortable: true,
   },
 
   {
-    name: 'service',
+    name: "service",
     required: true,
-    label: 'Service',
-    align: 'left',
-    field: row => row.service.name,
-    format: val => `${val}`,
-    sortable: true
+    label: "Service",
+    align: "left",
+    field: (row) => row.service.name,
+    format: (val) => `${val}`,
+    sortable: true,
   },
   {
-    name: 'doctor',
+    name: "doctor",
     required: true,
-    label: 'Assigned Doctor',
-    align: 'left',
-    field: row => row.doctor,
-    format: val => `${val}`,
-    sortable: true
+    label: "Assigned Doctor",
+    align: "left",
+    field: (row) => row.doctor,
+    format: (val) => `${val}`,
+    sortable: true,
   },
-]
+];
 export default {
-    props:['rows'],
-    setup(){
-        return {
-            columns
-        }
-    }
-
-}
+  props: ["rows"],
+  setup(props) {
+    const record = ref(props.rows[props.rows.length - 1]);
+    return {
+      columns,
+      record,
+      formatDate,
+      filter: ref(""),
+      selectRow:(row)=>{
+        record.value =row
+      }
+    };
+  },
+};
 </script>
 
 <style>
-
 </style>

@@ -32,7 +32,7 @@
               <div class="col">
                 <div class="text-md font-secondary">
                   <q-input
-                    filled
+                  outlined
                     v-model="patientRecordStore.patientRecord.blood_type"
                     label="Blood Type"
                     stack-label
@@ -44,9 +44,9 @@
               <div class="col q-py-sm">
                 <div class="font-semibold text-lg font-secondary">
                   <q-input
-                    filled
+                  outlined
                     v-model="patientRecordStore.patientRecord.weight"
-                    label="Weight"
+                    label="Weight(kg)"
                     stack-label
                     dense
                   />
@@ -67,7 +67,7 @@
               <div class="col">
                 <div class="font-semibold text-lg font-secondary">
                   <q-input
-                    filled
+                  outlined
                     label="Blood Pressure"
                     v-model="patientRecordStore.patientRecord.blood_pressure"
                     stack-label
@@ -79,10 +79,11 @@
               <div class="col q-py-sm">
                 <div class="font-semibold text-lg font-secondary">
                   <q-input
-                    filled
-                    label="Height"
+                    outlined
+                    label="Height(ft)"
                     v-model="patientRecordStore.patientRecord.height"
                     stack-label
+                    mask="#'#"
                     dense
                     class=""
                   />
@@ -265,6 +266,7 @@
       <template v-slot:navigation>
         <q-stepper-navigation>
           <q-btn
+          color="primary"
             @click="
               step === 4
                 ? (onFinish(), $refs.stepper.next())
@@ -288,7 +290,7 @@
 </template>
   
   <script>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import RecommendationAndDiagnosisStep from "./RecommendationAndDiagnosisStep.vue";
 import { usePatientRecordStore } from "@/store/patientRecord";
 
@@ -299,6 +301,10 @@ export default {
   setup() {
     const loading = ref(false);
     const patientRecordStore = usePatientRecordStore();
+
+    onMounted(()=>{
+      patientRecordStore.getLast()
+    })
 
     return {
       step: ref(1),

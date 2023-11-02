@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="px-1">
     <q-list
       bordered
       class="bg-surface rounded-borders"

@@ -1,11 +1,11 @@
 
 import vueConfig from 'vue.config';
 <template>
-  <div class="row justify-center  text-bold text-primary text-h1 q-mt-md" >     
+  <div class="row justify-center  text-bold text-primary text-3xl q-mt-md" >     
             Maxilife Multispecialty Clinic  
     </div>
   
-    <div class=" row justify-center text-h6 text-gray-700" >           
+    <div class=" row justify-center text-xl font-secondary" >           
         We help you care with your health         
     </div>
 
