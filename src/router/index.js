@@ -31,6 +31,13 @@ const routes = [
 
       },
       {
+        path: '/record',
+        name: 'record',
+        meta: { title: 'Maxilife - Records' } ,
+        component: () => import('@/views/home/user/RecordView')
+
+      },
+      {
         path: '/status',
         name: 'status',
         meta: { title: 'Status' } ,

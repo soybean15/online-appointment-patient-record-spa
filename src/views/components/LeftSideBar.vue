@@ -32,6 +32,8 @@
       <q-item
         :active="activeSideBar === 'records'"
         @click="activeSideBar = 'records'"
+
+        :to="{ name: 'record' }"
         clickable
         v-ripple
       >

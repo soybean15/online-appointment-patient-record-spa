@@ -1,70 +1,33 @@
 // stores/counter.js
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { ref } from 'vue'
+import { useAuthStore } from './auth'
 
-export const useUserStore = defineStore('user', {
-  state: () => ({
-    statePatients:null,
-    stateCurrent:null,
-    stateUsers:null,
-    stateDoctors:null,
-    stateSelectedUser:null
-   
-     
+export const useUserStore = defineStore('user', ()=>{
 
-  }),
-  getters: {
-    patients: (state) => state.statePatients,
-    current:(state)=>state.stateCurrent,
-    users:(state)=>state.stateUsers,
-    doctors:(state)=>state.stateDoctors ,
-    selectedUser:(state)=>state.stateSelectedUser
-  },
-  actions: {
+  const records = ref(null)
 
-    async getUsers(keyword){
- 
-      const data = await axios.post('api/admin/doctor/users',{keyword})
-      this.stateUsers=data.data.users.data
-    },
 
-    async addDoctor(user,specialty){
+
+
+  const getRecords = async()=>{
+    const authStore = useAuthStore()
   
-      const data = await axios.post('api/admin/doctor/add',{user,specialty})
-      
-       this.getDoctors()
-       this.getUsers('')
+    await authStore.getUser()
+    const user =  authStore.user
+    const response = axios.get(`api/user/records/${user.id}`)
 
-   
-     
-
-    },
-   
-    async getPatients(path,keyword){
-        if(!path){
-            path = 'api/admin/patient'
-        }
-      
-         const data = await axios.post(path,{keyword})
-     
-        
-        this.statePatients = data.data.patients
-    },
+  }
 
 
 
-    async searchPatient(keyword){
-      const data  = await axios.post('api/admin/patient/search',{keyword})
-      this.statePatients = data.data.results
 
-    },
+  
 
-
-    setUser(user){
-      this.stateSelectedUser = user
-    },
-
-   
-  },
+  return {
+    records,
+    getRecords
+  }
   
 })
