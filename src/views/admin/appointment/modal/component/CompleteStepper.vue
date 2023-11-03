@@ -313,7 +313,7 @@ export default {
         loading.value = true;
 
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        await patientRecordStore.addRecord();
+        await patientRecordStore.addRecord('online');
         loading.value = false;
         patientRecordStore.dialog.state = false;
       },

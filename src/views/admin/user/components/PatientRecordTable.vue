@@ -130,6 +130,13 @@
           <q-td key="doctor" :props="props">
             {{ props.row.doctor }}
           </q-td>
+          <q-td key="type" :props="props">
+
+              <q-chip square :color=" getType(props.row.type).color" text-color="white" icon-right="star">
+                {{ getType(props.row.type).label }}
+      </q-chip>
+         
+          </q-td>
         </q-tr>
       </template>
     </q-table>
@@ -179,6 +186,15 @@ const columns = [
     format: (val) => `${val}`,
     sortable: true,
   },
+  {
+    name: "type",
+    required: true,
+    label: "Type",
+    align: "center",
+    field: (row) => row.type,
+    format: (val) => `${val}`,
+
+  },
 ];
 export default {
   props: ["rows"],
@@ -191,6 +207,15 @@ export default {
       filter: ref(""),
       selectRow:(row)=>{
         record.value =row
+      },
+      getType:(type)=>{
+        
+        const types = {
+          online:{label:"Online", color: "primary"},
+          walk_in : {label:"Walk in", color: "blue"}
+        }
+
+        return types[type]
       }
     };
   },
