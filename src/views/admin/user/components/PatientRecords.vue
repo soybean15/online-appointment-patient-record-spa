@@ -53,6 +53,16 @@
       
     </div>
   </div>
+
+  <div class="q-pa-md row bg-surface rounded-md " v-else>
+    <div class="q-gutter-md w-full">
+      <q-skeleton type="circle" size="100px" />
+      <q-skeleton />
+      <q-skeleton height="150px" />
+      <q-skeleton size="50px" />
+      <q-skeleton width="200px" height="100px" />
+    </div>
+  </div>
 </template>
 
 <script>

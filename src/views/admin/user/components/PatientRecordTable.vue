@@ -62,6 +62,13 @@
         </div>
       </div>
 
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-orange">Type</div>
+        <div>
+          {{ getType(record.type).label }}
+        </div>
+      </div>
+
       <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm w-full">
         <div class="text-lg text-blue">Diagnosis</div>
         <div v-if="record.diagnosis.length > 0">
@@ -92,8 +99,10 @@
         <div v-else>No Data</div>
       </div>
     </div>
-  </div>
-  <div class="px-3 b">
+
+
+
+    <div class=" py-1  ">
     <q-table
       class="bg-secondary"
       title="History"
@@ -117,12 +126,16 @@
       </template>
 
       <template v-slot:body="props">
-        <q-tr :props="props" @click="selectRow(props.row)" :class="{'text-primary':props.row ==record}">
+        <q-tr
+          :props="props"
+          @click="selectRow(props.row)"
+          :class="{ 'text-primary': props.row == record }"
+        >
           <q-td key="reference_id" :props="props">
             {{ props.row.appointment.reference_id }}
           </q-td>
           <q-td key="date_diagnosed" :props="props">
-            {{ formatDate(props.row.date_diagnosed ,'MMM DD YYYY')}}
+            {{ formatDate(props.row.date_diagnosed, "MMM DD YYYY") }}
           </q-td>
           <q-td key="service" :props="props">
             {{ props.row.service.name }}
@@ -131,16 +144,22 @@
             {{ props.row.doctor }}
           </q-td>
           <q-td key="type" :props="props">
-
-              <q-chip square :color=" getType(props.row.type).color" text-color="white" icon-right="star">
-                {{ getType(props.row.type).label }}
-      </q-chip>
-         
+            <q-chip
+              square
+              :color="getType(props.row.type).color"
+              text-color="white"
+            >
+              {{ getType(props.row.type).label }}
+            </q-chip>
           </q-td>
         </q-tr>
       </template>
     </q-table>
   </div>
+  </div>
+
+
+ 
 </template>
 
 <script>
@@ -193,7 +212,6 @@ const columns = [
     align: "center",
     field: (row) => row.type,
     format: (val) => `${val}`,
-
   },
 ];
 export default {
@@ -205,18 +223,17 @@ export default {
       record,
       formatDate,
       filter: ref(""),
-      selectRow:(row)=>{
-        record.value =row
+      selectRow: (row) => {
+        record.value = row;
       },
-      getType:(type)=>{
-        
+      getType: (type) => {
         const types = {
-          online:{label:"Online", color: "primary"},
-          walk_in : {label:"Walk in", color: "blue"}
-        }
+          online: { label: "Online", color: "primary" },
+          walk_in: { label: "Walk in", color: "blue" },
+        };
 
-        return types[type]
-      }
+        return types[type];
+      },
     };
   },
 };

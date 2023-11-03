@@ -8,9 +8,9 @@
       row-key="lastname"
     >
       <template v-slot:body="props">
-        <q-tr class="cursor-pointer" :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="selectedUser = props.row">
-          <q-td key="fullname" :props="props">
-            <q-chip>
+        <q-tr class="cursor-pointer " :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="selectedUser = props.row">
+          <q-td key="fullname"  :props="props">
+            <q-chip size="0.9em">
               <q-avatar>
                 <img :src="props.row.profile.image" />
               </q-avatar>
@@ -19,22 +19,23 @@
           </q-td>
 
           <q-td key="birthdate" :props="props">
-            <q-chip dense color="orange" text-color="white" icon="cake">
+            <q-chip size="0.9em" dense color="orange" text-color="white" icon="cake">
               {{ formatDate(props.row.profile.birthdate, "MMM D YYYY") }}
             </q-chip>
           </q-td>
 
           <q-td key="contact_number" :props="props">
-            <q-chip>
+            <q-chip size="0.9em">
               <q-avatar icon="call" color="blue" text-color="white" />
               {{ props.row.profile.contact_number }}
             </q-chip>
           </q-td>
 
-          <q-td key="address" :props="props">
+          <q-td key="actions" :props="props">
 
-              {{props.row.profile.address_home}}
           </q-td>
+
+        
         </q-tr>
       </template>
 
@@ -73,27 +74,26 @@ const columns = [
     name: "birthdate",
     required: true,
     label: "BirthDate",
-    align: "left",
+    align: "center",
     field: (row) => row.profile.birthdate,
     format: (val) => `${val}`,
   },
   {
     name: "contact_number",
     required: true,
-    label: "Contact_number",
-    align: "left",
+    label: "Contact",
+    align: "center",
     field: (row) => row.profile.contact_number,
     format: (val) => `${val}`,
   },
   {
-    name: "address",
+    name: "actions",
     required: true,
-    label: "Address",
-    align: "left",
-    field: (row) => row.profile.address_home,
-    format: (val) => `${val}`,
-    sortable: true,
+    label: "Actions",
+    align: "center",
+
   },
+
 ];
 
 export default {
