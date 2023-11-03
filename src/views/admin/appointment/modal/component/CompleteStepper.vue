@@ -19,7 +19,7 @@
               <div class="col mx-2 border-b border-gray-500">
                 <div class="row font-secondary py-1">Patient name:</div>
                 <div class="row text-sm">
-                  {{ patientRecordStore.selectedRow.user.profile[0].full_name }}
+                  {{ patientRecordStore.selectedRow.user.profile[0].full_name ?patientRecordStore.selectedRow.user.profile[0].full_name :patientRecordStore.selectedRow}}
                 </div>
               </div>
               <div class="col mx-2 my-4 border-b border-gray-500">

@@ -80,7 +80,8 @@ export default {
 
     return {
       selectedUser,
-      formatDate
+      formatDate,
+      
     };
   },
 };

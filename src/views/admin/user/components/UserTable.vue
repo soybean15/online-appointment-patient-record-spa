@@ -8,7 +8,7 @@
       row-key="lastname"
     >
       <template v-slot:body="props">
-        <q-tr class="cursor-pointer " :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="selectedUser = props.row">
+        <q-tr class="cursor-pointer " :class="{'bg-onSurface':props.row ==selectedUser }" :props="props" @click="patientStore.selectUser (props.row)">
           <q-td key="fullname"  :props="props">
             <q-chip size="0.9em">
               <q-avatar>
@@ -31,9 +31,6 @@
             </q-chip>
           </q-td>
 
-          <q-td key="actions" :props="props">
-
-          </q-td>
 
         
         </q-tr>
@@ -60,6 +57,7 @@ import { usePatientStore } from "@/store/patient";
 import { storeToRefs } from "pinia";
 import formatDate from "@/composables/dateFormat";
 const columns = [
+
   {
     name: "fullname",
     required: true,
@@ -85,13 +83,6 @@ const columns = [
     align: "center",
     field: (row) => row.profile.contact_number,
     format: (val) => `${val}`,
-  },
-  {
-    name: "actions",
-    required: true,
-    label: "Actions",
-    align: "center",
-
   },
 
 ];
@@ -121,6 +112,7 @@ export default {
       current,
       selectedUser,
       formatDate,
+      patientStore
     };
   },
 };

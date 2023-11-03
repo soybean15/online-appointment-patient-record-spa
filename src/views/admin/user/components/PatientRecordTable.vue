@@ -98,17 +98,20 @@
         </div>
         <div v-else>No Data</div>
       </div>
+
     </div>
 
 
 
     <div class=" py-1  ">
+     
     <q-table
       class="bg-secondary"
       title="History"
       :rows="rows"
       :columns="columns"
-      row-key="name"
+      row-key="reference_id"
+      :filter="filter"
     >
       <template v-slot:top-right>
         <q-input
@@ -117,7 +120,7 @@
           dense
           debounce="300"
           color="primary"
-          v-model="filter"
+          v-model.trim="filter"
         >
           <template v-slot:append>
             <q-icon name="search" />
@@ -156,6 +159,26 @@
       </template>
     </q-table>
   </div>
+
+
+  </div>
+
+  <div class="row items-center justify-center h-full" v-else >
+    No Record Available 
+
+    <CompleteAppointmentModal  :row="selectedUser">
+
+      <template v-slot:open="{open}">
+        <span @click="open" class="underline cursor-pointer">Add new </span>
+
+      </template>
+
+     
+    </CompleteAppointmentModal>
+    {{selectedUser}}
+
+
+
   </div>
 
 
@@ -166,6 +189,10 @@
 import { ref } from "vue";
 
 import formatDate from "@/composables/dateFormat";
+import { usePatientStore } from '@/store/patient';
+import { storeToRefs } from 'pinia';
+
+import CompleteAppointmentModal from '../../appointment/modal/CompleteAppointmentModal.vue';
 
 const columns = [
   {
@@ -216,13 +243,18 @@ const columns = [
 ];
 export default {
   props: ["rows"],
+  components:{CompleteAppointmentModal},
   setup(props) {
-    const record = ref(props.rows[props.rows.length - 1]);
+   // const record = ref(props.rows[props.rows.length - 1]);
+   const patientStore = usePatientStore()
+   const {record,selectedUser } =storeToRefs(patientStore)
+   const   filter= ref('')
     return {
       columns,
       record,
       formatDate,
-      filter: ref(""),
+      selectedUser,
+      filter,
       selectRow: (row) => {
         record.value = row;
       },
