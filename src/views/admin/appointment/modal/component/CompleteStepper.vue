@@ -10,6 +10,7 @@
         <q-card>
           <q-card-section>
             <div class="text-md">Patient Details</div>
+
           </q-card-section>
 
           <q-separator dark inset />
@@ -19,13 +20,13 @@
               <div class="col mx-2 border-b border-gray-500">
                 <div class="row font-secondary py-1">Patient name:</div>
                 <div class="row text-sm">
-                  {{ patientRecordStore.selectedRow.user.profile[0].full_name ?patientRecordStore.selectedRow.user.profile[0].full_name :patientRecordStore.selectedRow}}
+                  {{ patientRecordStore.selectedRow.user ?patientRecordStore.selectedRow.user.profile[0].full_name :patientRecordStore.selectedRow.profile.full_name}}
                 </div>
               </div>
               <div class="col mx-2 my-4 border-b border-gray-500">
                 <div class="text-md font-secondary">Birth Date:</div>
                 <div>
-                  {{ patientRecordStore.selectedRow.user.profile[0].birthdate }}
+                  {{ patientRecordStore.selectedRow.user?patientRecordStore.selectedRow.user.profile[0].full_name :patientRecordStore.selectedRow.profile.birthdate }}
                 </div>
               </div>
 
@@ -126,29 +127,25 @@
                 <div class="">
                   <div class="text-md font-secondary">Patient name:</div>
                   <div>
-                    {{
-                      patientRecordStore.selectedRow.user.profile[0].full_name
-                    }}
+                    {{ patientRecordStore.selectedRow.user ?patientRecordStore.selectedRow.user.profile[0].full_name :patientRecordStore.selectedRow.profile.full_name}}
                   </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Birth Date:</div>
                   <div>
-                    {{
-                      patientRecordStore.selectedRow.user.profile[0].birthdate
-                    }}
+                    {{ patientRecordStore.selectedRow.user ?patientRecordStore.selectedRow.user.profile[0].birthdate :patientRecordStore.selectedRow.profile.birthdate}}
                   </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Age:</div>
                   <div>
-                    {{ patientRecordStore.selectedRow.user.profile[0].age }}
+                    {{ patientRecordStore.selectedRow.user ?patientRecordStore.selectedRow.user.profile[0].age :patientRecordStore.selectedRow.profile.age}}
                   </div>
                 </div>
                 <div class="">
                   <div class="text-md font-secondary">Address:</div>
                   <div>
-                    {{ patientRecordStore.selectedRow.user.profile[0].address }}
+                    {{ patientRecordStore.selectedRow.user ?patientRecordStore.selectedRow.user.profile[0].address_home  :patientRecordStore.selectedRow.profile.address_home}}
                   </div>
                 </div>
               </div>
@@ -298,7 +295,8 @@ export default {
   components: {
     RecommendationAndDiagnosisStep,
   },
-  setup() {
+  props:['action'],
+  setup(props) {
     const loading = ref(false);
     const patientRecordStore = usePatientRecordStore();
 
@@ -313,7 +311,7 @@ export default {
         loading.value = true;
 
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        await patientRecordStore.addRecord('online');
+        await patientRecordStore.addRecord(props.action);
         loading.value = false;
         patientRecordStore.dialog.state = false;
       },

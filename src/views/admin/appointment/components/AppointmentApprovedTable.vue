@@ -118,7 +118,7 @@
         <q-td :props="props">
           <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
           <div class="row justify-around">
-            <CompleteAppointmentModal :row="props.row">
+            <CompleteAppointmentModal :row="props.row" :action="'online'">
               <template v-slot:open="{ open }">
                 <q-btn
                   @click="open"

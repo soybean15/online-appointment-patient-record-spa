@@ -35,9 +35,10 @@ export const usePatientRecordStore = defineStore('patientRecord',{
     },
     actions:{
         setData(row){
+            console.log(row)
             
             this.stateSelectedRow = row
-            this.statePatientRecord.user_id =row.user_id 
+            this.statePatientRecord.user_id =row.user_id ? row.user_id :row.id
             this.statePatientRecord.appointment_id = row.id
             this.statePatientRecord.date_diagnosed =row.date_diagnosed
         },

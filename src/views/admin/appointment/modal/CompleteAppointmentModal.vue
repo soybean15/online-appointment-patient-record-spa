@@ -27,7 +27,7 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <CompleteStepper />
+          <CompleteStepper :action="action"/>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
@@ -52,7 +52,7 @@ export default {
   components: {
     CompleteStepper,
   },
-  props: ["row"],
+  props: ["row","action"],
   setup(props) {
     const patientRecordStore = usePatientRecordStore();
     const row = props.row;

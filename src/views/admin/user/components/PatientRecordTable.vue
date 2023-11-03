@@ -1,6 +1,21 @@
 <template>
   <div class="p-3" v-if="record">
-    <div class="text-lg my-3">Patient Record</div>
+    <div class="row text-lg my-3  items-center w-full justify-between">
+      
+     <span> Patient Record</span>
+
+
+    <CompleteAppointmentModal  :row="selectedUser" :action="'walk_in'">
+
+<template v-slot:open="{open}">
+ 
+  <q-btn @click="open" dense label="Add Record" color="primary" icon-right="add"/>
+</template>
+
+
+</CompleteAppointmentModal>
+    
+    </div>
 
     <div class="text-lg">Details</div>
 
@@ -166,16 +181,15 @@
   <div class="row items-center justify-center h-full" v-else >
     No Record Available 
 
-    <CompleteAppointmentModal  :row="selectedUser">
+    <CompleteAppointmentModal  :row="selectedUser" :action="'walk_in'">
 
       <template v-slot:open="{open}">
-        <span @click="open" class="underline cursor-pointer">Add new </span>
+        <span @click="open" class="underline cursor-pointer text-blue-300 pl-1">Add new </span>
 
       </template>
 
      
     </CompleteAppointmentModal>
-    {{selectedUser}}
 
 
 
