@@ -1,7 +1,7 @@
 <template>
-  <div class="q-pa-md q-gutter-sm">
-    <q-btn
-      @click="onClick"
+  <div class="">
+    <!-- <q-btn
+      @click="open"
       dense
       color="green"
       size="13px"
@@ -10,7 +10,8 @@
       <q-tooltip anchor="top middle" self="bottom middle" :offset="[10, 10]">
         <strong>Approve</strong>
       </q-tooltip>
-    </q-btn>
+    </q-btn> -->
+    <slot name="open" :open="open"> </slot>
     <q-dialog
       v-model="patientRecordStore.dialog.state"
       persistent
@@ -21,16 +22,22 @@
         <q-card-section>
           <div class="text-h6 row justify-between">
             <div>Complete Appointment</div>
-            <div>Date:{{ formattedDate }} </div>
+            <div>Date:{{ formattedDate }}</div>
           </div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <CompleteStepper />
+          <CompleteStepper :action="action"/>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
-          <q-btn @click="patientRecordStore.dialog.state = false" flat color="primary" label="Close" v-close-popup />
+          <q-btn
+            @click="patientRecordStore.dialog.state = false"
+            flat
+            color="primary"
+            label="Close"
+            v-close-popup
+          />
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -39,38 +46,34 @@
   
   <script>
 import { ref } from "vue";
-import { usePatientRecordStore } from "@/store/patientRecord"; 
+import { usePatientRecordStore } from "@/store/patientRecord";
 import CompleteStepper from "./component/CompleteStepper.vue";
 export default {
   components: {
     CompleteStepper,
   },
-  props:['props'],
+  props: ["row","action"],
   setup(props) {
-    const patientRecordStore = usePatientRecordStore()
-    const row = props.props.row
-   
+    const patientRecordStore = usePatientRecordStore();
+    const row = props.row;
 
- 
-const parsedDate = new Date(row.updated_at);
+    const parsedDate = new Date(row.updated_at);
 
-const year = parsedDate.getFullYear();
-const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
-const day = String(parsedDate.getDate()).padStart(2, '0');
+    const year = parsedDate.getFullYear();
+    const month = String(parsedDate.getMonth() + 1).padStart(2, "0");
+    const day = String(parsedDate.getDate()).padStart(2, "0");
 
-const formattedDate = ref(`${year}-${month}-${day}`)
-
+    const formattedDate = ref(`${year}-${month}-${day}`);
 
     return {
       patientRecordStore,
-       onClick:()=>{
-        patientRecordStore.dialog.state = true
-        row.date_diagnosed = formattedDate
-        patientRecordStore.setData(row)
-        
-       },
-    
-       formattedDate
+      open: () => {
+        patientRecordStore.dialog.state = true;
+        row.date_diagnosed = formattedDate;
+        patientRecordStore.setData(row);
+      },
+
+      formattedDate,
     };
   },
 };

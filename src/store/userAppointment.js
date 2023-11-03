@@ -37,7 +37,8 @@ export const useAppointmentStore = defineStore('user_appointment', {
     actions: {
 
         async index() {
-            const data = await axios.get('api/user/appointment')
+            const authStore = useAuthStore()
+            const data = await axios.get(`api/user/appointment/${authStore.user.id}`)
             this.stateServices = data.data.services
             this.stateAppointments = data.data.appointments
             this.stateDoctors = data.data.doctors.data

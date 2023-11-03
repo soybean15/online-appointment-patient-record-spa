@@ -147,7 +147,7 @@ export default {
   setup() {
     const authStore = useAuthStore();
     onMounted(() => {
-      authStore.getUser();
+      
     });
 
     return {

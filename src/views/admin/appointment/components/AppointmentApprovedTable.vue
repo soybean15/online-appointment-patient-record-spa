@@ -1,7 +1,6 @@
 <template>
-  <div >
+  <div>
     <q-table
-      
       card-class="text-brown"
       table-class="text-grey-8"
       table-header-class="text-brown"
@@ -16,7 +15,6 @@
         <q-pagination
           v-model="current"
           color="white"
-       
           active-color="white"
           :active-text-color="$primary"
           :max="appointmentStore.approved.last_page"
@@ -24,11 +22,6 @@
           boundary-numbers
         />
       </template>
-
-
-
-
-
 
       <template v-slot:top-right>
         <SearchBar @onSearch="appointmentStore.search('approved', $event)" />
@@ -68,8 +61,6 @@
         </FilterGroup>
       </template>
       <template v-slot:body-cell-image="props">
-
-        
         <q-td :props="props">
           <img
             :src="props.row.user.profile[0].image"
@@ -81,10 +72,8 @@
 
       <template v-slot:body-cell-schedule="props">
         <q-td :props="props">
-
           <q-chip color="green" text-color="white" icon="event">
-
-         {{formatDate(props.row.schedule_date,"MMM D YYYY")}}
+            {{ formatDate(props.row.schedule_date, "MMM D YYYY") }}
           </q-chip>
         </q-td>
       </template>
@@ -129,14 +118,25 @@
         <q-td :props="props">
           <!-- <div class="row justify-around" v-if="!selectedItem.done || selectedItem != props.row" > -->
           <div class="row justify-around">
-           
-
-            <CompleteAppointmentModal :props="props"/>
-
-
-
-
-          
+            <CompleteAppointmentModal :row="props.row" :action="'online'">
+              <template v-slot:open="{ open }">
+                <q-btn
+                  @click="open"
+                  dense
+                  color="green"
+                  size="13px"
+                  label="Complete"
+                >
+                  <q-tooltip
+                    anchor="top middle"
+                    self="bottom middle"
+                    :offset="[10, 10]"
+                  >
+                    <strong>Approve</strong>
+                  </q-tooltip>
+                </q-btn>
+              </template>
+            </CompleteAppointmentModal>
           </div>
         </q-td>
       </template>
@@ -152,7 +152,7 @@ import CompleteAppointmentModal from "../modal/CompleteAppointmentModal.vue";
 import SearchBar from "@/components/SearchBar.vue";
 
 import FilterGroup from "@/components/FilterGroup.vue";
-import formatDate from '@/composables/dateFormat';
+import formatDate from "@/composables/dateFormat";
 const columns = [
   // {
   //   name: "ref_id",

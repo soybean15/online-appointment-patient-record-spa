@@ -1,6 +1,21 @@
 <template>
   <div class="p-3" v-if="record">
-    <div class="text-lg my-3">Patient Record</div>
+    <div class="row text-lg my-3  items-center w-full justify-between">
+      
+     <span> Patient Record</span>
+
+
+    <CompleteAppointmentModal  :row="selectedUser" :action="'walk_in'">
+
+<template v-slot:open="{open}">
+ 
+  <q-btn @click="open" dense label="Add Record" color="primary" icon-right="add"/>
+</template>
+
+
+</CompleteAppointmentModal>
+    
+    </div>
 
     <div class="text-lg">Details</div>
 
@@ -62,6 +77,13 @@
         </div>
       </div>
 
+      <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm">
+        <div class="text-lg text-orange">Type</div>
+        <div>
+          {{ getType(record.type).label }}
+        </div>
+      </div>
+
       <div class="bg-onSurface py-1 px-3 rounded-md shadow-sm w-full">
         <div class="text-lg text-blue">Diagnosis</div>
         <div v-if="record.diagnosis.length > 0">
@@ -91,15 +113,20 @@
         </div>
         <div v-else>No Data</div>
       </div>
+
     </div>
-  </div>
-  <div class="px-3 b">
+
+
+
+    <div class=" py-1  ">
+     
     <q-table
       class="bg-secondary"
       title="History"
       :rows="rows"
       :columns="columns"
-      row-key="name"
+      row-key="reference_id"
+      :filter="filter"
     >
       <template v-slot:top-right>
         <q-input
@@ -108,7 +135,7 @@
           dense
           debounce="300"
           color="primary"
-          v-model="filter"
+          v-model.trim="filter"
         >
           <template v-slot:append>
             <q-icon name="search" />
@@ -117,12 +144,16 @@
       </template>
 
       <template v-slot:body="props">
-        <q-tr :props="props" @click="selectRow(props.row)" :class="{'text-primary':props.row ==record}">
+        <q-tr
+          :props="props"
+          @click="selectRow(props.row)"
+          :class="{ 'text-primary': props.row == record }"
+        >
           <q-td key="reference_id" :props="props">
             {{ props.row.appointment.reference_id }}
           </q-td>
           <q-td key="date_diagnosed" :props="props">
-            {{ formatDate(props.row.date_diagnosed ,'MMM DD YYYY')}}
+            {{ formatDate(props.row.date_diagnosed, "MMM DD YYYY") }}
           </q-td>
           <q-td key="service" :props="props">
             {{ props.row.service.name }}
@@ -130,16 +161,52 @@
           <q-td key="doctor" :props="props">
             {{ props.row.doctor }}
           </q-td>
+          <q-td key="type" :props="props">
+            <q-chip
+              square
+              :color="getType(props.row.type).color"
+              text-color="white"
+            >
+              {{ getType(props.row.type).label }}
+            </q-chip>
+          </q-td>
         </q-tr>
       </template>
     </q-table>
   </div>
+
+
+  </div>
+
+  <div class="row items-center justify-center h-full" v-else >
+    No Record Available 
+
+    <CompleteAppointmentModal  :row="selectedUser" :action="'walk_in'">
+
+      <template v-slot:open="{open}">
+        <span @click="open" class="underline cursor-pointer text-blue-300 pl-1">Add new </span>
+
+      </template>
+
+     
+    </CompleteAppointmentModal>
+
+
+
+  </div>
+
+
+ 
 </template>
 
 <script>
 import { ref } from "vue";
 
 import formatDate from "@/composables/dateFormat";
+import { usePatientStore } from '@/store/patient';
+import { storeToRefs } from 'pinia';
+
+import CompleteAppointmentModal from '../../appointment/modal/CompleteAppointmentModal.vue';
 
 const columns = [
   {
@@ -179,19 +246,40 @@ const columns = [
     format: (val) => `${val}`,
     sortable: true,
   },
+  {
+    name: "type",
+    required: true,
+    label: "Type",
+    align: "center",
+    field: (row) => row.type,
+    format: (val) => `${val}`,
+  },
 ];
 export default {
   props: ["rows"],
+  components:{CompleteAppointmentModal},
   setup(props) {
-    const record = ref(props.rows[props.rows.length - 1]);
+   // const record = ref(props.rows[props.rows.length - 1]);
+   const patientStore = usePatientStore()
+   const {record,selectedUser } =storeToRefs(patientStore)
+   const   filter= ref('')
     return {
       columns,
       record,
       formatDate,
-      filter: ref(""),
-      selectRow:(row)=>{
-        record.value =row
-      }
+      selectedUser,
+      filter,
+      selectRow: (row) => {
+        record.value = row;
+      },
+      getType: (type) => {
+        const types = {
+          online: { label: "Online", color: "primary" },
+          walk_in: { label: "Walk in", color: "blue" },
+        };
+
+        return types[type];
+      },
     };
   },
 };
