@@ -6,6 +6,7 @@ export const useServiceStore = defineStore('service', {
     state: () => ({
 
         stateServices: null,
+        stateActiveService:null,
         stateServiceForm: {
             name: null,
             price: null,
@@ -16,7 +17,8 @@ export const useServiceStore = defineStore('service', {
     }),
     getters: {
         services: (state) => state.stateServices,
-        serviceForm: (state) => state.stateServiceForm
+        serviceForm: (state) => state.stateServiceForm,
+        activeServices:(state)=>state.stateActiveService
 
     },
     actions: {
@@ -24,6 +26,10 @@ export const useServiceStore = defineStore('service', {
         async getServices() {
             const data = await axios.get('api/services')
             this.stateServices = data.data.services
+        },
+        async getActiveServices(){
+            const response= await axios.get('api/admin/services/active')
+            this.stateActiveService = response.data.services
         },
         async addService(image) {
             this.stateServiceForm.image = image

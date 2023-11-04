@@ -1,7 +1,7 @@
 <template>
   <div class="">
 
-    {{serviceStore.services}}
+
 
     <slot name="open" :open="open"> </slot>
     <q-dialog
@@ -19,7 +19,7 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <CompleteStepper :action="action"/>
+          <CompleteStepper :action="action " :hasAppointment="hasAppointment"/>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
@@ -61,7 +61,7 @@ export default {
 
 
     onMounted(()=>{
-      serviceStore.getServices()
+      serviceStore.getActiveServices()
     })
     return {
       patientRecordStore,
