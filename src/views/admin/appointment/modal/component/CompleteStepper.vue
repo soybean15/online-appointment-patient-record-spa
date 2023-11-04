@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="">
     <q-stepper v-model="step" ref="stepper" animated alternative-labels>
       <q-step
         :name="1"
@@ -7,7 +7,7 @@
         icon="settings"
         :done="step > 1"
       >
-        <q-card>
+        <q-card b>
           <q-card-section>
             <div class="text-md">Patient Details</div>
 

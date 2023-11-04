@@ -17,6 +17,9 @@
 
         <q-item-section side top>
           <q-item-label caption>{{ item.diagnosed_date_human }}</q-item-label>
+          <q-chip outline :color="getType(item.type).color" dense text-color="white">
+                {{getType(item.type).label}}
+    </q-chip>
         </q-item-section>
         
       </q-item>
@@ -51,7 +54,15 @@ export default {
     return {
       records,
       formatDate,
-      router
+      router,
+      getType: (type) => {
+        const types = {
+          online: { label: "Online", color: "primary" },
+          walk_in: { label: "Walk in", color: "blue" },
+        };
+
+        return types[type];
+      },
     };
   },
 };

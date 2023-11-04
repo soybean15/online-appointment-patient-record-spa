@@ -34,12 +34,12 @@ export const usePatientRecordStore = defineStore('patientRecord',{
         
     },
     actions:{
-        setData(row){
-            console.log(row)
+        setData(row, hasAppointment){
+            console.log(row,)
             
             this.stateSelectedRow = row
             this.statePatientRecord.user_id =row.user_id ? row.user_id :row.id
-            this.statePatientRecord.appointment_id = row.id
+            this.statePatientRecord.appointment_id = hasAppointment ? row.id:null
             this.statePatientRecord.date_diagnosed =row.date_diagnosed
         },
         async addRecord(type){
@@ -59,7 +59,8 @@ export const usePatientRecordStore = defineStore('patientRecord',{
 
             }
         
-        }
+        },
+    
 
         
     }

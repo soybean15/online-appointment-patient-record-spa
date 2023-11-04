@@ -7,6 +7,7 @@ import { useAuthStore } from './auth'
 export const useUserStore = defineStore('user', ()=>{
 
   const records = ref(null)
+  const record = ref(null)
 
 
 
@@ -22,6 +23,11 @@ export const useUserStore = defineStore('user', ()=>{
 
   }
 
+  const getRecordDetails= async(id)=>{
+    const response = await axios.get(`api/user/record/${id}`)
+    record.value= response.data.record
+  }
+
 
 
 
@@ -29,7 +35,9 @@ export const useUserStore = defineStore('user', ()=>{
 
   return {
     records,
-    getRecords
+    record,
+    getRecords,
+    getRecordDetails
   }
   
 })
