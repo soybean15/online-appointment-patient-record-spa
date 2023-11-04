@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="">
     <q-stepper v-model="step" ref="stepper" animated alternative-labels>
       <q-step
         :name="1"
@@ -7,7 +7,7 @@
         icon="settings"
         :done="step > 1"
       >
-        <q-card>
+        <q-card b>
           <q-card-section>
             <div class="text-md">Patient Details</div>
 
@@ -106,8 +106,8 @@
           <div class="q-px-sm">
             <div class="q-pa-md">
               <!-- <div class="text-md text-bold">Diagnosis</div> -->
-
-              <RecommendationAndDiagnosisStep />
+              <service-doctor-select v-if="!hasAppointment"/>
+              <RecommendationAndDiagnosisStep  />
             </div>
           </div>
         </div>
@@ -207,7 +207,11 @@
               <div class="col-12">
                 <div class="q-py-sm">
                   <q-card>
+                  
                     <q-card-section>
+
+                      
+                  
                       <div class="row text-md text-bold">Diagnosis</div>
 
                       <div
@@ -290,12 +294,14 @@
 import { onMounted, ref } from "vue";
 import RecommendationAndDiagnosisStep from "./RecommendationAndDiagnosisStep.vue";
 import { usePatientRecordStore } from "@/store/patientRecord";
+import ServiceDoctorSelect from './ServiceDoctorSelect.vue';
 
 export default {
   components: {
     RecommendationAndDiagnosisStep,
+    ServiceDoctorSelect
   },
-  props:['action'],
+  props:['action','hasAppointment'],
   setup(props) {
     const loading = ref(false);
     const patientRecordStore = usePatientRecordStore();

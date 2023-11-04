@@ -181,7 +181,7 @@
   <div class="row items-center justify-center h-full" v-else >
     No Record Available 
 
-    <CompleteAppointmentModal  :row="selectedUser" :action="'walk_in'">
+    <CompleteAppointmentModal :hasAppointment="false"  :row="selectedUser" :action="'walk_in'" >
 
       <template v-slot:open="{open}">
         <span @click="open" class="underline cursor-pointer text-blue-300 pl-1">Add new </span>
@@ -189,7 +189,7 @@
       </template>
 
      
-    </CompleteAppointmentModal>
+    </CompleteAppointmentModal >
 
 
 

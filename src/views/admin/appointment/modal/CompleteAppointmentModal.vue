@@ -1,16 +1,8 @@
 <template>
   <div class="">
-    <!-- <q-btn
-      @click="open"
-      dense
-      color="green"
-      size="13px"
-      label="Complete"
-    >
-      <q-tooltip anchor="top middle" self="bottom middle" :offset="[10, 10]">
-        <strong>Approve</strong>
-      </q-tooltip>
-    </q-btn> -->
+
+
+
     <slot name="open" :open="open"> </slot>
     <q-dialog
       v-model="patientRecordStore.dialog.state"
@@ -27,7 +19,7 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <CompleteStepper :action="action"/>
+          <CompleteStepper :action="action " :hasAppointment="hasAppointment"/>
         </q-card-section>
 
         <q-card-actions align="right" class="bg-white text-teal">
@@ -45,16 +37,18 @@
 </template>
   
   <script>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { usePatientRecordStore } from "@/store/patientRecord";
+import {useServiceStore} from '@/store/service'
 import CompleteStepper from "./component/CompleteStepper.vue";
 export default {
   components: {
     CompleteStepper,
   },
-  props: ["row","action"],
+  props: ["row","action","hasAppointment"],
   setup(props) {
     const patientRecordStore = usePatientRecordStore();
+    const serviceStore = useServiceStore()
     const row = props.row;
 
     const parsedDate = new Date(row.updated_at);
@@ -65,13 +59,18 @@ export default {
 
     const formattedDate = ref(`${year}-${month}-${day}`);
 
+
+    onMounted(()=>{
+      serviceStore.getActiveServices()
+    })
     return {
       patientRecordStore,
       open: () => {
         patientRecordStore.dialog.state = true;
         row.date_diagnosed = formattedDate;
-        patientRecordStore.setData(row);
+        patientRecordStore.setData(row,props.hasAppointment);
       },
+      serviceStore,
 
       formattedDate,
     };

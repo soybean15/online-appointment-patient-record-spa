@@ -17,7 +17,9 @@ export const usePatientRecordStore = defineStore('patientRecord',{
             appointment_id:null,
             user_id:null,
             type:null,
-            blood_pressure:null
+            blood_pressure:null,
+            doctor_id:null,
+            service_id:null
         },
         stateSelectedRow:null,
         stateDialog:{
@@ -34,17 +36,24 @@ export const usePatientRecordStore = defineStore('patientRecord',{
         
     },
     actions:{
-        setData(row){
-            console.log(row)
+        setData(row, hasAppointment){
+            console.log(row,)
             
             this.stateSelectedRow = row
             this.statePatientRecord.user_id =row.user_id ? row.user_id :row.id
-            this.statePatientRecord.appointment_id = row.id
+            this.statePatientRecord.appointment_id = hasAppointment ? row.id:null
             this.statePatientRecord.date_diagnosed =row.date_diagnosed
         },
         async addRecord(type){
             this.statePatientRecord.type  = type
             await axios.post('api/admin/patient/record/store',this.statePatientRecord)
+        },
+        async setDoctor(id){
+            this.statePatientRecord.doctor_id= id
+
+        },
+        async setService(id){
+            this.statePatientRecord.service_id= id
         },
         async getLast(){
 
@@ -59,7 +68,8 @@ export const usePatientRecordStore = defineStore('patientRecord',{
 
             }
         
-        }
+        },
+    
 
         
     }
