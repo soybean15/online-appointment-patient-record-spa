@@ -16,7 +16,9 @@ export const useUserStore = defineStore('user', ()=>{
   
     await authStore.getUser()
     const user =  authStore.user
-    const response = axios.get(`api/user/records/${user.id}`)
+    const response = await axios.get(`api/user/records/${user.id}`)
+
+    records.value = response.data.records
 
   }
 
