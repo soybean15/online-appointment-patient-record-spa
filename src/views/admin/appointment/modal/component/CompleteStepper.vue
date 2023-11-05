@@ -275,6 +275,7 @@
             "
             :loading="loading"
             :label="step === 4 ? 'Finish' : 'Continue'"
+            :disable=" step == 2 && !hasAppointment &&(!patientRecordStore.patientRecord.doctor_id && !patientRecordStore.patientRecord.service_id)"
           />
           <q-btn
             v-if="step > 1"

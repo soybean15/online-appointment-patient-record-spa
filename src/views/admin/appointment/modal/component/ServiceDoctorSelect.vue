@@ -10,6 +10,7 @@
           dense
           :options="mapServices(serviceStore.activeServices)"
           label="Services"
+          :rules="[val => !!val || 'Field is required']"
           @update:model-value="onSelectService"
           v-if="serviceStore.activeServices"
         />
@@ -22,6 +23,7 @@
           dense
           :options="doctors"
           label="Doctors"
+          :rules="[val => !!val || 'Field is required']"
           @update:model-value="onSelectDoctor"
           v-if="serviceStore.activeServices"
         />
