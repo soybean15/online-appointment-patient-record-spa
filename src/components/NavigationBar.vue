@@ -4,6 +4,7 @@
         <q-btn
           no-caps
           class="button"
+          color="orange"
           style="margin: 2px;"
           @click="$emit('today')"
         >
@@ -12,6 +13,7 @@
         <q-btn
           no-caps
           class="button"
+          color="primary"
           style="margin: 2px;"
           @click="$emit('prev')"
         >
@@ -19,7 +21,7 @@
         </q-btn>
         <q-btn
           no-caps
-          class="button"
+          class="button" color="primary"
           style="margin: 2px;"
           @click="$emit('next')"
         >
