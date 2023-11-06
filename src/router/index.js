@@ -59,6 +59,13 @@ const routes = [
 
       },
       {
+        path: '/doctor/:id',
+        name: 'doctorAppointment',
+        meta: { title: 'Reset Password' } ,
+        component: () => import('@/views/home/user/DoctorView')
+
+      },
+      {
         path: '/appointment',
         name: 'appointment',
         meta: { title: 'Maxilife - Appointments' } ,

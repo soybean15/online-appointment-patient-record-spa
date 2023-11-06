@@ -8,6 +8,7 @@ export const useUserStore = defineStore('user', ()=>{
 
   const records = ref(null)
   const record = ref(null)
+  const pending =ref(null)
 
 
 
@@ -28,6 +29,12 @@ export const useUserStore = defineStore('user', ()=>{
     record.value= response.data.record
   }
 
+  const getDoctorAppointment = async(id)=>{
+      const response = await axios.get(`api/user/doctor/${id}`)
+      pending.value = response.data.pendingAppointments
+
+  }
+
 
 
 
@@ -37,7 +44,9 @@ export const useUserStore = defineStore('user', ()=>{
     records,
     record,
     getRecords,
-    getRecordDetails
+    getRecordDetails,
+    getDoctorAppointment,
+    pending
   }
   
 })
