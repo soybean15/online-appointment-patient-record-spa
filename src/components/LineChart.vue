@@ -1,5 +1,5 @@
 <template>
-  <div id="chart">
+  <div class=" bg-surface p-4 rounded-md">
     <apexchart
       type="line"
       
