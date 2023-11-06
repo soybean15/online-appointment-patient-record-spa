@@ -35,7 +35,7 @@
           <template v-slot:helper>
             <div class="row items-center ">
               <q-icon size="20px" color="green" :name="dashboard.record_count_current>dashboard.record_count_previous?'arrow_drop_up':'arrow_drop_down'" />
-              <div class="text-xs font-secondary">{{computeData(dashboard.record_count_current,dashboard.record_count_previous)}}% increase this month</div>
+              <div class="text-xs font-secondary">{{computeData(dashboard.record_count_current,dashboard.record_count_previous,'month')}}</div>
             </div>
           </template>
       </Stat>
@@ -49,7 +49,7 @@
           <template v-slot:helper>
             <div class="row items-center ">
               <q-icon size="20px" color="green" :name="dashboard.current_week>dashboard.last_week?'arrow_drop_up':'arrow_drop_down'" />
-              <div class="text-xs font-secondary">{{computeData(dashboard.current_week,dashboard.last_week)}}% increase this week</div>
+              <div class="text-xs font-secondary">{{computeData(dashboard.current_week,dashboard.last_week,'week')}}</div>
             </div>
           </template>
         </Stat>
@@ -58,7 +58,7 @@
 
     <div class="row">
       <div class="col-5 mx-1 my-2 p-1 bg-surface rounded-md">
-        <BarChart />
+       <LineChart :title="'Appointment by Month'"/>
       </div>
       <div class="mx-1 my-2 p-1 bg-surface rounded-md"></div>
     </div>
@@ -69,14 +69,15 @@
 import Stat from "@/components/Stat.vue";
 import { useAuthStore } from "@/store/auth";
 import { onMounted } from "vue";
-import BarChart from "@/components/BarChart.vue";
 import { useDashboardStore } from "@/store/dashboard";
 import { storeToRefs } from "pinia";
+
+import LineChart from '@/components/LineChart.vue';
 
 export default {
   components: {
     Stat,
-    BarChart,
+    LineChart,
   },
 
   setup() {
@@ -92,19 +93,25 @@ export default {
       authStore,
       dashboardStore,
       dashboard,
-      computeData:(val1,val2)=>{
+      computeData:(val1,val2,label)=>{
         let result = 0
 
+        console.log(val1,val2, )
         if (val1>val2){
            result = val1 - val2
+           return `${ (result/val1)*100}% increase this ${label}`
           
         }else if(val1<val2){
            result = val2 - val1
-        }else{
-          return 0
-        }
+        
 
-        return (result/val1)*100
+           return `${ (result/val2)*100}% decrease this ${label}`
+        }else{
+          return 'No Changes'
+        }
+    
+
+     
       }
     };
   },
