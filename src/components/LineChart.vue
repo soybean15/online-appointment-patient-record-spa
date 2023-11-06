@@ -2,6 +2,7 @@
   <div id="chart">
     <apexchart
       type="line"
+      
       height="350"
       :options="chartOptions"
       :series="series"
@@ -11,26 +12,31 @@
 
 <script>
 export default {
-props:['title'],
+props:['title','data'],
   setup(props) {
     return {
       
         series: [
           {
-            name: "Desktops",
-            data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+            name: "Appointments",
+            data: props.data.data,
           },
         ],
         chartOptions: {
+      
           chart: {
             height: 350,
             type: "line",
             zoom: {
               enabled: false,
             },
+            foreColor:'gray'
           },
           dataLabels: {
             enabled: false,
+            style: {
+          colors: ['#F44336', '#E91E63', '#9C27B0']
+        }
           },
           stroke: {
             curve: "straight",
@@ -46,17 +52,8 @@ props:['title'],
             },
           },
           xaxis: {
-            categories: [
-              "Jan",
-              "Feb",
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-            ],
+            categories: props.data.categories,
+           
           },
         },
       
@@ -66,4 +63,7 @@ props:['title'],
 </script>
 
 <style>
+.apexcharts-tooltip {
+  color: #1b1a1a;
+}
 </style>

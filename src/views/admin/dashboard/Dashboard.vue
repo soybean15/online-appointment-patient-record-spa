@@ -34,7 +34,7 @@
 
           <template v-slot:helper>
             <div class="row items-center ">
-              <q-icon size="20px" color="green" :name="dashboard.record_count_current>dashboard.record_count_previous?'arrow_drop_up':'arrow_drop_down'" />
+              <q-icon size="20px" :color="dashboard.record_count_current>dashboard.record_count_previous?'green':'red'" :name="dashboard.record_count_current>dashboard.record_count_previous?'arrow_drop_up':'arrow_drop_down'" />
               <div class="text-xs font-secondary">{{computeData(dashboard.record_count_current,dashboard.record_count_previous,'month')}}</div>
             </div>
           </template>
@@ -48,7 +48,7 @@
          v-if="dashboard">
           <template v-slot:helper>
             <div class="row items-center ">
-              <q-icon size="20px" color="green" :name="dashboard.current_week>dashboard.last_week?'arrow_drop_up':'arrow_drop_down'" />
+              <q-icon size="20px" :color="dashboard.current_week>dashboard.last_week?'green':'red'" :name="dashboard.current_week>dashboard.last_week?'arrow_drop_up':'arrow_drop_down'" />
               <div class="text-xs font-secondary">{{computeData(dashboard.current_week,dashboard.last_week,'week')}}</div>
             </div>
           </template>
@@ -57,8 +57,8 @@
     </div>
 
     <div class="row">
-      <div class="col-5 mx-1 my-2 p-1 bg-surface rounded-md">
-       <LineChart :title="'Appointment by Month'"/>
+      <div class="col-5 mx-1 p-1 bg-surface rounded-md">
+       <LineChart :title="'Appointments by Month'" :data="lineChartData" v-if="lineChartData"/>
       </div>
       <div class="mx-1 my-2 p-1 bg-surface rounded-md"></div>
     </div>
@@ -83,15 +83,17 @@ export default {
   setup() {
     const authStore = useAuthStore();
     const dashboardStore = useDashboardStore();
-    const { dashboard } = storeToRefs(dashboardStore);
+    const { dashboard,lineChartData } = storeToRefs(dashboardStore);
 
     onMounted(() => {
       dashboardStore.index();
+      dashboardStore.appointmentByMonth()
     });
 
     return {
       authStore,
       dashboardStore,
+      lineChartData,
       dashboard,
       computeData:(val1,val2,label)=>{
         let result = 0
