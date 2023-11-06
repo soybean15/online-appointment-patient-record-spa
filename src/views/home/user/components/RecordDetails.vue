@@ -1,5 +1,6 @@
 <template>
     <div class="q-pa-md">
+        <BreadCrumbs :prefix="'record'" />
 
         <div class="col row justify-between q-py-sm">
            <div class="col font-bold text-lg">Medical Record Details</div>           
@@ -121,8 +122,10 @@ import { onMounted } from 'vue'
 import {  useRoute } from 'vue-router'
 import {useUserStore} from '@/store/user'
 import { storeToRefs } from 'pinia'
-export default {
 
+import BreadCrumbs from '@/components/BreadCrumbs.vue'
+export default {
+    components:{BreadCrumbs},
     setup(){
         const route = useRoute()
         const  userStore = useUserStore()

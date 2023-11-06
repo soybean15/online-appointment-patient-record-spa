@@ -38,7 +38,7 @@ const routes = [
 
       },
       {
-        path: '/record/:id',
+        path: '/record/details/:id',
         name: 'recordDetails',
         meta: { title: 'Maxilife - Record Details' } ,
         component: () => import('@/views/home/user/components/RecordDetails')
