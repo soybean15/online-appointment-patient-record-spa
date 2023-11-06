@@ -38,7 +38,7 @@ const routes = [
 
       },
       {
-        path: '/record/:id',
+        path: '/record/details/:id',
         name: 'recordDetails',
         meta: { title: 'Maxilife - Record Details' } ,
         component: () => import('@/views/home/user/components/RecordDetails')
@@ -56,6 +56,13 @@ const routes = [
         name: 'resetPassword',
         meta: { title: 'Reset Password' } ,
         component: () => import('@/views/home/auth/ResetPasswordView')
+
+      },
+      {
+        path: '/doctor/:id',
+        name: 'doctorAppointment',
+        meta: { title: 'Reset Password' } ,
+        component: () => import('@/views/home/user/DoctorView')
 
       },
       {

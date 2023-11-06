@@ -43,6 +43,21 @@
 
         <q-item-section> Records </q-item-section>
       </q-item>
+
+      <q-item
+        :active="activeSideBar === 'doctor'"
+        @click="activeSideBar = 'doctor'"
+
+        :to="{ name: 'doctorAppointment',params:{id:authStore.user.id} }"
+        clickable
+        v-ripple
+      v-if="authStore.user.isDoctor">
+        <q-item-section avatar>
+          <q-icon name="receipt_long" />
+        </q-item-section>
+
+        <q-item-section> My Appointments </q-item-section>
+      </q-item>
     </div>
 
     <q-item clickable class="" v-ripple>

@@ -1,5 +1,7 @@
 <template>
-  <div class="p-5">
+  <BreadCrumbs :prefix="'record'" />
+  <div class="p-2">
+    
     <q-list bordered>
       <q-item-label header>Record History</q-item-label>
 
@@ -40,7 +42,9 @@ import { storeToRefs } from "pinia";
 import {useRouter}   from 'vue-router'
 import formatDate from "@/composables/dateFormat";
 
+import BreadCrumbs from '@/components/BreadCrumbs.vue';
 export default {
+  components:{BreadCrumbs},
   setup() {
     const userStore = useUserStore();
     //        const authStore = useAuthStore()//did dis because IM lazy to convert authstoore from option api to composition api
