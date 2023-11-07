@@ -63,7 +63,7 @@
             <div class="q-pa-md row justify-center">
               <q-img
                 src="../../assets/img/images/doctor2.png"
-                style="width: 320px; height: 370px"
+                style="width: 330px; height: 350px"
                 class="shadow-b-xl rounded-xl"
               ></q-img>
             </div>
