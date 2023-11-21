@@ -7,10 +7,19 @@
         <q-toolbar-title >
 
           <router-link to="/">
-            <q-avatar  class="cursor-pointer"   >
-            <img src="../assets/img/logo/logo.png" />
-          </q-avatar>
-          Maxilife
+          <div class="row items-center">
+            <div>
+              <q-avatar  class="cursor-pointer"   >
+              <img src="../assets/img/logo/logo.png" style="width:35px; height:35px;" />
+              </q-avatar>
+            </div>
+            <div>
+              Maxilife
+            </div>
+            
+          </div>
+         
+         
           </router-link>
   
         </q-toolbar-title>

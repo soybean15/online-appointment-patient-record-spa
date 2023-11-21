@@ -27,6 +27,7 @@ export default {
     return {
       adminStore: useAdminStore(),
       submit:async()=>{
+        console.log('Submit method called');
         await patientStore.getPatients(null,key.value)
        
 

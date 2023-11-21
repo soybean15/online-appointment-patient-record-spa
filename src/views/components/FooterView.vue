@@ -10,13 +10,15 @@
           />2023 Maxilife.All Rights Reserved.
         </div>
       </div>
-      <div class="col q-px-lg q-py-sm">
+      <div class="col q-px-sm q-py-sm">
         <div class="row justify-end items-center q-px-lg">
-          <div class="p-0.5 rounded-full m-2 border-2">
+          <a href="https://www.facebook.com/maxilife.multispecialty.clinic" target="_blank">
+          <div class="p-0.5 rounded-full m-2 border-1">
+         
             <svg
               fill="#ffffff"
-              height="20px"
-              width="20px"
+              height="17px"
+              width="18px"
               version="1.1"
               id="Layer_1"
               xmlns="http://www.w3.org/2000/svg"
@@ -39,9 +41,23 @@
                 </g>
               </g>
             </svg>
+              <q-tooltip anchor="top middle" self="bottom middle" :offset="[10, 10]" class="bg-primary">
+                    <strong>Follow us on Facebook</strong>                  
+                </q-tooltip>
           </div>
-          <div class="m-2"><q-icon name="phone" size="23px" /></div>
-          <div class="m-2"><q-icon name="email" size="22px" /></div>
+          </a>
+          <div class="m-2"><q-icon name="email" size="21px" />
+ 
+               <q-tooltip anchor="top middle" self="bottom middle" :offset="[10, 10]" class="bg-primary">
+                    Email us here:<br/> <strong>maxilife_clinic2018@yahoo.com</strong>                  
+                </q-tooltip>
+           </div>
+          <div class="m-2"><q-icon name="phone" size="21px" />
+                <q-tooltip anchor="top middle" self="bottom middle" :offset="[10, 10]" class="bg-primary">
+                    Contact number:<br/> <strong>0933 818 5130</strong>                  
+                </q-tooltip>
+          </div>
+         
         </div>
       </div>
     </div>
@@ -52,5 +68,13 @@
 export default {};
 </script>
 
-<style>
+
+<style scoped>
+
+.q-footer img {
+  margin-right: 10px;
+  margin-left: 5px; 
+}
+
+
 </style>
