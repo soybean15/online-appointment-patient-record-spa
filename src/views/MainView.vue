@@ -1,46 +1,51 @@
 <template>
-  <q-layout view="hHh LpR fff">
+  <q-layout view="hHh LpR fff"  class="q-responsive-md-sm">
     <q-header reveal elevated class=" text-white" height-hint="98" :style="{'background-color':$primary} ">
       <q-toolbar class="">
-        <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-
         <q-toolbar-title >
-
           <router-link to="/">
-          <div class="row items-center">
-            <div>
-              <q-avatar  class="cursor-pointer"   >
-              <img src="../assets/img/logo/logo.png" style="width:35px; height:35px;" />
-              </q-avatar>
+            <div class="row items-center justify-start">
+              <div class="">
+                <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
+                <q-avatar  class="cursor-pointer ml-1"   >
+                <img src="../assets/img/logo/logo.png" style="width:35px; height:35px;" />
+                </q-avatar>
+                
+              </div>
+              <div class="gt-sm">
+                Maxilife
+              </div>
+              
             </div>
-            <div>
-              Maxilife
-            </div>
-            
-          </div>
-         
+          
          
           </router-link>
   
         </q-toolbar-title>
 
-        <q-tabs align="justify">
+        <q-tabs align="justify" >
           <q-route-tab to="/home" label="HOME" />
           <q-route-tab :to="{ name: 'home_service' }" label="Services" />
           <q-route-tab to="/about" label="About" />
 
           <div v-if="!authStore.user">
-            <q-route-tab class="ml-10 row">
+            <q-route-tab class=" row">
               <div class="row">
-                <LoginView>Sign in</LoginView>
-                <RegisterView>Register</RegisterView>
+                <div class="col">
+                  <LoginView>Sign in</LoginView>
+                </div>
+                <div class="col gt-sm" >
+                  <RegisterView>Register</RegisterView>
+                </div>
+                
+                
               </div>
             </q-route-tab>
           </div>
           <div v-else>
-            <q-route-tab class="ml-10 row">
+            <q-route-tab>
               <q-btn
-                class="mx-1"
+                class=""
                 size="10px"
                 style="background-color: white !important;"
                 text-color="primary"

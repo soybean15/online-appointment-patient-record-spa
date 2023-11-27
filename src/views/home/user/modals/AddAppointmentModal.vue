@@ -7,6 +7,7 @@
       persistent
       transition-show="scale"
       transition-hide="scale"
+      :style="{ width: $q.screen.width > 576 ? '100%' : 'auto' }"
     >
       <q-card class="" style="width: 800px; max-width: 80vw">
         <q-card-section>

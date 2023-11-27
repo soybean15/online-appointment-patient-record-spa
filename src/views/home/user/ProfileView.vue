@@ -6,24 +6,26 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-6">
+    <div class="row q-pa-md">
+      <div class="col-12">
         <div class="row items-center justify-between">
           <div class="row items-center">
-            <div class="m-2 mr-1 font-bold text-base text-blue-400 font-nonito" color="">
+            <div class="m-2 mr-1 font-bold text-base text-primary font-nonito" color="">
               Profile
             </div>
    
           </div>
 
-          <div>
+          <div class="">
             <EditProfileModal/>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-6 row bg-surface rounded-md p-3 m-3 shadow-md">
-        <div class="col-6 border-r  border-gray-400 column">
+    <div class="row justify-center">
+        <div class="col-lg-6 col-md-6 col-12 row bg-surface rounded-md q-pa-sm q-ma-sm shadow-md ">
+        <div class="col-lg-6 col-md-6 col-12 border-r  border-gray-400 ">
           <div class="row justify-center" v-if="authStore.user">
             <q-avatar class="self-center mt-5" size="70px" color="orange"
               ><img :src="authStore.user.profile[0].image"></q-avatar
@@ -57,13 +59,13 @@
           </div>
         </div>
 
-        <div class="col-6 pl-2" v-if="authStore.user">
+        <div class="col-lg-6 col-md-6 col-12 pl-2" v-if="authStore.user">
             <div class="row ">
-                <div class="col-5  border-b py-3 border-gray-500 mx-2  ">
+                <div class="col-sm-12 col-lg-5 col-5 border-b py-3 border-gray-500 mx-2  ">
                     <div class="row font-secondary py-1">Gender</div>
                     <div class="row text-xs ">{{authStore.user.profile[0].gender}}</div>
                 </div>
-                <div class="col-5 border-b py-3 border-gray-500 mx-2">
+                <div class="col-sm-12 col-lg-5 col-5 border-b py-3 border-gray-500 mx-2">
                     <div class="row font-secondary py-1">Phone Number</div>
                     <div class="row text-xs">{{authStore.user.profile[0].contact_number}}</div>
                 </div>
@@ -71,11 +73,11 @@
             </div>
             <div class="row  ">
              
-                <div class="col-5  border-b py-2 border-gray-500 mx-2 ">
+                <div class="col-lg-5 col-sm-12 col-5  border-b py-2 border-gray-500 mx-2 ">
                     <div class="row font-secondary py-1">Birthday</div>
                     <div class="row text-xs" >{{authStore.user.profile[0].birthdate}}</div>
                 </div>
-                <div class="col-5  border-b py-3 border-gray-500 mx-2">
+                <div class="col-lg-5 col-sm-12 col-5 border-b py-3 border-gray-500 mx-2">
                     <div class="row font-secondary py-1">Age</div>
                     <div class="row text-xs ">{{authStore.user.profile[0].age}}</div>
                 </div>
@@ -107,23 +109,25 @@
                 
             </div>
         </div>
-      </div>
-      <div class="col-4 column row bg-surface rounded-md p-3 m-3 shadow-md ">
-        <div class="column col-3 ">
-            <div class="row font-bold text-lg"> Notes</div>
-            <div class="row justify-between">
-                <div>Last updated</div>
-                <div class="font-secondary">2020-08-02</div>
-            </div>
         </div>
-        <div class="row  col-9 bg-onSurface rounded-md p-2 pl-4">
-            <ul style="list-style-type: disc;">
-                <li>Patient is in good Condition</li>
-            </ul>
+        <div class="col-lg-4 row col-md-4 col-12 bg-surface rounded-md q-pa-md q-ma-sm shadow-md ">
+          <div class="column col-3 ">
+              <div class="row font-bold text-lg"> Notes</div>
+              <div class="row justify-between">
+                  <div>Last updated</div>
+                  <div class="font-secondary">2020-08-02</div>
+              </div>
+          </div>
+          <div class="row  col-9 bg-onSurface rounded-md p-2 pl-4">
+              <ul style="list-style-type: disc;">
+                  <li>Patient is in good Condition</li>
+              </ul>
+          </div>
+        
         </div>
-       
-      </div>
+   
     </div>
+    
 
 
 

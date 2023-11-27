@@ -1,12 +1,12 @@
 <template>
     <div class="row"><AddDoctorDialog /></div>
-  <div class="row">
-    <div class="col-5 column">
+  <div class="row justify-center">
+    <div class="col-lg-5 col-md-6 col-sm-12 ">
       
       <DoctorsTable />
     </div>
 
-    <div class="col-7">
+    <div class="col-lg-7 col-md-6 col-sm-12 q-px-md">
         <DoctorInfo/>
     </div>
   </div>

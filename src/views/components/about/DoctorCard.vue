@@ -1,36 +1,80 @@
-<template>
-   <div class="row  justify-center  ">
-    <div class="col q-py-md q-px-md">
-       <q-card class="my-card">
-        <img src="@/assets/img/images/doctor1.png" style="width:300px; height: 250px; ">
+ <template>
+  <div class="overflow-auto row wrap q-px-xl">
+    <div
+      class=" bg-surface shadow-xl cursor-pointer rounded-lg items-center q-mb-lg"
+      v-for="doctor in allDoctors"
+      :key="doctor.id"
+    >
+      <div class="p-2 row justify-center items-center ">
+        <div class=" q-py-xl q-px-lg">
+           <q-avatar style="height: 10rem; width: 10rem" >
+              <img :src="doctor.user.profile.image" alt="Doctor Image" class="object-cover shadow-xl"  />
+            </q-avatar>
+        </div>
+    
 
-      <q-card-section class=" text-primary">
-        <div class="text-h7 text-gray-700">Dr. Emerson DC. Garcia</div>
-        <div class="text-subtitle2">Urosurgeon</div>
-      </q-card-section>   
-    </q-card>
+        <div class="m-3 justify-center q-pr-lg">
+          <div class="font-bold text-lg">{{ doctor.full_name }}</div>
+          <div class="font-secondary">{{ doctor.specialty }}</div>
+
+          <div class="row wrap justify-start items-start content-start">
+            <div v-for="schedule in doctor.available_schedules" :key="schedule.name">
+              <div class="text-xs pr-1">{{ schedule.name }}</div>
+            </div>
+          </div>
+
+          <div>{{ `${doctor.from}-${doctor.to}` }}</div>
+        </div>
+      </div>
     </div>
-
-    <div class="col q-py-md q-px-xl">
-       <q-card class="my-card">
-        <img src="@/assets/img/images/doctor3.png" style="width:300px; height: 250px;">
-
-      <q-card-section class=" text-primary">
-        <div class="text-h7 text-gray-700">Dra. Kristina T. Vergara-Garcia</div>
-        <div class="text-subtitle2">Obstetrician/Gynecologist</div>
-      </q-card-section>   
-    </q-card>
-    </div>
-
-   </div>
+  </div>
 </template>
 
 <script>
-export default {
 
-}
+export default {
+  data() {
+    return {
+      allDoctors: [
+        {
+          id: 1,
+          full_name: 'Dr. Kristina T. Vergara-Garcia',
+          specialty: 'Cardiologist',
+          user: {
+            profile: {
+              image: require('@/assets/img/images/doctor3.png'),
+            },
+          },
+          available_schedules: [
+            { name: 'Monday' },
+            { name: 'Wednesday' },
+            { name: 'Tuesday' },
+          ],
+          from: '09:00 AM',
+          to: '05:00 PM',
+        },
+        {
+          id: 1,
+          full_name: 'Dr. Kristina T. Vergara-Garcia',
+          specialty: 'Cardiologist',
+          user: {
+            profile: {
+              image: require('@/assets/img/images/doctor3.png'),
+            },
+          },
+          available_schedules: [
+            { name: 'Monday' },
+            { name: 'Wednesday' },
+            { name: 'Tuesday' },
+          ],
+          from: '09:00 AM',
+          to: '05:00 PM',
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style>
-
 </style>

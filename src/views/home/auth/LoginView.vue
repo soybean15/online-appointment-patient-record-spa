@@ -140,10 +140,15 @@ export default {
       loading,
 
       isPwd: ref(false),
-      openRegister:()=>{
-        authStore.dialog.login = false
-        authStore.dialog.register =  true
-      }
+    
+      openRegister: () => {
+  console.log("Opening register dialog");
+  authStore.dialog.login = false;
+  setTimeout(() => {
+    authStore.dialog.register = true;
+  }, 100);
+}
+     
     };
   },
 };

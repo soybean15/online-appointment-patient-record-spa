@@ -6,9 +6,6 @@
       <div
         class="row hero-section relative overflow-auto bg-primary "
         style="height: 450px;"
-       
-
-
       >
         <!-- Maxilife Multispecialty Clinic and Diagnostic Center -->
         <svg
@@ -30,27 +27,20 @@
             class="row justify-center q-pt-md col-12 col-lg-6 col-md-8 col-sm-12 q-px-xl text-white"
           >
             <div class="q-px-md">
-              <div class="text-h4 text-bold q-pt-lg q-mt-xl">
+              <div class="text-h4 text-bold q-pt-lg q-mt-xl" gt-sm="text-h7">
                 Let Maxilife Multispecialty Clinic
                 <hr />
                 Care with your Health
 
                 <span>
-                  <div class="text-h6 q-pt-lg">
+                  <div class="text-h6 q-pt-lg gt-sm">
                     Book your appointment from the comfort of your own home and
                     receive quality care from our expert team
                   </div>
                 </span>
                 <span>
                   <div class="q-pt-lg">
-                    <q-btn
-                      align="around"
-                      class="btn-fixed-width q-mb-md"
-                      to="appointment"
-                      label="Set An Appointment"
-                      icon="calendar_today"
-                      outline
-                    />
+                    <q-btn color="white" text-color="primary"  icon="calendar_today"   align="around"  label="Set An Appointment" class="shadow-md"/>
                   </div>
                 </span>
               </div>
@@ -255,3 +245,4 @@ export default {
   font-size: 0.9rem;
 }
 </style>
+

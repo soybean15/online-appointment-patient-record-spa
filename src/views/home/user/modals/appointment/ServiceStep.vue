@@ -7,7 +7,7 @@
       :key="service.id"
     >
     <div :class="{'bg-red-300': service == selectedService}" class="absolute  " style="border-radius: 10px; height: 190px;width: 225px"></div>
-     <div>
+     <div  class="row justify-center">
 
 
         <q-card
@@ -18,6 +18,7 @@
               <q-img
                 style="height: 170px; max-width: 300px"
                 :src="service.image"
+                :class="$q.screen.width > 576 ? 'img-lg' : 'img-sm'"
               >
                 <div class="absolute-bottom text-center">
                   {{ service.name }}
@@ -53,4 +54,12 @@ export default {
 </script>
 
 <style>
+
+.img-sm {
+  max-height: 120px;
+}
+
+.img-lg {
+  max-height: 200px;
+}
 </style>

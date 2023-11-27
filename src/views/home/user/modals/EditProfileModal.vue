@@ -3,7 +3,7 @@
     <q-btn
       label="Edit"
       icon="edit"
-      
+      color="primary"
       @click="persistent = true"
     />
 
