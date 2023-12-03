@@ -2,12 +2,12 @@
   <div class="column">
     <SearchView />
 
-    <div class="row ">
-      <div class="col-5">
+    <div class="row justify-center">
+      <div class="col-lg-5 col-sm-12">
         <UserTable />
       </div>
 
-      <div class="col-7 py-3">
+      <div class="col-lg-7 col-sm-12 py-3">
         <patient-records />
       </div>
     </div>

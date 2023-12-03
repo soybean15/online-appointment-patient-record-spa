@@ -18,7 +18,7 @@
                 :src="service.image"
               >
                 <div class="absolute-bottom text-center">
-                  {{ service.name }}
+                  {{ service.name }}<br>&#8369; {{ service.price }}
                 </div>
               </q-img>
             </q-card>

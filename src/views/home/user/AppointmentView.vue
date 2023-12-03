@@ -1,18 +1,20 @@
-<template>
-  <div class="column">
-    <BreadCrumbs :prefix="'appointment'" />
-
+ <template>
+  <div>
+    <div class="row">
+      <BreadCrumbs :prefix="'appointment'" />
+    </div>
+    <div class="row justify-center">
+      <div class="col-lg-8 col-md-7 col-sm-12 col-12 q-pa-sm">       
+          <AppoinmentsList />    
+      </div>
+      <div class="col-lg-4 col-md-5 gt-sm q-py-sm">
+         <div class="row">
+          <AppointmentSidePanel />
+         </div>
+      </div>
+    </div>
   </div>
-  <div class="row">
-    <div class="col-8">
-      <AppoinmentsList />
-    </div>
-
-    <div class="col-4">
-      <AppointmentSidePanel />
-    </div>
-
-  </div>  
+ 
 
 
 </template>

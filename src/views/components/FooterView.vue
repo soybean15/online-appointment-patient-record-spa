@@ -1,17 +1,24 @@
 <template>
-  <q-footer elevated class="bg-grey-6 text-white">
-    <div class="row items-center">
-      <div class="col q-py-md ">
-        <div class="row items-center">
-          <img
-            src="@/assets/img/logo/logo.png"
-            style="width: 40px; height: 35px"
-            class="mr-3"
-          />2023 Maxilife.All Rights Reserved.
+  <q-footer  class="bg-grey-5 text-white">
+
+    <div class="row items-center justify-between">
+      <div class="col-sm-6 col-lg-4">
+        <div class="row q-py-md">       
+            <div class="row items-center">
+              <img
+                src="@/assets/img/logo/logo.png"
+                style="width: 40px; height: 35px"
+                class="ml-3"
+              />2023 Maxilife.All Rights Reserved.
+            </div>
+             
+         </div>
         </div>
-      </div>
-      <div class="col q-px-sm q-py-sm">
-        <div class="row justify-end items-center q-px-lg">
+     
+      
+      <div class="col-lg-4 gt-sm"></div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="row justify-end q-px-lg">        
           <a href="https://www.facebook.com/maxilife.multispecialty.clinic" target="_blank">
           <div class="p-0.5 rounded-full m-2 border-1">
          
@@ -59,8 +66,11 @@
           </div>
          
         </div>
+     
       </div>
     </div>
+  
+    
   </q-footer>
 </template>
 

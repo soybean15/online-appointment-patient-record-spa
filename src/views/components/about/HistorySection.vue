@@ -5,7 +5,7 @@
       
          
           <div class="row text-h6 text-bold text-primary">History</div>
-          <div class="row q-py-md q-mr-xl q-pr-md">
+          <div class="row">
             <p>
               Maxilife is a healthcare facility more popularly known as birthing
               center in San Fernando Sur, Cabiao, Neva Ecija which was

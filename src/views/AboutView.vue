@@ -1,19 +1,23 @@
 
-import vueConfig from 'vue.config';
 <template>
-  <div class="row justify-center  text-bold text-primary text-3xl q-mt-md" >     
+  <div class="row justify-center  text-bold text-primary text-3xl q-mt-xl" >     
             Maxilife Multispecialty Clinic  
     </div>
   
     <div class=" row justify-center text-xl font-secondary" >           
         We help you care with your health         
     </div>
-
-    <div class="row justify-center q-pa-xl" >
-        <div class="col-lg-3 gt-sm col-md-1">
-        
+    
+    <div class="row justify-center q-pa-lg" >
+        <div class="col-lg-3 gt-sm col-md-1 col"> </div>
+        <div class="col-lg-6 col-md-10 col-12 ">
+          <div class="row justify-center q-px-sm">
+                  <img
+                    src="../assets/image1.jpg"
+                    style="width: 100%; height: 400px; border-radius: 5px"
+                  />
         </div>
-        <div class="col-lg-6 col-md-10 col-12">
+
           <div >
             <HistorySectionVue/>
           </div>
@@ -31,6 +35,12 @@ import vueConfig from 'vue.config';
               improved family planning services in order to attain a better and
               happy community
             </div>
+
+            <div class="q-py-sm q-mt-lg">
+              <div class="row text-h6 text-primary text-bold q-mb-sm">Doctors on the duty</div>
+              <DoctorCard />
+            </div>
+
             <div class="q-pt-xl q-mt-md">
               <div class="row text-h6 text-primary text-bold items-center">
                     <q-icon name="location_on" color="black" />Location
@@ -38,7 +48,7 @@ import vueConfig from 'vue.config';
               <div class="row justify-start q-px-lg q-pt-sm">
                   <img
                     src="../assets/img/images/clinic3.jpg"
-                    style="width: 100%; height: 400px; border-radius: 5px"
+                    style="width: 100%; border-radius: 5px"
                   />
                </div>
               <div class="row  q-py-md  justify-center">
@@ -63,13 +73,29 @@ import vueConfig from 'vue.config';
 <script>
 
 import HistorySectionVue from './components/about/HistorySection.vue';
+import DoctorCard from './components/about/DoctorCard.vue';
+import { useDoctorStore } from '@/store/doctor'; // Adjust the path based on your project structure
+import { ref, onMounted } from 'vue';
 export default {
 
   components: {
     // DoctorCard,
-    HistorySectionVue
+    HistorySectionVue,
+    DoctorCard
   },
+  // setup() {
+  //   const doctorStore = useDoctorStore();
+  //   const doctors = ref([]);
 
+  //   onMounted(async () => {
+  //     await doctorStore.getDoctors(id);
+  //     doctors.value = doctorStore.doctors;
+  //   });
+
+  //   return {
+  //     doctors,
+  //   };
+  // }
 }
 </script>
 

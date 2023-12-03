@@ -10,6 +10,7 @@ export const useDoctorStore = defineStore('doctor', () => {
     
     const  users =ref(null)
     const selectedUser = ref(null)
+    
     const getUsers = async (keyword) => {
         const response = await axios.post('api/admin/doctor/users', { keyword })
         users.value = response.data.users.data

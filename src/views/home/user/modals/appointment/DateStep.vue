@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="row justify-center">
     <q-date
-      style="width: 100%"
+   
       v-model="currentDate"
       :events="events"
       :options="allDatesInCurrentMonth"
-      landscape
+      
     />
   </div>
 </template>
@@ -76,4 +76,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  @media screen and (max-width: 600px) {
+    /* Styles for small screens */
+    .q-date {
+      display: flex;
+      flex-direction: column;
+      width:20px;
+    }
+  }
+</style>
   
