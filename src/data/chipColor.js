@@ -6,7 +6,7 @@ const getChipColors = () => {
 
         rejected: { color: 'red', icon: 'cancel' },
         rescheduled: { color: 'blue', icon: 'pending_actions' },
-        approved: { color: 'yellow', icon: 'done_outline' },
+        approved: { color: 'blue', icon: 'done_outline' },
         pending: { color: 'orange', icon: 'done_outline' },
         canceled: { color: 'red-11', icon: 'done_outline' },
         completed: { color: 'green', icon: 'done_outline' },
