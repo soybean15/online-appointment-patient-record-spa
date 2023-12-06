@@ -36,33 +36,6 @@
         </q-item-section>
       </q-item>
 
-      <q-item tag="label" v-ripple>
-        <q-item-section avatar>
-          <q-icon color="primary" name="contacts" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Contacts</q-item-label>
-          <q-item-label caption>Allow notification</q-item-label>
-        </q-item-section>
-        <q-item-section side top>
-          <q-toggle color="green" v-model="notif2" val="friend" />
-        </q-item-section>
-      </q-item>
-
-      <q-item tag="label" v-ripple>
-        <q-item-section avatar>
-          <q-icon color="primary" name="thumb_up" />
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Socials</q-item-label>
-          <q-item-label caption
-            >Allow notification when uploading images</q-item-label
-          >
-        </q-item-section>
-        <q-item-section side top>
-          <q-toggle color="red" v-model="notif3" val="picture" />
-        </q-item-section>
-      </q-item>
     </q-list>
   </div>
 </template>

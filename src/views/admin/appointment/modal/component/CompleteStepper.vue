@@ -26,7 +26,7 @@
               <div class="col mx-2 my-4 border-b border-gray-500">
                 <div class="text-md font-secondary">Birth Date:</div>
                 <div>
-                  {{ patientRecordStore.selectedRow.user?patientRecordStore.selectedRow.user.profile[0].full_name :patientRecordStore.selectedRow.profile.birthdate }}
+                  {{ patientRecordStore.selectedRow.user?patientRecordStore.selectedRow.user.profile[0].birthdate :patientRecordStore.selectedRow.profile.birthdate }}
                 </div>
               </div>
 
@@ -58,11 +58,11 @@
             <div class="col-6">
               <div class="col mx-2 border-b border-gray-500">
                 <div class="text-md font-secondary py-1">Age:</div>
-                <div>20</div>
+                <div>{{patientRecordStore.selectedRow.user?patientRecordStore.selectedRow.user.profile[0].age :patientRecordStore.selectedRow.profile.age}}</div>
               </div>
               <div class="col mx-2 my-4 border-b border-gray-500">
                 <div class="text-md font-secondary">Address:</div>
-                <div>Callos</div>
+                <div>{{patientRecordStore.selectedRow.user?patientRecordStore.selectedRow.user.profile[0].address_home :patientRecordStore.selectedRow.profile.address_home}}</div>
               </div>
 
               <div class="col">

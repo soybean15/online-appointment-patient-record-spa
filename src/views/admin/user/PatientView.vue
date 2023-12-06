@@ -7,7 +7,7 @@
         <UserTable />
       </div>
 
-      <div class="col-lg-7 col-sm-12 py-3">
+      <div class="col-lg-7 col-sm-12 p-3">
         <patient-records />
       </div>
     </div>
