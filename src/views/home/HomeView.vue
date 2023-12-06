@@ -40,7 +40,7 @@
                 </span>
                 <span>
                   <div class="q-pt-lg">
-                    <q-btn color="white" text-color="primary"  icon="calendar_today"   align="around"  label="Set An Appointment" class="shadow-md"/>
+                    <q-btn color="white" text-color="primary"  icon="calendar_today" to="appointment"  align="around"  label="Set An Appointment" class="shadow-md"/>
                   </div>
                 </span>
               </div>

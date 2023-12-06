@@ -60,7 +60,7 @@ const routes = [
       },
       {
         path: '/doctor/:id',
-        name: 'doctorAppointment',
+        name: 'doctorAppointment', 
         meta: { title: 'Reset Password' } ,
         component: () => import('@/views/home/user/DoctorView')
 

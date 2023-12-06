@@ -100,7 +100,6 @@
               </q-item>
 
               <div class="row justify-center p-4 text-md">
-
                  <span class="font-secondary px-2">No Account?</span>
                  <span @click="openRegister" class="text-secondary underline cursor-pointer">Register</span>
               </div>
@@ -142,13 +141,13 @@ export default {
       isPwd: ref(false),
     
       openRegister: () => {
-  console.log("Opening register dialog");
-  authStore.dialog.login = false;
-  setTimeout(() => {
-    authStore.dialog.register = true;
-  }, 100);
-}
-     
+      console.log("Opening register dialog");
+      authStore.dialog.login = false;
+      setTimeout(() => {
+        authStore.dialog.register = true;
+      }, 100);
+    }
+        
     };
   },
 };

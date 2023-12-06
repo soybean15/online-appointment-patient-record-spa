@@ -98,9 +98,16 @@
                     @click="onRegister"
                     label="Create"
                     :loading="loading"
-                  />
+                  >
+                  <template v-slot:loading> Please Wait... </template>
+                </q-btn>
                 </q-item-section>
               </q-item>
+
+              <div class="row justify-center p-4 text-md">
+                 <span class="font-secondary px-2">Already have an account?</span>
+                 <span @click="openLogin" class="text-secondary underline cursor-pointer">Sign in</span>
+              </div>
             </q-list>
             <div class="q-gutter-y-md column w-full"></div>
           </div>
@@ -125,6 +132,7 @@ export default {
 
     const onRegister = async () => {
       loading.value = true;
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       await authStore.handleRegister();
 
       if (authStore.success.register) {
@@ -137,6 +145,15 @@ export default {
     return {
       authStore,
       onRegister,
+      loading,
+
+      openLogin: () => {
+      console.log("Opening register dialog");
+      authStore.dialog.register = false;
+      setTimeout(() => {
+        authStore.dialog.login = true;
+      }, 100);
+    }
     };
   },
 };
