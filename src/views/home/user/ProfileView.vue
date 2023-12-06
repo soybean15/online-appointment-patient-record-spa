@@ -110,19 +110,31 @@
             </div>
         </div>
         </div>
-        <div class="col-lg-4 row col-md-4 col-12 bg-surface rounded-md q-pa-md q-ma-sm shadow-md ">
-          <div class="column col-3 ">
-              <div class="row font-bold text-lg"> Notes</div>
-              <div class="row justify-between">
-                  <div>Last updated</div>
-                  <div class="font-secondary">2020-08-02</div>
-              </div>
-          </div>
-          <div class="row  col-9 bg-onSurface rounded-md p-2 pl-4">
-              <ul style="list-style-type: disc;">
-                  <li>Patient is in good Condition</li>
+        <div class=" column col-lg-4 row col-md-4 col-12 bg-surface rounded-md q-pa-md q-ma-sm shadow-md " >
+         <div>Notes </div>
+         <div>Last Update: <span class="font-secondary"> {{last? last.date_diagnosed : 'N/A'}}</span> </div>
+         <div>Assigned Doctor: <span class="font-secondary"> {{last? last.doctor : 'N/A'}}</span> </div>
+
+         <div class="bg-onSurface p-3 my-5 rounded-lg h-52 ">
+
+          <div v-if="last">
+            <div v-if="last.recommendation.length>0">
+              <ul>
+                <li v-for="item in last.recommendation">
+                    {{item}}
+                </li>
               </ul>
+
+            </div>
+            <div v-else>
+
+              No Notes
+
+            </div>
+
           </div>
+
+         </div>
         
         </div>
    
@@ -141,21 +153,34 @@
 <script>
 
 import { useAuthStore } from "@/store/auth";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import { format } from "date-fns";
 
 import EditProfileModal from './modals/EditProfileModal.vue';
+import axios from 'axios';
 
 export default {
     components:{EditProfileModal},
   setup() {
     const authStore = useAuthStore();
-    onMounted(() => {
+
+
+    const last = ref(null)
+    watchEffect(async() => {
+
+
+      if(authStore.user){
+        const response = await axios.get(`api/user/last-record/${authStore.user.id}`)
+        last.value = response.data.last
+      }
+   
+      
       
     });
 
     return {
       authStore,
+      last,
       formattedDate: computed(() => {
         const date = new Date();
         return format(date, "h:mm a d MMM yyyy");
@@ -166,6 +191,9 @@ export default {
         }
         return "Undefined";
       }),
+
+
+
     };
   },
 };

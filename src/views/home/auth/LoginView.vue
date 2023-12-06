@@ -125,7 +125,7 @@ export default {
 
     const onLogin = async () => {
       loading.value = true;
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+    
       await authStore.handleLogin();
 
       await authStore.getUser();
