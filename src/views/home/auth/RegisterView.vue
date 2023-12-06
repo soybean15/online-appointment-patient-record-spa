@@ -132,11 +132,11 @@ export default {
 
     const onRegister = async () => {
       loading.value = true;
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+    
       await authStore.handleRegister();
 
       if (authStore.success.register) {
-        persistent.value = false;
+        authStore.dialog.register = false;
       }
 
       loading.value = false;

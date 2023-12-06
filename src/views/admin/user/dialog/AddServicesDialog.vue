@@ -8,7 +8,7 @@
       transition-show="scale"
       transition-hide="scale"
     >
-      <q-card class=" text-white" style="width: 500px">
+      <q-card class=" " style="width: 500px">
         <q-card-section>
           <div class="text-h6">Services</div>
         </q-card-section>
@@ -24,7 +24,7 @@
               <q-item-section>
                 <q-item-label>{{ service.name }}</q-item-label>
                 <q-item-label caption>
-                  Notify me about updates to apps or games that I downloaded
+                 {{service.description}}
                 </q-item-label>
               </q-item-section>
             </q-item>

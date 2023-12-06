@@ -71,6 +71,20 @@ export const useDoctorStore = defineStore('doctor', () => {
           doctor_id: selectedUser.value.doctor.id
         })
       }
+
+      const removeService= async(id)=>{
+        const response = axios.post('api/admin/doctor/remove-service',{
+            id: selectedUser.value.doctor.id,
+            service_id:id
+        })
+       
+        selectedUser.value.doctor.services = selectedUser.value.doctor.services.filter(service => service.id !== id);
+
+
+
+
+
+      }
   
 
     //   const  getPatients = async(path,keyword)=>{
@@ -104,7 +118,8 @@ export const useDoctorStore = defineStore('doctor', () => {
         setSchedule,
         addServices,
         selectedUser,
-        users
+        users,
+        removeService
     }
 
 

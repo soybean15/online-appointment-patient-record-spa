@@ -48,13 +48,12 @@
                         
                         <div class="row justify-between">
                           {{ service.name }}
-                          <q-icon class="hover:text-red-600" name="delete"/>
+                          <q-icon @click="deleteService(service.id)" class="hover:text-red-600" name="delete"/>
                         </div>
                       
                       </q-item-label>
                       <q-item-label caption
-                        >Secondary line text. Lorem ipsum dolor sit amet,
-                        consectetur adipiscit elit.</q-item-label
+                        >{{service.description}}</q-item-label
                       >
                     </q-item-section>
                   </q-item>
@@ -191,6 +190,9 @@ export default {
       setSchedule: (index) => {
         doctorStore.setSchedule(index);
       },
+      deleteService:(id)=>{
+        doctorStore.removeService(id)
+      }
      
     };
   },

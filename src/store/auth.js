@@ -109,6 +109,7 @@ export const useAuthStore = defineStore('auth', {
 
                 this.authSuccess.register = true
                 
+                this.handleLogout()
                 
             }catch(error){
                 this.authSuccess.register = false
