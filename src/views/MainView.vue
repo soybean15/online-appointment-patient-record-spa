@@ -32,8 +32,9 @@
           <q-route-tab :to="{ name: 'home_service' }" label="Services" />
           <q-route-tab to="/about" label="About" />
 
-          <div v-if="!authStore.user">
+          <div v-if="!authStore.user && !authStore.isLogged">
             <q-route-tab class="row">
+             
               <div class="row">
                 <div class="col">
                   <LoginView>Sign in</LoginView>
@@ -96,7 +97,7 @@ export default {
     const config = useConfigStore();
 
     onMounted(() => {
-      authStore.getUser();
+      //authStore.getUser();
     });
     const leftDrawerOpen = ref(false);
 

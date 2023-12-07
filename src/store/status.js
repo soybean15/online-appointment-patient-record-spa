@@ -10,7 +10,10 @@ export const useStatusStore = defineStore('status',()=>{
 
     const redirect = (name ,callback)=>{
         router.push({name:name})
-        callback(title,message)
+        if(callback){
+            callback(title,message)
+        }
+        
     }
 
     return {
