@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/home/HomeView.vue'
 import { useAuthStore } from '@/store/auth'
+import { useStatusStore } from '@/store/status'
 
 const routes = [
 
@@ -9,7 +10,7 @@ const routes = [
     path: '/',
     name: 'main',
     redirect: '/home',
-  
+
     component: () => import(/* webpackChunkName: "about" */ '@/views/MainView'),
 
 
@@ -18,57 +19,57 @@ const routes = [
       {
         path: '/home',
         name: 'home',
-        meta: { title: 'Maxilife - Home' } ,
+        meta: { title: 'Maxilife - Home' },
         component: HomeView,
-        
+
 
       },
       {
         path: '/profile',
         name: 'profile',
-        meta: { title: 'Maxilife - Profile' } ,
+        meta: { title: 'Maxilife - Profile' },
         component: () => import('@/views/home/user/ProfileView')
 
       },
       {
         path: '/record',
         name: 'record',
-        meta: { title: 'Maxilife - Records' } ,
+        meta: { title: 'Maxilife - Records' },
         component: () => import('@/views/home/user/RecordView')
 
       },
       {
         path: '/record/details/:id',
         name: 'recordDetails',
-        meta: { title: 'Maxilife - Record Details' } ,
+        meta: { title: 'Maxilife - Record Details' },
         component: () => import('@/views/home/user/components/RecordDetails')
 
       },
       {
         path: '/status',
         name: 'status',
-        meta: { title: 'Status' } ,
+        meta: { title: 'Status' },
         component: () => import('@/views/StatusView')
 
       },
       {
         path: '/reset-password/:token',
         name: 'resetPassword',
-        meta: { title: 'Reset Password' } ,
+        meta: { title: 'Reset Password' },
         component: () => import('@/views/home/auth/ResetPasswordView')
 
       },
       {
         path: '/doctor/:id',
-        name: 'doctorAppointment', 
-        meta: { title: 'Reset Password' } ,
+        name: 'doctorAppointment',
+        meta: { title: 'Reset Password' },
         component: () => import('@/views/home/user/DoctorView')
 
       },
       {
         path: '/appointment',
         name: 'appointment',
-        meta: { title: 'Maxilife - Appointments' } ,
+        meta: { title: 'Maxilife - Appointments' },
         component: () => import('@/views/home/user/AppointmentView'),
         beforeEnter: async (to, from, next) => {
           const authStore = useAuthStore()
@@ -91,21 +92,21 @@ const routes = [
         },
         children: [
 
-      
-          
+
+
         ]
 
       },
       {
         path: '/about',
         name: 'about',
-        meta: { title: 'Maxilife - About' } ,
+        meta: { title: 'Maxilife - About' },
         component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
       },
       {
         path: 'service',
         name: 'home_service',
-        meta: { title: 'Maxilife - Services' } ,
+        meta: { title: 'Maxilife - Services' },
         component: () => import('@/views/home/ServiceView')
 
       },
@@ -113,29 +114,29 @@ const routes = [
       {
         path: '/appointment/details',
         name: 'appointmentDetails',
-        meta: { title: 'Maxilife - Appointment Details' } ,
-        component:  () => import('@/views/home/user/components/AppointmentDetails'), 
-         
-       
+        meta: { title: 'Maxilife - Appointment Details' },
+        component: () => import('@/views/home/user/components/AppointmentDetails'),
+
+
 
       },
 
       {
         path: '/forgot-password',
         name: 'forgotPassword',
-        meta: { title: 'Maxilife - Appointment Details' } ,
-        component:  () => import('@/views/home/auth/ForgotPasswordView.vue'), 
-         
-       
+        meta: { title: 'Maxilife - Appointment Details' },
+        component: () => import('@/views/home/auth/ForgotPasswordView.vue'),
+
+
 
       },
-   
-    
-   
-    
-     
-    
-    
+
+
+
+
+
+
+
 
     ]
 
@@ -145,7 +146,7 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    redirect:{name:'dashboard'},
+    redirect: { name: 'dashboard' },
     component: () => import('@/views/admin/AdminView'),
     beforeEnter: async (to, from, next) => {
       const authStore = useAuthStore()
@@ -171,7 +172,7 @@ const routes = [
       {
         path: 'dashboard',
         name: 'dashboard',
-        meta: { title: 'Admin - Dashboard' } ,
+        meta: { title: 'Admin - Dashboard' },
         component: () => import('@/views/admin/dashboard/Dashboard'),
 
 
@@ -179,7 +180,7 @@ const routes = [
       {
         path: 'services',
         name: 'services',
-        meta: { title: 'Admin - Services' } ,
+        meta: { title: 'Admin - Services' },
         component: () => import('@/views/admin/service/ServiceView'),
 
 
@@ -187,21 +188,21 @@ const routes = [
       {
         path: 'patients',
         name: 'patients',
-        meta: { title: 'Admin - Patients' } ,
+        meta: { title: 'Admin - Patients' },
         component: () => import('@/views/admin/user/PatientView'),
 
       },
       {
         path: 'doctors',
         name: 'doctors',
-        meta: { title: 'Admin - Doctors' } ,
+        meta: { title: 'Admin - Doctors' },
         component: () => import('@/views/admin/user/DoctorsView'),
 
       },
       {
         path: 'appointment',
         name: 'adminAppointment',
-        meta: { title: 'Admin - Appointments' } ,
+        meta: { title: 'Admin - Appointments' },
         component: () => import('@/views/admin/appointment/AppointmentView'),
 
       },
@@ -209,18 +210,18 @@ const routes = [
       {
         path: '/settings',
         name: 'settings',
-        component:  () => import('@/views/admin/SettingsView'),
-         
-       
+        component: () => import('@/views/admin/SettingsView'),
+
+
 
       },
       {
         path: '/calendar',
         name: 'calendar',
-        meta: { title: 'Admin - calendar' } ,
-        component:  () => import('@/views/admin/calendar/CalendarView'),
-         
-       
+        meta: { title: 'Admin - calendar' },
+        component: () => import('@/views/admin/calendar/CalendarView'),
+
+
 
       },
     ]
@@ -232,6 +233,8 @@ const routes = [
 
 ]
 
+
+
 const router = createRouter({
   history: createWebHistory(),
   routes
@@ -239,8 +242,39 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
+
+
+
+  const authStore = useAuthStore()
+  const statusStore = useStatusStore()
+
+
+
+  if (!authStore.user || !authStore.isFetched) {
+    console.log(authStore.isLogged)
+    authStore.getUser((e) => {
+      if (e.response.status === 403) {
+        statusStore.redirect('status', (title, message) => {
+
+          title.value = "Verify Email"
+          message.value = "Please check you email"
+
+        })
+
+     
+
+      }
+
+    })
+  }
+
+
+
+
   next();
 });
+
+
 
 
 

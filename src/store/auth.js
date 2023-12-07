@@ -23,7 +23,9 @@ export const useAuthStore = defineStore('auth', {
             login:false,
             register:false
         },
-        authNextPath: '/'
+        authNextPath: '/',
+        authIsFetched:false,
+        authIsLogged:false
 
     }),
     getters: {
@@ -32,18 +34,20 @@ export const useAuthStore = defineStore('auth', {
         errors:(state)=>state.authErrors,
         form: (state) => state.authForm,
         isAdmin :(state)=>state.authIsAdmin,
-        dialog:(state)=>state.authDialog
-
+        dialog:(state)=>state.authDialog,
+        isFetched:(state)=>state.isFetched,
+        isLogged:(state)=>state.authIsLogged
     },
     actions: {
         async getToken() {
             await axios.get('/sanctum/csrf-cookie')
         },
 
-        async getUser() {
+        async getUser(callback) {
             this.getToken()
 
             try {
+                this.authIsFetched = true
                 const data = await axios.get('/api/user')
                 if (data) {
                     this.authUser = data.data
@@ -62,7 +66,16 @@ export const useAuthStore = defineStore('auth', {
                         // router.push('/login')
 
                     }
+                    if(error.response.status===403){
+                        console.log('error here')
+                        this.authIsLogged=true
+                        console.log(this.authIsLogged)
+                    }
                 }
+                if(callback){
+                    callback(error)
+                }
+             
 
             }
 
@@ -109,7 +122,7 @@ export const useAuthStore = defineStore('auth', {
 
                 this.authSuccess.register = true
                 
-                this.handleLogout()
+                //this.handleLogout()
                 
             }catch(error){
                 this.authSuccess.register = false
@@ -132,7 +145,7 @@ export const useAuthStore = defineStore('auth', {
             this.authUser = null
             this.authIsAdmin = false
             this.authNextPath = '/'
-
+            this.authIsLogged=false
             this.router.push('/')
         },
 
