@@ -23,7 +23,7 @@ export const useAuthStore = defineStore('auth', {
             login:false,
             register:false
         },
-        authNextPath: '/',
+        authNextPath: '/profile',
         authIsFetched:false,
         authIsLogged:false
 

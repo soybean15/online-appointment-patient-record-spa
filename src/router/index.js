@@ -254,12 +254,16 @@ router.beforeEach((to, from, next) => {
     console.log(authStore.isLogged)
     authStore.getUser((e) => {
       if (e.response.status === 403) {
-        statusStore.redirect('status', (title, message) => {
+        if(to.name!=='home' && to.name!=='home_service' && to.name!=='about'){
 
-          title.value = "Verify your Email Address"
-          message.value = "Please check your email to verify your email address and activate your account."
+          statusStore.redirect('status', (title, message) => {
 
-        })
+            title.value = "Verify your Email Address"
+            message.value = "Please check your email to verify your email address and activate your account."
+  
+          })
+        }
+
 
      
 
