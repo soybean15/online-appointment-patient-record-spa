@@ -1,9 +1,15 @@
 <template>
-    <div class="p-10">
-        <div class="text-lg">{{title}}</div>
-        <div class="font-secondary"> {{message}}</div>
-        <a class="cursor-pointer text-primary underline" @click="statusStore.redirect('home')">Back to Home </a>
+
+    <div class="row justify-center q-pa-xl">
+        <div  class="mt-10 shadow-xl q-pa-xl " style="width:600px">
+          
+                <h4 class=" row justify-center">{{title}}</h4>
+                <h7 class="font-secondary row justify-center "> {{message}}</h7>
+                <div class="row justify-center mt-10"><q-btn color="primary" label="Back to Home" @click="statusStore.redirect('home')"/></div>
+          
+        </div>
     </div>
+   
 
 </template>
 
