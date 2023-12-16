@@ -77,6 +77,7 @@
                   </div>
                   <q-input
                     standout="bg-teal text-white"
+                    :type="isPwd ? 'text' : 'password'"
                     v-model="authStore.form.password"
                     label="Password"
                 /></q-item-section>
@@ -86,9 +87,18 @@
                 <q-item-section>
                   <q-input
                     standout="bg-teal text-white"
+                    :type="isPwd ? 'text' : 'password'"
                     v-model="authStore.form.password_confirmation"
                     label="Confirm Password"
-                /></q-item-section>
+                />
+                <template v-slot:append>
+                      <q-icon
+                        :name="isPwd ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"
+                        @click="isPwd = !isPwd"
+                      />
+                    </template>
+                </q-item-section>
               </q-item>
 
               <q-item v-ripple>
@@ -147,6 +157,7 @@ export default {
       onRegister,
       loading,
 
+      isPwd: ref(false),
       openLogin: () => {
       console.log("Opening register dialog");
       authStore.dialog.register = false;
