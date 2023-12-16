@@ -63,11 +63,39 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
+
+    <q-dialog
+      v-model="showConfirmationDialog"
+      persistent
+      transition-show="scale"
+      transition-hide="scale"
+    >
+      <q-card>
+        <q-card-section>
+          <div class="text-h7 text-bold ">Confirmation</div>
+        </q-card-section>
+
+        <q-card-section>
+          <div class="q-mb-md">
+            Are you sure you want to add this account <strong>{{ selectedUserFullName }}</strong> as doctor?          
+          </div>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancel" v-close-popup />
+          <q-btn
+            color="primary"
+            label="Confirm"
+            @click="confirmAddDoctor"
+          />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
   
   <script>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 
 import {useDoctorStore} from '@/store/doctor'
 import { storeToRefs } from 'pinia';
@@ -76,7 +104,7 @@ export default {
 
     const doctorStore = useDoctorStore()
     const persistent = ref(false);
-    
+    const showConfirmationDialog = ref(false);
     const {users} = storeToRefs(doctorStore)
 
     const selectedUser = ref();
@@ -88,21 +116,34 @@ export default {
 
     return {
       persistent,
+      showConfirmationDialog,
       onSubmit: () => {
         doctorStore.getUsers(key.value);
-
       },
       submit: async (user) => {
-      
-        await doctorStore.addDoctor(user);
-
+        showConfirmationDialog.value = true;
+        selectedUser.value = user;
+      },
+      confirmAddDoctor: async () => {
+        await doctorStore.addDoctor(selectedUser.value);
         persistent.value = false;
-   
+        showConfirmationDialog.value = false;
+      },
+      cancelAddDoctor: () => {
+        showConfirmationDialog.value = false;
       },
       selectedUser,
       key,
-      users
+      users,
+      selectedUserFullName: computed(() => {
+        if (selectedUser.value) {
+          return `${selectedUser.value.profile.firstname} ${selectedUser.value.profile.lastname}`;
+        }
+        return "";
+      }),
     };
+
+   
   },
 };
 </script>
